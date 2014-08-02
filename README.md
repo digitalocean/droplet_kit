@@ -22,6 +22,28 @@ You'll need to generate an access token in Digital Oceans control panel at https
 
 With your access token, retrieve a client instance with it.
 
+```ruby
+client = DropletKit::Client.new(access_token: 'YOUR_TOKEN')
+```
+
+## Design
+
+DropletKit follows a strict design of resoures as methods on your client. For examples, for droplets, you will call your client like this:
+
+```ruby
+client = DropletKit::Client.new(access_token: 'YOUR_TOKEN')
+client.droplets #=> DropletsResource
+```
+
+DropletKit will return Plain Old Ruby objects(tm) that contain the information provided by the API. For example:
+
+```ruby
+client = DropletKit::Client.new(access_token: 'YOUR_TOKEN')
+client.droplets.all
+# => [ DropletKit::Dropet(id: 123, name: 'something.com', ...), DropletKit::Dropet(id: 1066, name: 'bunk.com', ...) ]
+```
+
+
 ## Contributing
 
 1. Fork it ( https://github.com/[my-github-username]/droplet_kit/fork )
