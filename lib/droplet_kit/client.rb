@@ -16,6 +16,25 @@ module DropletKit
       end
     end
 
+    def self.resources
+      {
+        droplets: DropletResource
+      }
+    end
+
+    def method_missing(name, *args, &block)
+      if self.class.resources.keys.include?(name)
+        resources[name] ||= self.class.resources[name].new(connection)
+        resources[name]
+      else
+        super
+      end
+    end
+
+    def resources
+      @resources ||= {}
+    end
+
     private
 
     def connection_options

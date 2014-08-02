@@ -18,9 +18,11 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
+  spec.add_dependency 'virtus', '~> 1.0.3'
+  spec.add_dependency "resource_kit", '~> 0.0.1'
+  spec.add_dependency "kartograph", '~> 0.0.1'
+
   spec.add_development_dependency "bundler", "~> 1.6"
   spec.add_development_dependency "rake"
-  spec.add_development_dependency "resource_kit", '~> 0.0.1'
-  spec.add_development_dependency "kartograph", '~> 0.0.1'
   spec.add_development_dependency "rspec", "~> 3.0.0"
 end
