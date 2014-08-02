@@ -43,6 +43,23 @@ client.droplets.all
 # => [ DropletKit::Dropet(id: 123, name: 'something.com', ...), DropletKit::Dropet(id: 1066, name: 'bunk.com', ...) ]
 ```
 
+When you'd like to save objects, it's your responsibility to instantiate the objects and persist them using the resource objects. Lets use creating a Droplet as an example:
+
+```ruby
+client = DropletKit::Client.new(access_token: 'YOUR_TOKEN')
+droplet = DropletKit::Droplet.new(name: 'mysite.com', region: 'nyc2', image: 'ubuntu-14-04-x64', size: '512mb')
+created = client.droplets.create(droplet)
+# => DropletKit::Droplet(id: 1231, name: 'something.com', ...)
+```
+
+To retrieve objects, you can perform this type of action on the resource (if the API supports it):
+
+```ruby
+client = DropletKit::Client.new(access_token: 'YOUR_TOKEN')
+droplet = client.droplets.find(id: 123)
+# => DropletKit::Droplet(id: 1231, name: 'something.com', ...)
+```
+
 
 ## Contributing
 
