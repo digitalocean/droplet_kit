@@ -20,6 +20,18 @@ module DropletKit
         handler(202) { |response| DropletMapping.extract_single(response.body, :read) }
         handler(422) { |response| ErrorMapping.fail_with(FailedCreate, response.body) }
       end
+
+      action :kernels do
+        verb :get
+        path '/v2/droplets/:id/kernels'
+        handler(200) { |response| KernelMapping.extract_collection(response.body, :read) }
+      end
+
+      action :snapshots do
+        verb :get
+        path '/v2/droplets/:id/snapshots'
+        handler(200) { |response| SnapshotMapping.extract_collection(response.body, :read) }
+      end
     end
   end
 end

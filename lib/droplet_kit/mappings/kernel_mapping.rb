@@ -4,6 +4,7 @@ module DropletKit
 
     kartograph do
       mapping Kernel
+      root_key plural: 'kernels', singular: 'kernel', scopes: [:read]
 
       property :id, scopes: [:read]
       property :name, scopes: [:read]

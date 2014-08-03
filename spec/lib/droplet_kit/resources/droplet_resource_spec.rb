@@ -116,4 +116,36 @@ RSpec.describe DropletKit::DropletResource do
       end
     end
   end
+
+  describe '#kernels' do
+    it 'returns a list of kernels for a droplet' do
+      stub_do_api('/v2/droplets/1066/kernels', :get).to_return(body: api_fixture('droplets/list_kernels'))
+      kernels = resource.kernels(id: 1066)
+
+      expect(kernels).to all(be_kind_of(DropletKit::Kernel))
+      expect(kernels[0].id).to eq(61833229)
+      expect(kernels[0].name).to eq('Ubuntu 14.04 x32 vmlinuz-3.13.0-24-generic')
+      expect(kernels[0].version).to eq('3.13.0-24-generic')
+
+      expect(kernels[1].id).to eq(485432972)
+      expect(kernels[1].name).to eq('Ubuntu 14.04 x64 vmlinuz-3.13.0-24-generic (1221)')
+      expect(kernels[1].version).to eq('3.13.0-24-generic')
+    end
+  end
+
+  describe '#snapshots' do
+    it 'returns a list of kernels for a droplet' do
+      stub_do_api('/v2/droplets/1066/snapshots', :get).to_return(body: api_fixture('droplets/list_snapshots'))
+      snapshots = resource.snapshots(id: 1066)
+
+      expect(snapshots).to all(be_kind_of(DropletKit::Snapshot))
+      expect(snapshots[0].id).to eq(449676387)
+      expect(snapshots[0].name).to eq("Ubuntu 13.04")
+      expect(snapshots[0].distribution).to eq("ubuntu")
+      expect(snapshots[0].slug).to eq(nil)
+      expect(snapshots[0].public).to eq(false)
+      expect(snapshots[0].regions).to eq(["nyc1"])
+      expect(snapshots[0].created_at).to eq("2014-07-29T14:35:38Z")
+    end
+  end
 end
