@@ -164,4 +164,8 @@ RSpec.describe DropletKit::DropletResource do
       expect(backups[0].created_at).to eq("2014-07-29T14:35:38Z")
     end
   end
+
+  describe '#actions' do
+
+  end
 end
