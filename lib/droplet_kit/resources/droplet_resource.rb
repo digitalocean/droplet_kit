@@ -32,6 +32,12 @@ module DropletKit
         path '/v2/droplets/:id/snapshots'
         handler(200) { |response| SnapshotMapping.extract_collection(response.body, :read) }
       end
+
+      action :backups do
+        verb :get
+        path '/v2/droplets/:id/backups'
+        handler(200) { |response| BackupMapping.extract_collection(response.body, :read) }
+      end
     end
   end
 end

@@ -15,6 +15,7 @@ module DropletKit
   autoload :Network, 'droplet_kit/models/network'
   autoload :Kernel, 'droplet_kit/models/kernel'
   autoload :Snapshot, 'droplet_kit/models/snapshot'
+  autoload :Backup, 'droplet_kit/models/backup'
 
   # Resources
   autoload :DropletResource, 'droplet_kit/resources/droplet_resource'
@@ -28,6 +29,7 @@ module DropletKit
   autoload :NetworkDetailMapping, 'droplet_kit/mappings/network_detail_mapping'
   autoload :KernelMapping, 'droplet_kit/mappings/kernel_mapping'
   autoload :SnapshotMapping, 'droplet_kit/mappings/snapshot_mapping'
+  autoload :BackupMapping, 'droplet_kit/mappings/backup_mapping'
 
   # Errors
   autoload :ErrorMapping, 'droplet_kit/mappings/error_mapping'
