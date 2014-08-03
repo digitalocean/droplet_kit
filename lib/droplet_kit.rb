@@ -20,6 +20,7 @@ module DropletKit
 
   # Resources
   autoload :DropletResource, 'droplet_kit/resources/droplet_resource'
+  autoload :ActionResource, 'droplet_kit/resources/action_resource'
 
   # JSON Maps
   autoload :DropletMapping, 'droplet_kit/mappings/droplet_mapping'
