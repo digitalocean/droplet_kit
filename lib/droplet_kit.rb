@@ -11,10 +11,19 @@ module DropletKit
   autoload :Region, 'droplet_kit/models/region'
   autoload :Image, 'droplet_kit/models/image'
   autoload :Size, 'droplet_kit/models/size'
+  autoload :NetworkHash, 'droplet_kit/models/network_hash'
+  autoload :Network, 'droplet_kit/models/network'
+  autoload :Kernel, 'droplet_kit/models/kernel'
 
   # Resources
   autoload :DropletResource, 'droplet_kit/resources/droplet_resource'
 
   # JSON Maps
   autoload :DropletMapping, 'droplet_kit/mappings/droplet_mapping'
+  autoload :ImageMapping, 'droplet_kit/mappings/image_mapping'
+  autoload :RegionMapping, 'droplet_kit/mappings/region_mapping'
+  autoload :SizeMapping, 'droplet_kit/mappings/size_mapping'
+  autoload :NetworkMapping, 'droplet_kit/mappings/network_mapping'
+  autoload :NetworkDetailMapping, 'droplet_kit/mappings/network_detail_mapping'
+  autoload :KernelMapping, 'droplet_kit/mappings/kernel_mapping'
 end

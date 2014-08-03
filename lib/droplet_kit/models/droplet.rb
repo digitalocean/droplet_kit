@@ -16,6 +16,8 @@ module DropletKit
     attribute :region
     attribute :image
     attribute :size
+    attribute :networks
+    attribute :kernel
 
     # region  object
     # networks  object
