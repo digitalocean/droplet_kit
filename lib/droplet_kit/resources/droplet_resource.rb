@@ -38,6 +38,12 @@ module DropletKit
         path '/v2/droplets/:id/backups'
         handler(200) { |response| BackupMapping.extract_collection(response.body, :read) }
       end
+
+      action :actions do
+        verb :get
+        path '/v2/droplets/:id/actions'
+        handler(200) { |response| ActionMapping.extract_collection(response.body, :read) }
+      end
     end
   end
 end

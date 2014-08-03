@@ -166,6 +166,20 @@ RSpec.describe DropletKit::DropletResource do
   end
 
   describe '#actions' do
+    it 'returns a list of actions for the droplet' do
+      stub_do_api('/v2/droplets/1066/actions', :get).to_return(body: api_fixture('droplets/list_actions'))
+      actions = resource.actions(id: 1066)
 
+      expect(actions).to all(be_kind_of(DropletKit::Action))
+
+      expect(actions[0].id).to eq(19)
+      expect(actions[0].status).to eq("in-progress")
+      expect(actions[0].type).to eq("create")
+      expect(actions[0].started_at).to eq("2014-07-29T14:35:39Z")
+      expect(actions[0].completed_at).to eq(nil)
+      expect(actions[0].resource_id).to eq(24)
+      expect(actions[0].resource_type).to eq("droplet")
+      expect(actions[0].region).to eq("nyc1")
+    end
   end
 end

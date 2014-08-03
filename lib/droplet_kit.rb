@@ -16,6 +16,7 @@ module DropletKit
   autoload :Kernel, 'droplet_kit/models/kernel'
   autoload :Snapshot, 'droplet_kit/models/snapshot'
   autoload :Backup, 'droplet_kit/models/backup'
+  autoload :Action, 'droplet_kit/models/action'
 
   # Resources
   autoload :DropletResource, 'droplet_kit/resources/droplet_resource'
@@ -30,6 +31,7 @@ module DropletKit
   autoload :KernelMapping, 'droplet_kit/mappings/kernel_mapping'
   autoload :SnapshotMapping, 'droplet_kit/mappings/snapshot_mapping'
   autoload :BackupMapping, 'droplet_kit/mappings/backup_mapping'
+  autoload :ActionMapping, 'droplet_kit/mappings/action_mapping'
 
   # Errors
   autoload :ErrorMapping, 'droplet_kit/mappings/error_mapping'
