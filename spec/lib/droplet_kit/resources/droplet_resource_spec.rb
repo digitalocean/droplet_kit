@@ -12,7 +12,7 @@ RSpec.describe DropletKit::DropletResource do
     expect(droplet.disk).to eq(20)
     expect(droplet.locked).to eq(false)
     expect(droplet.status).to eq('active')
-    expect(droplet.created_at).to eq('2014-07-29T14:35:36Z')
+    expect(droplet.created_at).to be_present
     expect(droplet.backup_ids).to include(449676382)
     expect(droplet.snapshot_ids).to include(449676383)
     expect(droplet.action_ids).to be_empty
@@ -65,6 +65,15 @@ RSpec.describe DropletKit::DropletResource do
       expect(droplets).to all(be_kind_of(DropletKit::Droplet))
 
       check_droplet(droplets[0])
+    end
+  end
+
+  describe '#find' do
+    it 'returns a singular droplet' do
+      stub_do_api('/v2/droplets/20', :get).to_return(body: api_fixture('droplets/find'))
+      droplet = resource.find(id: 20)
+      expect(droplet).to be_kind_of(DropletKit::Droplet)
+      check_droplet(droplet)
     end
   end
 end
