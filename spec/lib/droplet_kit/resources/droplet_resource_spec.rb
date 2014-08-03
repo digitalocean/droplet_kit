@@ -6,6 +6,7 @@ RSpec.describe DropletKit::DropletResource do
 
   # Theres a lot to check
   def check_droplet(droplet)
+    expect(droplet.id).to eq(19)
     expect(droplet.name).to eq('test.example.com')
     expect(droplet.memory).to eq(1024)
     expect(droplet.vcpus).to eq(2)
@@ -74,6 +75,36 @@ RSpec.describe DropletKit::DropletResource do
       droplet = resource.find(id: 20)
       expect(droplet).to be_kind_of(DropletKit::Droplet)
       check_droplet(droplet)
+    end
+  end
+
+  describe '#create' do
+    context 'for a successful create' do
+      it 'returns the created droplet' do
+        droplet = DropletKit::Droplet.new(
+          name: 'test.example.com',
+          region: 'nyc1',
+          size: '512mb',
+          image: 'ubuntu-14-04-x86',
+          ssh_keys: [123],
+          backups: true,
+          ipv6: true
+        )
+
+        as_hash = DropletKit::DropletMapping.representation_for(:create, droplet, NullHashLoad)
+        expect(as_hash[:name]).to eq(droplet.name)
+        expect(as_hash[:region]).to eq(droplet.region)
+        expect(as_hash[:size]).to eq(droplet.size)
+        expect(as_hash[:image]).to eq(droplet.image)
+        expect(as_hash[:ssh_keys]).to eq(droplet.ssh_keys)
+        expect(as_hash[:backups]).to eq(droplet.backups)
+        expect(as_hash[:ipv6]).to eq(droplet.ipv6)
+
+        as_string = DropletKit::DropletMapping.representation_for(:create, droplet)
+        stub_do_api('/v2/droplets', :post).with(body: as_string).to_return(body: api_fixture('droplets/create'), status: 202)
+        created_droplet = resource.create(droplet)
+        check_droplet(created_droplet)
+      end
     end
   end
 end

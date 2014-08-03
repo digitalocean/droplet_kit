@@ -19,11 +19,10 @@ module DropletKit
     attribute :networks
     attribute :kernel
 
-    # region  object
-    # networks  object
-    # size  object
-    # image object
-    # kernel  object
+    # Used for creates
+    attribute :ssh_keys
+    attribute :backups
+    attribute :ipv6
   end
 end
 

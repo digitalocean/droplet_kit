@@ -24,6 +24,15 @@ module DropletKit
       property :size, scopes: [:read], include: SizeMapping
       property :networks, scopes: [:read], include: NetworkMapping
       property :kernel, scopes: [:read], include: KernelMapping
+
+      # Create properties arent quite the same
+      property :name, scopes: [:create]
+      property :region, scopes: [:create]
+      property :size, scopes: [:create]
+      property :image, scopes: [:create]
+      property :ssh_keys, scopes: [:create]
+      property :backups, scopes: [:create]
+      property :ipv6, scopes: [:create]
     end
   end
 end
