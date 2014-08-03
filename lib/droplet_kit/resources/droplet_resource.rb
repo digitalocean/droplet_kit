@@ -21,6 +21,12 @@ module DropletKit
         handler(422) { |response| ErrorMapping.fail_with(FailedCreate, response.body) }
       end
 
+      action :delete do
+        verb :delete
+        path '/v2/droplets/:id'
+        handler(204) { |response| true }
+      end
+
       action :kernels do
         verb :get
         path '/v2/droplets/:id/kernels'

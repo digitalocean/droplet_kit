@@ -182,4 +182,13 @@ RSpec.describe DropletKit::DropletResource do
       expect(actions[0].region).to eq("nyc1")
     end
   end
+
+  describe '#delete' do
+    it 'sends a delete request for the droplet' do
+      request = stub_do_api('/v2/droplets/1066', :delete)
+      resource.delete(id: 1066)
+
+      expect(request).to have_been_made
+    end
+  end
 end
