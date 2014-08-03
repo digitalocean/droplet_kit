@@ -106,5 +106,14 @@ RSpec.describe DropletKit::DropletResource do
         check_droplet(created_droplet)
       end
     end
+
+    context 'for an unsuccessful create' do
+      it 'raises a FailedCreate exception with the message attached' do
+        response_body = { id: :unprocessable_entity, message: 'Something is not right' }
+        stub_do_api('/v2/droplets', :post).to_return(body: response_body.to_json, status: 422)
+
+        expect { resource.create(DropletKit::Droplet.new) }.to raise_exception(DropletKit::FailedCreate).with_message(response_body[:message])
+      end
+    end
   end
 end

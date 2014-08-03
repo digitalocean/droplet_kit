@@ -26,4 +26,9 @@ module DropletKit
   autoload :NetworkMapping, 'droplet_kit/mappings/network_mapping'
   autoload :NetworkDetailMapping, 'droplet_kit/mappings/network_detail_mapping'
   autoload :KernelMapping, 'droplet_kit/mappings/kernel_mapping'
+
+  # Errors
+  autoload :ErrorMapping, 'droplet_kit/mappings/error_mapping'
+  FailedCreate = Class.new(StandardError)
+  FailedUpdate = Class.new(StandardError)
 end
