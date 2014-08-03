@@ -8,6 +8,9 @@ module DropletKit
   # Models
   autoload :BaseModel, 'droplet_kit/models/base_model'
   autoload :Droplet, 'droplet_kit/models/droplet'
+  autoload :Region, 'droplet_kit/models/region'
+  autoload :Image, 'droplet_kit/models/image'
+  autoload :Size, 'droplet_kit/models/size'
 
   # Resources
   autoload :DropletResource, 'droplet_kit/resources/droplet_resource'

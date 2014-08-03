@@ -13,6 +13,10 @@ module DropletKit
     attribute :action_ids
     attribute :features
 
+    attribute :region
+    attribute :image
+    attribute :size
+
     # region  object
     # networks  object
     # size  object
