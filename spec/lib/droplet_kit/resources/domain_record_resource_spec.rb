@@ -10,7 +10,7 @@ RSpec.describe DropletKit::DomainRecordResource do
       stub_do_api('/v2/domains/example.com/records', :get).to_return(body: response)
 
       expected_records = DropletKit::DomainRecordMapping.extract_collection(response, :read)
-      returned_records = resource.all(name: 'example.com')
+      returned_records = resource.all(for_domain: 'example.com')
 
       expect(returned_records).to all(be_kind_of(DropletKit::DomainRecord))
       expect(returned_records).to eq(expected_records)
@@ -39,6 +39,16 @@ RSpec.describe DropletKit::DomainRecordResource do
       expect(created_domain_record.name).to eq('www')
       expect(created_domain_record.type).to eq('CNAME')
       expect(created_domain_record.data).to eq('@')
+    end
+  end
+
+  describe '#find' do
+    it 'returns a domain record' do
+      response = api_fixture('domain_records/find')
+      stub_do_api('/v2/domains/example.com/records/12', :get).to_return(body: response)
+
+      expected_record = DropletKit::DomainRecordMapping.extract_single(response, :read)
+      expect(resource.find(id: 12, for_domain: 'example.com')).to eq(expected_record)
     end
   end
 end
