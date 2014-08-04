@@ -19,6 +19,19 @@ module DropletKit
         verb :get
         handler(200) { |response| DomainRecordMapping.extract_single(response.body, :read) }
       end
+
+      action :delete do
+        path '/v2/domains/:for_domain/records/:id'
+        verb :delete
+        handler(204) { |response| true }
+      end
+
+      action :update do
+        path '/v2/domains/:for_domain/records/:id'
+        verb :put
+        body {|object| DomainRecordMapping.representation_for(:update, object) }
+        handler(200) { |response| DomainRecordMapping.extract_single(response.body, :read) }
+      end
     end
   end
 end

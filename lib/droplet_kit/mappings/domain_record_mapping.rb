@@ -8,7 +8,7 @@ module DropletKit
 
       property :id, scopes: [:read]
       property :type, scopes: [:read, :create]
-      property :name, scopes: [:read, :create]
+      property :name, scopes: [:read, :create, :update]
       property :data, scopes: [:read, :create]
       property :priority, scopes: [:read, :create]
       property :port, scopes: [:read, :create]

@@ -1,0 +1,11 @@
+{
+  "domain_record": {
+    "id": 1066,
+    "type": "CNAME",
+    "name": "lol",
+    "data": "@",
+    "priority": null,
+    "port": null,
+    "weight": null
+  }
+}
