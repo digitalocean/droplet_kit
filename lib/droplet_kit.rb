@@ -25,6 +25,7 @@ module DropletKit
   autoload :ActionResource, 'droplet_kit/resources/action_resource'
   autoload :DomainResource, 'droplet_kit/resources/domain_resource'
   autoload :DomainRecordResource, 'droplet_kit/resources/domain_record_resource'
+  autoload :DropletActionResource, 'droplet_kit/resources/droplet_action_resource'
 
   # JSON Maps
   autoload :DropletMapping, 'droplet_kit/mappings/droplet_mapping'
@@ -39,6 +40,7 @@ module DropletKit
   autoload :ActionMapping, 'droplet_kit/mappings/action_mapping'
   autoload :DomainMapping, 'droplet_kit/mappings/domain_mapping'
   autoload :DomainRecordMapping, 'droplet_kit/mappings/domain_record_mapping'
+  autoload :DropletActionMapping, 'droplet_kit/mappings/droplet_action_mapping'
 
   # Errors
   autoload :ErrorMapping, 'droplet_kit/mappings/error_mapping'
