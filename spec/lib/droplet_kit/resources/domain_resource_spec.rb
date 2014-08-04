@@ -32,4 +32,14 @@ RSpec.describe DropletKit::DomainResource do
       expect(created_domain.zone_file).to eq(nil)
     end
   end
+
+  describe '#find' do
+    it 'returns a single domain' do
+      response = api_fixture('domains/find')
+      stub_do_api('/v2/domains/example.com', :get).to_return(body: response)
+      expected_domain = DropletKit::DomainMapping.extract_single(response, :read)
+
+      expect(resource.find(name: 'example.com')).to eq(expected_domain)
+    end
+  end
 end

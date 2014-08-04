@@ -13,6 +13,12 @@ module DropletKit
         body { |object| DomainMapping.representation_for(:create, object) }
         handler(201) { |response| DomainMapping.extract_single(response.body, :read) }
       end
+
+      action :find do
+        path '/v2/domains/:name'
+        verb :get
+        handler(200) { |response| DomainMapping.extract_single(response.body, :read) }
+      end
     end
   end
 end
