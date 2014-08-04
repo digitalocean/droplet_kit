@@ -54,6 +54,12 @@ module DropletKit
         body { |hash| { type: 'resize', size: hash[:size] }.to_json }
         handler(201, 200) { |response| ActionMapping.extract_single(response.body, :read) }
       end
+
+      action :find do
+        verb :get
+        path '/v2/droplets/:droplet_id/actions/:id'
+        handler(200) { |response| ActionMapping.extract_single(response.body, :read) }
+      end
     end
   end
 end
