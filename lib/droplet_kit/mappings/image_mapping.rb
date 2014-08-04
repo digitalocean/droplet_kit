@@ -7,7 +7,7 @@ module DropletKit
       root_key plural: 'images', singular: 'image', scopes: [:read]
 
       property :id, scopes: [:read]
-      property :name, scopes: [:read]
+      property :name, scopes: [:read, :update]
       property :distribution, scopes: [:read]
       property :slug, scopes: [:read]
       property :public, scopes: [:read]
