@@ -26,6 +26,7 @@ module DropletKit
   autoload :DomainResource, 'droplet_kit/resources/domain_resource'
   autoload :DomainRecordResource, 'droplet_kit/resources/domain_record_resource'
   autoload :DropletActionResource, 'droplet_kit/resources/droplet_action_resource'
+  autoload :ImageResource, 'droplet_kit/resources/image_resource'
 
   # JSON Maps
   autoload :DropletMapping, 'droplet_kit/mappings/droplet_mapping'

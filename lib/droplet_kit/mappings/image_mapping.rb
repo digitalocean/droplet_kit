@@ -4,6 +4,7 @@ module DropletKit
 
     kartograph do
       mapping Image
+      root_key plural: 'images', singular: 'image', scopes: [:read]
 
       property :id, scopes: [:read]
       property :name, scopes: [:read]
