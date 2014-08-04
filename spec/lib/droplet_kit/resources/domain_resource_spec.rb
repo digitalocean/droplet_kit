@@ -42,4 +42,12 @@ RSpec.describe DropletKit::DomainResource do
       expect(resource.find(name: 'example.com')).to eq(expected_domain)
     end
   end
+
+  describe '#delete' do
+    it 'deletes a single domain' do
+      request = stub_do_api('/v2/domains/example.com', :delete)
+      resource.delete(name: 'example.com')
+      expect(request).to have_been_made
+    end
+  end
 end

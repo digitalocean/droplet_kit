@@ -19,6 +19,12 @@ module DropletKit
         verb :get
         handler(200) { |response| DomainMapping.extract_single(response.body, :read) }
       end
+
+      action :delete do
+        path '/v2/domains/:name'
+        verb :delete
+        handler(204) { |response| true }
+      end
     end
   end
 end

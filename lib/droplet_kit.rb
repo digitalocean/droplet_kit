@@ -18,11 +18,13 @@ module DropletKit
   autoload :Backup, 'droplet_kit/models/backup'
   autoload :Action, 'droplet_kit/models/action'
   autoload :Domain, 'droplet_kit/models/domain'
+  autoload :DomainRecord, 'droplet_kit/models/domain_record'
 
   # Resources
   autoload :DropletResource, 'droplet_kit/resources/droplet_resource'
   autoload :ActionResource, 'droplet_kit/resources/action_resource'
   autoload :DomainResource, 'droplet_kit/resources/domain_resource'
+  autoload :DomainRecordResource, 'droplet_kit/resources/domain_record_resource'
 
   # JSON Maps
   autoload :DropletMapping, 'droplet_kit/mappings/droplet_mapping'
@@ -36,6 +38,7 @@ module DropletKit
   autoload :BackupMapping, 'droplet_kit/mappings/backup_mapping'
   autoload :ActionMapping, 'droplet_kit/mappings/action_mapping'
   autoload :DomainMapping, 'droplet_kit/mappings/domain_mapping'
+  autoload :DomainRecordMapping, 'droplet_kit/mappings/domain_record_mapping'
 
   # Errors
   autoload :ErrorMapping, 'droplet_kit/mappings/error_mapping'
