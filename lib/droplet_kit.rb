@@ -3,6 +3,8 @@ require 'resource_kit'
 require 'kartograph'
 
 module DropletKit
+  ActionConnection = Struct.new(:action, :connection)
+
   autoload :Client, 'droplet_kit/client'
 
   # Models
@@ -21,6 +23,7 @@ module DropletKit
   autoload :Domain, 'droplet_kit/models/domain'
   autoload :DomainRecord, 'droplet_kit/models/domain_record'
   autoload :SSHKey, 'droplet_kit/models/ssh_key'
+  autoload :MetaInformation, 'droplet_kit/models/meta_information'
 
   # Resources
   autoload :DropletResource, 'droplet_kit/resources/droplet_resource'
@@ -50,6 +53,10 @@ module DropletKit
   autoload :DropletActionMapping, 'droplet_kit/mappings/droplet_action_mapping'
   autoload :ImageActionMapping, 'droplet_kit/mappings/image_action_mapping'
   autoload :SSHKeyMapping, 'droplet_kit/mappings/ssh_key_mapping'
+
+
+  # Utils
+  autoload :PaginatedResource, 'droplet_kit/paginated_resource'
 
   # Errors
   autoload :ErrorMapping, 'droplet_kit/mappings/error_mapping'
