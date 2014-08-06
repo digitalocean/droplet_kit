@@ -20,6 +20,7 @@ module DropletKit
   autoload :Action, 'droplet_kit/models/action'
   autoload :Domain, 'droplet_kit/models/domain'
   autoload :DomainRecord, 'droplet_kit/models/domain_record'
+  autoload :SSHKey, 'droplet_kit/models/ssh_key'
 
   # Resources
   autoload :DropletResource, 'droplet_kit/resources/droplet_resource'
@@ -29,6 +30,7 @@ module DropletKit
   autoload :DropletActionResource, 'droplet_kit/resources/droplet_action_resource'
   autoload :ImageResource, 'droplet_kit/resources/image_resource'
   autoload :ImageActionResource, 'droplet_kit/resources/image_action_resource'
+  autoload :SSHKeyResource, 'droplet_kit/resources/ssh_key_resource'
 
   # JSON Maps
   autoload :DropletMapping, 'droplet_kit/mappings/droplet_mapping'
@@ -45,6 +47,7 @@ module DropletKit
   autoload :DomainRecordMapping, 'droplet_kit/mappings/domain_record_mapping'
   autoload :DropletActionMapping, 'droplet_kit/mappings/droplet_action_mapping'
   autoload :ImageActionMapping, 'droplet_kit/mappings/image_action_mapping'
+  autoload :SSHKeyMapping, 'droplet_kit/mappings/ssh_key_mapping'
 
   # Errors
   autoload :ErrorMapping, 'droplet_kit/mappings/error_mapping'

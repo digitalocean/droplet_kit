@@ -1,0 +1,52 @@
+require 'spec_helper'
+
+RSpec.describe DropletKit::SSHKeyResource do
+  subject(:resource) { described_class.new(connection) }
+  include_context 'resources'
+
+  describe '#all' do
+    it 'returns a list of ssh keys' do
+      stub_do_api('/v2/account/keys').to_return(body: api_fixture('ssh_keys/all'))
+      ssh_keys = resource.all
+
+      expect(ssh_keys).to all(be_kind_of(DropletKit::SSHKey))
+
+      expect(ssh_keys[0].id).to eq(1)
+      expect(ssh_keys[0].fingerprint).to eq("f5:d1:78:ed:28:72:5f:e1:ac:94:fd:1f:e0:a3:48:6d")
+      expect(ssh_keys[0].public_key).to eq("ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAQQDGk5V68BJ4P3Ereh779Vi/Ft2qs/rbXrcjKLGo6zsyeyFUE0svJUpRDEJvFSf8RlezKx1/1ulJu9+kZsxRiUKn example")
+      expect(ssh_keys[0].name).to eq("Example Key")
+    end
+  end
+
+  describe '#create' do
+    it 'creates a ssh key in the users account' do
+      ssh_key = DropletKit::SSHKey.new(name: 'Example Key', public_key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAQQDbW5JSFLg70Z0/MNNUncNgfxnrHfjBSlWzyF3e+3tNLUVgGagZISnzF4Y03/aS79aiCmbd4vCEcxyB4Wxtpddh example')
+
+      request = stub_do_api('/v2/account/keys', :post).with(
+        body: DropletKit::SSHKeyMapping.representation_for(:create, ssh_key)
+      ).to_return(body: api_fixture('ssh_keys/create'), status: 201)
+
+      created_key = resource.create(ssh_key)
+
+      expect(request).to have_been_made
+
+      expect(created_key).to be_kind_of(DropletKit::SSHKey)
+
+      expect(created_key.id).to eq(2)
+      expect(created_key.fingerprint).to eq("bf:3a:82:fc:4a:25:0b:a3:23:97:fb:4e:e4:88:e1:0e")
+      expect(created_key.public_key).to eq("ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAQQDbW5JSFLg70Z0/MNNUncNgfxnrHfjBSlWzyF3e+3tNLUVgGagZISnzF4Y03/aS79aiCmbd4vCEcxyB4Wxtpddh example")
+      expect(created_key.name).to eq("Example Key")
+    end
+  end
+
+  describe '#find' do
+    it 'returns a single ssh key record' do
+      stub_do_api('/v2/account/keys/123').to_return(body: api_fixture('ssh_keys/find'))
+      ssh_key = resource.find(id: 123)
+      expect(ssh_key.id).to eq(3)
+      expect(ssh_key.fingerprint).to eq("32:af:23:06:21:fb:e6:5b:d3:cc:7f:b7:00:0f:79:aa")
+      expect(ssh_key.public_key).to eq("ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAQQDZEgsAbWmQF+f8TU3F4fCg4yjVzdKudQbbhGb+qRKP5ju4Yo0Zzneia+oFm4bfzG+ydxUlOlbzq+Tpoj+INFv5 example")
+      expect(ssh_key.name).to eq("Example Key")
+    end
+  end
+end

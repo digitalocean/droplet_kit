@@ -1,0 +1,8 @@
+{
+  "ssh_key": {
+    "id": 2,
+    "fingerprint": "bf:3a:82:fc:4a:25:0b:a3:23:97:fb:4e:e4:88:e1:0e",
+    "public_key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAQQDbW5JSFLg70Z0/MNNUncNgfxnrHfjBSlWzyF3e+3tNLUVgGagZISnzF4Y03/aS79aiCmbd4vCEcxyB4Wxtpddh example",
+    "name": "Example Key"
+  }
+}
