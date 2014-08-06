@@ -3,8 +3,6 @@ require 'resource_kit'
 require 'kartograph'
 
 module DropletKit
-  ActionConnection = Struct.new(:action, :connection)
-
   autoload :Client, 'droplet_kit/client'
 
   # Models

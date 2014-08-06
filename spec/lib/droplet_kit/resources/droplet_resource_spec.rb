@@ -65,7 +65,7 @@ RSpec.describe DropletKit::DropletResource do
       droplets = resource.all
       expect(droplets).to all(be_kind_of(DropletKit::Droplet))
 
-      check_droplet(droplets[0])
+      check_droplet(droplets.first)
     end
   end
 

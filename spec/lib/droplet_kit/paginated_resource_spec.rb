@@ -19,7 +19,7 @@ RSpec.describe DropletKit::PaginatedResource do
     end
   end
   let(:action) { ResourceKit::Action.new(:find, :get, '/droplets') }
-  let(:action_connection) { DropletKit::ActionConnection.new(action, connection) }
+  let(:action_connection) { ResourceKit::ActionConnection.new(action, connection) }
 
   before do
     action.query_keys :per_page, :page
