@@ -68,4 +68,13 @@ RSpec.describe DropletKit::SSHKeyResource do
       expect(updated_key.name).to eq("Example Key")
     end
   end
+
+  describe '#delete' do
+    it 'deletes an SSH key' do
+      request = stub_do_api('/v2/account/keys/123', :delete).to_return(status: 204)
+      resource.delete(id: 123)
+
+      expect(request).to have_been_made
+    end
+  end
 end

@@ -12,6 +12,7 @@ module DropletKit
       end
 
       action :find, 'GET /v2/account/keys/:id'
+      action :delete, 'DELETE /v2/account/keys/:id'
 
       action :update, 'PUT /v2/account/keys/:id' do
         body {|ssh_key| SSHKeyMapping.representation_for(:update, ssh_key) }
