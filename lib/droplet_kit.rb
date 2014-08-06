@@ -10,6 +10,7 @@ module DropletKit
   autoload :Droplet, 'droplet_kit/models/droplet'
   autoload :Region, 'droplet_kit/models/region'
   autoload :Image, 'droplet_kit/models/image'
+  autoload :ImageAction, 'droplet_kit/models/image_action'
   autoload :Size, 'droplet_kit/models/size'
   autoload :NetworkHash, 'droplet_kit/models/network_hash'
   autoload :Network, 'droplet_kit/models/network'
@@ -27,6 +28,7 @@ module DropletKit
   autoload :DomainRecordResource, 'droplet_kit/resources/domain_record_resource'
   autoload :DropletActionResource, 'droplet_kit/resources/droplet_action_resource'
   autoload :ImageResource, 'droplet_kit/resources/image_resource'
+  autoload :ImageActionResource, 'droplet_kit/resources/image_action_resource'
 
   # JSON Maps
   autoload :DropletMapping, 'droplet_kit/mappings/droplet_mapping'
@@ -42,6 +44,7 @@ module DropletKit
   autoload :DomainMapping, 'droplet_kit/mappings/domain_mapping'
   autoload :DomainRecordMapping, 'droplet_kit/mappings/domain_record_mapping'
   autoload :DropletActionMapping, 'droplet_kit/mappings/droplet_action_mapping'
+  autoload :ImageActionMapping, 'droplet_kit/mappings/image_action_mapping'
 
   # Errors
   autoload :ErrorMapping, 'droplet_kit/mappings/error_mapping'
