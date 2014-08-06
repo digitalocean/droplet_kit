@@ -4,6 +4,7 @@ module DropletKit
 
     kartograph do
       mapping Region
+      root_key singular: 'region', plural: 'regions', scopes: [:read]
 
       property :slug, scopes: [:read]
       property :name, scopes: [:read]

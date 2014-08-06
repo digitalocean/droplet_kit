@@ -18,7 +18,15 @@ module DropletKit
 
     def self.resources
       {
-        droplets: DropletResource
+        droplets: DropletResource,
+        domains: DomainResource,
+        domain_records: DomainRecordResource,
+        droplet_actions: DropletActionResource,
+        images: ImageResource,
+        image_actions: ImageActionResource,
+        regions: RegionResource,
+        sizes: SizeResource,
+        ssh_keys: SSHKeyResource,
       }
     end
 

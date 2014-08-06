@@ -4,6 +4,7 @@ module DropletKit
 
     kartograph do
       mapping Size
+      root_key singular: 'size', plural: 'sizes', scopes: [:read]
 
       property :slug, scopes: [:read]
       property :transfer, scopes: [:read]

@@ -31,6 +31,8 @@ module DropletKit
   autoload :ImageResource, 'droplet_kit/resources/image_resource'
   autoload :ImageActionResource, 'droplet_kit/resources/image_action_resource'
   autoload :SSHKeyResource, 'droplet_kit/resources/ssh_key_resource'
+  autoload :RegionResource, 'droplet_kit/resources/region_resource'
+  autoload :SizeResource, 'droplet_kit/resources/size_resource'
 
   # JSON Maps
   autoload :DropletMapping, 'droplet_kit/mappings/droplet_mapping'
