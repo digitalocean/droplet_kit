@@ -49,4 +49,23 @@ RSpec.describe DropletKit::SSHKeyResource do
       expect(ssh_key.name).to eq("Example Key")
     end
   end
+
+  describe '#update' do
+    it 'updates the SSH key' do
+      ssh_key = DropletKit::SSHKey.new(name: 'Example Key')
+
+      request = stub_do_api('/v2/account/keys/123', :put).with(
+        body: DropletKit::SSHKeyMapping.representation_for(:update, ssh_key)
+      ).to_return(body: api_fixture('ssh_keys/update'), status: 200)
+
+      updated_key = resource.update(ssh_key, id: 123)
+
+      expect(request).to have_been_made
+
+      expect(updated_key.id).to eq(123)
+      expect(updated_key.fingerprint).to eq("32:af:23:06:21:fb:e6:5b:d3:cc:7f:b7:00:0f:79:aa")
+      expect(updated_key.public_key).to eq("ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAQQDZEgsAbWmQF+f8TU3F4fCg4yjVzdKudQbbhGb+qRKP5ju4Yo0Zzneia+oFm4bfzG+ydxUlOlbzq+Tpoj+INFv5 example")
+      expect(updated_key.name).to eq("Example Key")
+    end
+  end
 end
