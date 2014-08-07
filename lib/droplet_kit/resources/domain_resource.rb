@@ -26,5 +26,9 @@ module DropletKit
         handler(204) { |response| true }
       end
     end
+
+    def all(*args)
+      PaginatedResource.new(action_and_connection(:all), *args)
+    end
   end
 end

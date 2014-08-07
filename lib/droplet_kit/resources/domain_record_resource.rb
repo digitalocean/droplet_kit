@@ -33,5 +33,9 @@ module DropletKit
         handler(200) { |response| DomainRecordMapping.extract_single(response.body, :read) }
       end
     end
+
+    def all(*args)
+      PaginatedResource.new(action_and_connection(:all), *args)
+    end
   end
 end

@@ -18,5 +18,9 @@ module DropletKit
         body {|ssh_key| SSHKeyMapping.representation_for(:update, ssh_key) }
       end
     end
+
+    def all(*args)
+      PaginatedResource.new(action_and_connection(:all), *args)
+    end
   end
 end

@@ -11,10 +11,10 @@ RSpec.describe DropletKit::SSHKeyResource do
 
       expect(ssh_keys).to all(be_kind_of(DropletKit::SSHKey))
 
-      expect(ssh_keys[0].id).to eq(1)
-      expect(ssh_keys[0].fingerprint).to eq("f5:d1:78:ed:28:72:5f:e1:ac:94:fd:1f:e0:a3:48:6d")
-      expect(ssh_keys[0].public_key).to eq("ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAQQDGk5V68BJ4P3Ereh779Vi/Ft2qs/rbXrcjKLGo6zsyeyFUE0svJUpRDEJvFSf8RlezKx1/1ulJu9+kZsxRiUKn example")
-      expect(ssh_keys[0].name).to eq("Example Key")
+      expect(ssh_keys.first.id).to eq(1)
+      expect(ssh_keys.first.fingerprint).to eq("f5:d1:78:ed:28:72:5f:e1:ac:94:fd:1f:e0:a3:48:6d")
+      expect(ssh_keys.first.public_key).to eq("ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAQQDGk5V68BJ4P3Ereh779Vi/Ft2qs/rbXrcjKLGo6zsyeyFUE0svJUpRDEJvFSf8RlezKx1/1ulJu9+kZsxRiUKn example")
+      expect(ssh_keys.first.name).to eq("Example Key")
     end
   end
 
