@@ -13,8 +13,11 @@ RSpec.describe DropletKit::PaginatedResource do
         request_count.count += 1
         uri = Addressable::URI.parse(env[:url].to_s)
         page = (uri.query_values['page'] || 1).to_i
-        range = (((page-1)*20)..((page-1)*20+20))
-        [200, {}, { objects: range.to_a, meta: { total: 40 } }.to_json ]
+        range = (0...20).map do |num|
+          num + ((page - 1) * 20)
+        end
+
+        [200, {}, { objects: range, meta: { total: 40 } }.to_json ]
       end
     end
   end
@@ -31,7 +34,6 @@ RSpec.describe DropletKit::PaginatedResource do
       instance = DropletKit::PaginatedResource.new(action_connection)
       expect(instance.action).to be(action)
       expect(instance.connection).to be(connection)
-      expect(instance.cursor).to be(0)
     end
   end
 
