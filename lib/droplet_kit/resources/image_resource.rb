@@ -1,27 +1,19 @@
 module DropletKit
   class ImageResource < ResourceKit::Resource
     resources do
-      action :all do
-        verb :get
-        path '/v2/images'
+      action :all, 'GET /v2/images' do
         handler(200) { |response| ImageMapping.extract_collection(response.body, :read) }
       end
 
-      action :find do
-        verb :get
-        path '/v2/images/:id'
+      action :find, 'GET /v2/images/:id' do
         handler(200) { |response| ImageMapping.extract_single(response.body, :read) }
       end
 
-      action :delete do
-        verb :delete
-        path '/v2/images/:id'
+      action :delete, 'DELETE /v2/images/:id' do
         handler(204) { |response| true }
       end
 
-      action :update do
-        verb :put
-        path '/v2/images/:id'
+      action :update, 'PUT /v2/images/:id' do
         body {|image| ImageMapping.representation_for(:update, image) }
         handler(200) { |response| ImageMapping.extract_single(response.body, :read) }
       end

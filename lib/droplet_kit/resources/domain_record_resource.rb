@@ -1,34 +1,24 @@
 module DropletKit
   class DomainRecordResource < ResourceKit::Resource
     resources do
-      action :all do
-        path '/v2/domains/:for_domain/records'
-        verb :get
+      action :all, 'GET /v2/domains/:for_domain/records' do
         handler(200) { |response| DomainRecordMapping.extract_collection(response.body, :read) }
       end
 
-      action :create do
-        path '/v2/domains/:for_domain/records'
-        verb :post
+      action :create, 'POST /v2/domains/:for_domain/records' do
         body {|object| DomainRecordMapping.representation_for(:create, object) }
         handler(201) { |response| DomainRecordMapping.extract_single(response.body, :read) }
       end
 
-      action :find do
-        path '/v2/domains/:for_domain/records/:id'
-        verb :get
+      action :find, 'GET /v2/domains/:for_domain/records/:id' do
         handler(200) { |response| DomainRecordMapping.extract_single(response.body, :read) }
       end
 
-      action :delete do
-        path '/v2/domains/:for_domain/records/:id'
-        verb :delete
+      action :delete, 'DELETE /v2/domains/:for_domain/records/:id' do
         handler(204) { |response| true }
       end
 
-      action :update do
-        path '/v2/domains/:for_domain/records/:id'
-        verb :put
+      action :update, 'PUT /v2/domains/:for_domain/records/:id' do
         body {|object| DomainRecordMapping.representation_for(:update, object) }
         handler(200) { |response| DomainRecordMapping.extract_single(response.body, :read) }
       end

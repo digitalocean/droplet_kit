@@ -1,28 +1,20 @@
 module DropletKit
   class DomainResource < ResourceKit::Resource
     resources do
-      action :all do
-        path '/v2/domains'
-        verb :get
+      action :all, 'GET /v2/domains' do
         handler(200) { |response| DomainMapping.extract_collection(response.body, :read) }
       end
 
-      action :create do
-        path '/v2/domains'
-        verb :post
+      action :create, 'POST /v2/domains' do
         body { |object| DomainMapping.representation_for(:create, object) }
         handler(201) { |response| DomainMapping.extract_single(response.body, :read) }
       end
 
-      action :find do
-        path '/v2/domains/:name'
-        verb :get
+      action :find, 'GET /v2/domains/:name' do
         handler(200) { |response| DomainMapping.extract_single(response.body, :read) }
       end
 
-      action :delete do
-        path '/v2/domains/:name'
-        verb :delete
+      action :delete, 'DELETE /v2/domains/:name' do
         handler(204) { |response| true }
       end
     end

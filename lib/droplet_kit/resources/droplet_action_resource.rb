@@ -5,59 +5,43 @@ module DropletKit
 
     resources do
       ACTIONS_WITHOUT_INPUT.each do |action_name|
-        action action_name.to_sym do
-          path '/v2/droplets/:droplet_id/actions'
-          verb :post
+        action action_name.to_sym, 'POST /v2/droplets/:droplet_id/actions' do
           body { |_| { type: action_name }.to_json }
           handler(201, 200) { |response| ActionMapping.extract_single(response.body, :read) }
         end
       end
 
-      action :snapshot do
-        path '/v2/droplets/:droplet_id/actions'
-        verb :post
+      action :snapshot, 'POST /v2/droplets/:droplet_id/actions' do
         body { |hash| { type: 'snapshot', name: hash[:name] }.to_json }
         handler(201, 200) { |response| ActionMapping.extract_single(response.body, :read) }
       end
 
-      action :kernel do
-        path '/v2/droplets/:droplet_id/actions'
-        verb :post
+      action :kernel, 'POST /v2/droplets/:droplet_id/actions' do
         body { |hash| { type: 'kernel', kernel: hash[:kernel] }.to_json }
         handler(201, 200) { |response| ActionMapping.extract_single(response.body, :read) }
       end
 
-      action :rename do
-        path '/v2/droplets/:droplet_id/actions'
-        verb :post
+      action :rename, 'POST /v2/droplets/:droplet_id/actions' do
         body { |hash| { type: 'rename', name: hash[:name] }.to_json }
         handler(201, 200) { |response| ActionMapping.extract_single(response.body, :read) }
       end
 
-      action :rebuild do
-        path '/v2/droplets/:droplet_id/actions'
-        verb :post
+      action :rebuild, 'POST /v2/droplets/:droplet_id/actions' do
         body { |hash| { type: 'rebuild', image: hash[:image] }.to_json }
         handler(201, 200) { |response| ActionMapping.extract_single(response.body, :read) }
       end
 
-      action :restore do
-        path '/v2/droplets/:droplet_id/actions'
-        verb :post
+      action :restore, 'POST /v2/droplets/:droplet_id/actions' do
         body { |hash| { type: 'restore', image: hash[:image] }.to_json }
         handler(201, 200) { |response| ActionMapping.extract_single(response.body, :read) }
       end
 
-      action :resize do
-        path '/v2/droplets/:droplet_id/actions'
-        verb :post
+      action :resize, 'POST /v2/droplets/:droplet_id/actions' do
         body { |hash| { type: 'resize', size: hash[:size] }.to_json }
         handler(201, 200) { |response| ActionMapping.extract_single(response.body, :read) }
       end
 
-      action :find do
-        verb :get
-        path '/v2/droplets/:droplet_id/actions/:id'
+      action :find, 'GET /v2/droplets/:droplet_id/actions/:id' do
         handler(200) { |response| ActionMapping.extract_single(response.body, :read) }
       end
     end
