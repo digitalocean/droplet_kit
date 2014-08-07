@@ -13,8 +13,9 @@ RSpec.describe DropletKit::PaginatedResource do
         request_count.count += 1
         uri = Addressable::URI.parse(env[:url].to_s)
         page = (uri.query_values['page'] || 1).to_i
-        range = (0...20).map do |num|
-          num + ((page - 1) * 20)
+        per_page = (uri.query_values['per_page'] || 20).to_i
+        range = (0...per_page).map do |num|
+          num + ((page - 1) * per_page)
         end
 
         [200, {}, { objects: range, meta: { total: 40 } }.to_json ]
@@ -55,6 +56,14 @@ RSpec.describe DropletKit::PaginatedResource do
 
     it 'returns the correct objects' do
       expect(paginated.first(3)).to eq([0,1,2])
+    end
+
+    context 'for changing size' do
+      subject(:paginated) { DropletKit::PaginatedResource.new(action_connection, per_page: 40) }
+
+      it 'only calls the API once' do
+        expect {|b| paginated.each {|c| c } }.to change { request_count.count }.to(1).from(0)
+      end
     end
   end
 end

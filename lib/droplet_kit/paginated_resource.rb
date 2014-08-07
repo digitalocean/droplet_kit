@@ -14,9 +14,14 @@ module DropletKit
       @connection = action_connection.connection
       @collection = []
       @args = args
+      @options = args.last.kind_of?(Hash) ? args.last : {}
 
       # Start off with the first page
       retrieve(1)
+    end
+
+    def per_page
+      @options[:per_page] || PER_PAGE
     end
 
     def each(start = 0)
@@ -35,7 +40,7 @@ module DropletKit
     end
 
     def last?
-      @current_page == (self.total.to_f / PER_PAGE.to_f).ceil
+      @current_page.to_f == (self.total.to_f / per_page.to_f).ceil
     end
 
     def ==(other)
@@ -50,9 +55,11 @@ module DropletKit
       @current_page += 1
     end
 
-    def retrieve(page, per_page = PER_PAGE)
+    def retrieve(page, per_page = self.per_page)
       invoker = ResourceKit::ActionInvoker.new(action, connection, *@args)
-      invoker.options.merge!(page: page, per_page: PER_PAGE)
+      invoker.options[:per_page] ||= per_page
+      invoker.options[:page]       = page
+
       @collection += invoker.handle_response
 
       if total.nil?
