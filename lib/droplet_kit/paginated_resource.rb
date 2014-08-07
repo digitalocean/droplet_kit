@@ -4,20 +4,17 @@ module DropletKit
 
     PER_PAGE = 20
 
-    attr_reader :action, :connection, :cursor
+    attr_reader :action, :connection, :collection
     attr_accessor :total
 
     def initialize(action_connection, *args)
-      @current_page = 1
+      @current_page = 0
       @total = nil
       @action = action_connection.action
       @connection = action_connection.connection
       @collection = []
       @args = args
       @options = args.last.kind_of?(Hash) ? args.last : {}
-
-      # Start off with the first page
-      retrieve(1)
     end
 
     def per_page
@@ -25,6 +22,9 @@ module DropletKit
     end
 
     def each(start = 0)
+      # Start off with the first page if we have no idea of anything yet
+      fetch_next_page if total.nil?
+
       return to_enum(:each, start) unless block_given?
       Array(@collection[start..-1]).each do |element|
         yield(element)
@@ -40,7 +40,7 @@ module DropletKit
     end
 
     def last?
-      @current_page.to_f == (self.total.to_f / per_page.to_f).ceil
+      @current_page == (self.total.to_f / per_page.to_f).ceil
     end
 
     def ==(other)
@@ -51,8 +51,8 @@ module DropletKit
     private
 
     def fetch_next_page
-      retrieve(@current_page)
       @current_page += 1
+      retrieve(@current_page)
     end
 
     def retrieve(page, per_page = self.per_page)
