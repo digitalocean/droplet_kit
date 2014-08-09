@@ -18,7 +18,7 @@ Or install it yourself as:
 
 ## Usage
 
-You'll need to generate an access token in Digital Oceans control panel at https://cloud.digitalocean.com/settings/applications
+You'll need to generate an access token in Digital Ocean's control panel at https://cloud.digitalocean.com/settings/applications
 
 With your access token, retrieve a client instance with it.
 
