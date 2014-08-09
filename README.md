@@ -60,6 +60,137 @@ droplet = client.droplets.find(id: 123)
 # => DropletKit::Droplet(id: 1231, name: 'something.com', ...)
 ```
 
+# All Resources and actions.
+
+## Droplet resource
+
+    client = DropletKit::Client.new(access_token: 'TOKEN')
+    client.droplets #=> DropletKit::DropletResource
+
+Actions supported:
+
+ * `all`
+ * `find`
+ * `create`
+ * `delete`
+ * `kernels`
+ * `snapshots`
+ * `backups`
+ * `actions`
+
+
+## Domain resource
+
+    client = DropletKit::Client.new(access_token: 'TOKEN')
+    client.domains #=> DropletKit::DomainResource
+
+Actions supported:
+
+ * `all`
+ * `create`
+ * `find`
+ * `delete`
+
+
+## Domain record resource
+
+    client = DropletKit::Client.new(access_token: 'TOKEN')
+    client.domain_records #=> DropletKit::DomainRecordResource
+
+Actions supported:
+
+ * `all`
+ * `create`
+ * `find`
+ * `delete`
+ * `update`
+
+
+## Droplet action resource
+
+    client = DropletKit::Client.new(access_token: 'TOKEN')
+    client.droplet_actions #=> DropletKit::DropletActionResource
+
+Actions supported:
+
+ * `reboot`
+ * `power_cycle`
+ * `shutdown`
+ * `power_off`
+ * `power_on`
+ * `password_reset`
+ * `enable_ipv6`
+ * `disable_backups`
+ * `enable_private_networking`
+ * `snapshot`
+ * `kernel`
+ * `rename`
+ * `rebuild`
+ * `restore`
+ * `resize`
+ * `find`
+
+
+## Image resource
+
+    client = DropletKit::Client.new(access_token: 'TOKEN')
+    client.images #=> DropletKit::ImageResource
+
+Actions supported:
+
+ * `all`
+ * `find`
+ * `delete`
+ * `update`
+
+
+## Image action resource
+
+    client = DropletKit::Client.new(access_token: 'TOKEN')
+    client.image_actions #=> DropletKit::ImageActionResource
+
+Actions supported:
+
+ * `transfer`
+ * `find`
+
+
+## Region resource
+
+    client = DropletKit::Client.new(access_token: 'TOKEN')
+    client.regions #=> DropletKit::RegionResource
+
+Actions supported:
+
+ * `all`
+
+
+## Size resource
+
+    client = DropletKit::Client.new(access_token: 'TOKEN')
+    client.sizes #=> DropletKit::SizeResource
+
+Actions supported:
+
+ * `all`
+
+
+## Ssh key resource
+
+    client = DropletKit::Client.new(access_token: 'TOKEN')
+    client.ssh_keys #=> DropletKit::SSHKeyResource
+
+Actions supported:
+
+ * `all`
+ * `create`
+ * `find`
+ * `delete`
+ * `update`
+
+
+
+
 
 ## Contributing
 
