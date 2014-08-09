@@ -61,7 +61,6 @@ droplet = client.droplets.find(id: 123)
 ```
 
 # All Resources and actions.
-
 ## Droplet resource
 
     client = DropletKit::Client.new(access_token: 'TOKEN')
@@ -69,14 +68,14 @@ droplet = client.droplets.find(id: 123)
 
 Actions supported:
 
- * `all`
- * `find`
- * `create`
- * `delete`
- * `kernels`
- * `snapshots`
- * `backups`
- * `actions`
+* `client.droplets.all()`
+* `client.droplets.find(id: 'id')`
+* `client.droplets.create(droplet)`
+* `client.droplets.delete(id: 'id')`
+* `client.droplets.kernels(id: 'id')`
+* `client.droplets.snapshots(id: 'id')`
+* `client.droplets.backups(id: 'id')`
+* `client.droplets.actions(id: 'id')`
 
 
 ## Domain resource
@@ -86,10 +85,10 @@ Actions supported:
 
 Actions supported:
 
- * `all`
- * `create`
- * `find`
- * `delete`
+* `client.domains.all()`
+* `client.domains.create(domain)`
+* `client.domains.find(name: 'name')`
+* `client.domains.delete(name: 'name')`
 
 
 ## Domain record resource
@@ -99,36 +98,11 @@ Actions supported:
 
 Actions supported:
 
- * `all`
- * `create`
- * `find`
- * `delete`
- * `update`
-
-
-## Droplet action resource
-
-    client = DropletKit::Client.new(access_token: 'TOKEN')
-    client.droplet_actions #=> DropletKit::DropletActionResource
-
-Actions supported:
-
- * `reboot`
- * `power_cycle`
- * `shutdown`
- * `power_off`
- * `power_on`
- * `password_reset`
- * `enable_ipv6`
- * `disable_backups`
- * `enable_private_networking`
- * `snapshot`
- * `kernel`
- * `rename`
- * `rebuild`
- * `restore`
- * `resize`
- * `find`
+* `client.domain_records.all(for_domain: 'for_domain')`
+* `client.domain_records.create(domain_record, for_domain: 'for_domain')`
+* `client.domain_records.find(for_domain: 'for_domain', id: 'id')`
+* `client.domain_records.delete(for_domain: 'for_domain', id: 'id')`
+* `client.domain_records.update(domain_record, for_domain: 'for_domain', id: 'id')`
 
 
 ## Image resource
@@ -138,21 +112,10 @@ Actions supported:
 
 Actions supported:
 
- * `all`
- * `find`
- * `delete`
- * `update`
-
-
-## Image action resource
-
-    client = DropletKit::Client.new(access_token: 'TOKEN')
-    client.image_actions #=> DropletKit::ImageActionResource
-
-Actions supported:
-
- * `transfer`
- * `find`
+* `client.images.all()`
+* `client.images.find(id: 'id')`
+* `client.images.delete(id: 'id')`
+* `client.images.update(image, id: 'id')`
 
 
 ## Region resource
@@ -162,7 +125,7 @@ Actions supported:
 
 Actions supported:
 
- * `all`
+* `client.regions.all()`
 
 
 ## Size resource
@@ -172,7 +135,7 @@ Actions supported:
 
 Actions supported:
 
- * `all`
+* `client.sizes.all()`
 
 
 ## Ssh key resource
@@ -182,14 +145,11 @@ Actions supported:
 
 Actions supported:
 
- * `all`
- * `create`
- * `find`
- * `delete`
- * `update`
-
-
-
+* `client.ssh_keys.all()`
+* `client.ssh_keys.create(ssh_key)`
+* `client.ssh_keys.find(id: 'id')`
+* `client.ssh_keys.delete(id: 'id')`
+* `client.ssh_keys.update(ssh_key, id: 'id')`
 
 
 ## Contributing
