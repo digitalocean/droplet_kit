@@ -40,7 +40,7 @@ DropletKit will return Plain Old Ruby objects(tm) that contain the information p
 ```ruby
 client = DropletKit::Client.new(access_token: 'YOUR_TOKEN')
 client.droplets.all
-# => [ DropletKit::Dropet(id: 123, name: 'something.com', ...), DropletKit::Dropet(id: 1066, name: 'bunk.com', ...) ]
+# => [ DropletKit::Droplet(id: 123, name: 'something.com', ...), DropletKit::Droplet(id: 1066, name: 'bunk.com', ...) ]
 ```
 
 When you'd like to save objects, it's your responsibility to instantiate the objects and persist them using the resource objects. Lets use creating a Droplet as an example:
