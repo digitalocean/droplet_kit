@@ -10,6 +10,8 @@ module DropletKit
     attribute :ssh_keys
     attribute :backups
     attribute :ipv6
+    attribute :user_data
+    attribute :private_networking
   end
 end
 
