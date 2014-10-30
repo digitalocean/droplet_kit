@@ -44,7 +44,6 @@ module DropletKit
     end
 
     def ==(other)
-      return false if self.total != other.length
       each_with_index.each.all? {|object, index| object == other[index] }
     end
 
