@@ -4,14 +4,14 @@ module DropletKit
 
     PER_PAGE = 20
 
-    attr_reader :action, :connection, :collection
+    attr_reader :action, :resource, :collection
     attr_accessor :total
 
-    def initialize(action_connection, *args)
+    def initialize(action, resource, *args)
       @current_page = 0
       @total = nil
-      @action = action_connection.action
-      @connection = action_connection.connection
+      @action = action
+      @resource = resource
       @collection = []
       @args = args
       @options = args.last.kind_of?(Hash) ? args.last : {}
@@ -56,7 +56,7 @@ module DropletKit
     end
 
     def retrieve(page, per_page = self.per_page)
-      invoker = ResourceKit::ActionInvoker.new(action, connection, *@args)
+      invoker = ResourceKit::ActionInvoker.new(action, resource, *@args)
       invoker.options[:per_page] ||= per_page
       invoker.options[:page]       = page
 

@@ -18,6 +18,7 @@ module DropletKit
 
     def self.resources
       {
+        actions: ActionResource,
         droplets: DropletResource,
         domains: DomainResource,
         domain_records: DomainRecordResource,
@@ -32,7 +33,7 @@ module DropletKit
 
     def method_missing(name, *args, &block)
       if self.class.resources.keys.include?(name)
-        resources[name] ||= self.class.resources[name].new(connection)
+        resources[name] ||= self.class.resources[name].new(connection: connection)
         resources[name]
       else
         super

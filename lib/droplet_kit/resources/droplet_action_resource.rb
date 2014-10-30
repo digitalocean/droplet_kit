@@ -17,7 +17,7 @@ module DropletKit
       end
 
       action :kernel, 'POST /v2/droplets/:droplet_id/actions' do
-        body { |hash| { type: 'kernel', kernel: hash[:kernel] }.to_json }
+        body { |hash| { type: 'change_kernel', kernel: hash[:kernel] }.to_json }
         handler(201, 200) { |response| ActionMapping.extract_single(response.body, :read) }
       end
 

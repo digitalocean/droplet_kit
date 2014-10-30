@@ -4,6 +4,7 @@ require 'addressable/uri'
 RequestCounter = Struct.new(:count)
 
 RSpec.describe DropletKit::PaginatedResource do
+  let(:resource) { ResourceKit::Resource.new(connection: connection) }
   let(:request_count) { RequestCounter.new(0) }
 
   let(:connection) { Faraday.new {|b| b.adapter :test, stubs } }
@@ -23,7 +24,6 @@ RSpec.describe DropletKit::PaginatedResource do
     end
   end
   let(:action) { ResourceKit::Action.new(:find, :get, '/droplets') }
-  let(:action_connection) { ResourceKit::ActionConnection.new(action, connection) }
 
   before do
     action.query_keys :per_page, :page
@@ -31,15 +31,15 @@ RSpec.describe DropletKit::PaginatedResource do
   end
 
   describe '#initialize' do
-    it 'initializes with a action connection struct' do
-      instance = DropletKit::PaginatedResource.new(action_connection)
+    it 'initializes with a action and resource' do
+      instance = DropletKit::PaginatedResource.new(action, resource)
       expect(instance.action).to be(action)
-      expect(instance.connection).to be(connection)
+      expect(instance.resource).to be(resource)
     end
   end
 
   describe '#each' do
-    subject(:paginated) { DropletKit::PaginatedResource.new(action_connection) }
+    subject(:paginated) { DropletKit::PaginatedResource.new(action, resource) }
 
     it 'iterates over every object returned from the API' do
       total = 0
@@ -59,7 +59,7 @@ RSpec.describe DropletKit::PaginatedResource do
     end
 
     context 'for changing size' do
-      subject(:paginated) { DropletKit::PaginatedResource.new(action_connection, per_page: 40) }
+      subject(:paginated) { DropletKit::PaginatedResource.new(action, resource, per_page: 40) }
 
       it 'only calls the API once' do
         expect {|b| paginated.each {|c| c } }.to change { request_count.count }.to(1).from(0)
