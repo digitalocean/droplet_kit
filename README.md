@@ -151,6 +151,15 @@ Actions supported:
 * `client.ssh_keys.delete(id: 'id')`
 * `client.ssh_keys.update(ssh_key, id: 'id')`
 
+## Account resource
+
+    client = DropletKit::Client.new(access_token: 'TOKEN')
+    client.account #=> DropletKit::AccountResource
+
+Actions supported:
+
+* `client.account.info()`
+
 
 ## Contributing
 
