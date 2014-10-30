@@ -28,6 +28,7 @@ module DropletKit
         regions: RegionResource,
         sizes: SizeResource,
         ssh_keys: SSHKeyResource,
+        account: AccountResource,
       }
     end
 
