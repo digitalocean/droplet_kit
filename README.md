@@ -61,6 +61,7 @@ droplet = client.droplets.find(id: 123)
 ```
 
 # All Resources and actions.
+
 ## Droplet resource
 
     client = DropletKit::Client.new(access_token: 'TOKEN')
@@ -77,6 +78,29 @@ Actions supported:
 * `client.droplets.backups(id: 'id')`
 * `client.droplets.actions(id: 'id')`
 
+## Droplet Action resource
+
+    client = DropletKit::Client.new(access_token: 'TOKEN')
+    client.droplet_actions #=> DropletKit::DropletAction
+
+Actions supported:
+
+* `client.droplet_actions.reboot(droplet_id: droplet.id)`
+* `client.droplet_actions.power_cycle(droplet_id: droplet.id)`
+* `client.droplet_actions.shutdown(droplet_id: droplet.id)`
+* `client.droplet_actions.power_off(droplet_id: droplet.id)`
+* `client.droplet_actions.power_on(droplet_id: droplet.id)`
+* `client.droplet_actions.password_reset(droplet_id: droplet.id)`
+* `client.droplet_actions.enable_ipv6(droplet_id: droplet.id)`
+* `client.droplet_actions.disable_backups(droplet_id: droplet.id)`
+* `client.droplet_actions.enable_private_networking(droplet_id: droplet.id)`
+* `client.droplet_actions.snapshot(droplet_id: droplet.id, name: 'Snapshot Name')`
+* `client.droplet_actions.change_kernel(droplet_id: droplet.id, kernel: 'kernel_id')`
+* `client.droplet_actions.rename(droplet_id: droplet.id, name: 'New-Droplet-Name')`
+* `client.droplet_actions.rebuild(droplet_id: droplet.id, image: 'image_id')`
+* `client.droplet_actions.restore(droplet_id: droplet.id, image: 'image_id')`
+* `client.droplet_actions.resize(droplet_id: droplet.id, size: '1gb')`
+* `client.droplet_actions.find(droplet_id: droplet.id, id: action.id)`
 
 ## Domain resource
 
