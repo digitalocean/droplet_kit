@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe DropletKit::DropletResource do
-  subject(:resource) { described_class.new(connection) }
+  subject(:resource) { described_class.new(connection: connection) }
   include_context 'resources'
 
   # Theres a lot to check

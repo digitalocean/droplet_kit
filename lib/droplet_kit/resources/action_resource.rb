@@ -11,7 +11,7 @@ module DropletKit
     end
 
     def all(*args)
-      PaginatedResource.new(action_and_connection(:all), *args)
+      PaginatedResource.new(action(:all), self, *args)
     end
   end
 end

@@ -23,6 +23,7 @@ module DropletKit
   autoload :DomainRecord, 'droplet_kit/models/domain_record'
   autoload :SSHKey, 'droplet_kit/models/ssh_key'
   autoload :MetaInformation, 'droplet_kit/models/meta_information'
+  autoload :Account, 'droplet_kit/models/account'
 
   # Resources
   autoload :DropletResource, 'droplet_kit/resources/droplet_resource'
@@ -35,6 +36,7 @@ module DropletKit
   autoload :SSHKeyResource, 'droplet_kit/resources/ssh_key_resource'
   autoload :RegionResource, 'droplet_kit/resources/region_resource'
   autoload :SizeResource, 'droplet_kit/resources/size_resource'
+  autoload :AccountResource, 'droplet_kit/resources/account_resource'
 
   # JSON Maps
   autoload :DropletMapping, 'droplet_kit/mappings/droplet_mapping'
@@ -52,6 +54,7 @@ module DropletKit
   autoload :DropletActionMapping, 'droplet_kit/mappings/droplet_action_mapping'
   autoload :ImageActionMapping, 'droplet_kit/mappings/image_action_mapping'
   autoload :SSHKeyMapping, 'droplet_kit/mappings/ssh_key_mapping'
+  autoload :AccountMapping, 'droplet_kit/mappings/account_mapping'
 
 
   # Utils

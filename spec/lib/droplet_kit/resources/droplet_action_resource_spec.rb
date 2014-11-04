@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe DropletKit::DropletActionResource do
-  subject(:resource) { described_class.new(connection) }
+  subject(:resource) { described_class.new(connection: connection) }
   let(:droplet_id) { 1066 }
   def json
     {
@@ -55,8 +55,8 @@ RSpec.describe DropletKit::DropletActionResource do
     end
   end
 
-  describe "Action kernel" do
-    let(:action) { 'kernel' }
+  describe "Action change_kernel" do
+    let(:action) { 'change_kernel' }
 
     it 'performs the action' do
       request = stub_do_api("/v2/droplets/#{droplet_id}/actions", :post).with(

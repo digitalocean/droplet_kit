@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe DropletKit::ImageResource do
-  subject(:resource) { described_class.new(connection) }
+  subject(:resource) { described_class.new(connection: connection) }
   include_context 'resources'
 
   describe '#all' do
