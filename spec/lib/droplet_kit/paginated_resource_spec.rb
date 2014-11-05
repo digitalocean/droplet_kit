@@ -8,21 +8,8 @@ RSpec.describe DropletKit::PaginatedResource do
   let(:request_count) { RequestCounter.new(0) }
 
   let(:connection) { Faraday.new {|b| b.adapter :test, stubs } }
-  let(:stubs) do
-    Faraday::Adapter::Test::Stubs.new do |stub|
-      stub.get('/droplets') do |env|
-        request_count.count += 1
-        uri = Addressable::URI.parse(env[:url].to_s)
-        page = (uri.query_values['page'] || 1).to_i
-        per_page = (uri.query_values['per_page'] || 20).to_i
-        range = (0...per_page).map do |num|
-          num + ((page - 1) * per_page)
-        end
-
-        [200, {}, { objects: range, meta: { total: 40 } }.to_json ]
-      end
-    end
-  end
+  let(:response_size) { 40 }
+  let(:stubs) { stub_pager_request(response_size) }
   let(:action) { ResourceKit::Action.new(:find, :get, '/droplets') }
 
   before do
@@ -35,6 +22,26 @@ RSpec.describe DropletKit::PaginatedResource do
       instance = DropletKit::PaginatedResource.new(action, resource)
       expect(instance.action).to be(action)
       expect(instance.resource).to be(resource)
+    end
+  end
+
+  describe "#total_pages" do
+    let(:instance) { DropletKit::PaginatedResource.new(action, resource) }
+    it "returns nil if no request made" do
+      expect(instance.total_pages).to be_nil
+    end
+
+    it "returns correct page count after request made" do
+      instance.take(20)
+      expect(instance.total_pages).to eq(2)
+    end
+
+    context "when results are empty" do
+      let(:stubs) { stub_pager_request(0) }
+      it "returns 0" do
+        instance.take(1)
+        expect(instance.total_pages).to eq(0)
+      end
     end
   end
 
