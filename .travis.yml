@@ -1,6 +1,6 @@
 rvm:
-  - "1.9.3"
   - "2.0.0-p594"
   - "2.1.4"
+  - "ruby-2.1-head"
   
 script: bundle exec rspec ./spec
