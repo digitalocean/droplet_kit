@@ -33,6 +33,8 @@ module DropletKit
       property :ssh_keys, scopes: [:create]
       property :backups, scopes: [:create]
       property :ipv6, scopes: [:create]
+      property :user_data, scopes: [:create]
+      property :private_networking, scopes: [:create]
     end
   end
 end

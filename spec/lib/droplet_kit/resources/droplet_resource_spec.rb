@@ -41,11 +41,17 @@ RSpec.describe DropletKit::DropletResource do
     expect(droplet.size.price_hourly).to eq(0.01488)
 
     expect(droplet.networks).to be_kind_of(DropletKit::NetworkHash)
-    v4_network = droplet.networks.v4.first
-    expect(v4_network.ip_address).to eq('127.0.0.19')
-    expect(v4_network.netmask).to eq("255.255.255.0")
-    expect(v4_network.gateway).to eq("127.0.0.20")
-    expect(v4_network.type).to eq("public")
+    private_v4_network = droplet.networks.v4.first
+    expect(private_v4_network.ip_address).to eq('10.0.0.19')
+    expect(private_v4_network.netmask).to eq("255.255.0.0")
+    expect(private_v4_network.gateway).to eq("10.0.0.1")
+    expect(private_v4_network.type).to eq("private")
+
+    public_v4_network = droplet.networks.v4.last
+    expect(public_v4_network.ip_address).to eq('127.0.0.19')
+    expect(public_v4_network.netmask).to eq("255.255.255.0")
+    expect(public_v4_network.gateway).to eq("127.0.0.20")
+    expect(public_v4_network.type).to eq("public")
 
     v6_network = droplet.networks.v6.first
     expect(v6_network.ip_address).to eq('2001::13')
@@ -88,7 +94,9 @@ RSpec.describe DropletKit::DropletResource do
           image: 'ubuntu-14-04-x86',
           ssh_keys: [123],
           backups: true,
-          ipv6: true
+          ipv6: true,
+          private_networking: true,
+          user_data: "#cloud-config\nruncmd\n\t- echo 'Hello!'"
         )
 
         as_hash = DropletKit::DropletMapping.representation_for(:create, droplet, NullHashLoad)
@@ -99,6 +107,8 @@ RSpec.describe DropletKit::DropletResource do
         expect(as_hash[:ssh_keys]).to eq(droplet.ssh_keys)
         expect(as_hash[:backups]).to eq(droplet.backups)
         expect(as_hash[:ipv6]).to eq(droplet.ipv6)
+        expect(as_hash[:private_networking]).to eq(droplet.private_networking)
+        expect(as_hash[:user_data]).to eq(droplet.user_data)
 
         as_string = DropletKit::DropletMapping.representation_for(:create, droplet)
         stub_do_api('/v2/droplets', :post).with(body: as_string).to_return(body: api_fixture('droplets/create'), status: 202)
