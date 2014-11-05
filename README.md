@@ -2,6 +2,8 @@
 
 DropletKit is the official [DigitalOcean V2 API](https://developers.digitalocean.com/v2/) client. It supports everything the API can do with a simple interface written in Ruby.
 
+[![Build Status](https://travis-ci.org/digitalocean/droplet_kit.svg?branch=master)](https://travis-ci.org/digitalocean/droplet_kit)
+
 ## Installation
 
 Add this line to your application's Gemfile:
