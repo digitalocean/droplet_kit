@@ -40,7 +40,7 @@ module DropletKit
     end
 
     def last?
-      @current_page == (self.total.to_f / per_page.to_f).ceil
+      @current_page == (self.total.to_f / per_page.to_f).ceil || self.total.zero?
     end
 
     def ==(other)
