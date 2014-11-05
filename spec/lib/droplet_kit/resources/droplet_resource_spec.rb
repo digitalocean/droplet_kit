@@ -1,6 +1,4 @@
 require 'spec_helper'
-require 'pry'
-require 'ruby-prof'
 
 RSpec.describe DropletKit::DropletResource do
   subject(:resource) { described_class.new(connection: connection) }
