@@ -10,6 +10,17 @@ RSpec.describe DropletKit::Client do
     end
   end
 
+  describe "#method_missing" do
+
+    context "called with an existing method" do
+      it { expect{ client.actions}.to_not raise_error }
+    end
+
+    context "called with a missing method" do
+      it { expect{client.this_is_wrong}.to raise_error(NoMethodError) }
+    end
+  end
+
   describe '#connection' do
     it 'populates the authorization header correctly' do
       expect(client.connection.headers['Authorization']).to eq("Bearer #{client.access_token}")
