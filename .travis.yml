@@ -1,0 +1,6 @@
+rvm:
+  - "1.9.3"
+  - "2.0.0-p594"
+  - "2.1.4"
+  
+script: bundle exec rspec ./spec
