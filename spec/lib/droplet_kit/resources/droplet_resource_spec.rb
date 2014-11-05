@@ -67,6 +67,12 @@ RSpec.describe DropletKit::DropletResource do
 
       check_droplet(droplets.first)
     end
+
+    it 'returns an empty array of droplets' do
+      stub_do_api('/v2/droplets', :get).to_return(body: api_fixture('droplets/all_empty'))
+      droplets = resource.all.map(&:id)
+      expect(droplets).to be_empty
+    end
   end
 
   describe '#find' do
