@@ -34,11 +34,7 @@ RSpec.describe DropletKit::DropletResource do
     expect(droplet.image.public).to eq(true)
     expect(droplet.image.regions).to include('nyc1')
 
-    expect(droplet.size).to be_kind_of(DropletKit::Size)
-    expect(droplet.size.slug).to eq("1024mb")
-    expect(droplet.size.transfer).to eq(2)
-    expect(droplet.size.price_monthly).to eq(10.0)
-    expect(droplet.size.price_hourly).to eq(0.01488)
+    expect(droplet.size_slug).to eq("1024mb")
 
     expect(droplet.networks).to be_kind_of(DropletKit::NetworkHash)
     private_v4_network = droplet.networks.v4.first

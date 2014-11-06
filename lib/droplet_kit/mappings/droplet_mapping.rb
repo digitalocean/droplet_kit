@@ -18,10 +18,10 @@ module DropletKit
       property :snapshot_ids, scopes: [:read]
       property :action_ids, scopes: [:read]
       property :features, scopes: [:read]
+      property :size_slug, scopes: [:read]
 
       property :region, scopes: [:read], include: RegionMapping
       property :image, scopes: [:read], include: ImageMapping
-      property :size, scopes: [:read], include: SizeMapping
       property :networks, scopes: [:read], include: NetworkMapping
       property :kernel, scopes: [:read], include: KernelMapping
 

@@ -31,12 +31,7 @@
       ],
       "created_at": "2014-07-29T14:35:37Z"
     },
-    "size": {
-      "slug": "1024mb",
-      "transfer": 2,
-      "price_monthly": 10.0,
-      "price_hourly": 0.01488
-    },
+    "size_slug": "1024mb",
     "locked": false,
     "status": "active",
     "networks": {
