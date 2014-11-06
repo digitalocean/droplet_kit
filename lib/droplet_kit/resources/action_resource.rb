@@ -2,6 +2,7 @@ module DropletKit
   class ActionResource < ResourceKit::Resource
     resources do
       action :all, 'GET /v2/actions' do
+        query_keys :per_page, :page
         handler(200) { |response| ActionMapping.extract_collection(response.body, :read) }
       end
 
