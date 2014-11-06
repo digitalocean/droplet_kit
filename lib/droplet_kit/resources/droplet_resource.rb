@@ -21,24 +21,44 @@ module DropletKit
       end
 
       action :kernels, 'GET /v2/droplets/:id/kernels' do
+        query_keys :per_page, :page
         handler(200) { |response| KernelMapping.extract_collection(response.body, :read) }
       end
 
       action :snapshots, 'GET /v2/droplets/:id/snapshots' do
+        query_keys :per_page, :page
         handler(200) { |response| SnapshotMapping.extract_collection(response.body, :read) }
       end
 
       action :backups, 'GET /v2/droplets/:id/backups' do
+        query_keys :per_page, :page
         handler(200) { |response| BackupMapping.extract_collection(response.body, :read) }
       end
 
       action :actions, 'GET /v2/droplets/:id/actions' do
+        query_keys :per_page, :page
         handler(200) { |response| ActionMapping.extract_collection(response.body, :read) }
       end
     end
 
     def all(*args)
       PaginatedResource.new(action(:all), self, *args)
+    end
+
+    def kernels(*args)
+      PaginatedResource.new(action(:kernels), self, *args)
+    end
+
+    def snapshots(*args)
+      PaginatedResource.new(action(:snapshots), self, *args)
+    end
+
+    def backups(*args)
+      PaginatedResource.new(action(:backups), self, *args)
+    end
+
+    def actions(*args)
+      PaginatedResource.new(action(:actions), self, *args)
     end
   end
 end

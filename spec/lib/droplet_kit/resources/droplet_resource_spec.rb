@@ -130,7 +130,7 @@ RSpec.describe DropletKit::DropletResource do
   describe '#kernels' do
     it 'returns a list of kernels for a droplet' do
       stub_do_api('/v2/droplets/1066/kernels', :get).to_return(body: api_fixture('droplets/list_kernels'))
-      kernels = resource.kernels(id: 1066)
+      kernels = resource.kernels(id: 1066).take(20)
 
       expect(kernels).to all(be_kind_of(DropletKit::Kernel))
       expect(kernels[0].id).to eq(61833229)
@@ -146,7 +146,7 @@ RSpec.describe DropletKit::DropletResource do
   describe '#snapshots' do
     it 'returns a list of kernels for a droplet' do
       stub_do_api('/v2/droplets/1066/snapshots', :get).to_return(body: api_fixture('droplets/list_snapshots'))
-      snapshots = resource.snapshots(id: 1066)
+      snapshots = resource.snapshots(id: 1066).take(20)
 
       expect(snapshots).to all(be_kind_of(DropletKit::Snapshot))
       expect(snapshots[0].id).to eq(449676387)
@@ -162,7 +162,7 @@ RSpec.describe DropletKit::DropletResource do
   describe '#backups' do
     it 'returns a list of backups for a droplet' do
       stub_do_api('/v2/droplets/1066/backups', :get).to_return(body: api_fixture('droplets/list_backups'))
-      backups = resource.backups(id: 1066)
+      backups = resource.backups(id: 1066).take(20)
 
       expect(backups).to all(be_kind_of(DropletKit::Backup))
       expect(backups[0].id).to eq(449676388)
@@ -178,7 +178,7 @@ RSpec.describe DropletKit::DropletResource do
   describe '#actions' do
     it 'returns a list of actions for the droplet' do
       stub_do_api('/v2/droplets/1066/actions', :get).to_return(body: api_fixture('droplets/list_actions'))
-      actions = resource.actions(id: 1066)
+      actions = resource.actions(id: 1066).take(20)
 
       expect(actions).to all(be_kind_of(DropletKit::Action))
 
