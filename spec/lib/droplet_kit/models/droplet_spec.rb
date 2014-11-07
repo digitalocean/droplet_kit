@@ -6,7 +6,7 @@ RSpec.describe DropletKit::Droplet do
 
   describe '#public_ip' do
     it 'returns the public IP for ipv4' do
-      expect(droplet.public_ip).to eq('10.0.0.19')
+      expect(droplet.public_ip).to eq('127.0.0.19')
     end
 
     context 'when the droplet does not have an IP yet' do
@@ -18,13 +18,13 @@ RSpec.describe DropletKit::Droplet do
   end
 
   describe '#private_ip' do
-    it 'returns the public IP for ipv6' do
-      expect(droplet.private_ip).to eq('2001::13')
+    it 'returns the public IP for ipv4' do
+      expect(droplet.private_ip).to eq('10.0.0.19')
     end
 
-    context 'when the droplet does not have ipv6 enabled' do
+    context 'when the droplet does not have private networking enabled' do
       it 'returns nil' do
-        droplet.networks.v6.clear
+        droplet.networks.v4.clear
         expect(droplet.private_ip).to be_nil
       end
     end

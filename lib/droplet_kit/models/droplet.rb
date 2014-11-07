@@ -15,11 +15,19 @@ module DropletKit
     attribute :private_networking
 
     def public_ip
-      networks.v4[0] && networks.v4[0].ip_address
+      network = networks.v4.find do |network|
+        network.type == 'public'
+      end
+
+      network && network.ip_address
     end
 
     def private_ip
-      networks.v6[0] && networks.v6[0].ip_address
+      network = networks.v4.find do |network|
+        network.type == 'private'
+      end
+
+      network && network.ip_address
     end
   end
 end
