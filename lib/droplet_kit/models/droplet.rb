@@ -13,6 +13,14 @@ module DropletKit
     attribute :ipv6
     attribute :user_data
     attribute :private_networking
+
+    def public_ip
+      networks.v4[0] && networks.v4[0].ip_address
+    end
+
+    def private_ip
+      networks.v6[0] && networks.v6[0].ip_address
+    end
   end
 end
 
