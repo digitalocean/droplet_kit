@@ -1,0 +1,28 @@
+{
+    "actions": [
+        {
+            "id": 298374,
+            "status": "completed",
+            "type": "image_destroy",
+            "started_at": "2014-10-28T17:11:05Z",
+            "completed_at": "2014-10-28T17:11:06Z",
+            "resource_id": 45646587,
+            "resource_type": "image",
+            "region": null
+        },
+        {
+            "id": 234598,
+            "status": "completed",
+            "type": "transfer",
+            "started_at": "2014-10-28T17:09:11Z",
+            "completed_at": "2014-10-28T17:12:04Z",
+            "resource_id": 45646587,
+            "resource_type": "image",
+            "region": "nyc2"
+        }
+    ],
+    "links": {},
+    "meta": {
+        "total": 2
+    }
+}
