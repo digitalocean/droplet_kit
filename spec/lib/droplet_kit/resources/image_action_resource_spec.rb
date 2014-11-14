@@ -26,6 +26,32 @@ RSpec.describe DropletKit::ImageActionResource do
     end
   end
 
+  describe '#all' do
+    it 'returns all of the image actions via a paginated resources' do
+      request = stub_do_api('/v2/images/449676391/actions', :get).to_return(
+        body: api_fixture('image_actions/all'),
+        status: 200
+      )
+
+      actions = resource.all(image_id: 449676391).take(20)
+
+      expect(request).to have_been_made
+
+      expect(actions.size).to be(2)
+
+      action = actions.first
+
+      expect(action.id).to eq(298374)
+      expect(action.status).to eq("completed")
+      expect(action.type).to eq("image_destroy")
+      expect(action.started_at).to eq("2014-10-28T17:11:05Z")
+      expect(action.completed_at).to eq("2014-10-28T17:11:06Z")
+      expect(action.resource_id).to eq(45646587)
+      expect(action.resource_type).to eq("image")
+      expect(action.region).to eq(nil)
+    end
+  end
+
   describe '#find' do
     it 'returns a single action' do
       stub_do_api('/v2/images/449676391/actions/23').to_return(body: api_fixture('image_actions/find'))

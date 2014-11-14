@@ -144,6 +144,18 @@ Actions supported:
 * `client.images.update(image, id: 'id')`
 
 
+## Image Action Resource
+
+    client = DropletKit::Client.new(access_token: 'TOKEN')
+    client.image_actions #=> DropletKit::ImageActionResource
+
+Image Actions Supported:
+
+* `client.image_actions.all(image_id: 123)`
+* `client.image_actions.find(image_id: 123, id: 123455)`
+* `client.image_actions.transfer(image_id: 123, region: 'nyc3')`
+
+
 ## Region resource
 
     client = DropletKit::Client.new(access_token: 'TOKEN')
