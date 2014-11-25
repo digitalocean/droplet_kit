@@ -78,7 +78,19 @@ Actions supported:
 * `client.droplets.kernels(id: 'id')`
 * `client.droplets.snapshots(id: 'id')`
 * `client.droplets.backups(id: 'id')`
-* `client.droplets.actions(id: 'id')`
+
+Parameters supported:
+
+* **access_token** `your API access token`
+* **name** `the name of your droplet`
+* **region** `your droplet's region, nyc1 etc.`
+* **size** `your droplet's size, 512mb etc.`
+* **image** `the image you wish to create, ubuntu-14-04-x86 etc.`
+* **ssh_keys** `An array containing your SSH key IDs, [123]`
+* **backups** `boolean value of whether you want to enable backups or not`
+* **ipv6** `boolean for enabling ipv6 support`
+* **private_networking** `boolean for enabling private networking`
+* **user_data** `a string containing custom commands to run "#cloud-config\nruncmd\n\t- echo 'Hello!'"`
 
 ## Droplet Action resource
 
