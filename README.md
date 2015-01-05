@@ -121,6 +121,12 @@ Actions supported:
 
     client = DropletKit::Client.new(access_token: 'TOKEN')
     client.domain_records #=> DropletKit::DomainRecordResource
+    domain_record = DropletKit::DomainRecord.new(
+        type: 'CNAME',
+        name: 'www',
+        data: '@'
+    )
+
 
 Actions supported:
 
