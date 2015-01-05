@@ -8,7 +8,7 @@ module DropletKit
         handler(200) { |response| TagMapping.extract_collection(response.body, :read) }
       end
 
-      action :find, 'GET /v2/tags/:name' do
+      action :find, 'GET /v2/tags/:id' do
         handler(200) { |response| TagMapping.extract_single(response.body, :read) }
       end
 
@@ -18,25 +18,25 @@ module DropletKit
         handler(422) { |response| ErrorMapping.fail_with(FailedCreate, response.body) }
       end
 
-      action :update, 'PUT /v2/tags/:name' do
+      action :update, 'PUT /v2/tags/:id' do
         body { |object| TagMapping.representation_for(:update, object) }
         handler(200) { |response| TagMapping.extract_single(response.body, :read) }
       end
 
-      action :delete, 'DELETE /v2/tags/:name' do
+      action :delete, 'DELETE /v2/tags/:id' do
         handler(204) { |_| true }
         handler(422) { |response| ErrorMapping.fail_with(FailedCreate, response.body) }
       end
 
-      action :add, 'POST /v2/tags/:name/add' do
+      action :tag_resource, 'POST /v2/tags/:id/resources' do
         verb :post
-        body { |hash| { resource_id: hash[:resource_id], resource_type: hash[:resource_type] }.to_json }
+        body { |hash| { resources: hash[:resources] }.to_json }
         handler(204) { |_| true }
       end
 
-      action :remove, 'DELETE /v2/tags/:name/remove' do
-        verb :post
-        body { |hash| { resource_id: hash[:resource_id], resource_type: hash[:resource_type] }.to_json }
+      action :untag_resource, 'DELETE /v2/tags/:id/resources' do
+        verb :delete
+        body { |hash| { resources: hash[:resources] }.to_json }
         handler(204) { |_| true }
       end
     end

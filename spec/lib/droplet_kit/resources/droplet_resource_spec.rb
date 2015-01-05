@@ -5,7 +5,7 @@ RSpec.describe DropletKit::DropletResource do
   include_context 'resources'
 
   # There's a lot to check
-  def check_droplet(droplet, overrides = {})
+  def check_droplet(droplet, tags = [], overrides = {})
     attrs = {
       id: 19,
       name: 'test.example.com',
@@ -195,8 +195,8 @@ RSpec.describe DropletKit::DropletResource do
         stub_do_api(path, :post).with(body: as_string).to_return(body: api_fixture('droplets/create_multiple'), status: 202)
 
         created_droplets = resource.create_multiple(droplet)
-        check_droplet(created_droplets[0], name: 'test-01.example.com')
-        check_droplet(created_droplets[1], id: 20, name: 'test-02.example.com')
+        check_droplet(created_droplets[0], [], name: 'test-01.example.com')
+        check_droplet(created_droplets[1], [], id: 20, name: 'test-02.example.com')
       end
 
       it 'reuses the same object' do
@@ -210,8 +210,8 @@ RSpec.describe DropletKit::DropletResource do
         json = DropletKit::DropletMapping.representation_for(:create, droplet)
         stub_do_api(path, :post).with(body: json).to_return(body: api_fixture('droplets/create_multiple'), status: 202)
         created_droplets = resource.create_multiple(droplet)
-        check_droplet(created_droplets[0], name: 'test-01.example.com')
-        check_droplet(created_droplets[1], id: 20, name: 'test-02.example.com')
+        check_droplet(created_droplets[0], [], name: 'test-01.example.com')
+        check_droplet(created_droplets[1], [], id: 20, name: 'test-02.example.com')
       end
     end
 

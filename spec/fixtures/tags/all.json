@@ -1,9 +1,11 @@
 {
   "tags": [
     {
+      "id": "testing-1",
       "name": "testing-1"
     },
     {
+      "id": "testing-2",
       "name": "testing-2"
     }
   ],

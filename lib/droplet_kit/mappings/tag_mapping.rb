@@ -7,6 +7,7 @@ module DropletKit
       root_key plural: 'tags', singular: 'tag', scopes: [:read]
 
       scoped :read, :create, :update do
+        property :id
         property :name
       end
     end
