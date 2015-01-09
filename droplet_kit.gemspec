@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = DropletKit::VERSION
   spec.authors       = ["Robert Ross"]
   spec.email         = ["rross@digitalocean.com"]
-  spec.summary       = %q{Droplet Kit is the official Ruby library for Digital Ocean's API}
-  spec.description   = %q{Droplet Kit is the official Ruby library for Digital Ocean's API}
+  spec.summary       = %q{Droplet Kit is the official Ruby library for DigitalOcean's API}
+  spec.description   = %q{Droplet Kit is the official Ruby library for DigitalOcean's API}
   spec.homepage      = ""
   spec.license       = "MIT"
 
