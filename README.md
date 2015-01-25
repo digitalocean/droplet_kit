@@ -214,7 +214,7 @@ Actions supported:
 
 ## Account resource
 
-```
+```ruby
 client = DropletKit::Client.new(access_token: 'TOKEN')
 client.account #=> DropletKit::AccountResource
 ```
