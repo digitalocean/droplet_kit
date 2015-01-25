@@ -66,8 +66,10 @@ droplet = client.droplets.find(id: 123)
 
 ## Droplet resource
 
-    client = DropletKit::Client.new(access_token: 'TOKEN')
-    client.droplets #=> DropletKit::DropletResource
+```ruby
+client = DropletKit::Client.new(access_token: 'TOKEN')
+client.droplets #=> DropletKit::DropletResource
+```
 
 Actions supported:
 
@@ -82,8 +84,10 @@ Actions supported:
 
 ## Droplet Action resource
 
-    client = DropletKit::Client.new(access_token: 'TOKEN')
-    client.droplet_actions #=> DropletKit::DropletAction
+```ruby
+client = DropletKit::Client.new(access_token: 'TOKEN')
+client.droplet_actions #=> DropletKit::DropletAction
+```
 
 Actions supported:
 
@@ -106,8 +110,10 @@ Actions supported:
 
 ## Domain resource
 
-    client = DropletKit::Client.new(access_token: 'TOKEN')
-    client.domains #=> DropletKit::DomainResource
+```ruby
+client = DropletKit::Client.new(access_token: 'TOKEN')
+client.domains #=> DropletKit::DomainResource
+```
 
 Actions supported:
 
@@ -119,14 +125,15 @@ Actions supported:
 
 ## Domain record resource
 
-    client = DropletKit::Client.new(access_token: 'TOKEN')
-    client.domain_records #=> DropletKit::DomainRecordResource
-    domain_record = DropletKit::DomainRecord.new(
-        type: 'CNAME',
-        name: 'www',
-        data: '@'
-    )
-
+```ruby
+client = DropletKit::Client.new(access_token: 'TOKEN')
+client.domain_records #=> DropletKit::DomainRecordResource
+domain_record = DropletKit::DomainRecord.new(
+  type: 'CNAME',
+  name: 'www',
+  data: '@'
+)
+```
 
 Actions supported:
 
@@ -139,8 +146,10 @@ Actions supported:
 
 ## Image resource
 
-    client = DropletKit::Client.new(access_token: 'TOKEN')
-    client.images #=> DropletKit::ImageResource
+```ruby
+client = DropletKit::Client.new(access_token: 'TOKEN')
+client.images #=> DropletKit::ImageResource
+```
 
 Actions supported:
 
@@ -152,8 +161,10 @@ Actions supported:
 
 ## Image Action Resource
 
-    client = DropletKit::Client.new(access_token: 'TOKEN')
-    client.image_actions #=> DropletKit::ImageActionResource
+```
+client = DropletKit::Client.new(access_token: 'TOKEN')
+client.image_actions #=> DropletKit::ImageActionResource
+```
 
 Image Actions Supported:
 
@@ -164,8 +175,10 @@ Image Actions Supported:
 
 ## Region resource
 
-    client = DropletKit::Client.new(access_token: 'TOKEN')
-    client.regions #=> DropletKit::RegionResource
+```ruby
+client = DropletKit::Client.new(access_token: 'TOKEN')
+client.regions #=> DropletKit::RegionResource
+```
 
 Actions supported:
 
@@ -174,18 +187,22 @@ Actions supported:
 
 ## Size resource
 
-    client = DropletKit::Client.new(access_token: 'TOKEN')
-    client.sizes #=> DropletKit::SizeResource
+```ruby
+client = DropletKit::Client.new(access_token: 'TOKEN')
+client.sizes #=> DropletKit::SizeResource
+```
 
 Actions supported:
 
 * `client.sizes.all()`
 
 
-## Ssh key resource
+## SSH key resource
 
-    client = DropletKit::Client.new(access_token: 'TOKEN')
-    client.ssh_keys #=> DropletKit::SSHKeyResource
+```ruby
+client = DropletKit::Client.new(access_token: 'TOKEN')
+client.ssh_keys #=> DropletKit::SSHKeyResource
+```
 
 Actions supported:
 
@@ -197,8 +214,10 @@ Actions supported:
 
 ## Account resource
 
-    client = DropletKit::Client.new(access_token: 'TOKEN')
-    client.account #=> DropletKit::AccountResource
+```
+client = DropletKit::Client.new(access_token: 'TOKEN')
+client.account #=> DropletKit::AccountResource
+```
 
 Actions supported:
 
