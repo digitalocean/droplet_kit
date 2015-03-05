@@ -99,6 +99,7 @@ Actions supported:
 * `client.droplet_actions.password_reset(droplet_id: droplet.id)`
 * `client.droplet_actions.enable_ipv6(droplet_id: droplet.id)`
 * `client.droplet_actions.disable_backups(droplet_id: droplet.id)`
+* `client.droplet_actions.upgrade(droplet_id: droplet.id)`
 * `client.droplet_actions.enable_private_networking(droplet_id: droplet.id)`
 * `client.droplet_actions.snapshot(droplet_id: droplet.id, name: 'Snapshot Name')`
 * `client.droplet_actions.change_kernel(droplet_id: droplet.id, kernel: 'kernel_id')`
