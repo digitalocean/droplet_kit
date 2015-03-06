@@ -13,7 +13,7 @@ module DropletKit
       property :completed_at, scopes: [:read]
       property :resource_id, scopes: [:read]
       property :resource_type, scopes: [:read]
-      property :region, scopes: [:read]
+      property :region, scopes: [:read], include: RegionMapping
       property :region_slug, scopes: [:read]
     end
   end

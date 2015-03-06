@@ -19,7 +19,13 @@
             "completed_at": "2014-10-28T17:12:04Z",
             "resource_id": 45646587,
             "resource_type": "image",
-            "region": "nyc2",
+            "region": {
+                "name": "New York",
+                "slug": "nyc2",
+                "available": true,
+                "sizes": ["512mb"],
+                "features": ["virtio", "private_networking", "backups", "ipv6", "metadata"]
+            },
             "region_slug": "nyc2"
         }
     ],

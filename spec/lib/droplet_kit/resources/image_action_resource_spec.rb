@@ -22,8 +22,14 @@ RSpec.describe DropletKit::ImageActionResource do
       expect(action.completed_at).to eq(nil)
       expect(action.resource_id).to eq(449676391)
       expect(action.resource_type).to eq("image")
-      expect(action.region).to eq("nyc1")
       expect(action.region_slug).to eq("nyc1")
+
+      expect(action.region).to be_kind_of(DropletKit::Region)
+      expect(action.region.slug).to eq('nyc1')
+      expect(action.region.name).to eq('New York')
+      expect(action.region.sizes).to include('512mb')
+      expect(action.region.available).to be(true)
+      expect(action.region.features).to include("virtio", "private_networking", "backups", "ipv6", "metadata")
     end
   end
 
@@ -67,8 +73,14 @@ RSpec.describe DropletKit::ImageActionResource do
       expect(action.completed_at).to eq(nil)
       expect(action.resource_id).to eq(449676391)
       expect(action.resource_type).to eq("image")
-      expect(action.region).to eq("nyc1")
       expect(action.region_slug).to eq("nyc1")
+
+      expect(action.region).to be_kind_of(DropletKit::Region)
+      expect(action.region.slug).to eq('nyc1')
+      expect(action.region.name).to eq('New York')
+      expect(action.region.sizes).to include('512mb')
+      expect(action.region.available).to be(true)
+      expect(action.region.features).to include("virtio", "private_networking", "backups", "ipv6", "metadata")
     end
   end
 end

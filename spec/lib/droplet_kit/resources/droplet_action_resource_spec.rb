@@ -13,8 +13,14 @@ RSpec.describe DropletKit::DropletActionResource do
         "completed_at" => nil,
         "resource_id" => 12,
         "resource_type" => "droplet",
-        "region" => "nyc1",
-        "region_slug" => "nyc1"
+        "region_slug" => "nyc1",
+        "region" => {
+          "name" => "New York",
+          "slug" => "nyc1",
+          "available" => true,
+          "sizes" => ["512mb"],
+          "features" => ["virtio", "private_networking", "backups", "ipv6", "metadata"]
+        }
       }
     }.to_json
   end
@@ -161,8 +167,14 @@ RSpec.describe DropletKit::DropletActionResource do
       expect(returned_action.completed_at).to eq(nil)
       expect(returned_action.resource_id).to eq(nil)
       expect(returned_action.resource_type).to eq("backend")
-      expect(returned_action.region).to eq("nyc1")
-      expect(returned_action.region_slug).to eq("nyc1")
+      expect(returned_action.region_slug).to eq('nyc1')
+
+      expect(returned_action.region).to be_kind_of(DropletKit::Region)
+      expect(returned_action.region.slug).to eq('nyc1')
+      expect(returned_action.region.name).to eq('New York')
+      expect(returned_action.region.sizes).to include('512mb')
+      expect(returned_action.region.available).to be(true)
+      expect(returned_action.region.features).to include("virtio", "private_networking", "backups", "ipv6", "metadata")
     end
   end
 end

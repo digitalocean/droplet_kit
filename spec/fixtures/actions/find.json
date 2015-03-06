@@ -7,7 +7,13 @@
     "completed_at": null,
     "resource_id": null,
     "resource_type": "backend",
-    "region": "nyc1",
-    "region_slug": "nyc1"
+    "region_slug": "nyc1",
+    "region": {
+      "name": "New York",
+      "slug": "nyc1",
+      "available": true,
+      "sizes": ["512mb"],
+      "features": ["virtio", "private_networking", "backups", "ipv6", "metadata"]
+    }
   }
 }

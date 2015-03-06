@@ -191,7 +191,12 @@ RSpec.describe DropletKit::DropletResource do
       expect(actions[0].completed_at).to eq(nil)
       expect(actions[0].resource_id).to eq(24)
       expect(actions[0].resource_type).to eq("droplet")
-      expect(actions[0].region).to eq("nyc1")
+      expect(actions[0].region).to be_kind_of(DropletKit::Region)
+      expect(actions[0].region.slug).to eq('nyc1')
+      expect(actions[0].region.name).to eq('New York')
+      expect(actions[0].region.sizes).to include('512mb')
+      expect(actions[0].region.available).to be(true)
+      expect(actions[0].region.features).to include("virtio", "private_networking", "backups", "ipv6", "metadata")
     end
   end
 
