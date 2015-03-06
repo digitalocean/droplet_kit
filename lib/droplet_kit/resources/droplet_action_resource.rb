@@ -41,6 +41,11 @@ module DropletKit
         handler(201, 200) { |response| ActionMapping.extract_single(response.body, :read) }
       end
 
+      action :upgrade, 'POST /v2/droplets/:droplet_id/actions' do
+        body { |hash| { type: 'upgrade' }.to_json }
+        handler(201, 200) { |response| ActionMapping.extract_single(response.body, :read) }
+      end
+
       action :find, 'GET /v2/droplets/:droplet_id/actions/:id' do
         handler(200) { |response| ActionMapping.extract_single(response.body, :read) }
       end
