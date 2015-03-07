@@ -37,7 +37,7 @@ module DropletKit
       end
 
       action :resize, 'POST /v2/droplets/:droplet_id/actions' do
-        body { |hash| { type: 'resize', size: hash[:size] }.to_json }
+        body { |hash| { type: 'resize', size: hash[:size], disk: hash[:disk] }.to_json }
         handler(201, 200) { |response| ActionMapping.extract_single(response.body, :read) }
       end
 

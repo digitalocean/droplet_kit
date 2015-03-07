@@ -121,10 +121,25 @@ RSpec.describe DropletKit::DropletActionResource do
 
     it 'performs the action' do
       request = stub_do_api("/v2/droplets/#{droplet_id}/actions", :post).with(
-        body: { type: action, size: '1gb' }.to_json
+        body: { type: action, size: '1gb', disk: nil }.to_json
       ).to_return(body: json, status: 201)
 
       returned_action = resource.send(action, droplet_id: droplet_id, size: '1gb')
+
+      expect(request).to have_been_made
+      expect(returned_action.type).to eq(action)
+    end
+  end
+
+  describe "Action resize with disk" do
+    let(:action) { 'resize' }
+
+    it 'performs the action' do
+      request = stub_do_api("/v2/droplets/#{droplet_id}/actions", :post).with(
+        body: { type: action, size: '1gb', disk: true }.to_json
+      ).to_return(body: json, status: 201)
+
+      returned_action = resource.send(action, droplet_id: droplet_id, size: '1gb', disk: true)
 
       expect(request).to have_been_made
       expect(returned_action.type).to eq(action)
