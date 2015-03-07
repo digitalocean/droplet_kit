@@ -7,11 +7,11 @@ module DropletKit
       root_key singular: 'ssh_key', plural: 'ssh_keys', scopes: [:read]
 
       property :id, :fingerprint, :public_key, :name,
-        scopes: :read
+        scopes: [:read]
 
-      property :name, :public_key, scopes: :create
+      property :name, :public_key, scopes: [:create]
 
-      property :name, scopes: :update
+      property :name, scopes: [:update]
     end
   end
 end
