@@ -1,3 +1,17 @@
+### Version 1.2.0
+
+* Add droplet upgrade action.
+* Pass disk option through to Droplet resize.
+* Add support for region_slug in action objects.
+* Test coverage for Ruby 2.2.0.
+* Documentation updates.
+
+### Version 1.1.3
+
+* Paginate the resource for image actions to retrieve all of them.
+* Fix infinite loop bug on pagination last page.
+* Updates to documentation.
+
 ### Version 1.1.2
 
 * Add `public_ip` and `private_ip` to easily get the IP address on `DropletKit::Droplet` objects returned.
