@@ -23,6 +23,7 @@ RSpec.describe DropletKit::ImageActionResource do
       expect(action.resource_id).to eq(449676391)
       expect(action.resource_type).to eq("image")
       expect(action.region).to eq("nyc1")
+      expect(action.region_slug).to eq("nyc1")
     end
   end
 
@@ -49,6 +50,7 @@ RSpec.describe DropletKit::ImageActionResource do
       expect(action.resource_id).to eq(45646587)
       expect(action.resource_type).to eq("image")
       expect(action.region).to eq(nil)
+      expect(action.region_slug).to eq(nil)
     end
   end
 
@@ -66,6 +68,7 @@ RSpec.describe DropletKit::ImageActionResource do
       expect(action.resource_id).to eq(449676391)
       expect(action.resource_type).to eq("image")
       expect(action.region).to eq("nyc1")
+      expect(action.region_slug).to eq("nyc1")
     end
   end
 end

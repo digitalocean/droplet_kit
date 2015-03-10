@@ -8,7 +8,8 @@
             "completed_at": "2014-10-28T17:11:06Z",
             "resource_id": 45646587,
             "resource_type": "image",
-            "region": null
+            "region": null,
+            "region_slug": null
         },
         {
             "id": 234598,
@@ -18,7 +19,8 @@
             "completed_at": "2014-10-28T17:12:04Z",
             "resource_id": 45646587,
             "resource_type": "image",
-            "region": "nyc2"
+            "region": "nyc2",
+            "region_slug": "nyc2"
         }
     ],
     "links": {},

@@ -14,6 +14,7 @@ module DropletKit
       property :resource_id, scopes: [:read]
       property :resource_type, scopes: [:read]
       property :region, scopes: [:read]
+      property :region_slug, scopes: [:read]
     end
   end
 end
