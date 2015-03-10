@@ -8,7 +8,8 @@
       "completed_at": null,
       "resource_id": null,
       "resource_type": "backend",
-      "region": "nyc1"
+      "region": "nyc1",
+      "region_slug": "nyc1"
     }
   ],
   "meta": {

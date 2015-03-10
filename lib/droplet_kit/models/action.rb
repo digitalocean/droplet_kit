@@ -8,5 +8,6 @@ module DropletKit
     attribute :resource_id
     attribute :resource_type
     attribute :region
+    attribute :region_slug
   end
 end

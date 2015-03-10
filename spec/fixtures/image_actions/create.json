@@ -7,6 +7,7 @@
     "completed_at": null,
     "resource_id": 449676391,
     "resource_type": "image",
-    "region": "nyc1"
+    "region": "nyc1",
+    "region_slug": "nyc1"
   }
 }

@@ -13,7 +13,8 @@ RSpec.describe DropletKit::DropletActionResource do
         "completed_at" => nil,
         "resource_id" => 12,
         "resource_type" => "droplet",
-        "region" => "nyc1"
+        "region" => "nyc1",
+        "region_slug" => "nyc1"
       }
     }.to_json
   end
@@ -161,6 +162,7 @@ RSpec.describe DropletKit::DropletActionResource do
       expect(returned_action.resource_id).to eq(nil)
       expect(returned_action.resource_type).to eq("backend")
       expect(returned_action.region).to eq("nyc1")
+      expect(returned_action.region_slug).to eq("nyc1")
     end
   end
 end
