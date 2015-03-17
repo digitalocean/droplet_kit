@@ -25,6 +25,7 @@ RSpec.describe DropletKit::ImageResource do
       expect(image.slug).to eq(nil)
       expect(image.public).to eq(false)
       expect(image.regions).to eq(["region--1"])
+      expect(image.type).to eq("snapshot")
     end
   end
 
