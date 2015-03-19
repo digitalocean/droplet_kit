@@ -26,8 +26,13 @@ RSpec.describe DropletKit::ActionResource do
       expect(actions.first.completed_at).to eq(nil)
       expect(actions.first.resource_id).to eq(nil)
       expect(actions.first.resource_type).to eq("backend")
-      expect(actions.first.region).to eq("nyc1")
-      expect(actions.first.region_slug).to eq("nyc1")
+
+      expect(actions.first.region).to be_kind_of(DropletKit::Region)
+      expect(actions.first.region.slug).to eq('nyc1')
+      expect(actions.first.region.name).to eq('New York')
+      expect(actions.first.region.sizes).to include('512mb')
+      expect(actions.first.region.available).to be(true)
+      expect(actions.first.region.features).to include("virtio", "private_networking", "backups", "ipv6", "metadata")
     end
   end
 
@@ -53,8 +58,14 @@ RSpec.describe DropletKit::ActionResource do
       expect(action.completed_at).to eq(nil)
       expect(action.resource_id).to eq(nil)
       expect(action.resource_type).to eq("backend")
-      expect(action.region).to eq("nyc1")
       expect(action.region_slug).to eq("nyc1")
+
+      expect(action.region).to be_kind_of(DropletKit::Region)
+      expect(action.region.slug).to eq('nyc1')
+      expect(action.region.name).to eq('New York')
+      expect(action.region.sizes).to include('512mb')
+      expect(action.region.available).to be(true)
+      expect(action.region.features).to include("virtio", "private_networking", "backups", "ipv6", "metadata")
     end
   end
 end
