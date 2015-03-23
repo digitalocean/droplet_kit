@@ -62,6 +62,7 @@ module DropletKit
 
   # Errors
   autoload :ErrorMapping, 'droplet_kit/mappings/error_mapping'
-  FailedCreate = Class.new(StandardError)
-  FailedUpdate = Class.new(StandardError)
+  Error = Class.new(StandardError)
+  FailedCreate = Class.new(DropletKit::Error)
+  FailedUpdate = Class.new(DropletKit::Error)
 end

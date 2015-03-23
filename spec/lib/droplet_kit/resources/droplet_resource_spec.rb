@@ -87,6 +87,8 @@ RSpec.describe DropletKit::DropletResource do
   end
 
   describe '#create' do
+    let(:path) { '/v2/droplets' }
+
     context 'for a successful create' do
       it 'returns the created droplet' do
         droplet = DropletKit::Droplet.new(
@@ -113,19 +115,15 @@ RSpec.describe DropletKit::DropletResource do
         expect(as_hash[:user_data]).to eq(droplet.user_data)
 
         as_string = DropletKit::DropletMapping.representation_for(:create, droplet)
-        stub_do_api('/v2/droplets', :post).with(body: as_string).to_return(body: api_fixture('droplets/create'), status: 202)
+        stub_do_api(path, :post).with(body: as_string).to_return(body: api_fixture('droplets/create'), status: 202)
         created_droplet = resource.create(droplet)
         check_droplet(created_droplet)
       end
     end
 
-    context 'for an unsuccessful create' do
-      it 'raises a FailedCreate exception with the message attached' do
-        response_body = { id: :unprocessable_entity, message: 'Something is not right' }
-        stub_do_api('/v2/droplets', :post).to_return(body: response_body.to_json, status: 422)
-
-        expect { resource.create(DropletKit::Droplet.new) }.to raise_exception(DropletKit::FailedCreate).with_message(response_body[:message])
-      end
+    it_behaves_like 'an action that handles invalid parameters' do
+      let(:action) { 'create' }
+      let(:arguments) { DropletKit::Droplet.new }
     end
   end
 
