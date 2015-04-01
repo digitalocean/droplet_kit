@@ -4,11 +4,35 @@ RSpec.describe DropletKit::ImageActionResource do
   subject(:resource) { described_class.new(connection: connection) }
   include_context 'resources'
 
+  def json
+    {
+      "action" => {
+        "id" => 23,
+        "status" => "in-progress",
+        "type" => action,
+        "started_at" => "2014-08-05T15:15:28Z",
+        "completed_at" => nil,
+        "resource_id" => 449676391,
+        "resource_type" => "image",
+        "region_slug" => "nyc1",
+        "region" => {
+          "name" => "New York",
+          "slug" => "nyc1",
+          "available" => true,
+          "sizes" => ["512mb"],
+          "features" => ["virtio", "private_networking", "backups", "ipv6", "metadata"]
+        }
+      }
+    }.to_json
+  end
+
   describe '#transfer' do
+    let(:action) { 'transfer' }
+
     it 'sends a transfer request for an image' do
       request = stub_do_api('/v2/images/449676391/actions').with(
-        body: { type: 'transfer', region: 'sfo1' }.to_json
-      ).to_return(body: api_fixture('image_actions/create'), status: 201)
+        body: { type: action, region: 'sfo1' }.to_json
+      ).to_return(body: json, status: 201)
 
       action = resource.transfer(image_id: 449676391, region: 'sfo1')
 
@@ -18,6 +42,37 @@ RSpec.describe DropletKit::ImageActionResource do
       expect(action.id).to eq(23)
       expect(action.status).to eq("in-progress")
       expect(action.type).to eq("transfer")
+      expect(action.started_at).to eq("2014-08-05T15:15:28Z")
+      expect(action.completed_at).to eq(nil)
+      expect(action.resource_id).to eq(449676391)
+      expect(action.resource_type).to eq("image")
+      expect(action.region_slug).to eq("nyc1")
+
+      expect(action.region).to be_kind_of(DropletKit::Region)
+      expect(action.region.slug).to eq('nyc1')
+      expect(action.region.name).to eq('New York')
+      expect(action.region.sizes).to include('512mb')
+      expect(action.region.available).to be(true)
+      expect(action.region.features).to include("virtio", "private_networking", "backups", "ipv6", "metadata")
+    end
+  end
+
+  describe '#convert' do
+    let(:action) { 'convert' }
+
+    it 'sends a convert request for an image' do
+      request = stub_do_api('/v2/images/449676391/actions').with(
+        body: { type: action }.to_json
+      ).to_return(body: json, status: 201)
+
+      action = resource.convert(image_id: 449676391)
+
+      expect(request).to have_been_made
+
+      expect(action).to be_kind_of(DropletKit::ImageAction)
+      expect(action.id).to eq(23)
+      expect(action.status).to eq("in-progress")
+      expect(action.type).to eq("convert")
       expect(action.started_at).to eq("2014-08-05T15:15:28Z")
       expect(action.completed_at).to eq(nil)
       expect(action.resource_id).to eq(449676391)
