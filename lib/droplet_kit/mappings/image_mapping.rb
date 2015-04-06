@@ -12,6 +12,7 @@ module DropletKit
       property :slug, scopes: [:read]
       property :public, scopes: [:read]
       property :regions, scopes: [:read]
+      property :type, scopes: [:read]
     end
   end
 end

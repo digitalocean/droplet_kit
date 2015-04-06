@@ -6,5 +6,6 @@ module DropletKit
     attribute :slug
     attribute :public
     attribute :regions
+    attribute :type
   end
 end
