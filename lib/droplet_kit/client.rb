@@ -7,7 +7,7 @@ module DropletKit
     attr_reader :access_token
 
     def initialize(options = {})
-      @access_token = options[:access_token]
+      @access_token = options.with_indifferent_access[:access_token]
     end
 
     def connection
