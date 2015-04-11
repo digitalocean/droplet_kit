@@ -8,10 +8,14 @@ RSpec.describe DropletKit::Client do
       client = DropletKit::Client.new(access_token: 'my-token')
       expect(client.access_token).to eq('my-token')
     end
+
+    it 'allows string option keys for the client' do
+      client = DropletKit::Client.new('access_token' => 'my-token')
+      expect(client.access_token).to eq('my-token')
+    end
   end
 
   describe "#method_missing" do
-
     context "called with an existing method" do
       it { expect{ client.actions}.to_not raise_error }
     end
