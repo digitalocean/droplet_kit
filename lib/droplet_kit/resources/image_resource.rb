@@ -2,7 +2,7 @@ module DropletKit
   class ImageResource < ResourceKit::Resource
     resources do
       action :all, 'GET /v2/images' do
-        query_keys :page, :per_page, :type
+        query_keys :page, :per_page, :type, :private
         handler(200) { |response| ImageMapping.extract_collection(response.body, :read) }
       end
 
