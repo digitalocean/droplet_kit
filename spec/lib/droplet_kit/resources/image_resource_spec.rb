@@ -12,6 +12,26 @@ RSpec.describe DropletKit::ImageResource do
 
       expect(resource.all).to eq(expected_images)
     end
+
+    it 'returns private images' do
+      images_json = api_fixture('images/all')
+      stub_do_api('/v2/images', :get)
+        .with(query: hash_including({ private: 'true' }))
+        .to_return(body: images_json)
+      expected_images = DropletKit::ImageMapping.extract_collection images_json, :read
+
+      expect(resource.all(private: true)).to eq(expected_images)
+    end
+
+    it 'returns images of a type' do
+      images_json = api_fixture('images/all')
+      stub_do_api('/v2/images', :get)
+        .with(query: hash_including({ type: 'application' }))
+        .to_return(body: images_json)
+      expected_images = DropletKit::ImageMapping.extract_collection images_json, :read
+
+      expect(resource.all(type: :application)).to eq(expected_images)
+    end
   end
 
   describe '#find' do
