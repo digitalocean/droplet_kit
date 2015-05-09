@@ -1,0 +1,7 @@
+[
+  {
+    "droplet_id": 123,
+    "date_of_migration": "2014-12-01T12:00:00Z",
+    "url": "https://api.digitalocean.com/v2/droplets/123"
+  }
+]
