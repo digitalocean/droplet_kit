@@ -68,4 +68,5 @@ module DropletKit
   Error = Class.new(StandardError)
   FailedCreate = Class.new(DropletKit::Error)
   FailedUpdate = Class.new(DropletKit::Error)
+  RateLimitReached = Class.new(DropletKit::Error)
 end
