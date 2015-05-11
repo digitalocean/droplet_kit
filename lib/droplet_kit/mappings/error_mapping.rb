@@ -1,7 +1,5 @@
 module DropletKit
   class ErrorMapping
-    Error = Struct.new(:message, :id)
-
     include Kartograph::DSL
 
     kartograph do

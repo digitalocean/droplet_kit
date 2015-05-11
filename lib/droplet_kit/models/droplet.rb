@@ -6,14 +6,6 @@ module DropletKit
       attribute(key)
     end
 
-    # Used for creates
-    attribute :ssh_keys
-    attribute :backups
-    attribute :size
-    attribute :ipv6
-    attribute :user_data
-    attribute :private_networking
-
     def public_ip
       network = network_for(:v4, 'public')
       network && network.ip_address

@@ -9,6 +9,8 @@ module DropletKit
   # Models
   autoload :BaseModel, 'droplet_kit/models/base_model'
   autoload :Droplet, 'droplet_kit/models/droplet'
+  autoload :DropletCreate, 'droplet_kit/models/droplet_create'
+  autoload :Error, 'droplet_kit/models/error'
   autoload :Region, 'droplet_kit/models/region'
   autoload :Image, 'droplet_kit/models/image'
   autoload :ImageAction, 'droplet_kit/models/image_action'
@@ -40,6 +42,7 @@ module DropletKit
 
   # JSON Maps
   autoload :DropletMapping, 'droplet_kit/mappings/droplet_mapping'
+  autoload :DropletCreateMapping, 'droplet_kit/mappings/droplet_create_mapping'
   autoload :ImageMapping, 'droplet_kit/mappings/image_mapping'
   autoload :RegionMapping, 'droplet_kit/mappings/region_mapping'
   autoload :SizeMapping, 'droplet_kit/mappings/size_mapping'

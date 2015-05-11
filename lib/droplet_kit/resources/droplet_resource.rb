@@ -11,7 +11,7 @@ module DropletKit
       end
 
       action :create, 'POST /v2/droplets' do
-        body { |object| DropletMapping.representation_for(:create, object) }
+        body { |object| DropletCreateMapping.representation_for(:create, object) }
         handler(202) { |response| DropletMapping.extract_single(response.body, :read) }
         handler(422) { |response| ErrorMapping.fail_with(FailedCreate, response.body) }
       end
