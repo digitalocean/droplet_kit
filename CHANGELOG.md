@@ -1,3 +1,16 @@
+### Version 1.2.2
+
+* Add image convert action.
+* Loosen dependency on ActiveSupport, update travis.
+* Add Image#type property.
+* Allow client option with indifferent access.
+* Add private filtering to image endpoint.
+* Add droplet upgrades resource.
+
+### Version 1.2.1
+
+* Update to action resources to support embedded region breaking changes in API.
+
 ### Version 1.2.0
 
 * Add droplet upgrade action.
