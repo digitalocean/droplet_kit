@@ -12,7 +12,8 @@
         "nyc1",
         "ams1",
         "sfo1"
-      ]
+      ],
+      "available": true
     },
     {
       "slug": "1gb",
@@ -26,7 +27,8 @@
         "nyc1",
         "ams1",
         "sfo1"
-      ]
+      ],
+      "available": true
     }
   ],
   "meta": {
