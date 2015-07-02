@@ -12,6 +12,7 @@ module DropletKit
       end
 
       action :all, 'GET /v2/images/:image_id/actions' do
+        query_keys :per_page, :page
         handler(200) { |response| ImageActionMapping.extract_collection(response.body, :read) }
       end
 

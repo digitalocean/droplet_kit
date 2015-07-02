@@ -4,6 +4,7 @@ module DropletKit
       default_handler(:ok, :created) {|r| SSHKeyMapping.extract_single(r.body, :read) }
 
       action :all, 'GET /v2/account/keys' do
+        query_keys :per_page, :page
         handler(:ok) { |response| SSHKeyMapping.extract_collection(response.body, :read) }
       end
 
