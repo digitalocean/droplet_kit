@@ -3,27 +3,8 @@ require 'spec_helper'
 RSpec.describe DropletKit::DropletActionResource do
   subject(:resource) { described_class.new(connection: connection) }
   let(:droplet_id) { 1066 }
-  def json
-    {
-      "action" => {
-        "id" => 2,
-        "status" => "in-progress",
-        "type" => action,
-        "started_at" => "2014-07-29T14:35:27Z",
-        "completed_at" => nil,
-        "resource_id" => 12,
-        "resource_type" => "droplet",
-        "region_slug" => "nyc1",
-        "region" => {
-          "name" => "New York",
-          "slug" => "nyc1",
-          "available" => true,
-          "sizes" => ["512mb"],
-          "features" => ["virtio", "private_networking", "backups", "ipv6", "metadata"]
-        }
-      }
-    }.to_json
-  end
+
+  let(:fixture) { api_fixture("droplet_actions/#{action}") }
 
   include_context 'resources'
 
@@ -39,7 +20,7 @@ RSpec.describe DropletKit::DropletActionResource do
       it 'performs the action' do
         request = stub_do_api(path, :post).with(
           body: { type: action }.to_json
-        ).to_return(body: json, status: 201)
+        ).to_return(body: fixture, status: 201)
 
         returned_action = resource.send(action, droplet_id: droplet_id)
 
@@ -60,7 +41,7 @@ RSpec.describe DropletKit::DropletActionResource do
     it 'performs the action' do
       request = stub_do_api("/v2/droplets/#{droplet_id}/actions", :post).with(
         body: { type: action, name: 'Dwight' }.to_json
-      ).to_return(body: json, status: 201)
+      ).to_return(body: fixture, status: 201)
 
       returned_action = resource.send(action, droplet_id: droplet_id, name: 'Dwight')
 
@@ -75,7 +56,7 @@ RSpec.describe DropletKit::DropletActionResource do
     it 'performs the action' do
       request = stub_do_api("/v2/droplets/#{droplet_id}/actions", :post).with(
         body: { type: action, kernel: 1556 }.to_json
-      ).to_return(body: json, status: 201)
+      ).to_return(body: fixture, status: 201)
 
       returned_action = resource.send(action, droplet_id: droplet_id, kernel: 1556)
 
@@ -90,7 +71,7 @@ RSpec.describe DropletKit::DropletActionResource do
     it 'performs the action' do
       request = stub_do_api("/v2/droplets/#{droplet_id}/actions", :post).with(
         body: { type: action, name: 'newname.com' }.to_json
-      ).to_return(body: json, status: 201)
+      ).to_return(body: fixture, status: 201)
 
       returned_action = resource.send(action, droplet_id: droplet_id, name: 'newname.com')
 
@@ -105,7 +86,7 @@ RSpec.describe DropletKit::DropletActionResource do
     it 'performs the action' do
       request = stub_do_api("/v2/droplets/#{droplet_id}/actions", :post).with(
         body: { type: action, image: 'ubuntu-14-04-x86' }.to_json
-      ).to_return(body: json, status: 201)
+      ).to_return(body: fixture, status: 201)
 
       returned_action = resource.send(action, droplet_id: droplet_id, image: 'ubuntu-14-04-x86')
 
@@ -120,7 +101,7 @@ RSpec.describe DropletKit::DropletActionResource do
     it 'performs the action' do
       request = stub_do_api("/v2/droplets/#{droplet_id}/actions", :post).with(
         body: { type: action, image: 'ubuntu-14-04-x86' }.to_json
-      ).to_return(body: json, status: 201)
+      ).to_return(body: fixture, status: 201)
 
       returned_action = resource.send(action, droplet_id: droplet_id, image: 'ubuntu-14-04-x86')
 
@@ -135,7 +116,7 @@ RSpec.describe DropletKit::DropletActionResource do
     it 'performs the action' do
       request = stub_do_api("/v2/droplets/#{droplet_id}/actions", :post).with(
         body: { type: action, size: '1gb', disk: nil }.to_json
-      ).to_return(body: json, status: 201)
+      ).to_return(body: fixture, status: 201)
 
       returned_action = resource.send(action, droplet_id: droplet_id, size: '1gb')
 
@@ -150,7 +131,7 @@ RSpec.describe DropletKit::DropletActionResource do
     it 'performs the action' do
       request = stub_do_api("/v2/droplets/#{droplet_id}/actions", :post).with(
         body: { type: action, size: '1gb', disk: true }.to_json
-      ).to_return(body: json, status: 201)
+      ).to_return(body: fixture, status: 201)
 
       returned_action = resource.send(action, droplet_id: droplet_id, size: '1gb', disk: true)
 
@@ -162,7 +143,7 @@ RSpec.describe DropletKit::DropletActionResource do
   describe '#find' do
     it 'returns an action' do
       request = stub_do_api("/v2/droplets/1066/actions/123", :get).to_return(
-        body: api_fixture('actions/find')
+        body: api_fixture('droplet_actions/find')
       )
 
       returned_action = resource.find(droplet_id: 1066, id: 123)
