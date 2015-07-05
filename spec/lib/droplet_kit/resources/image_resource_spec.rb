@@ -32,6 +32,11 @@ RSpec.describe DropletKit::ImageResource do
 
       expect(resource.all(type: :application)).to eq(expected_images)
     end
+
+    it_behaves_like 'a paginated index' do
+      let(:fixture_path) { 'images/all' }
+      let(:api_path) { '/v2/images' }
+    end
   end
 
   describe '#find' do
