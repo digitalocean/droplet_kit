@@ -34,6 +34,11 @@ RSpec.describe DropletKit::ActionResource do
       expect(actions.first.region.available).to be(true)
       expect(actions.first.region.features).to include("virtio", "private_networking", "backups", "ipv6", "metadata")
     end
+
+    it_behaves_like 'a paginated index' do
+      let(:fixture_path) { 'actions/all' }
+      let(:api_path) { '/v2/actions' }
+    end
   end
 
   describe '#find' do
