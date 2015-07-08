@@ -12,5 +12,10 @@ RSpec.describe DropletKit::SizeResource do
 
       expect(resource.all).to eq(expected)
     end
+
+    it_behaves_like 'a paginated index' do
+      let(:fixture_path) {'sizes/all'}
+      let(:api_path) {'/v2/sizes'}
+    end
   end
 end
