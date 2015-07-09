@@ -113,6 +113,11 @@ RSpec.describe DropletKit::ImageActionResource do
       expect(action.region).to eq(nil)
       expect(action.region_slug).to eq(nil)
     end
+
+    it_behaves_like 'a paginated index' do
+      let(:fixture_path) {'image_actions/all'}
+      let(:api_path) {'/v2/images/45646587/actions'}
+    end
   end
 
   describe '#find' do

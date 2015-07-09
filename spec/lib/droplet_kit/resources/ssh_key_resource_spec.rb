@@ -16,6 +16,11 @@ RSpec.describe DropletKit::SSHKeyResource do
       expect(ssh_keys.first.public_key).to eq("ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAQQDGk5V68BJ4P3Ereh779Vi/Ft2qs/rbXrcjKLGo6zsyeyFUE0svJUpRDEJvFSf8RlezKx1/1ulJu9+kZsxRiUKn example")
       expect(ssh_keys.first.name).to eq("Example Key")
     end
+
+    it_behaves_like 'a paginated index' do
+      let(:fixture_path) {'ssh_keys/all'}
+      let(:api_path) {'/v2/ssh_keys'}
+    end
   end
 
   describe '#create' do

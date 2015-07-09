@@ -12,6 +12,11 @@ RSpec.describe DropletKit::DomainResource do
 
       expect(resource.all).to eq(expected_domains)
     end
+
+    it_behaves_like 'a paginated index' do
+      let(:fixture_path) {'domains/all'}
+      let(:api_path) {'/v2/domains'}
+    end
   end
 
   describe '#create' do

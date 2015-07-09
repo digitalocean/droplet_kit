@@ -15,6 +15,11 @@ RSpec.describe DropletKit::DomainRecordResource do
       expect(returned_records).to all(be_kind_of(DropletKit::DomainRecord))
       expect(returned_records).to eq(expected_records)
     end
+
+    it_behaves_like 'a paginated index' do
+      let(:fixture_path) {'domain_records/all'}
+      let(:api_path) {'/v2/domains/example.com/records'}
+    end
   end
 
   describe '#create' do
