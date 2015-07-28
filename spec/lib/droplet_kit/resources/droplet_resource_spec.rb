@@ -94,7 +94,7 @@ RSpec.describe DropletKit::DropletResource do
   describe '#create' do
     context 'for a successful create' do
       it 'returns the created droplet' do
-        droplet = DropletKit::Droplet.new(
+        droplet = DropletKit::DropletCreate.new(
           name: 'test.example.com',
           region: 'nyc1',
           size: '512mb',
@@ -106,7 +106,7 @@ RSpec.describe DropletKit::DropletResource do
           user_data: "#cloud-config\nruncmd\n\t- echo 'Hello!'"
         )
 
-        as_hash = DropletKit::DropletMapping.representation_for(:create, droplet, NullHashLoad)
+        as_hash = DropletKit::DropletCreateMapping.representation_for(:create, droplet, NullHashLoad)
         expect(as_hash[:name]).to eq(droplet.name)
         expect(as_hash[:region]).to eq(droplet.region)
         expect(as_hash[:size]).to eq(droplet.size)
@@ -117,7 +117,7 @@ RSpec.describe DropletKit::DropletResource do
         expect(as_hash[:private_networking]).to eq(droplet.private_networking)
         expect(as_hash[:user_data]).to eq(droplet.user_data)
 
-        as_string = DropletKit::DropletMapping.representation_for(:create, droplet)
+        as_string = DropletKit::DropletCreateMapping.representation_for(:create, droplet)
         stub_do_api('/v2/droplets', :post).with(body: as_string).to_return(body: api_fixture('droplets/create'), status: 202)
         created_droplet = resource.create(droplet)
         check_droplet(created_droplet)
@@ -129,7 +129,7 @@ RSpec.describe DropletKit::DropletResource do
         response_body = { id: :unprocessable_entity, message: 'Something is not right' }
         stub_do_api('/v2/droplets', :post).to_return(body: response_body.to_json, status: 422)
 
-        expect { resource.create(DropletKit::Droplet.new) }.to raise_exception(DropletKit::FailedCreate).with_message(response_body[:message])
+        expect { resource.create(DropletKit::DropletCreate.new) }.to raise_exception(DropletKit::FailedCreate).with_message(response_body[:message])
       end
     end
   end

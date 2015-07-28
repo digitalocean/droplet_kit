@@ -49,8 +49,8 @@ When you'd like to save objects, it's your responsibility to instantiate the obj
 
 ```ruby
 client = DropletKit::Client.new(access_token: 'YOUR_TOKEN')
-droplet = DropletKit::Droplet.new(name: 'mysite.com', region: 'nyc2', image: 'ubuntu-14-04-x64', size: '512mb')
-created = client.droplets.create(droplet)
+create_params = DropletKit::DropletCreate.new(name: 'mysite.com', region: 'nyc2', image: 'ubuntu-14-04-x64', size: '512mb')
+droplet = client.droplets.create(create_params)
 # => DropletKit::Droplet(id: 1231, name: 'something.com', ...)
 ```
 
@@ -59,7 +59,7 @@ To retrieve objects, you can perform this type of action on the resource (if the
 ```ruby
 client = DropletKit::Client.new(access_token: 'YOUR_TOKEN')
 droplet = client.droplets.find(id: 123)
-# => DropletKit::Droplet(id: 1231, name: 'something.com', ...)
+# => DropletKit::DropletCreate(id: 1231, name: 'something.com', ...)
 ```
 
 # All Resources and actions.
