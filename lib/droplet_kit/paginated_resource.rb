@@ -1,18 +1,23 @@
 module DropletKit
+  # PaginatedResource provides an Enumerable interface to external resource,
+  # fetching elements as needed.
+  #
+  # #each is able to start at specified index, i.e. #each(5) will start yielding
+  # elements starting at 6th element.
   class PaginatedResource
     include Enumerable
 
     PER_PAGE = 20
 
-    attr_reader :action, :resource, :collection
-    attr_accessor :total
+    attr_reader :action, :resource, :fetched_elements
+    attr_accessor :total_remote_elements
 
     def initialize(action, resource, *args)
-      @current_page = 0
-      @total = nil
+      @last_fetched_page = 0
+      @total_remote_elements = nil
       @action = action
       @resource = resource
-      @collection = []
+      @fetched_elements = []
       @args = args
       @options = args.last.kind_of?(Hash) ? args.last : {}
     end
@@ -23,15 +28,15 @@ module DropletKit
 
     def each(start = 0)
       # Start off with the first page if we have no idea of anything yet
-      fetch_next_page if total.nil?
+      fetch_next_page if total_remote_elements.nil?
 
       return to_enum(:each, start) unless block_given?
-      Array(@collection[start..-1]).each do |element|
+      Array(@fetched_elements[start..-1]).each do |element|
         yield(element)
       end
 
       unless last?
-        start = [@collection.size, start].max
+        start = [@fetched_elements.size, start].max
         fetch_next_page
         each(start, &Proc.new)
       end
@@ -40,13 +45,13 @@ module DropletKit
     end
 
     def last?
-      @current_page == total_pages || self.total.zero?
+      @last_fetched_page == total_pages || self.total_remote_elements.zero?
     end
 
     def total_pages
-      return nil if self.total.nil?
+      return nil if self.total_remote_elements.nil?
 
-      (self.total.to_f / per_page.to_f).ceil
+      (self.total_remote_elements.to_f / per_page.to_f).ceil
     end
 
     def ==(other)
@@ -56,8 +61,8 @@ module DropletKit
     private
 
     def fetch_next_page
-      @current_page += 1
-      retrieve(@current_page)
+      @last_fetched_page += 1
+      retrieve(@last_fetched_page)
     end
 
     def retrieve(page, per_page = self.per_page)
@@ -65,11 +70,11 @@ module DropletKit
       invoker.options[:per_page] ||= per_page
       invoker.options[:page]       = page
 
-      @collection += invoker.handle_response
+      @fetched_elements += invoker.handle_response
 
-      if total.nil?
+      if total_remote_elements.nil?
         meta = MetaInformation.extract_single(invoker.response.body, :read)
-        self.total = meta.total.to_i
+        self.total_remote_elements = meta.total.to_i
       end
     end
   end
