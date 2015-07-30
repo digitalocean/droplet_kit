@@ -10,7 +10,6 @@ module DropletKit
     PER_PAGE = 20
 
     attr_reader :action, :resource, :fetched_elements
-    attr_accessor :total_remote_elements
 
     def initialize(action, resource, *args)
       @action = action
@@ -28,7 +27,7 @@ module DropletKit
 
     def each(start = 0)
       # Start off with the first page if we have no idea of anything yet
-      fetch_next_page if total_remote_elements.nil?
+      fetch_next_page if @total_remote_elements.nil?
 
       return to_enum(:each, start) unless block_given?
       Array(@fetched_elements[start..-1]).each do |element|
@@ -45,13 +44,13 @@ module DropletKit
     end
 
     def last?
-      @last_fetched_page == total_pages || self.total_remote_elements.zero?
+      @last_fetched_page == total_pages || @total_remote_elements.zero?
     end
 
     def total_pages
-      return nil if self.total_remote_elements.nil?
+      return nil if @total_remote_elements.nil?
 
-      (self.total_remote_elements.to_f / per_page.to_f).ceil
+      (@total_remote_elements.to_f / per_page.to_f).ceil
     end
 
     def ==(other)
@@ -72,9 +71,9 @@ module DropletKit
 
       @fetched_elements += invoker.handle_response
 
-      if total_remote_elements.nil?
+      if @total_remote_elements.nil?
         meta = MetaInformation.extract_single(invoker.response.body, :read)
-        self.total_remote_elements = meta.total.to_i
+        @total_remote_elements = meta.total.to_i
       end
     end
   end
