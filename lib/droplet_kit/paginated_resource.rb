@@ -13,13 +13,13 @@ module DropletKit
     attr_accessor :total_remote_elements
 
     def initialize(action, resource, *args)
-      @last_fetched_page = 0
-      @total_remote_elements = nil
       @action = action
       @resource = resource
-      @fetched_elements = []
       @args = args
+
       @options = args.last.kind_of?(Hash) ? args.last : {}
+      @last_fetched_page = 0
+      @fetched_elements = []
     end
 
     def per_page
