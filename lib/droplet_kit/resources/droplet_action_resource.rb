@@ -4,6 +4,8 @@ module DropletKit
       power_on password_reset enable_ipv6 disable_backups enable_private_networking)
 
     resources do
+      default_handler(422) { |response| ErrorMapping.fail_with(FailedCreate, response.body) }
+
       ACTIONS_WITHOUT_INPUT.each do |action_name|
         action action_name.to_sym, 'POST /v2/droplets/:droplet_id/actions' do
           body { |_| { type: action_name }.to_json }

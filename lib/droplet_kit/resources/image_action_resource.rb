@@ -1,6 +1,8 @@
 module DropletKit
   class ImageActionResource < ResourceKit::Resource
     resources do
+      default_handler(422) { |response| ErrorMapping.fail_with(FailedCreate, response.body) }
+
       action :transfer, 'POST /v2/images/:image_id/actions' do
         body { |object| { type: 'transfer', region: object[:region] }.to_json }
         handler(200, 201) { |response| ImageActionMapping.extract_single(response.body, :read) }

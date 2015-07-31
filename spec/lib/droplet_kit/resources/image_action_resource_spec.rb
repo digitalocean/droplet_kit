@@ -27,14 +27,16 @@ RSpec.describe DropletKit::ImageActionResource do
   end
 
   describe '#transfer' do
+    let(:image_id) { 449676391 }
+    let(:path) { "/v2/images/#{image_id}/actions" }
     let(:action) { 'transfer' }
 
     it 'sends a transfer request for an image' do
-      request = stub_do_api('/v2/images/449676391/actions').with(
-        body: { type: action, region: 'sfo1' }.to_json
+      request = stub_do_api(path).with(
+        body: { type: 'transfer', region: 'sfo1' }.to_json
       ).to_return(body: json, status: 201)
 
-      action = resource.transfer(image_id: 449676391, region: 'sfo1')
+      action = resource.transfer(image_id: image_id, region: 'sfo1')
 
       expect(request).to have_been_made
 
@@ -55,17 +57,24 @@ RSpec.describe DropletKit::ImageActionResource do
       expect(action.region.available).to be(true)
       expect(action.region.features).to include("virtio", "private_networking", "backups", "ipv6", "metadata")
     end
+
+    it_behaves_like 'an action that handles invalid parameters' do
+      let(:object) { DropletKit::Image.new }
+      let(:arguments) { { image_id: image_id, region: 'sfo1' } }
+    end
   end
 
   describe '#convert' do
+    let(:image_id) { 449676391 }
+    let(:path) { "/v2/images/#{image_id}/actions" }
     let(:action) { 'convert' }
 
     it 'sends a convert request for an image' do
-      request = stub_do_api('/v2/images/449676391/actions').with(
+      request = stub_do_api(path).with(
         body: { type: action }.to_json
       ).to_return(body: json, status: 201)
 
-      action = resource.convert(image_id: 449676391)
+      action = resource.convert(image_id: image_id)
 
       expect(request).to have_been_made
 
@@ -85,6 +94,11 @@ RSpec.describe DropletKit::ImageActionResource do
       expect(action.region.sizes).to include('512mb')
       expect(action.region.available).to be(true)
       expect(action.region.features).to include("virtio", "private_networking", "backups", "ipv6", "metadata")
+    end
+
+    it_behaves_like 'an action that handles invalid parameters' do
+      let(:object) { DropletKit::Image.new }
+      let(:arguments) { { image_id: image_id } }
     end
   end
 

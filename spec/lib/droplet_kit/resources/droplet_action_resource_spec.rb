@@ -34,16 +34,22 @@ RSpec.describe DropletKit::DropletActionResource do
   ACTIONS_WITHOUT_INPUT.each do |action_name|
     describe "Action #{action_name}" do
       let(:action) { action_name }
+      let(:path) { "/v2/droplets/#{droplet_id}/actions" }
 
       it 'performs the action' do
-        request = stub_do_api("/v2/droplets/#{droplet_id}/actions", :post).with(
-          body: { type: action_name }.to_json
+        request = stub_do_api(path, :post).with(
+          body: { type: action }.to_json
         ).to_return(body: json, status: 201)
 
-        returned_action = resource.send(action_name, droplet_id: droplet_id)
+        returned_action = resource.send(action, droplet_id: droplet_id)
 
         expect(request).to have_been_made
-        expect(returned_action.type).to eq(action_name)
+        expect(returned_action.type).to eq(action)
+      end
+
+      it_behaves_like 'an action that handles invalid parameters' do
+        let(:object) { DropletKit::Droplet.new }
+        let(:arguments) { { droplet_id: droplet_id } }
       end
     end
   end
