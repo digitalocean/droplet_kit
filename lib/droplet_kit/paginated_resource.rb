@@ -26,10 +26,10 @@ module DropletKit
     end
 
     def each(start = 0)
+      return to_enum(:each, start) unless block_given?
+
       # Start off with the first page if we have no idea of anything yet
       fetch_next_page if nothing_fetched_yet?
-
-      return to_enum(:each, start) unless block_given?
       Array(@fetched_elements[start..-1]).each do |element|
         yield(element)
       end
