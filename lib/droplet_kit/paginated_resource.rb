@@ -25,18 +25,18 @@ module DropletKit
       @options[:per_page] || PER_PAGE
     end
 
-    def each(start = 0)
+    def each(start = 0, &block)
       return to_enum(:each, start) unless block_given?
 
       # Start off with the first page if we have no idea of anything yet
       fetch_next_page if nothing_fetched_yet?
-      yield_fetched_elements(start, &Proc.new)
+      yield_fetched_elements(start, &block)
 
       while more_elements_to_fetch?
 	# Ensure we omit from yielding already yielded elements
 	start = after_fetched_elements unless start > after_fetched_elements
         fetch_next_page
-	yield_fetched_elements(start, &Proc.new)
+	yield_fetched_elements(start, &block)
       end
 
       self
