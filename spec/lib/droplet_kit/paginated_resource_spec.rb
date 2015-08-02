@@ -73,4 +73,18 @@ RSpec.describe DropletKit::PaginatedResource do
       end
     end
   end
+
+  describe '#==' do
+    subject(:paginated) { DropletKit::PaginatedResource.new(action, resource) }
+
+    it 'returns false if compared with an empty array' do
+      expect(paginated == []).to eq(false)
+    end
+
+    it 'returns true when compared with array full of the same data' do
+      ar = []
+      (0..39).each { |i| ar << i }
+      expect(paginated).to eq ar
+    end
+  end
 end
