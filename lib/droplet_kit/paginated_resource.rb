@@ -30,15 +30,13 @@ module DropletKit
 
       # Start off with the first page if we have no idea of anything yet
       fetch_next_page if nothing_fetched_yet?
-      Array(@fetched_elements[start..-1]).each do |element|
-        yield(element)
-      end
+      yield_fetched_elements(start, &Proc.new)
 
-      if more_pages_to_fetch?
+      while more_pages_to_fetch?
 	# Ensure we omit from yielding already yielded elements
 	start = after_fetched_elements unless start > after_fetched_elements
         fetch_next_page
-        each(start, &Proc.new)
+	yield_fetched_elements(start, &Proc.new)
       end
 
       self
@@ -83,6 +81,12 @@ module DropletKit
       if nothing_fetched_yet?
         meta = MetaInformation.extract_single(invoker.response.body, :read)
         @total_remote_elements = meta.total.to_i
+      end
+    end
+
+    def yield_fetched_elements(start)
+      Array(@fetched_elements[start..-1]).each do |element|
+        yield(element)
       end
     end
   end
