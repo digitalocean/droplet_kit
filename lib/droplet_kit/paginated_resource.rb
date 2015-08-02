@@ -78,9 +78,9 @@ module DropletKit
 
       @fetched_elements.concat(invoker.handle_response)
 
-      if @total_remote_elements.nil?
+      @total_remote_elements ||= begin
         meta = MetaInformation.extract_single(invoker.response.body, :read)
-        @total_remote_elements = meta.total.to_i
+        meta.total.to_i
       end
     end
 
