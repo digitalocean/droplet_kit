@@ -32,7 +32,7 @@ module DropletKit
       fetch_next_page if nothing_fetched_yet?
       yield_fetched_elements(start, &Proc.new)
 
-      while more_pages_to_fetch?
+      while more_elements_to_fetch?
 	# Ensure we omit from yielding already yielded elements
 	start = after_fetched_elements unless start > after_fetched_elements
         fetch_next_page
@@ -63,8 +63,8 @@ module DropletKit
       retrieve(@last_fetched_page)
     end
 
-    def more_pages_to_fetch?
-      @last_fetched_page < total_pages && @total_remote_elements > 0
+    def more_elements_to_fetch?
+      @total_remote_elements > @fetched_elements.size
     end
 
     def nothing_fetched_yet?
