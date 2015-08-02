@@ -43,7 +43,7 @@ module DropletKit
     end
 
     def total_pages
-      return nil if nothing_fetched_yet?
+      return if nothing_fetched_yet?
 
       (@total_remote_elements.to_f / per_page.to_f).ceil
     end
