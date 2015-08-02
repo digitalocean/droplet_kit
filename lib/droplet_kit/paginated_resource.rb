@@ -35,7 +35,8 @@ module DropletKit
       end
 
       if more_pages_to_fetch?
-        start = [@fetched_elements.size, start].max
+	# Ensure we omit from yielding already yielded elements
+	start = after_fetched_elements unless start > after_fetched_elements
         fetch_next_page
         each(start, &Proc.new)
       end
@@ -54,6 +55,10 @@ module DropletKit
     end
 
     private
+
+    def after_fetched_elements
+      @fetched_elements.size
+    end
 
     def fetch_next_page
       @last_fetched_page += 1
