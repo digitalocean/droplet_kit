@@ -34,17 +34,13 @@ module DropletKit
         yield(element)
       end
 
-      unless last?
+      if more_pages_to_fetch?
         start = [@fetched_elements.size, start].max
         fetch_next_page
         each(start, &Proc.new)
       end
 
       self
-    end
-
-    def last?
-      @last_fetched_page == total_pages || @total_remote_elements.zero?
     end
 
     def total_pages
@@ -62,6 +58,10 @@ module DropletKit
     def fetch_next_page
       @last_fetched_page += 1
       retrieve(@last_fetched_page)
+    end
+
+    def more_pages_to_fetch?
+      @last_fetched_page < total_pages && @total_remote_elements > 0
     end
 
     def nothing_fetched_yet?
