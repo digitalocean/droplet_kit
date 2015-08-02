@@ -76,7 +76,7 @@ module DropletKit
       invoker.options[:per_page] ||= per_page
       invoker.options[:page]       = page
 
-      @fetched_elements += invoker.handle_response
+      @fetched_elements.concat(invoker.handle_response)
 
       if nothing_fetched_yet?
         meta = MetaInformation.extract_single(invoker.response.body, :read)
