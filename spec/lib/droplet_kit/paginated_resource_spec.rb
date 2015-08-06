@@ -81,6 +81,10 @@ RSpec.describe DropletKit::PaginatedResource do
       expect(paginated == []).to eq(false)
     end
 
+    it 'returns false if compared with an array full of different data' do
+      expect(paginated == [1]*40).to eq(false)
+    end
+
     it 'returns true when compared with array full of the same data' do
       ar = []
       (0..39).each { |i| ar << i }
