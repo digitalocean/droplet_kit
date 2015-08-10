@@ -1,5 +1,7 @@
 module DropletKit
   class DomainRecordResource < ResourceKit::Resource
+    include ErrorHandlingResourcable
+
     resources do
       action :all, 'GET /v2/domains/:for_domain/records' do
         query_keys :per_page, :page

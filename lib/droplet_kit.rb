@@ -62,11 +62,23 @@ module DropletKit
 
   # Utils
   autoload :PaginatedResource, 'droplet_kit/paginated_resource'
+  autoload :ErrorHandlingResourcable, 'droplet_kit/error_handling_resourcable'
 
   # Errors
   autoload :ErrorMapping, 'droplet_kit/mappings/error_mapping'
   Error = Class.new(StandardError)
   FailedCreate = Class.new(DropletKit::Error)
   FailedUpdate = Class.new(DropletKit::Error)
-  RateLimitReached = Class.new(DropletKit::Error)
+
+  class RateLimitReached < DropletKit::Error
+    attr_accessor :limit, :remaining, :reset_at
+
+    def limit
+      @limit.to_i if @limit
+    end
+
+    def remaining
+      @remaining.to_i if @remaining
+    end
+  end
 end

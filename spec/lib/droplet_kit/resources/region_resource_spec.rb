@@ -17,5 +17,11 @@ RSpec.describe DropletKit::RegionResource do
       let(:fixture_path) {'regions/all'}
       let(:api_path) {'/v2/regions'}
     end
+
+    it_behaves_like 'resource that handles common errors' do
+      let(:path) { '/v2/regions' }
+      let(:method) { :get }
+      let(:action) { :all }
+    end
   end
 end

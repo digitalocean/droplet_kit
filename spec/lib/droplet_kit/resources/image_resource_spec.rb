@@ -52,6 +52,13 @@ RSpec.describe DropletKit::ImageResource do
       expect(image.regions).to eq(["region--1"])
       expect(image.type).to eq("snapshot")
     end
+
+    it_behaves_like 'resource that handles common errors' do
+      let(:path) { '/v2/images/123' }
+      let(:method) { :get }
+      let(:action) { :find }
+      let(:arguments) { { id: 123 } }
+    end
   end
 
   describe '#delete' do

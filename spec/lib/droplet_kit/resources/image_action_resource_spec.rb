@@ -138,5 +138,12 @@ RSpec.describe DropletKit::ImageActionResource do
       expect(action.region.available).to be(true)
       expect(action.region.features).to include("virtio", "private_networking", "backups", "ipv6", "metadata")
     end
+
+    it_behaves_like 'resource that handles common errors' do
+      let(:path) { '/v2/images/1066/actions/123' }
+      let(:method) { :get }
+      let(:action) { :find }
+      let(:arguments) { { image_id: 1066, id: 123 } }
+    end
   end
 end

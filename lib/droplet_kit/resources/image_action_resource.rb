@@ -1,5 +1,7 @@
 module DropletKit
   class ImageActionResource < ResourceKit::Resource
+    include ErrorHandlingResourcable
+
     resources do
       default_handler(422) { |response| ErrorMapping.fail_with(FailedCreate, response.body) }
 

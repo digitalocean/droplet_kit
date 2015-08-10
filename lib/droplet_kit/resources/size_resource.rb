@@ -1,5 +1,7 @@
 module DropletKit
   class SizeResource < ResourceKit::Resource
+    include ErrorHandlingResourcable
+
     resources do
       action :all, 'GET /v2/sizes' do
         query_keys :per_page, :page

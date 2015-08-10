@@ -55,6 +55,13 @@ RSpec.describe DropletKit::DomainRecordResource do
       expected_record = DropletKit::DomainRecordMapping.extract_single(response, :read)
       expect(resource.find(id: 12, for_domain: 'example.com')).to eq(expected_record)
     end
+
+    it_behaves_like 'resource that handles common errors' do
+      let(:path) { '/v2/domains/example.com/records/12' }
+      let(:method) { :get }
+      let(:action) { :find }
+      let(:arguments) { { for_domain: 'example.com', id: 123 } }
+    end
   end
 
   describe '#delete' do
