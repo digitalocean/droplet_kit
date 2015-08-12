@@ -62,6 +62,9 @@ droplet = client.droplets.find(id: 123)
 # => DropletKit::Droplet(id: 1231, name: 'something.com', ...)
 ```
 
+To SSH into the droplet, call `Droplet.new` with the `ssh_keys` parameter set to an array of valid
+[SSH key ids](https://github.com/digitalocean/droplet_kit#ssh-key-resource).
+
 # All Resources and actions.
 
 ## Droplet resource
