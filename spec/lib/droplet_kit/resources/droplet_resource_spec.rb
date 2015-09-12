@@ -124,6 +124,20 @@ RSpec.describe DropletKit::DropletResource do
         created_droplet = resource.create(droplet)
         check_droplet(created_droplet)
       end
+
+      it 'reuses the same object' do
+        droplet = DropletKit::Droplet.new(
+          name: 'test.example.com',
+          region: 'nyc1',
+          size: '512mb',
+          image: 'ubuntu-14-04-x86'
+        )
+
+        json = DropletKit::DropletMapping.representation_for(:create, droplet)
+        stub_do_api(path, :post).with(body: json).to_return(body: api_fixture('droplets/create'), status: 202)
+        created_droplet = resource.create(droplet)
+        expect(created_droplet).to be droplet
+      end
     end
 
     it_behaves_like 'an action that handles invalid parameters' do

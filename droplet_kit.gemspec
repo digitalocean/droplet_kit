@@ -21,8 +21,8 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = '>= 2.0.0'
 
   spec.add_dependency 'virtus', '~> 1.0.3'
-  spec.add_dependency "resource_kit", '~> 0.1.1'
-  spec.add_dependency "kartograph", '~> 0.2.1'
+  spec.add_dependency "resource_kit", '~> 0.1.4'
+  spec.add_dependency "kartograph", '~> 0.2.3'
   spec.add_dependency "activesupport", '> 3.0', '< 5.0.0'
   spec.add_dependency "faraday", '~> 0.9.1'
 
