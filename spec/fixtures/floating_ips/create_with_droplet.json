@@ -1,0 +1,44 @@
+{
+  "floating_ip": {
+    "ip": "45.55.96.32",
+    "region": {
+      "available": true,
+      "features": [
+        "private_networking",
+        "backups",
+        "ipv6",
+        "metadata"
+      ],
+      "sizes": [
+        "512mb",
+        "1gb",
+        "2gb",
+        "4gb",
+        "8gb",
+        "16gb",
+        "32gb",
+        "48gb",
+        "64gb"
+      ],
+      "slug": "nyc3",
+      "name": "New York 3"
+    },
+    "droplet": null,
+    "links": {
+      "actions": [
+        {
+          "href": "https://api.digitalocean.com/v2/actions/66582085",
+          "rel": "assign_ip",
+          "id": 66582085
+        }
+      ],
+      "droplets": [
+        {
+          "href": "https://api.digitalocean.com/v2/droplets/7173070",
+          "rel": "droplet",
+          "id": 7173070
+        }
+      ]
+    }
+  }
+}
