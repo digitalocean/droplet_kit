@@ -31,10 +31,10 @@ RSpec.describe DropletKit::DomainRecordResource do
         name: 'www',
         data: '@'
       )
-      as_hash = DropletKit::DomainRecordMapping.representation_for(:create, domain_record, NullHashLoad)
-      expect(as_hash[:type]).to eq('CNAME')
-      expect(as_hash[:name]).to eq('www')
-      expect(as_hash[:data]).to eq('@')
+      as_hash = DropletKit::DomainRecordMapping.hash_for(:create, domain_record)
+      expect(as_hash['type']).to eq('CNAME')
+      expect(as_hash['name']).to eq('www')
+      expect(as_hash['data']).to eq('@')
 
       as_json = DropletKit::DomainRecordMapping.representation_for(:create, domain_record)
       stub_do_api('/v2/domains/example.com/records', :post).with(body: as_json).to_return(body: response, status: 201)
@@ -71,8 +71,8 @@ RSpec.describe DropletKit::DomainRecordResource do
       response = api_fixture('domain_records/update')
 
       domain_record = DropletKit::DomainRecord.new(name: 'lol')
-      as_hash = DropletKit::DomainRecordMapping.representation_for(:update, domain_record, NullHashLoad)
-      expect(as_hash[:name]).to eq('lol')
+      as_hash = DropletKit::DomainRecordMapping.hash_for(:update, domain_record)
+      expect(as_hash['name']).to eq('lol')
 
       as_json = DropletKit::DomainRecordMapping.representation_for(:update, domain_record)
       request = stub_do_api('/v2/domains/example.com/records/1066', :put).with(body: as_json).to_return(body: response, status: 200)

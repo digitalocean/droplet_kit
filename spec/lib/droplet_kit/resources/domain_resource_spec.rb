@@ -24,9 +24,9 @@ RSpec.describe DropletKit::DomainResource do
       response = api_fixture('domains/create')
 
       domain = DropletKit::Domain.new(ip_address: '1.1.1.1', name: 'example.com')
-      as_hash = DropletKit::DomainMapping.representation_for(:create, domain, NullHashLoad)
-      expect(as_hash[:ip_address]).to eq('1.1.1.1')
-      expect(as_hash[:name]).to eq('example.com')
+      as_hash = DropletKit::DomainMapping.hash_for(:create, domain)
+      expect(as_hash['ip_address']).to eq('1.1.1.1')
+      expect(as_hash['name']).to eq('example.com')
 
       as_json = DropletKit::DomainMapping.representation_for(:create, domain)
       stub_do_api('/v2/domains', :post).with(body: as_json).to_return(body: response, status: 201)

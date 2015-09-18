@@ -65,8 +65,8 @@ RSpec.describe DropletKit::ImageResource do
   describe '#update' do
     it 'updates an image' do
       image = DropletKit::Image.new(name: 'new-name')
-      as_hash = DropletKit::ImageMapping.representation_for(:update, image, NullHashLoad)
-      expect(as_hash[:name]).to eq('new-name')
+      as_hash = DropletKit::ImageMapping.hash_for(:update, image)
+      expect(as_hash['name']).to eq('new-name')
 
       request = stub_do_api('/v2/images/146', :put).with(
         body: DropletKit::ImageMapping.representation_for(:update, image)
