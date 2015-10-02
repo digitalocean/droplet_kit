@@ -1,0 +1,27 @@
+{
+  "action": {
+    "id": 23,
+    "status": "in-progress",
+    "type": "transfer",
+    "started_at": "2014-08-05T15:15:28Z",
+    "completed_at": null,
+    "resource_id": 449676391,
+    "resource_type": "image",
+    "region_slug": "nyc1",
+    "region": {
+      "name": "New York",
+      "slug": "nyc1",
+      "available": true,
+      "sizes": [
+        "512mb"
+      ],
+      "features": [
+        "virtio",
+        "private_networking",
+        "backups",
+        "ipv6",
+        "metadata"
+      ]
+    }
+  }
+}

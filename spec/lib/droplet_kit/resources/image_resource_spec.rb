@@ -14,7 +14,7 @@ RSpec.describe DropletKit::ImageResource do
     end
 
     it 'returns private images' do
-      images_json = api_fixture('images/all')
+      images_json = api_fixture('images/private')
       stub_do_api('/v2/images', :get)
         .with(query: hash_including({ private: 'true' }))
         .to_return(body: images_json)
@@ -24,7 +24,7 @@ RSpec.describe DropletKit::ImageResource do
     end
 
     it 'returns images of a type' do
-      images_json = api_fixture('images/all')
+      images_json = api_fixture('images/type')
       stub_do_api('/v2/images', :get)
         .with(query: hash_including({ type: 'application' }))
         .to_return(body: images_json)
