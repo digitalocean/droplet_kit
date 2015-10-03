@@ -108,21 +108,35 @@ RSpec.describe DropletKit::DropletResource do
           user_data: "#cloud-config\nruncmd\n\t- echo 'Hello!'"
         )
 
-        as_hash = DropletKit::DropletMapping.representation_for(:create, droplet, NullHashLoad)
-        expect(as_hash[:name]).to eq(droplet.name)
-        expect(as_hash[:region]).to eq(droplet.region)
-        expect(as_hash[:size]).to eq(droplet.size)
-        expect(as_hash[:image]).to eq(droplet.image)
-        expect(as_hash[:ssh_keys]).to eq(droplet.ssh_keys)
-        expect(as_hash[:backups]).to eq(droplet.backups)
-        expect(as_hash[:ipv6]).to eq(droplet.ipv6)
-        expect(as_hash[:private_networking]).to eq(droplet.private_networking)
-        expect(as_hash[:user_data]).to eq(droplet.user_data)
+        as_hash = DropletKit::DropletMapping.hash_for(:create, droplet)
+        expect(as_hash['name']).to eq(droplet.name)
+        expect(as_hash['region']).to eq(droplet.region)
+        expect(as_hash['size']).to eq(droplet.size)
+        expect(as_hash['image']).to eq(droplet.image)
+        expect(as_hash['ssh_keys']).to eq(droplet.ssh_keys)
+        expect(as_hash['backups']).to eq(droplet.backups)
+        expect(as_hash['ipv6']).to eq(droplet.ipv6)
+        expect(as_hash['private_networking']).to eq(droplet.private_networking)
+        expect(as_hash['user_data']).to eq(droplet.user_data)
 
         as_string = DropletKit::DropletMapping.representation_for(:create, droplet)
         stub_do_api(path, :post).with(body: as_string).to_return(body: api_fixture('droplets/create'), status: 202)
         created_droplet = resource.create(droplet)
         check_droplet(created_droplet)
+      end
+
+      it 'reuses the same object' do
+        droplet = DropletKit::Droplet.new(
+          name: 'test.example.com',
+          region: 'nyc1',
+          size: '512mb',
+          image: 'ubuntu-14-04-x86'
+        )
+
+        json = DropletKit::DropletMapping.representation_for(:create, droplet)
+        stub_do_api(path, :post).with(body: json).to_return(body: api_fixture('droplets/create'), status: 202)
+        created_droplet = resource.create(droplet)
+        expect(created_droplet).to be droplet
       end
     end
 
