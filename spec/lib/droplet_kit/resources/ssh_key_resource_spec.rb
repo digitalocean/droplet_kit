@@ -53,6 +53,13 @@ RSpec.describe DropletKit::SSHKeyResource do
       expect(ssh_key.public_key).to eq("ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAQQDZEgsAbWmQF+f8TU3F4fCg4yjVzdKudQbbhGb+qRKP5ju4Yo0Zzneia+oFm4bfzG+ydxUlOlbzq+Tpoj+INFv5 example")
       expect(ssh_key.name).to eq("Example Key")
     end
+
+    it_behaves_like 'resource that handles common errors' do
+      let(:path) { '/v2/account/keys/123' }
+      let(:method) { :get }
+      let(:action) { :find }
+      let(:arguments) { { id: 123 } }
+    end
   end
 
   describe '#update' do

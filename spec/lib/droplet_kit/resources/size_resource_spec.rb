@@ -17,5 +17,11 @@ RSpec.describe DropletKit::SizeResource do
       let(:fixture_path) {'sizes/all'}
       let(:api_path) {'/v2/sizes'}
     end
+
+    it_behaves_like 'resource that handles common errors' do
+      let(:path) { '/v2/sizes' }
+      let(:method) { :get }
+      let(:action) { :all }
+    end
   end
 end

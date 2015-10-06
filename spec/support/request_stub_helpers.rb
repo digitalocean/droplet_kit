@@ -7,7 +7,7 @@ module RequestStubHelpers
     Pathname.new('./spec/fixtures/').join("#{fixture_name}.json").read
   end
 
-  def stub_pager_request(total_results = 40) 
+  def stub_pager_request(total_results = 40)
     Faraday::Adapter::Test::Stubs.new do |stub|
       stub.get('/droplets') do |env|
         request_count.count += 1

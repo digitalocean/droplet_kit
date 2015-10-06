@@ -163,5 +163,12 @@ RSpec.describe DropletKit::DropletActionResource do
       expect(returned_action.region.available).to be(true)
       expect(returned_action.region.features).to include("virtio", "private_networking", "backups", "ipv6", "metadata")
     end
+
+    it_behaves_like 'resource that handles common errors' do
+      let(:path) { '/v2/droplets/1066/actions/123' }
+      let(:method) { :get }
+      let(:action) { :find }
+      let(:arguments) { { droplet_id: 1066, id: 123 } }
+    end
   end
 end

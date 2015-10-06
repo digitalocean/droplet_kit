@@ -12,5 +12,11 @@ RSpec.describe DropletKit::DropletUpgradeResource do
 
       expect(resource.all).to eq(expected)
     end
+
+    it_behaves_like 'resource that handles common errors' do
+      let(:path) { '/v2/droplet_upgrades' }
+      let(:method) { :get }
+      let(:action) { :all }
+    end
   end
 end

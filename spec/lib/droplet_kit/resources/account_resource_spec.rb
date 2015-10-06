@@ -18,7 +18,12 @@ RSpec.describe DropletKit::AccountResource do
       expect(account_info.email).to eq(parsed['account']['email'])
       expect(account_info.uuid).to eq(parsed['account']['uuid'])
       expect(account_info.email_verified).to eq(parsed['account']['email_verified'])
+    end
 
+    it_behaves_like 'resource that handles common errors' do
+      let(:path) { '/v2/account' }
+      let(:method) { :get }
+      let(:action) { :info }
     end
   end
 end

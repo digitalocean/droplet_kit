@@ -1,5 +1,7 @@
 module DropletKit
   class SSHKeyResource < ResourceKit::Resource
+    include ErrorHandlingResourcable
+
     resources do
       default_handler(:ok, :created) {|r| SSHKeyMapping.extract_single(r.body, :read) }
 

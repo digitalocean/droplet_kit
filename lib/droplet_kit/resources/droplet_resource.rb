@@ -1,5 +1,7 @@
 module DropletKit
   class DropletResource < ResourceKit::Resource
+    include ErrorHandlingResourcable
+
     resources do
       action :all, 'GET /v2/droplets' do
         query_keys :per_page, :page

@@ -46,6 +46,13 @@ RSpec.describe DropletKit::DomainResource do
 
       expect(resource.find(name: 'example.com')).to eq(expected_domain)
     end
+
+    it_behaves_like 'resource that handles common errors' do
+      let(:path) { '/v2/domains/example.com' }
+      let(:method) { :get }
+      let(:action) { :find }
+      let(:arguments) { { name: 'example.com' } }
+    end
   end
 
   describe '#delete' do

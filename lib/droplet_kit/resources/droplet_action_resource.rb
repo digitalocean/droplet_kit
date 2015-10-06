@@ -1,5 +1,7 @@
 module DropletKit
   class DropletActionResource < ResourceKit::Resource
+    include ErrorHandlingResourcable
+
     ACTIONS_WITHOUT_INPUT = %w(reboot power_cycle shutdown power_off
       power_on password_reset enable_ipv6 disable_backups enable_private_networking)
 

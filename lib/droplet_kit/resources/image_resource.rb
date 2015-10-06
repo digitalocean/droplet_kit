@@ -1,5 +1,7 @@
 module DropletKit
   class ImageResource < ResourceKit::Resource
+    include ErrorHandlingResourcable
+
     resources do
       action :all, 'GET /v2/images' do
         query_keys :page, :per_page, :type, :private
