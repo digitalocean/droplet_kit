@@ -2,7 +2,7 @@ module ErrorHandlingResourcable
   def self.included(base)
     base.send(:resources) do
       default_handler do |response|
-        if (200...299).include?(response.status)
+        if ((200...209).to_a << 226).include?(response.status)
           next
         elsif response.status == 429
           error = DropletKit::RateLimitReached.new("#{response.status}: #{response.body}")
