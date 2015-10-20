@@ -1,0 +1,41 @@
+{
+  "actions": [
+    {
+      "id": 19,
+      "status": "completed",
+      "type": "assign_ip",
+      "started_at": "2014-10-28T17:11:05Z",
+      "completed_at": "2014-10-28T17:11:06Z",
+      "resource_id": 45646587,
+      "resource_type": "floating_ip",
+      "region_slug": "nyc1",
+      "region": {
+        "name": "New York",
+        "slug": "nyc1",
+        "available": true,
+        "sizes": ["512mb"],
+        "features": ["virtio", "private_networking", "backups", "ipv6", "metadata"]
+      }
+    },
+    {
+      "id": 20,
+      "status": "completed",
+      "type": "release_ip",
+      "started_at": "2014-10-28T17:11:05Z",
+      "completed_at": "2014-10-28T17:11:06Z",
+      "resource_id": 45646587,
+      "resource_type": "floating_ip",
+      "region_slug": "nyc1",
+      "region": {
+        "name": "New York",
+        "slug": "nyc1",
+        "available": true,
+        "sizes": ["512mb"],
+        "features": ["virtio", "private_networking", "backups", "ipv6", "metadata"]
+      }
+    }
+  ],
+  "meta": {
+    "total": 2
+  }
+}

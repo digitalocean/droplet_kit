@@ -29,6 +29,8 @@ module DropletKit
         sizes: SizeResource,
         ssh_keys: SSHKeyResource,
         account: AccountResource,
+        floating_ips: FloatingIpResource,
+        floating_ip_actions: FloatingIpActionResource,
       }
     end
 

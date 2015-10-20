@@ -1,0 +1,186 @@
+{
+  "floating_ips": [
+    {
+      "ip": "45.55.96.32",
+      "region": {
+        "available": true,
+        "features": [
+          "private_networking",
+          "backups",
+          "ipv6",
+          "metadata"
+        ],
+        "sizes": [
+          "512mb",
+          "1gb",
+          "2gb",
+          "4gb",
+          "8gb",
+          "16gb",
+          "32gb",
+          "48gb",
+          "64gb"
+        ],
+        "slug": "nyc3",
+        "name": "New York 3"
+      },
+      "droplet": {
+        "region": {
+          "available": true,
+          "features": [
+            "private_networking",
+            "backups",
+            "ipv6",
+            "metadata"
+          ],
+          "sizes": [
+            "512mb",
+            "1gb",
+            "2gb",
+            "4gb",
+            "8gb",
+            "16gb",
+            "32gb",
+            "48gb",
+            "64gb"
+          ],
+          "slug": "nyc3",
+          "name": "New York 3"
+        },
+        "networks": {
+          "v6": [],
+          "v4": [
+            {
+              "type": "public",
+              "gateway": "104.131.0.1",
+              "netmask": "255.255.192.0",
+              "ip_address": "104.131.39.129"
+            }
+          ]
+        },
+        "kernel": {
+          "version": "3.13.0-57-generic",
+          "name": "Ubuntu 14.04 x64 vmlinuz-3.13.0-57-generic",
+          "id": 5175
+        },
+        "status": "active",
+        "locked": false,
+        "disk": 20,
+        "vcpus": 1,
+        "memory": 512,
+        "name": "nyc3",
+        "id": 7173070,
+        "created_at": "2015-09-08T20:29:48Z",
+        "features": [
+          "virtio"
+        ],
+        "backup_ids": [],
+        "next_backup_window": null,
+        "snapshot_ids": [],
+        "image": {
+          "type": "snapshot",
+          "id": 13089493,
+          "name": "14.04 x64",
+          "distribution": "Ubuntu",
+          "slug": "ubuntu-14-04-x64",
+          "public": true,
+          "regions": [
+            "nyc1",
+            "ams1",
+            "sfo1",
+            "nyc2",
+            "ams2",
+            "sgp1",
+            "lon1",
+            "nyc3",
+            "ams3",
+            "fra1",
+            "tor1"
+          ],
+          "created_at": "2015-08-10T21:30:19Z",
+          "min_disk_size": 20
+        },
+        "size": {
+          "available": true,
+          "slug": "512mb",
+          "memory": 512,
+          "vcpus": 1,
+          "disk": 20,
+          "transfer": 1,
+          "price_monthly": 5,
+          "price_hourly": 0.00744,
+          "regions": [
+            "nyc1",
+            "sgp1",
+            "ams1",
+            "sfo1",
+            "nyc2",
+            "lon1",
+            "nyc3",
+            "ams3",
+            "ams2",
+            "fra1",
+            "tor1"
+          ]
+        },
+        "size_slug": "512mb"
+      }
+    },
+    {
+      "ip": "188.166.132.3",
+      "region": {
+        "available": true,
+        "features": [
+          "private_networking",
+          "backups",
+          "ipv6",
+          "metadata"
+        ],
+        "sizes": [
+          "512mb",
+          "1gb",
+          "2gb",
+          "4gb",
+          "8gb",
+          "16gb",
+          "32gb",
+          "48gb",
+          "64gb"
+        ],
+        "slug": "ams3",
+        "name": "Amsterdam 3"
+      },
+      "droplet": null
+    },
+    {
+      "ip": "45.55.96.3",
+      "region": {
+        "available": true,
+        "features": [
+          "private_networking",
+          "backups",
+          "ipv6",
+          "metadata"
+        ],
+        "sizes": [
+          "512mb",
+          "1gb",
+          "2gb",
+          "4gb",
+          "8gb",
+          "16gb",
+          "32gb",
+          "48gb",
+          "64gb"
+        ],
+        "slug": "nyc3",
+        "name": "New York 3"
+      },
+      "droplet": null
+    }
+  ],
+  "meta": {
+    "total": 3
+  },
+  "links": {}
+}

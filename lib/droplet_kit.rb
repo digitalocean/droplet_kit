@@ -25,6 +25,7 @@ module DropletKit
   autoload :MetaInformation, 'droplet_kit/models/meta_information'
   autoload :Account, 'droplet_kit/models/account'
   autoload :DropletUpgrade, 'droplet_kit/models/droplet_upgrade'
+  autoload :FloatingIp, 'droplet_kit/models/floating_ip'
 
   # Resources
   autoload :DropletResource, 'droplet_kit/resources/droplet_resource'
@@ -39,6 +40,8 @@ module DropletKit
   autoload :SizeResource, 'droplet_kit/resources/size_resource'
   autoload :AccountResource, 'droplet_kit/resources/account_resource'
   autoload :DropletUpgradeResource, 'droplet_kit/resources/droplet_upgrade_resource'
+  autoload :FloatingIpResource, 'droplet_kit/resources/floating_ip_resource'
+  autoload :FloatingIpActionResource, 'droplet_kit/resources/floating_ip_action_resource'
 
   # JSON Maps
   autoload :DropletMapping, 'droplet_kit/mappings/droplet_mapping'
@@ -58,7 +61,7 @@ module DropletKit
   autoload :SSHKeyMapping, 'droplet_kit/mappings/ssh_key_mapping'
   autoload :AccountMapping, 'droplet_kit/mappings/account_mapping'
   autoload :DropletUpgradeMapping, 'droplet_kit/mappings/droplet_upgrade_mapping'
-
+  autoload :FloatingIpMapping, 'droplet_kit/mappings/floating_ip_mapping'
 
   # Utils
   autoload :PaginatedResource, 'droplet_kit/paginated_resource'
