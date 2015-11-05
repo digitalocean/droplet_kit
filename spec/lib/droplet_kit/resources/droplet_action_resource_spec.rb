@@ -9,8 +9,8 @@ RSpec.describe DropletKit::DropletActionResource do
   include_context 'resources'
 
   ACTIONS_WITHOUT_INPUT = %w(reboot power_cycle shutdown power_off
-    power_on password_reset enable_ipv6 disable_backups enable_private_networking
-    upgrade)
+    power_on password_reset enable_ipv6 disable_backups enable_backups
+    enable_private_networking upgrade)
 
   ACTIONS_WITHOUT_INPUT.each do |action_name|
     describe "Action #{action_name}" do
