@@ -2,8 +2,9 @@ module DropletKit
   class DropletActionResource < ResourceKit::Resource
     include ErrorHandlingResourcable
 
-    ACTIONS_WITHOUT_INPUT = %w(reboot power_cycle shutdown power_off
-      power_on password_reset enable_ipv6 disable_backups enable_private_networking)
+    ACTIONS_WITHOUT_INPUT = %w(reboot power_cycle shutdown power_off power_on
+      password_reset enable_ipv6 enable_backups disable_backups
+      enable_private_networking)
 
     resources do
       default_handler(422) { |response| ErrorMapping.fail_with(FailedCreate, response.body) }
