@@ -8,6 +8,7 @@ module DropletKit
 
       scoped :read do
         property :droplet_limit
+        property :floating_ip_limit
         property :email
         property :uuid
         property :email_verified
