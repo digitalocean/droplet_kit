@@ -15,6 +15,7 @@ RSpec.describe DropletKit::AccountResource do
       expect(account_info).to be_kind_of(DropletKit::Account)
 
       expect(account_info.droplet_limit).to eq(parsed['account']['droplet_limit'])
+      expect(account_info.floating_ip_limit).to eq(parsed['account']['floating_ip_limit'])
       expect(account_info.email).to eq(parsed['account']['email'])
       expect(account_info.uuid).to eq(parsed['account']['uuid'])
       expect(account_info.email_verified).to eq(parsed['account']['email_verified'])
