@@ -7,6 +7,7 @@ module DropletKit
     end
 
     # Used for creates
+    attribute :names
     attribute :ssh_keys
     attribute :backups
     attribute :size

@@ -4,15 +4,22 @@ RSpec.describe DropletKit::DropletResource do
   subject(:resource) { described_class.new(connection: connection) }
   include_context 'resources'
 
-  # Theres a lot to check
-  def check_droplet(droplet)
-    expect(droplet.id).to eq(19)
-    expect(droplet.name).to eq('test.example.com')
-    expect(droplet.memory).to eq(1024)
-    expect(droplet.vcpus).to eq(2)
-    expect(droplet.disk).to eq(20)
-    expect(droplet.locked).to eq(false)
-    expect(droplet.status).to eq('active')
+  # There's a lot to check
+  def check_droplet(droplet, overrides = {})
+    attrs = {
+      id: 19,
+      name: 'test.example.com',
+      memory: 1024,
+      vcpus: 2,
+      disk: 20,
+      locked: false,
+      status: 'active'
+    }.merge(overrides)
+
+    attrs.each do |attr, val|
+      expect(droplet.send(attr)).to eq attrs[attr]
+    end
+
     expect(droplet.created_at).to be_present
     expect(droplet.backup_ids).to include(449676382)
     expect(droplet.snapshot_ids).to include(449676383)
@@ -144,6 +151,64 @@ RSpec.describe DropletKit::DropletResource do
         stub_do_api(path, :post).with(body: json).to_return(body: api_fixture('droplets/create'), status: 202)
         created_droplet = resource.create(droplet)
         expect(created_droplet).to be droplet
+      end
+    end
+
+    it_behaves_like 'an action that handles invalid parameters' do
+      let(:action) { 'create' }
+      let(:arguments) { DropletKit::Droplet.new }
+    end
+  end
+
+  describe '#create_multiple' do
+    let(:path) { '/v2/droplets' }
+
+    context 'for a successful multiple create' do
+      it 'returns the created droplets' do
+        droplet = DropletKit::Droplet.new(
+          names: ['test-01.example.com', 'test-02.example.com'],
+          region: 'nyc1',
+          size: '512mb',
+          image: 'ubuntu-14-04-x86',
+          ssh_keys: [123],
+          backups: true,
+          ipv6: true,
+          private_networking: true,
+          user_data: "#cloud-config\nruncmd\n\t- echo 'Hello!'"
+        )
+
+        as_hash = DropletKit::DropletMapping.hash_for(:create, droplet)
+        expect(as_hash['names']).to eq(droplet.names)
+        expect(as_hash['region']).to eq(droplet.region)
+        expect(as_hash['size']).to eq(droplet.size)
+        expect(as_hash['image']).to eq(droplet.image)
+        expect(as_hash['ssh_keys']).to eq(droplet.ssh_keys)
+        expect(as_hash['backups']).to eq(droplet.backups)
+        expect(as_hash['ipv6']).to eq(droplet.ipv6)
+        expect(as_hash['private_networking']).to eq(droplet.private_networking)
+        expect(as_hash['user_data']).to eq(droplet.user_data)
+
+        as_string = DropletKit::DropletMapping.representation_for(:create, droplet)
+        stub_do_api(path, :post).with(body: as_string).to_return(body: api_fixture('droplets/create_multiple'), status: 202)
+
+        created_droplets = resource.create_multiple(droplet)
+        check_droplet(created_droplets[0], name: 'test-01.example.com')
+        check_droplet(created_droplets[1], id: 20, name: 'test-02.example.com')
+      end
+
+      it 'reuses the same object' do
+        droplet = DropletKit::Droplet.new(
+          names: ['test-01.example.com', 'test-02.example.com'],
+          region: 'nyc1',
+          size: '512mb',
+          image: 'ubuntu-14-04-x86'
+        )
+
+        json = DropletKit::DropletMapping.representation_for(:create, droplet)
+        stub_do_api(path, :post).with(body: json).to_return(body: api_fixture('droplets/create_multiple'), status: 202)
+        created_droplets = resource.create_multiple(droplet)
+        check_droplet(created_droplets[0], name: 'test-01.example.com')
+        check_droplet(created_droplets[1], id: 20, name: 'test-02.example.com')
       end
     end
 

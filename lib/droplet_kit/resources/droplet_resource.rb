@@ -18,6 +18,12 @@ module DropletKit
         handler(422) { |response| ErrorMapping.fail_with(FailedCreate, response.body) }
       end
 
+      action :create_multiple, 'POST /v2/droplets' do
+        body { |object| DropletMapping.representation_for(:create, object) }
+        handler(202) { |response| DropletMapping.extract_collection(response.body, :read) }
+        handler(422) { |response| ErrorMapping.fail_with(FailedCreate, response.body) }
+      end
+
       action :delete, 'DELETE /v2/droplets/:id' do
         handler(204) { |response| true }
       end

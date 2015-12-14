@@ -76,6 +76,7 @@ Actions supported:
 * `client.droplets.all()`
 * `client.droplets.find(id: 'id')`
 * `client.droplets.create(droplet)`
+* `client.droplets.create_multiple(droplet)`
 * `client.droplets.delete(id: 'id')`
 * `client.droplets.kernels(id: 'id')`
 * `client.droplets.snapshots(id: 'id')`
