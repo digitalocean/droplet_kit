@@ -47,6 +47,12 @@ module DropletKit
         query_keys :per_page, :page
         handler(200) { |response| ActionMapping.extract_collection(response.body, :read) }
       end
+
+      action :delete_for_tag, 'DELETE /v2/droplets' do
+        verb :delete
+        query_keys :tag
+        handler(204) { |_| true }
+      end
     end
 
     def all(*args)

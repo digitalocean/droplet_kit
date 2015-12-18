@@ -19,6 +19,7 @@ module DropletKit
       property :action_ids, scopes: [:read]
       property :features, scopes: [:read]
       property :size_slug, scopes: [:read]
+      property :tags, scopes: [:read]
 
       property :region, scopes: [:read], include: RegionMapping
       property :image, scopes: [:read], include: ImageMapping
