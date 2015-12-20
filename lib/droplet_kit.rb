@@ -74,7 +74,8 @@ module DropletKit
   FailedUpdate = Class.new(DropletKit::Error)
 
   class RateLimitReached < DropletKit::Error
-    attr_accessor :limit, :remaining, :reset_at
+    attr_accessor :reset_at
+    attr_writer :limit, :remaining
 
     def limit
       @limit.to_i if @limit
