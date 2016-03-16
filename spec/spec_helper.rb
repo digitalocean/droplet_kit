@@ -2,6 +2,8 @@ require 'simplecov'
 
 SimpleCov.start
 
+require 'faraday'
+require 'addressable/uri'
 require 'droplet_kit'
 require 'webmock/rspec'
 

@@ -1,12 +1,22 @@
 {
   "tags": [
     {
-      "id": "testing-1",
-      "name": "testing-1"
+      "name": "testing-1",
+      "resources": {
+        "droplets": {
+          "count": 0,
+          "last_tagged": null
+        }
+      }
     },
     {
-      "id": "testing-2",
-      "name": "testing-2"
+      "name": "testing-2",
+      "resources": {
+        "droplets": {
+          "count": 0,
+          "last_tagged": null
+        }
+      }
     }
   ],
   "links": {},

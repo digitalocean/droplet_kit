@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'addressable/uri'
 
 RequestCounter = Struct.new(:count)
 
@@ -41,6 +40,16 @@ RSpec.describe DropletKit::PaginatedResource do
       it "returns 0" do
         instance.take(1)
         expect(instance.total_pages).to eq(0)
+      end
+    end
+  end
+
+  describe '#[]' do
+    subject(:paginated) { DropletKit::PaginatedResource.new(action, resource) }
+
+    it 'returns the nth element in the collection' do
+      paginated.each_with_index do |elem, i|
+        expect(paginated[i]).to eq(elem)
       end
     end
   end

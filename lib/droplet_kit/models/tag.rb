@@ -1,6 +1,6 @@
 module DropletKit
   class Tag < BaseModel
-    attribute :id
     attribute :name
+    attribute :resources
   end
 end
