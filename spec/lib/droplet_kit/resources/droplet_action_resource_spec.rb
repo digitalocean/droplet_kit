@@ -35,6 +35,29 @@ RSpec.describe DropletKit::DropletActionResource do
     end
   end
 
+  described_class::BATCH_SUPPORTED_ACTIONS.each do |action_name|
+    describe "Batch Action #{action_name}" do
+      let(:action) { "#{action_name}_for_tag" }
+      let(:path) { "/v2/droplets/actions?tag=testing-1" }
+      let(:fixture) do
+        single_action = DropletKit::ActionMapping.extract_single(api_fixture("droplet_actions/#{action_name}"), :read)
+
+        DropletKit::ActionMapping.represent_collection_for(:read, [single_action])
+      end
+
+      it 'performs the action' do
+        request = stub_do_api(path, :post).with(
+          body: { type: action_name }.to_json
+        ).to_return(body: fixture, status: 201)
+
+        returned_actions = resource.send(action, tag: 'testing-1')
+
+        expect(request).to have_been_made
+        expect(returned_actions.first.type).to eq(action_name)
+      end
+    end
+  end
+
   describe "Action snapshot" do
     let(:action) { 'snapshot' }
 

@@ -6,6 +6,11 @@ module DropletKit
       password_reset enable_ipv6 enable_backups disable_backups
       enable_private_networking)
 
+    BATCH_SUPPORTED_ACTIONS = %w(
+      enable_backups disable_backups power_cycle power_on power_off shutdown
+      enable_private_networking enable_ipv6 snapshot
+    )
+
     resources do
       default_handler(422) { |response| ErrorMapping.fail_with(FailedCreate, response.body) }
 
@@ -13,6 +18,14 @@ module DropletKit
         action action_name.to_sym, 'POST /v2/droplets/:droplet_id/actions' do
           body { |_| { type: action_name }.to_json }
           handler(201, 200) { |response| ActionMapping.extract_single(response.body, :read) }
+        end
+      end
+
+      BATCH_SUPPORTED_ACTIONS.each do |action_name|
+        action "#{action_name}_for_tag".to_sym, 'POST /v2/droplets/actions' do
+          query_keys :tag
+          body { |_| { type: action_name }.to_json }
+          handler(201, 200) { |response| ActionMapping.extract_collection(response.body, :read) }
         end
       end
 

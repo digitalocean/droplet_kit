@@ -1,0 +1,26 @@
+{
+  "tags": [
+    {
+      "name": "testing-1",
+      "resources": {
+        "droplets": {
+          "count": 0,
+          "last_tagged": null
+        }
+      }
+    },
+    {
+      "name": "testing-2",
+      "resources": {
+        "droplets": {
+          "count": 0,
+          "last_tagged": null
+        }
+      }
+    }
+  ],
+  "links": {},
+  "meta": {
+    "total": 2
+  }
+}

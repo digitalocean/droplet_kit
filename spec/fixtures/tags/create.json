@@ -1,0 +1,11 @@
+{
+  "tag": {
+    "name": "testing-1",
+    "resources": {
+      "droplets": {
+        "count": 0,
+        "last_tagged": null
+      }
+    }
+  }
+}

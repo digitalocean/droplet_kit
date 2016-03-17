@@ -5,7 +5,7 @@ RSpec.describe DropletKit::DropletResource do
   include_context 'resources'
 
   # There's a lot to check
-  def check_droplet(droplet, overrides = {})
+  def check_droplet(droplet, tags = [], overrides = {})
     attrs = {
       id: 19,
       name: 'test.example.com',
@@ -25,6 +25,9 @@ RSpec.describe DropletKit::DropletResource do
     expect(droplet.snapshot_ids).to include(449676383)
     expect(droplet.action_ids).to be_empty
     expect(droplet.features).to include('ipv6')
+    tags.each do |tag|
+      expect(droplet.tags).to include(tag)
+    end
 
     expect(droplet.region).to be_kind_of(DropletKit::Region)
     expect(droplet.region.slug).to eq('nyc1')
@@ -74,7 +77,7 @@ RSpec.describe DropletKit::DropletResource do
       droplets = resource.all
       expect(droplets).to all(be_kind_of(DropletKit::Droplet))
 
-      check_droplet(droplets.first)
+      check_droplet(droplets.first, ['tag-1', 'tag-2'])
     end
 
     it 'returns an empty array of droplets' do
@@ -94,7 +97,7 @@ RSpec.describe DropletKit::DropletResource do
       stub_do_api('/v2/droplets/20', :get).to_return(body: api_fixture('droplets/find'))
       droplet = resource.find(id: 20)
       expect(droplet).to be_kind_of(DropletKit::Droplet)
-      check_droplet(droplet)
+      check_droplet(droplet, ['tag-1', 'tag-2'])
     end
 
     it_behaves_like 'resource that handles common errors' do
@@ -192,8 +195,8 @@ RSpec.describe DropletKit::DropletResource do
         stub_do_api(path, :post).with(body: as_string).to_return(body: api_fixture('droplets/create_multiple'), status: 202)
 
         created_droplets = resource.create_multiple(droplet)
-        check_droplet(created_droplets[0], name: 'test-01.example.com')
-        check_droplet(created_droplets[1], id: 20, name: 'test-02.example.com')
+        check_droplet(created_droplets[0], [], name: 'test-01.example.com')
+        check_droplet(created_droplets[1], [], id: 20, name: 'test-02.example.com')
       end
 
       it 'reuses the same object' do
@@ -207,8 +210,8 @@ RSpec.describe DropletKit::DropletResource do
         json = DropletKit::DropletMapping.representation_for(:create, droplet)
         stub_do_api(path, :post).with(body: json).to_return(body: api_fixture('droplets/create_multiple'), status: 202)
         created_droplets = resource.create_multiple(droplet)
-        check_droplet(created_droplets[0], name: 'test-01.example.com')
-        check_droplet(created_droplets[1], id: 20, name: 'test-02.example.com')
+        check_droplet(created_droplets[0], [], name: 'test-01.example.com')
+        check_droplet(created_droplets[1], [], id: 20, name: 'test-02.example.com')
       end
     end
 
@@ -317,6 +320,15 @@ RSpec.describe DropletKit::DropletResource do
     it 'sends a delete request for the droplet' do
       request = stub_do_api('/v2/droplets/1066', :delete)
       resource.delete(id: 1066)
+
+      expect(request).to have_been_made
+    end
+  end
+
+  describe '#delete_tagged' do
+    it 'sends a delete request for the tagged droplet' do
+      request = stub_do_api('/v2/droplets?tag=testing-1', :delete)
+      resource.delete_for_tag(tag: 'testing-1')
 
       expect(request).to have_been_made
     end

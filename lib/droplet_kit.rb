@@ -26,6 +26,9 @@ module DropletKit
   autoload :Account, 'droplet_kit/models/account'
   autoload :DropletUpgrade, 'droplet_kit/models/droplet_upgrade'
   autoload :FloatingIp, 'droplet_kit/models/floating_ip'
+  autoload :Tag, 'droplet_kit/models/tag'
+  autoload :TaggedResources, 'droplet_kit/models/tagged_resources'
+  autoload :TaggedDropletsResources, 'droplet_kit/models/tagged_droplets_resources'
 
   # Resources
   autoload :DropletResource, 'droplet_kit/resources/droplet_resource'
@@ -42,6 +45,7 @@ module DropletKit
   autoload :DropletUpgradeResource, 'droplet_kit/resources/droplet_upgrade_resource'
   autoload :FloatingIpResource, 'droplet_kit/resources/floating_ip_resource'
   autoload :FloatingIpActionResource, 'droplet_kit/resources/floating_ip_action_resource'
+  autoload :TagResource, 'droplet_kit/resources/tag_resource'
 
   # JSON Maps
   autoload :DropletMapping, 'droplet_kit/mappings/droplet_mapping'
@@ -62,6 +66,9 @@ module DropletKit
   autoload :AccountMapping, 'droplet_kit/mappings/account_mapping'
   autoload :DropletUpgradeMapping, 'droplet_kit/mappings/droplet_upgrade_mapping'
   autoload :FloatingIpMapping, 'droplet_kit/mappings/floating_ip_mapping'
+  autoload :TagMapping, 'droplet_kit/mappings/tag_mapping'
+  autoload :TaggedResourcesMapping, 'droplet_kit/mappings/tagged_resources_mapping'
+  autoload :TaggedDropletsResourcesMapping, 'droplet_kit/mappings/tagged_droplets_resources_mapping'
 
   # Utils
   autoload :PaginatedResource, 'droplet_kit/paginated_resource'
