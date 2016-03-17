@@ -91,7 +91,7 @@ describe DropletKit::TagResource do
     end
   end
 
-  describe '#tag_resource' do
+  describe '#tag_resources' do
     it 'adds a tag' do
       params = {
         resources: [
@@ -106,13 +106,13 @@ describe DropletKit::TagResource do
         .with(body: params.to_json)
         .to_return(body: '', status: 204)
 
-      resource.tag_resource(params.merge(name: 'testing-1'))
+      resource.tag_resources(params.merge(name: 'testing-1'))
 
       expect(request).to have_been_made
     end
   end
 
-  describe '#untag_resource' do
+  describe '#untag_resources' do
     it 'removes a tag' do
       params = {
         resources: [
@@ -127,7 +127,7 @@ describe DropletKit::TagResource do
         .with(body: params.to_json)
         .to_return(body: '', status: 204)
 
-      resource.untag_resource(params.merge(name: 'testing-1'))
+      resource.untag_resources(params.merge(name: 'testing-1'))
 
       expect(request).to have_been_made
     end

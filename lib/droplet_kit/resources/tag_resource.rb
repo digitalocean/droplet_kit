@@ -28,13 +28,13 @@ module DropletKit
         handler(422) { |response| ErrorMapping.fail_with(FailedCreate, response.body) }
       end
 
-      action :tag_resource, 'POST /v2/tags/:name/resources' do
+      action :tag_resources, 'POST /v2/tags/:name/resources' do
         verb :post
         body { |hash| { resources: hash[:resources] }.to_json }
         handler(204) { |_| true }
       end
 
-      action :untag_resource, 'DELETE /v2/tags/:name/resources' do
+      action :untag_resources, 'DELETE /v2/tags/:name/resources' do
         verb :delete
         body { |hash| { resources: hash[:resources] }.to_json }
         handler(204) { |_| true }
