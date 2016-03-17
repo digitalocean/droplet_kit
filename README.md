@@ -227,6 +227,29 @@ Actions supported:
 * `client.account.info()`
 
 
+## Floating IP resource
+
+    client = DropletKit::Client.new(access_token: 'TOKEN')
+    client.floating_ips #=> DropletKit::FloatingIpResource
+
+Actions supported:
+
+* `client.floating_ips.all()`
+* `client.floating_ips.find(ip: 'ip address')`
+* `client.floating_ips.create(floating_ip)`
+* `client.floating_ips.delete(ip: 'ip address')`
+
+## Floating IP Action resource
+
+    client = DropletKit::Client.new(access_token: 'TOKEN')
+    client.floating_ip_actions #=> DropletKit::FloatingIpActionResource
+
+Actions supported:
+
+* `client.floating_ip_actions.assign(ip: floating_ip.ip, droplet_id: droplet.id)`
+* `client.floating_ip_actions.unassign(ip: floating_ip.ip)`
+
+
 ## Contributing
 
 1. Fork it ( https://github.com/digitalocean/droplet_kit/fork )
