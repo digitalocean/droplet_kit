@@ -327,8 +327,8 @@ RSpec.describe DropletKit::DropletResource do
 
   describe '#delete_tagged' do
     it 'sends a delete request for the tagged droplet' do
-      request = stub_do_api('/v2/droplets?tag=testing-1', :delete)
-      resource.delete_for_tag(tag: 'testing-1')
+      request = stub_do_api('/v2/droplets?tag_name=testing-1', :delete)
+      resource.delete_for_tag(tag_name: 'testing-1')
 
       expect(request).to have_been_made
     end

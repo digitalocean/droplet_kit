@@ -4,7 +4,7 @@ module DropletKit
 
     resources do
       action :all, 'GET /v2/droplets' do
-        query_keys :per_page, :page
+        query_keys :per_page, :page, :tag_name
         handler(200) { |response| DropletMapping.extract_collection(response.body, :read) }
       end
 
@@ -50,7 +50,7 @@ module DropletKit
 
       action :delete_for_tag, 'DELETE /v2/droplets' do
         verb :delete
-        query_keys :tag
+        query_keys :tag_name
         handler(204) { |_| true }
       end
     end
