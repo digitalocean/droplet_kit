@@ -207,6 +207,16 @@ client = DropletKit::Client.new(access_token: 'TOKEN')
 client.ssh_keys #=> DropletKit::SSHKeyResource
 ```
 
+When you want to create a droplet using your stored SSH key.
+
+```ruby
+client = DropletKit::Client.new(access_token: 'YOUR_TOKEN')
+my_ssh_keys = client.ssh_keys.all.collect {|key| key.fingerprint}
+droplet = DropletKit::Droplet.new(name: 'mysite.com', region: 'nyc2', image: 'ubuntu-14-04-x64', size: '512mb', ssh_keys: my_ssh_keys)
+created = client.droplets.create(droplet)
+# => DropletKit::Droplet(id: 1231, name: 'something.com', ...)
+```
+
 Actions supported:
 
 * `client.ssh_keys.all()`
