@@ -74,10 +74,12 @@ client.droplets #=> DropletKit::DropletResource
 Actions supported:
 
 * `client.droplets.all()`
+* `client.droplets.all(tag_name: 'tag_name')`
 * `client.droplets.find(id: 'id')`
 * `client.droplets.create(droplet)`
 * `client.droplets.create_multiple(droplet)`
 * `client.droplets.delete(id: 'id')`
+* `client.droplets.delete_for_tag(tag_name: 'tag_name')`
 * `client.droplets.kernels(id: 'id')`
 * `client.droplets.snapshots(id: 'id')`
 * `client.droplets.backups(id: 'id')`
@@ -94,22 +96,33 @@ Actions supported:
 
 * `client.droplet_actions.reboot(droplet_id: droplet.id)`
 * `client.droplet_actions.power_cycle(droplet_id: droplet.id)`
+* `client.droplet_actions.power_cycle_for_tag(tag: 'tag_name')`
 * `client.droplet_actions.shutdown(droplet_id: droplet.id)`
+* `client.droplet_actions.shutdown_for_tag(tag: 'tag_name')`
 * `client.droplet_actions.power_off(droplet_id: droplet.id)`
+* `client.droplet_actions.power_off_for_tag(tag: 'tag_name')`
 * `client.droplet_actions.power_on(droplet_id: droplet.id)`
+* `client.droplet_actions.power_on_for_tag(tag: 'tag_name')`
 * `client.droplet_actions.password_reset(droplet_id: droplet.id)`
 * `client.droplet_actions.enable_ipv6(droplet_id: droplet.id)`
+* `client.droplet_actions.enable_ipv6_for_tag(tag: 'tag_name')`
 * `client.droplet_actions.enable_backups(droplet_id: droplet.id)`
+* `client.droplet_actions.enable_backups_for_tag(tag: 'tag_name')`
 * `client.droplet_actions.disable_backups(droplet_id: droplet.id)`
+* `client.droplet_actions.disable_backups_for_tag(tag: 'tag_name')`
 * `client.droplet_actions.upgrade(droplet_id: droplet.id)`
 * `client.droplet_actions.enable_private_networking(droplet_id: droplet.id)`
+* `client.droplet_actions.enable_private_networking_for_tag(tag: 'tag_name')`
 * `client.droplet_actions.snapshot(droplet_id: droplet.id, name: 'Snapshot Name')`
+* `client.droplet_actions.snapshot_for_tag(tag: 'tag_name', name: 'Snapshot Name')`
 * `client.droplet_actions.change_kernel(droplet_id: droplet.id, kernel: 'kernel_id')`
 * `client.droplet_actions.rename(droplet_id: droplet.id, name: 'New-Droplet-Name')`
 * `client.droplet_actions.rebuild(droplet_id: droplet.id, image: 'image_id')`
 * `client.droplet_actions.restore(droplet_id: droplet.id, image: 'image_id')`
 * `client.droplet_actions.resize(droplet_id: droplet.id, size: '1gb')`
 * `client.droplet_actions.find(droplet_id: droplet.id, id: action.id)`
+* `client.droplet_actions.action_for_id(droplet_id: droplet.id, type: 'event_name', param: 'value')`
+* `client.droplet_actions.action_for_tag(tag: 'tag_name', type: 'event_name', param: 'value')`
 
 ## Domain resource
 
