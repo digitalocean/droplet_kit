@@ -8,11 +8,37 @@ RSpec.describe DropletKit::DropletActionResource do
 
   include_context 'resources'
 
-  ACTIONS_WITHOUT_INPUT = %w(reboot power_cycle shutdown power_off
-    power_on password_reset enable_ipv6 disable_backups enable_backups
-    enable_private_networking upgrade)
+  describe '#action_for_id' do
+    let(:action) { 'event' }
+    let(:path) { "/v2/droplets/#{droplet_id}/actions" }
+    let(:fixture) { api_fixture('droplet_actions/find') }
 
-  ACTIONS_WITHOUT_INPUT.each do |action_name|
+    it 'performs the action' do
+      request = stub_do_api(path, :post).with(
+        body: { type: action, param_1: 1, param_2: 2 }.to_json
+      ).to_return(body: fixture, status: 201)
+
+      resource.action_for_id(droplet_id: droplet_id, type: action, param_1: 1, param_2: 2)
+      expect(request).to have_been_made
+    end
+  end
+
+  describe '#action_for_tag' do
+    let(:action) { 'event' }
+    let(:path) { '/v2/droplets/actions' }
+    let(:fixture) { api_fixture('droplet_actions/find') }
+
+    it 'performs the action' do
+      request = stub_do_api(path, :post).with(
+        body: { tag: 'test-tag', type: action, param_1: 1, param_2: 2 }.to_json
+      ).to_return(body: fixture, status: 201)
+
+      resource.action_for_tag(tag: 'test-tag', type: action, param_1: 1, param_2: 2)
+      expect(request).to have_been_made
+    end
+  end
+
+  described_class::ACTIONS_WITHOUT_INPUT.each do |action_name|
     describe "Action #{action_name}" do
       let(:action) { action_name }
       let(:path) { "/v2/droplets/#{droplet_id}/actions" }
@@ -35,7 +61,7 @@ RSpec.describe DropletKit::DropletActionResource do
     end
   end
 
-  described_class::BATCH_SUPPORTED_ACTIONS.each do |action_name|
+  described_class::TAG_ACTIONS.each do |action_name|
     describe "Batch Action #{action_name}" do
       let(:action) { "#{action_name}_for_tag" }
       let(:path) { "/v2/droplets/actions?tag=testing-1" }
