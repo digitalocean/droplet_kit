@@ -20,7 +20,7 @@ RSpec.describe DropletKit::ImageActionResource do
 
       expect(request).to have_been_made
 
-      expect(action).to be_kind_of(DropletKit::ImageAction)
+      expect(action).to be_kind_of(DropletKit::Action)
       expect(action.id).to eq(23)
       expect(action.status).to eq("in-progress")
       expect(action.type).to eq("transfer")
@@ -60,7 +60,7 @@ RSpec.describe DropletKit::ImageActionResource do
 
       expect(request).to have_been_made
 
-      expect(action).to be_kind_of(DropletKit::ImageAction)
+      expect(action).to be_kind_of(DropletKit::Action)
       expect(action.id).to eq(23)
       expect(action.status).to eq("in-progress")
       expect(action.type).to eq("convert")
@@ -121,7 +121,7 @@ RSpec.describe DropletKit::ImageActionResource do
       stub_do_api('/v2/images/449676391/actions/23').to_return(body: api_fixture('image_actions/find'))
       action = resource.find(image_id: 449676391, id: 23)
 
-      expect(action).to be_kind_of(DropletKit::ImageAction)
+      expect(action).to be_kind_of(DropletKit::Action)
       expect(action.id).to eq(23)
       expect(action.status).to eq("in-progress")
       expect(action.type).to eq("transfer")
