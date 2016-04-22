@@ -272,6 +272,27 @@ Actions supported:
 * `client.floating_ip_actions.assign(ip: floating_ip.ip, droplet_id: droplet.id)`
 * `client.floating_ip_actions.unassign(ip: floating_ip.ip)`
 
+## Drive resource
+
+    client = DropletKit::Client.new(access_token: 'TOKEN')
+    client.drives #=> DropletKit::DriveResource
+
+Actions supported:
+
+* `client.drives.all()`
+* `client.drives.find(id: 'id')`
+* `client.drives.create(drive)`
+* `client.drives.delete(id: 'id')`
+
+## Floating IP Action resource
+
+    client = DropletKit::Client.new(access_token: 'TOKEN')
+    client.drive_actions #=> DropletKit::DriveActionResource
+
+Actions supported:
+
+* `client.drive_actions.attach(drive_id: drive.id, droplet_id: droplet.id, region: droplet.region.slug)`
+* `client.drive_actions.detach(drive_id: drive.id, droplet_id: droplet.id, region: droplet.region.slug)`
 
 ## Contributing
 
