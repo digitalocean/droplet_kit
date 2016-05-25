@@ -30,10 +30,10 @@ RSpec.describe DropletKit::DropletActionResource do
 
     it 'performs the action' do
       request = stub_do_api(path, :post).with(
-        body: { tag: 'test-tag', type: action, param_1: 1, param_2: 2 }.to_json
+        body: { tag_name: 'test-tag', type: action, param_1: 1, param_2: 2 }.to_json
       ).to_return(body: fixture, status: 201)
 
-      resource.action_for_tag(tag: 'test-tag', type: action, param_1: 1, param_2: 2)
+      resource.action_for_tag(tag_name: 'test-tag', type: action, param_1: 1, param_2: 2)
       expect(request).to have_been_made
     end
   end
@@ -64,7 +64,7 @@ RSpec.describe DropletKit::DropletActionResource do
   described_class::TAG_ACTIONS.each do |action_name|
     describe "Batch Action #{action_name}" do
       let(:action) { "#{action_name}_for_tag" }
-      let(:path) { "/v2/droplets/actions?tag=testing-1" }
+      let(:path) { "/v2/droplets/actions?tag_name=testing-1" }
       let(:fixture) do
         single_action = DropletKit::ActionMapping.extract_single(api_fixture("droplet_actions/#{action_name}"), :read)
 
@@ -76,7 +76,7 @@ RSpec.describe DropletKit::DropletActionResource do
           body: { type: action_name }.to_json
         ).to_return(body: fixture, status: 201)
 
-        returned_actions = resource.send(action, tag: 'testing-1')
+        returned_actions = resource.send(action, tag_name: 'testing-1')
 
         expect(request).to have_been_made
         expect(returned_actions.first.type).to eq(action_name)
