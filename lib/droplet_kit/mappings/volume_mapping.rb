@@ -1,10 +1,10 @@
 module DropletKit
-  class DriveMapping
+  class VolumeMapping
     include Kartograph::DSL
 
     kartograph do
-      mapping Drive
-      root_key plural: 'drives', singular: 'drive', scopes: [:read]
+      mapping Volume
+      root_key plural: 'volumes', singular: 'volume', scopes: [:read]
 
       property :id, scopes: [:read]
       property :region, scopes: [:read], include: RegionMapping

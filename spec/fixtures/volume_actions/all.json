@@ -3,11 +3,11 @@
     {
       "id": 72531856,
       "status": "in-progress",
-      "type": "attach_drive",
+      "type": "attach_volume",
       "started_at": "2015-11-12T17:51:03Z",
       "completed_at": null,
       "resource_id": null,
-      "resource_type": "drive",
+      "resource_type": "volume",
       "region": {
         "name": "New York 1",
         "slug": "nyc1",

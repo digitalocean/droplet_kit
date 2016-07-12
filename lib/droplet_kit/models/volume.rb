@@ -1,5 +1,5 @@
 module DropletKit
-  class Drive < BaseModel
+  class Volume < BaseModel
     attribute :id
     attribute :region
     attribute :droplet_ids

@@ -272,27 +272,27 @@ Actions supported:
 * `client.floating_ip_actions.assign(ip: floating_ip.ip, droplet_id: droplet.id)`
 * `client.floating_ip_actions.unassign(ip: floating_ip.ip)`
 
-## Drive resource
+## Volume resource
 
     client = DropletKit::Client.new(access_token: 'TOKEN')
-    client.drives #=> DropletKit::DriveResource
+    client.volumes #=> DropletKit::VolumeResource
 
 Actions supported:
 
-* `client.drives.all()`
-* `client.drives.find(id: 'id')`
-* `client.drives.create(drive)`
-* `client.drives.delete(id: 'id')`
+* `client.volumes.all()`
+* `client.volumes.find(id: 'id')`
+* `client.volumes.create(volume)`
+* `client.volumes.delete(id: 'id')`
 
-## Floating IP Action resource
+## Volume Action resource
 
     client = DropletKit::Client.new(access_token: 'TOKEN')
-    client.drive_actions #=> DropletKit::DriveActionResource
+    client.volume_actions #=> DropletKit::VolumeActionResource
 
 Actions supported:
 
-* `client.drive_actions.attach(drive_id: drive.id, droplet_id: droplet.id, region: droplet.region.slug)`
-* `client.drive_actions.detach(drive_id: drive.id, droplet_id: droplet.id, region: droplet.region.slug)`
+* `client.volume_actions.attach(volume_id: volume.id, droplet_id: droplet.id, region: droplet.region.slug)`
+* `client.volume_actions.detach(volume_id: volume.id, droplet_id: droplet.id, region: droplet.region.slug)`
 
 ## Contributing
 

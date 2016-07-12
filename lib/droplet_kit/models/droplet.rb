@@ -8,7 +8,7 @@ module DropletKit
 
     # Used for creates
     attribute :names
-    attribute :drives
+    attribute :volumes
     attribute :ssh_keys
     attribute :backups
     attribute :size
