@@ -1,0 +1,34 @@
+{
+  "action": {
+    "id": 72531856,
+    "status": "in-progress",
+    "type": "detach_volume",
+    "started_at": "2015-11-12T17:51:03Z",
+    "completed_at": null,
+    "resource_id": null,
+    "resource_type": "volume",
+    "region": {
+      "name": "New York 1",
+      "slug": "nyc1",
+      "sizes": [
+        "512mb",
+        "1gb",
+        "2gb",
+        "4gb",
+        "8gb",
+        "16gb",
+        "32gb",
+        "48gb",
+        "64gb"
+      ],
+      "features": [
+        "private_networking",
+        "backups",
+        "ipv6",
+        "metadata"
+      ],
+      "available": true
+    },
+    "region_slug": "nyc1"
+  }
+}

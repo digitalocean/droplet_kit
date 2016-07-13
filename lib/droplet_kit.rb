@@ -29,6 +29,7 @@ module DropletKit
   autoload :Tag, 'droplet_kit/models/tag'
   autoload :TaggedResources, 'droplet_kit/models/tagged_resources'
   autoload :TaggedDropletsResources, 'droplet_kit/models/tagged_droplets_resources'
+  autoload :Volume, 'droplet_kit/models/volume'
 
   # Resources
   autoload :DropletResource, 'droplet_kit/resources/droplet_resource'
@@ -46,6 +47,8 @@ module DropletKit
   autoload :FloatingIpResource, 'droplet_kit/resources/floating_ip_resource'
   autoload :FloatingIpActionResource, 'droplet_kit/resources/floating_ip_action_resource'
   autoload :TagResource, 'droplet_kit/resources/tag_resource'
+  autoload :VolumeResource, 'droplet_kit/resources/volume_resource'
+  autoload :VolumeActionResource, 'droplet_kit/resources/volume_action_resource'
 
   # JSON Maps
   autoload :DropletMapping, 'droplet_kit/mappings/droplet_mapping'
@@ -69,6 +72,7 @@ module DropletKit
   autoload :TagMapping, 'droplet_kit/mappings/tag_mapping'
   autoload :TaggedResourcesMapping, 'droplet_kit/mappings/tagged_resources_mapping'
   autoload :TaggedDropletsResourcesMapping, 'droplet_kit/mappings/tagged_droplets_resources_mapping'
+  autoload :VolumeMapping, 'droplet_kit/mappings/volume_mapping'
 
   # Utils
   autoload :PaginatedResource, 'droplet_kit/paginated_resource'

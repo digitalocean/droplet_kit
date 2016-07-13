@@ -272,6 +272,27 @@ Actions supported:
 * `client.floating_ip_actions.assign(ip: floating_ip.ip, droplet_id: droplet.id)`
 * `client.floating_ip_actions.unassign(ip: floating_ip.ip)`
 
+## Volume resource
+
+    client = DropletKit::Client.new(access_token: 'TOKEN')
+    client.volumes #=> DropletKit::VolumeResource
+
+Actions supported:
+
+* `client.volumes.all()`
+* `client.volumes.find(id: 'id')`
+* `client.volumes.create(volume)`
+* `client.volumes.delete(id: 'id')`
+
+## Volume Action resource
+
+    client = DropletKit::Client.new(access_token: 'TOKEN')
+    client.volume_actions #=> DropletKit::VolumeActionResource
+
+Actions supported:
+
+* `client.volume_actions.attach(volume_id: volume.id, droplet_id: droplet.id, region: droplet.region.slug)`
+* `client.volume_actions.detach(volume_id: volume.id, droplet_id: droplet.id, region: droplet.region.slug)`
 
 ## Contributing
 

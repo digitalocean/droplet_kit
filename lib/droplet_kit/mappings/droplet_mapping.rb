@@ -29,6 +29,7 @@ module DropletKit
       # Create properties arent quite the same
       property :name, scopes: [:create]  # "Regular" create
       property :names, scopes: [:create] # Multiple create
+      property :volumes, scopes: [:create] # Create with volumes
       property :region, scopes: [:create]
       property :size, scopes: [:create]
       property :image, scopes: [:create]
