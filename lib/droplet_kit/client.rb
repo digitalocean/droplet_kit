@@ -32,7 +32,8 @@ module DropletKit
         floating_ips: FloatingIpResource,
         floating_ip_actions: FloatingIpActionResource,
         tags: TagResource,
-        volumes: VolumeResource
+        volumes: VolumeResource,
+        volume_actions: VolumeActionResource
       }
     end
 
