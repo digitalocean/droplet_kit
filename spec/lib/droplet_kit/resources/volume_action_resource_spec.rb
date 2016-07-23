@@ -86,6 +86,37 @@ RSpec.describe DropletKit::VolumeActionResource do
     end
   end
 
+  describe '#resize' do
+    let(:volume_id) { '7724db7c-e098-11e5-b522-000f53304e51' }
+    let(:region) { 'nyc1' }
+    let(:path) { "/v2/volumes/#{volume_id}/actions" }
+    let(:action) { 'resize' }
+    let(:fixture) { api_fixture("volume_actions/#{action}") }
+
+    it 'sends an resize request for a volume' do
+      request = stub_do_api(path).with(
+        body: {
+          type: action,
+          size_gigabytes: 100,
+          region: region
+        }.to_json
+      ).to_return(body: fixture, status: 201)
+
+      action = resource.resize(
+        volume_id: volume_id,
+        region: region,
+        size_gigabytes: 100
+      )
+
+      expect(request).to have_been_made
+      expect(action).to match_volume_action_fixture('resize_volume')
+    end
+
+    it_behaves_like 'an action that handles invalid parameters' do
+      let(:arguments) { { volume_id: volume_id } }
+    end
+  end
+
   describe '#all' do
     let(:volume_id) { '7724db7c-e098-11e5-b522-000f53304e51' }
 

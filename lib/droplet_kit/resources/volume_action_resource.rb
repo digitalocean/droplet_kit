@@ -27,6 +27,17 @@ module DropletKit
         handler(201, 200) { |response| ActionMapping.extract_single(response.body, :read) }
       end
 
+      action :resize, 'POST /v2/volumes/:volume_id/actions' do
+        body do |hash|
+          {
+            type: 'resize',
+            size_gigabytes: hash[:size_gigabytes],
+            region: hash[:region],
+          }.to_json
+        end
+        handler(201, 200) { |response| ActionMapping.extract_single(response.body, :read) }
+      end
+
       action :find, 'GET /v2/volumes/:volume_id/actions/:id' do
         handler(200) { |response| ActionMapping.extract_single(response.body, :read) }
       end
