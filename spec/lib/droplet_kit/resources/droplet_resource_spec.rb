@@ -120,6 +120,7 @@ RSpec.describe DropletKit::DropletResource do
           image: 'ubuntu-14-04-x86',
           ssh_keys: [123],
           backups: true,
+          monitoring: true,
           ipv6: true,
           private_networking: true,
           user_data: "#cloud-config\nruncmd\n\t- echo 'Hello!'"
@@ -132,6 +133,7 @@ RSpec.describe DropletKit::DropletResource do
         expect(as_hash['image']).to eq(droplet.image)
         expect(as_hash['ssh_keys']).to eq(droplet.ssh_keys)
         expect(as_hash['backups']).to eq(droplet.backups)
+        expect(as_hash['monitoring']).to eq(droplet.monitoring)
         expect(as_hash['ipv6']).to eq(droplet.ipv6)
         expect(as_hash['private_networking']).to eq(droplet.private_networking)
         expect(as_hash['user_data']).to eq(droplet.user_data)
