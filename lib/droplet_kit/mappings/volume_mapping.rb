@@ -15,6 +15,7 @@ module DropletKit
       property :created_at, scopes: [:read]
 
       property :region, scopes: [:create]
+      property :snapshot_id, scopes: [:create]
     end
   end
 end

@@ -28,6 +28,7 @@ module DropletKit
         regions: RegionResource,
         sizes: SizeResource,
         ssh_keys: SSHKeyResource,
+        snapshots: SnapshotResource,
         account: AccountResource,
         floating_ips: FloatingIpResource,
         floating_ip_actions: FloatingIpActionResource,

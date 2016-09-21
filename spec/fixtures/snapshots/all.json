@@ -1,0 +1,32 @@
+{
+  "snapshots": [
+    {
+      "id": "119192817",
+      "name": "Ubuntu 13.04",
+      "regions": [
+        "nyc1"
+      ],
+      "created_at": "2014-07-29T14:35:40Z",
+      "resource_type": "droplet",
+      "resource_id": "123",
+      "resource_type": "droplet",
+      "min_disk_size": 10,
+      "size_gigabytes": 0.4
+    },
+    {
+      "id": "7724db7c-e098-11e5-b522-000f53304e51",
+      "name": "Ubuntu Foo",
+      "regions": [
+        "nyc1"
+      ],
+      "created_at": "2014-07-29T14:35:40Z",
+      "resource_type": "volume",
+      "resource_id": "7724db7c-e098-11e5-b522-000f53304e51",
+      "min_disk_size": 10,
+      "size_gigabytes": 0.4
+    }
+  ],
+  "meta": {
+    "total": 2
+  }
+}

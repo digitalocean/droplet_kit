@@ -1,0 +1,20 @@
+{
+  "snapshots": [
+    {
+      "id": "119192817",
+      "name": "Ubuntu 13.04",
+      "regions": [
+        "nyc1"
+      ],
+      "created_at": "2014-07-29T14:35:40Z",
+      "resource_type": "droplet",
+      "resource_id": "123",
+      "resource_type": "droplet",
+      "min_disk_size": 10,
+      "size_gigabytes": 0.4
+    }
+  ],
+  "meta": {
+    "total": 1
+  }
+}

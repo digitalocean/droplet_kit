@@ -49,6 +49,7 @@ module DropletKit
   autoload :TagResource, 'droplet_kit/resources/tag_resource'
   autoload :VolumeResource, 'droplet_kit/resources/volume_resource'
   autoload :VolumeActionResource, 'droplet_kit/resources/volume_action_resource'
+  autoload :SnapshotResource, 'droplet_kit/resources/snapshot_resource'
 
   # JSON Maps
   autoload :DropletMapping, 'droplet_kit/mappings/droplet_mapping'

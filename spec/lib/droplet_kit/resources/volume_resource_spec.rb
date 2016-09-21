@@ -62,9 +62,54 @@ RSpec.describe DropletKit::VolumeResource do
       end
     end
 
+    context 'with a snapshot id' do
+      it 'returns the created volume' do
+        volume = DropletKit::Volume.new(
+          size_gigabytes: 10,
+          name: "Example",
+          description: "Block store for examples",
+          snapshot_id: "7724db7c-e098-11e5-b522-000f53304e51"
+        )
+
+        as_string = DropletKit::VolumeMapping.representation_for(:create, volume)
+        stub_do_api(path, :post).with(body: as_string).to_return(body: api_fixture('volumes/create'), status: 201)
+        created_volume = resource.create(volume)
+
+        expect(created_volume).to match_volume_fixture
+      end
+    end
+
     it_behaves_like 'an action that handles invalid parameters' do
       let(:action) { 'create' }
       let(:arguments) { DropletKit::Volume.new }
+    end
+  end
+
+  describe '#create_snapshot' do
+    let(:id) { '7724db7c-e098-11e5-b522-000f53304e51' }
+    let(:path) { "/v2/volumes/#{id}/snapshot" }
+
+    context 'for a successful create' do
+      it 'returns the created volume' do
+        as_string = { name: 'foo' }.to_json
+        stub_do_api(path, :post).with(body: as_string).to_return(body: api_fixture('volumes/create_snapshot'), status: 201)
+        created_snapshot = resource.create_snapshot(id: id, name: 'foo')
+
+        expect(created_snapshot).to be_kind_of(DropletKit::Snapshot)
+
+        expect(created_snapshot.id).to eq("7724db7c-e098-11e5-b522-000f53304e51")
+        expect(created_snapshot.name).to eq("Ubuntu Foo")
+        expect(created_snapshot.regions).to eq(["nyc1"])
+        expect(created_snapshot.resource_type).to eq("volume")
+        expect(created_snapshot.resource_id).to eq("7724db7c-e098-11e5-b522-000f53304e51")
+        expect(created_snapshot.min_disk_size).to eq(10)
+        expect(created_snapshot.size_gigabytes).to eq(0.4)
+      end
+    end
+
+    it_behaves_like 'an action that handles invalid parameters' do
+      let(:action) { 'create_snapshot' }
+      let(:arguments) { { id: id } }
     end
   end
 

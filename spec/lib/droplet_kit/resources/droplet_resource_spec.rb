@@ -244,18 +244,17 @@ RSpec.describe DropletKit::DropletResource do
   end
 
   describe '#snapshots' do
-    it 'returns a list of kernels for a droplet' do
+    it 'returns a list of image snapshots for a droplet' do
       stub_do_api('/v2/droplets/1066/snapshots', :get).to_return(body: api_fixture('droplets/list_snapshots'))
       snapshots = resource.snapshots(id: 1066).take(20)
 
-      expect(snapshots).to all(be_kind_of(DropletKit::Snapshot))
+      expect(snapshots).to all(be_kind_of(DropletKit::Image))
       expect(snapshots[0].id).to eq(449676387)
       expect(snapshots[0].name).to eq("Ubuntu 13.04")
       expect(snapshots[0].distribution).to eq("ubuntu")
       expect(snapshots[0].slug).to eq(nil)
       expect(snapshots[0].public).to eq(false)
       expect(snapshots[0].regions).to eq(["nyc1"])
-      expect(snapshots[0].created_at).to eq("2014-07-29T14:35:38Z")
     end
 
     it 'returns a paginated resource' do
