@@ -5,14 +5,15 @@ module DropletKit
     kartograph do
       mapping Image
       root_key plural: 'images', singular: 'image', scopes: [:read]
+      root_key plural: 'snapshots', singular: 'snapshot', scopes: [:read_snapshot]
 
-      property :id, scopes: [:read]
-      property :name, scopes: [:read, :update]
-      property :distribution, scopes: [:read]
-      property :slug, scopes: [:read]
-      property :public, scopes: [:read]
-      property :regions, scopes: [:read]
-      property :type, scopes: [:read]
+      property :id, scopes: [:read, :read_snapshot]
+      property :name, scopes: [:read, :update, :read_snapshot]
+      property :distribution, scopes: [:read, :read_snapshot]
+      property :slug, scopes: [:read, :read_snapshot]
+      property :public, scopes: [:read, :read_snapshot]
+      property :regions, scopes: [:read, :read_snapshot]
+      property :type, scopes: [:read, :read_snapshot]
     end
   end
 end

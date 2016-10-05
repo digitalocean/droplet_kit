@@ -8,12 +8,12 @@ module DropletKit
 
       property :id, scopes: [:read]
       property :name, scopes: [:read]
-      property :distribution, scopes: [:read]
-      property :slug, scopes: [:read]
-      property :public, scopes: [:read]
       property :regions, scopes: [:read]
-      property :action_ids, scopes: [:read]
       property :created_at, scopes: [:read]
+      property :resource_id, scopes: [:read]
+      property :resource_type, scopes: [:read]
+      property :min_disk_size, scopes: [:read]
+      property :size_gigabytes, scopes: [:read]
     end
   end
 end

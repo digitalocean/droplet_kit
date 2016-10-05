@@ -282,7 +282,10 @@ Actions supported:
 * `client.volumes.all()`
 * `client.volumes.find(id: 'id')`
 * `client.volumes.create(volume)`
+* `client.volumes.snapshots(id: 'id')`
+* `client.volumes.create_snapshot(id: 'id', name: 'snapshot-name')`
 * `client.volumes.delete(id: 'id')`
+
 
 ## Volume Action resource
 
@@ -294,6 +297,17 @@ Actions supported:
 * `client.volume_actions.attach(volume_id: volume.id, droplet_id: droplet.id, region: droplet.region.slug)`
 * `client.volume_actions.detach(volume_id: volume.id, droplet_id: droplet.id, region: droplet.region.slug)`
 * `client.volume_actions.resize(volume_id: volume.id, size_gigabytes: 123, region: droplet.region.slug)`
+
+## Volume resource
+
+    client = DropletKit::Client.new(access_token: 'TOKEN')
+    client.snapshots #=> DropletKit::SnapshotResource
+
+Actions supported:
+
+* `client.snapshots.all(resource_type: 'droplet')`
+* `client.snapshots.find(id: 'id')`
+* `client.snapshots.delete(id: 'id')`
 
 ## Contributing
 

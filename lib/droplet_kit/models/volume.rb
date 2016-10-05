@@ -7,5 +7,8 @@ module DropletKit
     attribute :description
     attribute :size_gigabytes
     attribute :created_at
+
+    # Used for creates
+    attribute :snapshot_id
   end
 end

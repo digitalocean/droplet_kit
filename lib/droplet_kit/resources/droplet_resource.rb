@@ -35,7 +35,7 @@ module DropletKit
 
       action :snapshots, 'GET /v2/droplets/:id/snapshots' do
         query_keys :per_page, :page
-        handler(200) { |response| SnapshotMapping.extract_collection(response.body, :read) }
+        handler(200) { |response| ImageMapping.extract_collection(response.body, :read_snapshot) }
       end
 
       action :backups, 'GET /v2/droplets/:id/backups' do
