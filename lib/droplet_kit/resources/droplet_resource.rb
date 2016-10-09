@@ -40,7 +40,7 @@ module DropletKit
 
       action :backups, 'GET /v2/droplets/:id/backups' do
         query_keys :per_page, :page
-        handler(200) { |response| BackupMapping.extract_collection(response.body, :read) }
+        handler(200) { |response| ImageMapping.extract_collection(response.body, :read_backup) }
       end
 
       action :actions, 'GET /v2/droplets/:id/actions' do

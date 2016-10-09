@@ -269,14 +269,13 @@ RSpec.describe DropletKit::DropletResource do
       stub_do_api('/v2/droplets/1066/backups', :get).to_return(body: api_fixture('droplets/list_backups'))
       backups = resource.backups(id: 1066).take(20)
 
-      expect(backups).to all(be_kind_of(DropletKit::Backup))
+      expect(backups).to all(be_kind_of(DropletKit::Image))
       expect(backups[0].id).to eq(449676388)
       expect(backups[0].name).to eq("Ubuntu 13.04")
       expect(backups[0].distribution).to eq("ubuntu")
       expect(backups[0].slug).to eq(nil)
       expect(backups[0].public).to eq(false)
       expect(backups[0].regions).to eq(["nyc1"])
-      expect(backups[0].created_at).to eq("2014-07-29T14:35:38Z")
     end
 
     it 'returns a paginated resource' do
