@@ -26,6 +26,11 @@ RSpec.describe DropletKit::Client do
   end
 
   describe '#connection' do
+    module AcmeApp
+      class CustomLogger < Faraday::Middleware
+      end
+    end
+
     it 'populates the authorization header correctly' do
       expect(client.connection.headers['Authorization']).to eq("Bearer #{client.access_token}")
     end
@@ -33,5 +38,12 @@ RSpec.describe DropletKit::Client do
     it 'sets the content type' do
       expect(client.connection.headers['Content-Type']).to eq("application/json")
     end
+
+    it 'allows access to faraday instance' do
+      client.connection.use AcmeApp::CustomLogger
+      expect(client.connection.builder.handlers).to include(AcmeApp::CustomLogger)
+    end
   end
+
 end
+
