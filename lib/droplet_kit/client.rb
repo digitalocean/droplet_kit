@@ -11,7 +11,7 @@ module DropletKit
     end
 
     def connection
-      Faraday.new(connection_options) do |req|
+      @faraday ||= Faraday.new connection_options do |req|
         req.adapter :net_http
       end
     end
