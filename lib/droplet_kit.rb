@@ -11,7 +11,6 @@ module DropletKit
   autoload :Droplet, 'droplet_kit/models/droplet'
   autoload :Region, 'droplet_kit/models/region'
   autoload :Image, 'droplet_kit/models/image'
-  autoload :ImageAction, 'droplet_kit/models/image_action'
   autoload :Size, 'droplet_kit/models/size'
   autoload :NetworkHash, 'droplet_kit/models/network_hash'
   autoload :Network, 'droplet_kit/models/network'
