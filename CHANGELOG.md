@@ -1,3 +1,10 @@
+### Version 2.0.0
+* Several duplicate classes have been deprecated and combined:
+ * Replace duplicate Backup model/mapping with Image.
+ * Remove duplicate ImageAction(Mapping), use Action.
+ * Redefine Snapshot model for new Snapshot object, use Image for Droplet snapshots.
+* Added support for Snapshot endpoint with volume snapshots.
+
 ### Version 1.2.2
 
 * Add image convert action.
