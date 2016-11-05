@@ -30,7 +30,7 @@ client = DropletKit::Client.new(access_token: 'YOUR_TOKEN')
 
 ## Design
 
-DropletKit follows a strict design of resoures as methods on your client. For examples, for droplets, you will call your client like this:
+DropletKit follows a strict design of resources as methods on your client. For examples, for droplets, you will call your client like this:
 
 ```ruby
 client = DropletKit::Client.new(access_token: 'YOUR_TOKEN')
@@ -45,7 +45,7 @@ client.droplets.all
 # => [ DropletKit::Droplet(id: 123, name: 'something.com', ...), DropletKit::Droplet(id: 1066, name: 'bunk.com', ...) ]
 ```
 
-When you'd like to save objects, it's your responsibility to instantiate the objects and persist them using the resource objects. Lets use creating a Droplet as an example:
+When you'd like to save objects, it's your responsibility to instantiate the objects and persist them using the resource objects. Let's use creating a Droplet as an example:
 
 ```ruby
 client = DropletKit::Client.new(access_token: 'YOUR_TOKEN')
