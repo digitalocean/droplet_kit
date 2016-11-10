@@ -122,7 +122,8 @@ RSpec.describe DropletKit::DropletResource do
           backups: true,
           ipv6: true,
           private_networking: true,
-          user_data: "#cloud-config\nruncmd\n\t- echo 'Hello!'"
+          user_data: "#cloud-config\nruncmd\n\t- echo 'Hello!'",
+          tags: ['one', 'two']
         )
 
         as_hash = DropletKit::DropletMapping.hash_for(:create, droplet)
@@ -135,6 +136,7 @@ RSpec.describe DropletKit::DropletResource do
         expect(as_hash['ipv6']).to eq(droplet.ipv6)
         expect(as_hash['private_networking']).to eq(droplet.private_networking)
         expect(as_hash['user_data']).to eq(droplet.user_data)
+        expect(as_hash['tags']).to eq(droplet.tags)
 
         as_string = DropletKit::DropletMapping.representation_for(:create, droplet)
         stub_do_api(path, :post).with(body: as_string).to_return(body: api_fixture('droplets/create'), status: 202)
@@ -177,7 +179,8 @@ RSpec.describe DropletKit::DropletResource do
           backups: true,
           ipv6: true,
           private_networking: true,
-          user_data: "#cloud-config\nruncmd\n\t- echo 'Hello!'"
+          user_data: "#cloud-config\nruncmd\n\t- echo 'Hello!'",
+          tags: ['one', 'two']
         )
 
         as_hash = DropletKit::DropletMapping.hash_for(:create, droplet)
@@ -190,6 +193,7 @@ RSpec.describe DropletKit::DropletResource do
         expect(as_hash['ipv6']).to eq(droplet.ipv6)
         expect(as_hash['private_networking']).to eq(droplet.private_networking)
         expect(as_hash['user_data']).to eq(droplet.user_data)
+        expect(as_hash['tags']).to eq(droplet.tags)
 
         as_string = DropletKit::DropletMapping.representation_for(:create, droplet)
         stub_do_api(path, :post).with(body: as_string).to_return(body: api_fixture('droplets/create_multiple'), status: 202)
