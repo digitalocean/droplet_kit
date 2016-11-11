@@ -76,6 +76,10 @@
       ],
       "action_ids": [
 
+      ],
+      "tags": [
+        "one",
+        "two"
       ]
     },
     {
@@ -154,6 +158,10 @@
       ],
       "action_ids": [
 
+      ],
+      "tags": [
+        "one",
+        "two"
       ]
     }
   ]
