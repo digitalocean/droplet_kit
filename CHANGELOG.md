@@ -1,3 +1,6 @@
+### Version 2.0.1
+* Droplet create action now accepts `tags` attribute.
+
 ### Version 2.0.0
 * Several duplicate classes have been deprecated and combined:
  * Replace duplicate Backup model/mapping with Image.
