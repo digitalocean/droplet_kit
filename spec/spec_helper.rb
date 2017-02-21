@@ -7,9 +7,7 @@ require 'addressable/uri'
 require 'droplet_kit'
 require 'webmock/rspec'
 
-SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
-  SimpleCov::Formatter::HTMLFormatter
-]
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(SimpleCov::Formatter::HTMLFormatter)
 
 Dir['./spec/support/**/*.rb'].each do |file|
   require file
