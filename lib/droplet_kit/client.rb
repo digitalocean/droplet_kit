@@ -19,6 +19,7 @@ module DropletKit
     def self.resources
       {
         actions: ActionResource,
+        certificates: CertificateResource,
         droplets: DropletResource,
         domains: DomainResource,
         domain_records: DomainRecordResource,

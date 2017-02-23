@@ -32,6 +32,7 @@ module DropletKit
   autoload :StickySession, 'droplet_kit/models/sticky_session'
   autoload :HealthCheck, 'droplet_kit/models/health_check'
   autoload :ForwardingRule, 'droplet_kit/models/forwarding_rule'
+  autoload :Certificate, 'droplet_kit/models/certificate'
 
   # Resources
   autoload :DropletResource, 'droplet_kit/resources/droplet_resource'
@@ -53,6 +54,7 @@ module DropletKit
   autoload :VolumeActionResource, 'droplet_kit/resources/volume_action_resource'
   autoload :SnapshotResource, 'droplet_kit/resources/snapshot_resource'
   autoload :LoadBalancerResource, 'droplet_kit/resources/load_balancer_resource'
+  autoload :CertificateResource, 'droplet_kit/resources/certificate_resource'
 
   # JSON Maps
   autoload :DropletMapping, 'droplet_kit/mappings/droplet_mapping'
@@ -80,6 +82,7 @@ module DropletKit
   autoload :StickySessionMapping, 'droplet_kit/mappings/sticky_session_mapping'
   autoload :HealthCheckMapping, 'droplet_kit/mappings/health_check_mapping'
   autoload :ForwardingRuleMapping, 'droplet_kit/mappings/forwarding_rule_mapping'
+  autoload :CertificateMapping, 'droplet_kit/mappings/certificate_mapping'
 
   # Utils
   autoload :PaginatedResource, 'droplet_kit/paginated_resource'
