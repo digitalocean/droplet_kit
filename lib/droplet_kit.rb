@@ -28,6 +28,10 @@ module DropletKit
   autoload :TaggedResources, 'droplet_kit/models/tagged_resources'
   autoload :TaggedDropletsResources, 'droplet_kit/models/tagged_droplets_resources'
   autoload :Volume, 'droplet_kit/models/volume'
+  autoload :LoadBalancer, 'droplet_kit/models/load_balancer'
+  autoload :StickySession, 'droplet_kit/models/sticky_session'
+  autoload :HealthCheck, 'droplet_kit/models/health_check'
+  autoload :ForwardingRule, 'droplet_kit/models/forwarding_rule'
 
   # Resources
   autoload :DropletResource, 'droplet_kit/resources/droplet_resource'
@@ -48,6 +52,7 @@ module DropletKit
   autoload :VolumeResource, 'droplet_kit/resources/volume_resource'
   autoload :VolumeActionResource, 'droplet_kit/resources/volume_action_resource'
   autoload :SnapshotResource, 'droplet_kit/resources/snapshot_resource'
+  autoload :LoadBalancerResource, 'droplet_kit/resources/load_balancer_resource'
 
   # JSON Maps
   autoload :DropletMapping, 'droplet_kit/mappings/droplet_mapping'
@@ -71,6 +76,10 @@ module DropletKit
   autoload :TaggedResourcesMapping, 'droplet_kit/mappings/tagged_resources_mapping'
   autoload :TaggedDropletsResourcesMapping, 'droplet_kit/mappings/tagged_droplets_resources_mapping'
   autoload :VolumeMapping, 'droplet_kit/mappings/volume_mapping'
+  autoload :LoadBalancerMapping, 'droplet_kit/mappings/load_balancer_mapping'
+  autoload :StickySessionMapping, 'droplet_kit/mappings/sticky_session_mapping'
+  autoload :HealthCheckMapping, 'droplet_kit/mappings/health_check_mapping'
+  autoload :ForwardingRuleMapping, 'droplet_kit/mappings/forwarding_rule_mapping'
 
   # Utils
   autoload :PaginatedResource, 'droplet_kit/paginated_resource'

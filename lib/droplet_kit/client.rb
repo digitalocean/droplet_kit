@@ -25,6 +25,7 @@ module DropletKit
         droplet_actions: DropletActionResource,
         images: ImageResource,
         image_actions: ImageActionResource,
+        load_balancers: LoadBalancerResource,
         regions: RegionResource,
         sizes: SizeResource,
         ssh_keys: SSHKeyResource,
