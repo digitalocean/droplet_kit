@@ -64,6 +64,21 @@ droplet = client.droplets.find(id: 123)
 
 # All Resources and actions.
 
+## Certificate resource
+
+```ruby
+client = DropletKit::Client.new(access_token: 'TOKEN')
+client.certificates #=> DropletKit::CertificateResource
+```
+
+Actions supported:
+
+* `client.certificates.find(id: 'id')`
+* `client.certificates.all()`
+* `client.certificates.create(certificate)`
+* `client.certificates.delete(id: 'id')`
+
+
 ## Droplet resource
 
 ```ruby
@@ -187,6 +202,25 @@ Image Actions Supported:
 * `client.image_actions.all(image_id: 123)`
 * `client.image_actions.find(image_id: 123, id: 123455)`
 * `client.image_actions.transfer(image_id: 123, region: 'nyc3')`
+
+
+## Load balancer resource
+```ruby
+client = DropletKit::Client.new(access_token: 'TOKEN')
+client.load_balancers #=> DropletKit::LoadBalancerResource
+```
+
+Actions supported:
+
+* `client.load_balancers.find(id: 'id')`
+* `client.load_balancers.all()`
+* `client.load_balancers.create(load_balancer)`
+* `client.load_balancers.update(load_balancer, id: 'id')`
+* `client.load_balancers.delete(id: 'id')`
+* `client.load_balancers.add_droplets([droplet.id], id: 'id')`
+* `client.load_balancers.remove_droplets([droplet.id], id: 'id')`
+* `client.load_balancers.add_forwarding_rules([forwarding_rule], id: 'id')`
+* `client.load_balancers.remove_forwarding_rules([forwarding_rule], id: 'id')`
 
 
 ## Region resource
