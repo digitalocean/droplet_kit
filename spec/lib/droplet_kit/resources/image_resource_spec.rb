@@ -51,6 +51,10 @@ RSpec.describe DropletKit::ImageResource do
       expect(image.public).to eq(false)
       expect(image.regions).to eq(["region--1"])
       expect(image.type).to eq("snapshot")
+
+      expect(image.min_disk_size).to eq(20)
+      expect(image.size_gigabytes).to eq(0.43)
+      expect(image.created_at).to eq('2014-07-29T14:35:41Z')
     end
 
     it_behaves_like 'resource that handles common errors' do
