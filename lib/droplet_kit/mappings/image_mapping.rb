@@ -15,6 +15,10 @@ module DropletKit
       property :public, scopes: [:read, :read_snapshot, :read_backup]
       property :regions, scopes: [:read, :read_snapshot, :read_backup]
       property :type, scopes: [:read, :read_snapshot, :read_backup]
+
+      property :min_disk_size, scopes: [:read, :read_snapshot, :read_backup]
+      property :created_at, scopes: [:read, :read_snapshot, :read_backup]
+      property :size_gigabytes, scopes: [:read, :read_snapshot, :read_backup]
     end
   end
 end
