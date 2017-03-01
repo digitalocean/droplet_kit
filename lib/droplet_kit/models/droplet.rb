@@ -11,6 +11,7 @@ module DropletKit
     attribute :volumes
     attribute :ssh_keys
     attribute :backups
+    attribute :monitoring
     attribute :size
     attribute :ipv6
     attribute :user_data
