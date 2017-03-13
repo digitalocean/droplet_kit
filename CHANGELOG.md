@@ -1,3 +1,10 @@
+### Version 2.1.0
+* Added monitoring to the Droplet resource.
+* Added LoadBalancer resource.
+* Added Certificate resource.
+* Added min_disk_size, size_gigabytes and created_at to the Image resource.
+* Updated DropletActionResource to use tag_name instead of tag.
+
 ### Version 2.0.1
 * Droplet create action now accepts `tags` attribute.
 
