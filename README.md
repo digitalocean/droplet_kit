@@ -283,7 +283,7 @@ Actions supported:
 
 * `client.tags.all()`
 * `client.tags.find(name: 'name')`
-* `client.tags.create(name: 'name', resource: 'droplet')`
+* `client.tags.create(tag)
 * `client.tags.delete(name: 'name')`
 * `client.tags.tag_resources(name: 'name', resources: [{ resource_id => 'droplet_id', resource_type: 'droplet' }])`
 * `client.tags.untag_resources(name 'name', resources: [{ resource_id => 'droplet_id', resource_type: 'droplet' }])`
