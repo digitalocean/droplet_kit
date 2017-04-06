@@ -18,11 +18,6 @@ module DropletKit
         handler(422) { |response| ErrorMapping.fail_with(FailedCreate, response.body) }
       end
 
-      action :update, 'PUT /v2/tags/:name' do
-        body { |object| TagMapping.representation_for(:update, object) }
-        handler(200) { |response| TagMapping.extract_single(response.body, :read) }
-      end
-
       action :delete, 'DELETE /v2/tags/:name' do
         handler(204) { |_| true }
         handler(422) { |response| ErrorMapping.fail_with(FailedCreate, response.body) }
