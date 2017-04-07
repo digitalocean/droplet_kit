@@ -67,20 +67,6 @@ describe DropletKit::TagResource do
     end
   end
 
-  describe '#update' do
-    it 'updateds a tag' do
-      tag = DropletKit::Tag.new(name: 'old-testing-1')
-      tag.name = 'testing-1'
-
-      request = stub_do_api('/v2/tags/old-testing-1', :put)
-        .with(body: DropletKit::TagMapping.representation_for(:update, tag))
-        .to_return(body: api_fixture('tags/find'))
-
-      tag = resource.update(tag, name: 'old-testing-1')
-      expect(tag.name).to eq('testing-1')
-    end
-  end
-
   describe '#delete' do
     it 'deletes a tag' do
       request = stub_do_api('/v2/tags/testing-1', :delete)
