@@ -6,15 +6,16 @@ before_install:
 
 rvm:
   - "2.0.0"
-  - "2.1.5"
-  - "2.2.2"
-  - "2.3.0"
+  - "2.1.10"
+  - "2.2.7"
+  - "2.3.4"
+  - "2.4.1"
 
 matrix:
   exclude:
     - rvm: "2.0.0"
       env: ACTIVESUPPORT_VERSION=5
-    - rvm: "2.1.5"
+    - rvm: "2.1.10"
       env: ACTIVESUPPORT_VERSION=5
 
 env:
