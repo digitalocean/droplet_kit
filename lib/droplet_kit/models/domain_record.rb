@@ -6,6 +6,7 @@ module DropletKit
     attribute :data
     attribute :priority
     attribute :port
+    attribute :ttl
     attribute :weight
   end
 end
