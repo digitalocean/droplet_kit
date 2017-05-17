@@ -162,7 +162,8 @@ client.domain_records #=> DropletKit::DomainRecordResource
 domain_record = DropletKit::DomainRecord.new(
   type: 'CNAME',
   name: 'www',
-  data: '@'
+  data: '@',
+  ttl: 1800
 )
 ```
 
