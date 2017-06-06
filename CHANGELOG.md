@@ -1,3 +1,9 @@
+### Version 2.2.0
+* Added Firewall resource.
+* Added support for updating TTLs for DomainRecord resource.
+* Added support of all Rails 5 releases.
+* Added depreciation for Tag resource rename.
+
 ### Version 2.1.0
 * Added monitoring to the Droplet resource.
 * Added LoadBalancer resource.
