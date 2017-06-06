@@ -175,6 +175,58 @@ Actions supported:
 * `client.domain_records.delete(for_domain: 'for_domain', id: 'id')`
 * `client.domain_records.update(domain_record, for_domain: 'for_domain', id: 'id')`
 
+## Firewall resource
+
+```ruby
+client = DropletKit::Client.new(access_token: 'TOKEN')
+client.firewalls #=> DropletKit::FirewallResource
+
+inbound_rule = DropletKit::FirewallInboundRule.new(
+  protocol: 'icmp',
+  ports: '0',
+  sources: {
+    tags: ['frontend', 'backend'],
+    load_balancer_uids: ['d2d3920a-9d45-41b0-b018-d15e18ec60a4']
+  }
+)
+
+outbound_rule = DropletKit::FirewallOutboundRule.new(
+  protocol: 'icmp',
+  ports: '0',
+  destinations: {
+    addresses: ["127.0.0.0"],
+    droplet_ids: [456, 789]
+  }
+)
+
+firewall = DropletKit::Firewall.new(
+  name: 'firewall',
+  inbound_rules: [
+    inbound_rule
+  ],
+  outbound_rules: [
+    outbound_rule
+  ],
+  droplet_ids: [123],
+  tags: ['backend']
+)
+```
+
+Actions supported:
+
+* `client.firewalls.find(id: 'id')`
+* `client.firewalls.create(firewall)`
+* `client.firewalls.update(firewall, id: 'id')`
+* `client.firewalls.all()`
+* `client.firewalls.all_by_droplet(droplet_id: 'id')`
+* `client.firewalls.delete(id: 'id')`
+* `client.firewalls.add_droplets([droplet.id], id: 'id')`
+* `client.firewalls.remove_droplets([droplet.id], id: 'id')`
+* `client.firewalls.add_tags([tag.name], id: 'id')`
+* `client.firewalls.remove_tags([tag.name], id: 'id')`
+* `client.firewalls.add_rules(inbound_rules: [inbound_rule], outbound_rules: [outbound_rule], id: 'id')`
+* `client.firewalls.remove_rules(inbound_rules: [inbound_rule], outbound_rules: [outbound_rule], id: 'id')`
+
 
 ## Image resource
 

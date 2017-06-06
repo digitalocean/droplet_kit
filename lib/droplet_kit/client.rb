@@ -24,6 +24,7 @@ module DropletKit
         domains: DomainResource,
         domain_records: DomainRecordResource,
         droplet_actions: DropletActionResource,
+        firewalls: FirewallResource,
         images: ImageResource,
         image_actions: ImageActionResource,
         load_balancers: LoadBalancerResource,
