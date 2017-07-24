@@ -419,3 +419,13 @@ Actions supported:
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
+
+## Releasing
+
+Bump the [version](https://github.com/digitalocean/droplet_kit/blob/master/lib/droplet_kit/version.rb), add all changes
+that are being released to the [CHANGELOG](https://github.com/digitalocean/droplet_kit/blob/master/CHANGELOG.md) and
+if you have already done the rubygems sign in from the account, just run `rake release`, if not continue reading.
+
+Find the password on DO's lastpass account (search for rubygems), sign in with the user (run gem `gem push` and it 
+will ask you for DO's email and password you found on lastpass), the `gem push` command will fail, ignore. Now just run
+`rake release` and the gem will be pushed to rubygems.
