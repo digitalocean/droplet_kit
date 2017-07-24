@@ -1,3 +1,6 @@
+### Version 2.2.1
+* Relaxed faraday version requirement
+
 ### Version 2.2.0
 * Added Firewall resource.
 * Added support for updating TTLs for DomainRecord resource.
