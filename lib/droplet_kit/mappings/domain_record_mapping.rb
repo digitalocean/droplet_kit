@@ -14,6 +14,8 @@ module DropletKit
       property :port, scopes: [:read, :create, :update]
       property :ttl, scopes: [:read, :create, :update]
       property :weight, scopes: [:read, :create, :update]
+      property :flags, scopes: [:read, :create, :update]
+      property :tag, scopes: [:read, :create, :update]
     end
   end
 end

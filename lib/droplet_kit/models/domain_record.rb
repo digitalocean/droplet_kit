@@ -8,5 +8,7 @@ module DropletKit
     attribute :port
     attribute :ttl
     attribute :weight
+    attribute :flags
+    attribute :tag
   end
 end
