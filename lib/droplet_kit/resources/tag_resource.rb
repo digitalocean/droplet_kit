@@ -25,13 +25,27 @@ module DropletKit
 
       action :tag_resources, 'POST /v2/tags/:name/resources' do
         verb :post
-        body { |hash| { resources: hash[:resources] }.to_json }
+        body do |hash|
+          resources = hash[:resources].map do |resource|
+            resource[:resource_id] = resource[:resource_id].to_s
+            resource
+          end
+
+          { resources: resources }.to_json
+        end
         handler(204) { |_| true }
       end
 
       action :untag_resources, 'DELETE /v2/tags/:name/resources' do
         verb :delete
-        body { |hash| { resources: hash[:resources] }.to_json }
+        body do |hash|
+          resources = hash[:resources].map do |resource|
+            resource[:resource_id] = resource[:resource_id].to_s
+            resource
+          end
+
+          { resources: resources }.to_json
+        end
         handler(204) { |_| true }
       end
     end

@@ -1,3 +1,6 @@
+### Version 2.2.2
+* Fix tag / untag resources request body
+
 ### Version 2.2.1
 * Relaxed faraday version requirement
 
