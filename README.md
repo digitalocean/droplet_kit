@@ -336,7 +336,7 @@ Actions supported:
 
 * `client.tags.all()`
 * `client.tags.find(name: 'name')`
-* `client.tags.create(tag)
+* `client.tags.create(DropletKit::Tag.new(name: 'name'))`
 * `client.tags.delete(name: 'name')`
 * `client.tags.tag_resources(name: 'name', resources: [{ resource_id => 'droplet_id', resource_type: 'droplet' }])`
 * `client.tags.untag_resources(name 'name', resources: [{ resource_id => 'droplet_id', resource_type: 'droplet' }])`
@@ -426,6 +426,6 @@ Bump the [version](https://github.com/digitalocean/droplet_kit/blob/master/lib/d
 that are being released to the [CHANGELOG](https://github.com/digitalocean/droplet_kit/blob/master/CHANGELOG.md) and
 if you have already done the rubygems sign in from the account, just run `rake release`, if not continue reading.
 
-Find the password on DO's lastpass account (search for rubygems), sign in with the user (run gem `gem push` and it 
+Find the password on DO's lastpass account (search for rubygems), sign in with the user (run gem `gem push` and it
 will ask you for DO's email and password you found on lastpass), the `gem push` command will fail, ignore. Now just run
 `rake release` and the gem will be pushed to rubygems.
