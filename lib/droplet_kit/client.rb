@@ -1,3 +1,5 @@
+require_relative 'version'
+
 require 'faraday'
 
 module DropletKit
@@ -61,7 +63,8 @@ module DropletKit
         url: DIGITALOCEAN_API,
         headers: {
           content_type: 'application/json',
-          authorization: "Bearer #{access_token}"
+          authorization: "Bearer #{access_token}",
+          user_agent: "droplet_kit (https://github.com/digitalocean/droplet_kit);#{DropletKit::VERSION};ruby #{RUBY_VERSION}-p#{RUBY_PATCHLEVEL};#{RUBY_PLATFORM}"
         }
       }
     end
