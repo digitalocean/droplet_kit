@@ -49,7 +49,7 @@ When you'd like to save objects, it's your responsibility to instantiate the obj
 
 ```ruby
 client = DropletKit::Client.new(access_token: 'YOUR_TOKEN')
-droplet = DropletKit::Droplet.new(name: 'mysite.com', region: 'nyc2', image: 'ubuntu-14-04-x64', size: '512mb')
+droplet = DropletKit::Droplet.new(name: 'mysite.com', region: 'nyc2', image: 'ubuntu-14-04-x64', size: 's-1vcpu-1gb')
 created = client.droplets.create(droplet)
 # => DropletKit::Droplet(id: 1231, name: 'something.com', ...)
 ```
@@ -134,7 +134,7 @@ Actions supported:
 * `client.droplet_actions.rename(droplet_id: droplet.id, name: 'New-Droplet-Name')`
 * `client.droplet_actions.rebuild(droplet_id: droplet.id, image: 'image_id')`
 * `client.droplet_actions.restore(droplet_id: droplet.id, image: 'image_id')`
-* `client.droplet_actions.resize(droplet_id: droplet.id, size: '1gb')`
+* `client.droplet_actions.resize(droplet_id: droplet.id, size: 's-1vcpu-1gb')`
 * `client.droplet_actions.find(droplet_id: droplet.id, id: action.id)`
 * `client.droplet_actions.action_for_id(droplet_id: droplet.id, type: 'event_name', param: 'value')`
 * `client.droplet_actions.action_for_tag(tag_name: 'tag_name', type: 'event_name', param: 'value')`
@@ -312,7 +312,7 @@ When you want to create a droplet using your stored SSH key.
 ```ruby
 client = DropletKit::Client.new(access_token: 'YOUR_TOKEN')
 my_ssh_keys = client.ssh_keys.all.collect {|key| key.fingerprint}
-droplet = DropletKit::Droplet.new(name: 'mysite.com', region: 'nyc2', image: 'ubuntu-14-04-x64', size: '512mb', ssh_keys: my_ssh_keys)
+droplet = DropletKit::Droplet.new(name: 'mysite.com', region: 'nyc2', image: 'ubuntu-14-04-x64', size: 's-1vcpu-1gb', ssh_keys: my_ssh_keys)
 created = client.droplets.create(droplet)
 # => DropletKit::Droplet(id: 1231, name: 'something.com', ...)
 ```
