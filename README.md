@@ -28,6 +28,16 @@ With your access token, retrieve a client instance with it.
 client = DropletKit::Client.new(access_token: 'YOUR_TOKEN')
 ```
 
+You may also set timeout and time to first byte options on the client.
+
+```ruby
+client = DropletKit::Client.new(
+  access_token: 'YOUR_TOKEN',
+  open_timeout: 60, # time to first byte in seconds
+  timeout:      120, # response timeout in seconds
+)
+```
+
 ## Design
 
 DropletKit follows a strict design of resources as methods on your client. For examples, for droplets, you will call your client like this:

@@ -2,17 +2,23 @@ require 'faraday'
 
 module DropletKit
   class Client
+    DEFAULT_OPEN_TIMEOUT = 60
+    DEFAULT_TIMEOUT = 120
     DIGITALOCEAN_API = 'https://api.digitalocean.com'
 
-    attr_reader :access_token
+    attr_reader :access_token, :timeout, :open_timeout
 
     def initialize(options = {})
       @access_token = options.with_indifferent_access[:access_token]
+      @open_timeout = options.with_indifferent_access[:open_timeout] || DEFAULT_OPEN_TIMEOUT
+      @timeout      = options.with_indifferent_access[:timeout] || DEFAULT_TIMEOUT
     end
 
     def connection
       @faraday ||= Faraday.new connection_options do |req|
         req.adapter :net_http
+        req.options.open_timeout = open_timeout
+        req.options.timeout = timeout
       end
     end
 

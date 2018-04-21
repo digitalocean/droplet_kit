@@ -13,6 +13,36 @@ RSpec.describe DropletKit::Client do
       client = DropletKit::Client.new('access_token' => 'my-token')
       expect(client.access_token).to eq('my-token')
     end
+
+    it 'has default open_timeout for faraday' do
+      client = DropletKit::Client.new('access_token' => 'my-token')
+      expect(client.open_timeout).to eq(DropletKit::Client::DEFAULT_OPEN_TIMEOUT)
+    end
+
+    it 'allows open_timeout to be set' do
+      open_timeout = 10
+      client = DropletKit::Client.new(
+        'access_token' => 'my-token',
+        'open_timeout' => open_timeout
+      )
+
+      expect(client.open_timeout).to eq(open_timeout)
+    end
+
+    it 'has default timeout' do
+      client = DropletKit::Client.new('access_token' => 'my-token')
+      expect(client.timeout).to eq(DropletKit::Client::DEFAULT_TIMEOUT)
+    end
+
+    it 'allows timeout to be set' do
+      timeout = 10
+      client = DropletKit::Client.new(
+        'access_token' => 'my-token',
+        'timeout' => timeout
+      )
+
+      expect(client.timeout).to eq(timeout)
+    end
   end
 
   describe "#method_missing" do
@@ -42,6 +72,14 @@ RSpec.describe DropletKit::Client do
     it 'allows access to faraday instance' do
       client.connection.use AcmeApp::CustomLogger
       expect(client.connection.builder.handlers).to include(AcmeApp::CustomLogger)
+    end
+
+    it 'has open_timeout set' do
+      expect(client.connection.options.open_timeout).to eq(DropletKit::Client::DEFAULT_OPEN_TIMEOUT)
+    end
+
+    it 'has timeout set' do
+      expect(client.connection.options.timeout).to eq(DropletKit::Client::DEFAULT_TIMEOUT)
     end
   end
 
