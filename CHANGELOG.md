@@ -1,3 +1,6 @@
+### Version 2.3.0
+* Added support for Let's Encrypt certificates.
+
 ### Version 2.2.2
 * Fix tag / untag resources request body
 
