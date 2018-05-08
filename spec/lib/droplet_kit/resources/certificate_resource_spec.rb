@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'pry'
 
 RSpec.describe DropletKit::CertificateResource do
   include_context 'resources'
@@ -12,9 +13,12 @@ RSpec.describe DropletKit::CertificateResource do
     match do |certificate|
       expect(certificate.id).to eq('892071a0-bb95-49bc-8021-3afd67a210bf')
       expect(certificate.name).to eq('web-cert-01')
+      expect(certificate.dns_names).to be_empty
       expect(certificate.not_after).to eq('2017-02-22T00:23:00Z')
       expect(certificate.sha1_fingerprint).to eq('dfcc9f57d86bf58e321c2c6c31c7a971be244ac7')
       expect(certificate.created_at).to eq('2017-02-08T16:02:37Z')
+      expect(certificate.state).to eq('verified')
+      expect(certificate.type).to eq('custom')
     end
   end
 
@@ -23,9 +27,12 @@ RSpec.describe DropletKit::CertificateResource do
       DropletKit::Certificate.new(
         id: '892071a0-bb95-49bc-8021-3afd67a210bf',
         name: 'web-cert-01',
+        dns_names: ["somedomain.com"],
         not_after: '2017-02-22T00:23:00Z',
         sha1_fingerprint: 'dfcc9f57d86bf58e321c2c6c31c7a971be244ac7',
-        created_at: '2017-02-08T16:02:37Z'
+        created_at: '2017-02-08T16:02:37Z',
+        status: "verified",
+        type: "custom",
       )
     end
 
@@ -71,6 +78,29 @@ RSpec.describe DropletKit::CertificateResource do
       stub_do_api(path, :post).with(body: json_body).to_return(body: api_fixture(certificate_fixture_path), status: 201)
 
       expect(resource.create(certificate)).to match_certificate_fixture
+    end
+
+    context 'lets encrypt certificate' do
+      let(:lets_encrypt_certificate) do
+        DropletKit::Certificate.new(
+          name: 'lets-encrypt-cert',
+          dns_names: ['somedomain.com', 'api.somedomain.com'],
+          type: 'lets_encrypt'
+        )
+      end
+
+      it 'returns created lets encrpyt certificate' do
+        json_body = DropletKit::CertificateMapping.representation_for(:create, lets_encrypt_certificate)
+        stub_do_api(path, :post).with(body: json_body).to_return(body: api_fixture('certificates/lets_encrypt'), status: 201)
+        parsed_json = JSON.parse(json_body)
+
+        certificate = resource.create(lets_encrypt_certificate)
+
+        expect(certificate.name).to eq(parsed_json['name'])
+        expect(certificate.type).to eq(parsed_json['type'])
+        expect(certificate.dns_names).to match_array(parsed_json['dns_names'])
+        expect(certificate.state).to eq('pending')
+      end
     end
 
     it_behaves_like 'an action that handles invalid parameters' do
