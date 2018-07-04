@@ -1,8 +1,8 @@
 # DropletKit
+[![Build Status](https://travis-ci.org/digitalocean/droplet_kit.svg?branch=master)](https://travis-ci.org/digitalocean/droplet_kit)
+[![Gem Version](https://badge.fury.io/rb/droplet_kit.svg)](https://badge.fury.io/rb/droplet_kit)
 
 DropletKit is the official [DigitalOcean V2 API](https://developers.digitalocean.com/v2/) client. It supports everything the API can do with a simple interface written in Ruby.
-
-[![Build Status](https://travis-ci.org/digitalocean/droplet_kit.svg?branch=master)](https://travis-ci.org/digitalocean/droplet_kit)
 
 ## Installation
 
@@ -25,6 +25,7 @@ You'll need to generate an access token in Digital Ocean's control panel at http
 With your access token, retrieve a client instance with it.
 
 ```ruby
+require 'droplet_kit'
 client = DropletKit::Client.new(access_token: 'YOUR_TOKEN')
 ```
 
