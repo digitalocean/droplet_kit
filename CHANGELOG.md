@@ -1,3 +1,6 @@
+### Version 2.4.0
+* Added CDN resource.
+
 ### Version 2.3.0
 * Added support for Let's Encrypt certificates.
 

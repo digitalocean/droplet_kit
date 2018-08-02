@@ -65,6 +65,26 @@ droplet = client.droplets.find(id: 123)
 
 # All Resources and actions.
 
+## CDN resource
+
+```ruby
+client = DropletKit::Client.new(access_token: 'TOKEN')
+client.cdns #=> DropletKit::CertificateResource
+cdn = DropletKit::CDN.new(
+  origin: 'myspace.nyc3.digitaloceanspaces.com',
+  ttl: 1800
+)
+```
+
+Actions supported:
+
+* `client.cdns.find(id: 'id')`
+* `client.cdns.all()`
+* `client.cdns.create(cdn)`
+* `client.cdns.update_ttl(id: 'id', ttl: 3600)`
+* `client.cdns.flush_cache(id: 'id', files: ['*', 'path/to/css/*'])`
+* `client.cdns.delete(id: 'id')`
+
 ## Certificate resource
 
 ```ruby
