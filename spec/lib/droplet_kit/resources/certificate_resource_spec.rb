@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'pry'
 
 RSpec.describe DropletKit::CertificateResource do
   include_context 'resources'
