@@ -2,8 +2,11 @@
   "tag": {
     "name": "testing-1",
     "resources": {
+      "count": 2,
+      "last_tagged_uri": "https://api.digitalocean.com/v2/droplets/1",
       "droplets": {
         "count": 1,
+        "last_tagged_uri": "https://api.digitalocean.com/v2/droplets/1",
         "last_tagged": {
           "id": 1,
           "name": "test.example.com",
@@ -82,10 +85,14 @@
 
           ],
           "tags": [
-            "tag-1",
-            "tag-2"
+            "testing-1",
+            "testing-2"
           ]
         }
+      },
+      "images": {
+        "count": 1,
+        "last_tagged_uri": "https://api.digitalocean.com/v2/images/146"
       }
     }
   }
