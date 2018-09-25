@@ -10,4 +10,8 @@ module DropletKit
     attribute :regions
     attribute :available
   end
+
+  def self.from_identifier(identifier)
+    new(slug: identifier)
+  end
 end
