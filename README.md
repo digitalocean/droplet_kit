@@ -359,8 +359,8 @@ Actions supported:
 * `client.tags.find(name: 'name')`
 * `client.tags.create(DropletKit::Tag.new(name: 'name'))`
 * `client.tags.delete(name: 'name')`
-* `client.tags.tag_resources(name: 'name', resources: [{ resource_id => 'droplet_id', resource_type: 'droplet' }])`
-* `client.tags.untag_resources(name 'name', resources: [{ resource_id => 'droplet_id', resource_type: 'droplet' }])`
+* `client.tags.tag_resources(name: 'name', resources: [{ resource_id => 'droplet_id', resource_type: 'droplet' },{ resource_id => 'image_id', resource_type: 'image' }])`
+* `client.tags.untag_resources(name 'name', resources: [{ resource_id => 'droplet_id', resource_type: 'droplet' },{ resource_id => 'image_id', resource_type: 'image' }])`
 
 ## Account resource
 

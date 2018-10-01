@@ -5,10 +5,11 @@ module DropletKit
     kartograph do
       mapping TaggedDropletsResources
 
-      root_key plural: 'droplets', singular: 'tag', scopes: [:read]
+      root_key plural: 'droplets', singular: 'droplet', scopes: [:read]
 
       scoped :read do
         property :count
+        property :last_tagged_uri
         property :last_tagged, include: DropletMapping
       end
     end

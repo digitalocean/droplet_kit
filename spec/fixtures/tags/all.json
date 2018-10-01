@@ -3,18 +3,26 @@
     {
       "name": "testing-1",
       "resources": {
+        "count": 0,
         "droplets": {
           "count": 0,
           "last_tagged": null
+        },
+        "images": {
+          "count": 0
         }
       }
     },
     {
       "name": "testing-2",
       "resources": {
+        "count": 0,
         "droplets": {
           "count": 0,
           "last_tagged": null
+        },
+        "images": {
+          "count": 0
         }
       }
     }

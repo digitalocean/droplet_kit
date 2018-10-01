@@ -1,7 +1,6 @@
 module DropletKit
-  class TaggedDropletsResources < BaseModel
+  class TaggedImagesResources < BaseModel
     attribute :count
-    attribute :last_tagged
     attribute :last_tagged_uri
   end
 end
