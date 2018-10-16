@@ -1,0 +1,84 @@
+{
+  "resources": [
+    {
+      "urn": "do:space:poptarts",
+      "assigned_at": "2018-09-20T19:08:37Z",
+      "links": {
+        "self": "https://poptarts.nyc3.digitaloceanspaces.com"
+      }
+    },
+    {
+      "urn": "do:droplet:24535",
+      "assigned_at": "2018-09-19T19:08:37Z",
+      "links": {
+        "self": "https://api.digitalocean.com/v2/droplets/24535"
+      }
+    },
+    {
+      "urn": "do:droplet:182734",
+      "assigned_at": "2018-09-18T19:08:37Z",
+      "links": {
+        "self": "https://api.digitalocean.com/v2/droplets/182734"
+      }
+    },
+    {
+      "urn": "do:droplet:235312",
+      "assigned_at": "2018-09-17T19:08:37Z",
+      "links": {
+        "self": "https://api.digitalocean.com/v2/droplets/235312"
+      }
+    },
+    {
+      "urn": "do:droplet:2435246",
+      "assigned_at": "2018-09-16T19:08:37Z",
+      "links": {
+        "self": "https://api.digitalocean.com/v2/droplets/2435246"
+      }
+    },
+    {
+      "urn": "do:droplet:3243262",
+      "assigned_at": "2018-09-15T19:08:37Z",
+      "links": {
+        "self": "https://api.digitalocean.com/v2/droplets/3243262"
+      }
+    },
+    {
+      "urn": "do:droplet:245351",
+      "assigned_at": "2018-09-14T19:08:37Z",
+      "links": {
+        "self": "https://api.digitalocean.com/v2/droplets/245351"
+      }
+    },
+    {
+      "urn": "do:droplet:1827341",
+      "assigned_at": "2018-09-13T19:08:37Z",
+      "links": {
+        "self": "https://api.digitalocean.com/v2/droplets/1827341"
+      }
+    },
+    {
+      "urn": "do:droplet:2353121",
+      "assigned_at": "2018-09-12T19:08:37Z",
+      "links": {
+        "self": "https://api.digitalocean.com/v2/droplets/2353121"
+      }
+    },
+    {
+      "urn": "do:droplet:24352461",
+      "assigned_at": "2018-09-11T19:08:37Z",
+      "links": {
+        "self": "https://api.digitalocean.com/v2/droplets/24352461"
+      }
+    }
+  ],
+  "meta": {
+    "total": 11
+  },
+  "links": {
+    "pages": {
+      "first": "https://api.digitalocean.com/v2/projects/c177dc8c-12c1-4483-af1c-877eed0f14cb/resources?per_page=10",
+      "next": "https://api.digitalocean.com/v2/projects/c177dc8c-12c1-4483-af1c-877eed0f14cb/resources?page=2&per_page=10",
+      "last": "https://api.digitalocean.com/v2/projects/c177dc8c-12c1-4483-af1c-877eed0f14cb/resources?page=2&per_page=10"
+    }
+  }
+}

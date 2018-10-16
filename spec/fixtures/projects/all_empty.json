@@ -1,0 +1,12 @@
+{
+  "projects": [],
+  "meta": {
+    "total": 0
+  },
+  "links": {
+    "pages": {
+      "first": "https://api.digitalocean.com/v2/projects",
+      "last": "https://api.digitalocean.com/v2/projects"
+    }
+  }
+}

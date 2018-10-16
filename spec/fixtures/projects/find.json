@@ -1,0 +1,14 @@
+{
+  "project": {
+    "id": "c177dc8c-12c1-4483-af1c-877eed0f14cb",
+    "owner_uuid": "34fc5c195b417b7157649f6b8ae273ae9b1b2970",
+    "owner_id": 123,
+    "name": "cloud.digitalocean.com",
+    "description": "Our control panel",
+    "purpose": "Web Application",
+    "environment": "Production",
+    "is_default": false,
+    "created_at": "2018-08-22T20:23:12Z",
+    "updated_at": "2018-08-22T21:55:34Z"
+  }
+}

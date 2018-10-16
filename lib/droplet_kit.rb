@@ -24,6 +24,9 @@ module DropletKit
   autoload :Account, 'droplet_kit/models/account'
   autoload :DropletUpgrade, 'droplet_kit/models/droplet_upgrade'
   autoload :FloatingIp, 'droplet_kit/models/floating_ip'
+  autoload :Project, 'droplet_kit/models/project'
+  autoload :ProjectAssignment, 'droplet_kit/models/project_assignment'
+  autoload :Links, 'droplet_kit/models/links'
   autoload :Tag, 'droplet_kit/models/tag'
   autoload :TaggedResources, 'droplet_kit/models/tagged_resources'
   autoload :TaggedDropletsResources, 'droplet_kit/models/tagged_droplets_resources'
@@ -56,6 +59,7 @@ module DropletKit
   autoload :DropletUpgradeResource, 'droplet_kit/resources/droplet_upgrade_resource'
   autoload :FloatingIpResource, 'droplet_kit/resources/floating_ip_resource'
   autoload :FloatingIpActionResource, 'droplet_kit/resources/floating_ip_action_resource'
+  autoload :ProjectResource, 'droplet_kit/resources/project_resource'
   autoload :TagResource, 'droplet_kit/resources/tag_resource'
   autoload :VolumeResource, 'droplet_kit/resources/volume_resource'
   autoload :VolumeActionResource, 'droplet_kit/resources/volume_action_resource'
@@ -83,6 +87,9 @@ module DropletKit
   autoload :AccountMapping, 'droplet_kit/mappings/account_mapping'
   autoload :DropletUpgradeMapping, 'droplet_kit/mappings/droplet_upgrade_mapping'
   autoload :FloatingIpMapping, 'droplet_kit/mappings/floating_ip_mapping'
+  autoload :ProjectMapping, 'droplet_kit/mappings/project_mapping'
+  autoload :ProjectAssignmentMapping, 'droplet_kit/mappings/project_assignment_mapping'
+  autoload :LinksMapping, 'droplet_kit/mappings/links_mapping'
   autoload :TagMapping, 'droplet_kit/mappings/tag_mapping'
   autoload :TaggedResourcesMapping, 'droplet_kit/mappings/tagged_resources_mapping'
   autoload :TaggedDropletsResourcesMapping, 'droplet_kit/mappings/tagged_droplets_resources_mapping'
@@ -109,6 +116,7 @@ module DropletKit
   Error = Class.new(StandardError)
   FailedCreate = Class.new(DropletKit::Error)
   FailedUpdate = Class.new(DropletKit::Error)
+  FailedDelete = Class.new(DropletKit::Error)
 
   class RateLimitReached < DropletKit::Error
     attr_accessor :reset_at

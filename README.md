@@ -346,6 +346,24 @@ Actions supported:
 * `client.ssh_keys.delete(id: 'id')`
 * `client.ssh_keys.update(ssh_key, id: 'id')`
 
+## Project resource
+
+```ruby
+client = DropletKit::Client.new(access_token: 'TOKEN')
+client.projects #=> DropletKit::ProjectResource
+```
+
+Actions supported:
+
+* `client.projects.all()`
+* `client.projects.find(id: 'id')`
+* `client.projects.find_default` is equivalent to `client.projects.find(id: DropletKit::Project::DEFAULT)`
+* `client.projects.create(DropletKit::Project.new(name: 'name', purpose: 'Service or API'))`
+* `client.projects.update(project, id: 'id')`
+* `client.projects.delete(id: 'id')`
+* `client.projects.list_resources(id: 'id')`
+* `client.projects.assign_resources([DropletKit::Droplet.new(id: 123), "do:space:myspace.com"], id: 'id')`
+
 ## Tag resource
 
 ```ruby
