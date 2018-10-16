@@ -1,3 +1,6 @@
+### Version 2.6.0
+* Added ability to manage projects.
+
 ### Version 2.5.0
 * Added ability to tag images and retrieving new fields for tagged resources.
 
