@@ -4,10 +4,11 @@ module DropletKit
   class Client
     DIGITALOCEAN_API = 'https://api.digitalocean.com'
 
-    attr_reader :access_token
+    attr_reader :access_token, :user_agent
 
     def initialize(options = {})
       @access_token = options.with_indifferent_access[:access_token]
+      @user_agent = options.with_indifferent_access[:user_agent]
     end
 
     def connection
@@ -56,6 +57,10 @@ module DropletKit
       @resources ||= {}
     end
 
+    def default_user_agent
+      "DropletKit/#{DropletKit::VERSION} Faraday/#{Faraday::VERSION}"
+    end
+
     private
 
     def connection_options
@@ -63,7 +68,8 @@ module DropletKit
         url: DIGITALOCEAN_API,
         headers: {
           content_type: 'application/json',
-          authorization: "Bearer #{access_token}"
+          authorization: "Bearer #{access_token}",
+          user_agent: "#{user_agent} #{default_user_agent}".strip
         }
       }
     end
