@@ -1,4 +1,5 @@
 require 'faraday'
+require 'pry'
 
 module DropletKit
   class Client
@@ -22,6 +23,7 @@ module DropletKit
         cdns: CDNResource,
         certificates: CertificateResource,
         droplets: DropletResource,
+        kubernetes: KubernetesResource,
         domains: DomainResource,
         domain_records: DomainRecordResource,
         droplet_actions: DropletActionResource,
