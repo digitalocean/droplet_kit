@@ -63,7 +63,14 @@ RSpec.describe DropletKit::KubernetesResource do
       expect(clusters).to all(be_kind_of(DropletKit::Kubernetes))
 
       cluster = clusters.first
+
       expect(cluster.id).to eq("cluster-1-id")
+      expect(cluster.name).to eq("test-cluster")
+      expect(cluster.region).to eq("nyc1")
+      expect(cluster.version).to eq("1.12.1-do.2")
+      expect(cluster.cluster_subnet).to eq("10.244.0.0/16")
+      expect(cluster.ipv4).to eq("0.0.0.0")
+      expect(cluster.tags).to match_array(["test-k8", "k8s", "k8s:cluster-1-id"])
     end
 
     it 'returns an empty array of droplets' do
