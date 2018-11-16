@@ -44,6 +44,8 @@ module DropletKit
   autoload :FirewallPendingChange, 'droplet_kit/models/firewall_pending_change'
   autoload :CDN, 'droplet_kit/models/cdn'
   autoload :Kubernetes, 'droplet_kit/models/kubernetes'
+  autoload :KubernetesNodePool, 'droplet_kit/models/kubernetes_node_pool'
+  autoload :KubernetesNode, 'droplet_kit/models/kubernetes_node'
 
   # Resources
   autoload :DropletResource, 'droplet_kit/resources/droplet_resource'
@@ -109,6 +111,8 @@ module DropletKit
   autoload :FirewallPendingChangeMapping, 'droplet_kit/mappings/firewall_pending_change_mapping'
   autoload :CDNMapping, 'droplet_kit/mappings/cdn_mapping'
   autoload :KubernetesMapping, 'droplet_kit/mappings/kubernetes_mapping'
+  autoload :KubernetesNodePoolMapping, 'droplet_kit/mappings/kubernetes_node_pool_mapping'
+  autoload :KubernetesNodeMapping, 'droplet_kit/mappings/kubernetes_node_mapping'
 
   # Utils
   autoload :PaginatedResource, 'droplet_kit/paginated_resource'
