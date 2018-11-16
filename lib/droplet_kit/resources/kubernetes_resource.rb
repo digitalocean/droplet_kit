@@ -4,6 +4,7 @@ module DropletKit
 
     resources do
       action :all, 'GET /v2/kubernetes/clusters' do
+        query_keys :per_page, :page, :tag_name
         handler(200) { |response| KubernetesMapping.extract_collection(response.body, :read) }
       end
 
