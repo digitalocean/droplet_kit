@@ -1,0 +1,70 @@
+{
+  "kubernetes_clusters": [
+    {
+      "id": "cluster-1-id",
+      "name": "k8s-1-12-1-do-2-nyc1-1542400893024",
+      "region": "nyc1",
+      "version": "1.12.1-do.2",
+      "cluster_subnet": "10.244.0.0/16",
+      "service_subnet": "",
+      "ipv4": "104.248.50.56",
+      "endpoint": "",
+      "tags": [
+        "scott-k8",
+        "k8s",
+        "k8s:6afca5dd-7b87-43fd-887a-308457e21115"
+      ],
+      "node_pools": [
+        {
+          "id": "e8149cc3-d862-403a-95c3-33bb7ed5c530",
+          "name": "k8s-1-12-1-do-2-nyc1-1542400893024-1",
+          "size": "s-1vcpu-1gb",
+          "count": 3,
+          "tags": [
+            "k8s",
+            "k8s:6afca5dd-7b87-43fd-887a-308457e21115",
+            "k8s:worker",
+            "scott-k8"
+          ],
+          "nodes": [
+            {
+              "id": "06a74b77-5a1d-47e4-8b04-d3e0d248ff72",
+              "name": "nervous-bartik-33bs",
+              "status": {
+                "state": "running"
+              },
+              "created_at": "2018-11-16T20:41:44Z",
+              "updated_at": "2018-11-16T20:44:27Z"
+            },
+            {
+              "id": "114f9605-2887-47e1-9b6b-a5e8c1f400bb",
+              "name": "nervous-bartik-33bk",
+              "status": {
+                "state": "running"
+              },
+              "created_at": "2018-11-16T20:41:44Z",
+              "updated_at": "2018-11-16T20:44:27Z"
+            },
+            {
+              "id": "9090cfaa-d138-4857-9ea3-4b555b76e0f1",
+              "name": "nervous-bartik-33b5",
+              "status": {
+                "state": "running"
+              },
+              "created_at": "2018-11-16T20:41:44Z",
+              "updated_at": "2018-11-16T20:44:27Z"
+            }
+          ]
+        }
+      ],
+      "status": {
+        "state": "running"
+      },
+      "created_at": "2018-11-16T20:41:43Z",
+      "updated_at": "2018-11-16T20:44:27Z"
+    }
+  ],
+  "meta": {
+    "total": 1
+  }
+}
