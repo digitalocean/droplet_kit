@@ -4,6 +4,7 @@ module DropletKit
 
     resources do
       action :all, 'GET /v2/kubernetes/clusters' do
+        handler(200) { |response| KubernetesMapping.extract_collection(response.body, :read) }
       end
 
       action :find, 'GET /v2/kubernetes/clusters/:cluster_id' do
@@ -44,6 +45,10 @@ module DropletKit
 
       action :get_options, 'GET /v2/kubernetes/options' do
       end
+    end
+
+    def all(*args)
+      PaginatedResource.new(action(:all), self, *args)
     end
   end
 end
