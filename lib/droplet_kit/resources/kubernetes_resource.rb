@@ -29,12 +29,19 @@ module DropletKit
       end
 
       action :cluster_find_node_pool, 'GET /v2/kubernetes/clusters/:cluster_id/node_pools/:pool_id' do
+        handler(200) { |response| KubernetesNodePoolMapping.extract_single(response.body, :read) }
       end
 
       action :cluster_node_pool_create, 'POST /v2/kubernetes/clusters/:cluster_id/node_pools' do
+        body { |node_pool| KubernetesNodePoolMapping.representation_for(:create, node_pool) }
+        handler(202) { |response| KubernetesNodePoolMapping.extract_single(response.body, :read) }
+        handler(422) { |response| ErrorMapping.fail_with(FailedCreate, response.body) }
       end
 
       action :cluster_node_pool_update, 'PUT /v2/kubernetes/clusters/:cluster_id/node_pools/:pool_id' do
+        body { |node_pool| KubernetesNodePoolMapping.representation_for(:update, node_pool) }
+        handler(200) { |response| KubernetesNodePoolMapping.extract_single(response.body, :read) }
+        handler(422) { |response| ErrorMapping.fail_with(FailedUpdate, response.body) }
       end
 
       action :cluster_node_pool_delete, 'DELETE /v2/kubernetes/clusters/:cluster_id/node_pools/:pool_id' do
