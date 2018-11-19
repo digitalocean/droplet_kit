@@ -6,7 +6,8 @@ module DropletKit
       action :all, 'GET /v2/kubernetes/clusters' do
       end
 
-      action :find, 'GET /v2/kubernetes/clusters/:cluster_id' do
+      action :find, 'GET /v2/kubernetes/clusters/:id' do
+        handler(200) { |response| KubernetesMapping.extract_single(response.body, :read) }
       end
 
       action :create, 'POST /v2/kubernetes/clusters' do
