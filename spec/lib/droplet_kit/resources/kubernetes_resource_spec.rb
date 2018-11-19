@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'pry'
 
 RSpec.describe DropletKit::KubernetesResource do
   subject(:resource) { described_class.new(connection: connection) }
@@ -15,18 +14,15 @@ RSpec.describe DropletKit::KubernetesResource do
         expect(pool).to be_kind_of(DropletKit::KubernetesNodePool)
         expect(pool.attributes.keys).to eq kubernetes_node_pool_attributes.keys
       end
-      check_node_pools(node_pools)
+      expect(node_pools.length).to eq 1
+      expect(node_pools.first["id"]).to eq "0a209365-2fac-465e-a959-bb91f232923a"
+      expect(node_pools.first["name"]).to eq "k8s-1-12-1-do-1-nyc1-1540837045848-1"
+      expect(node_pools.first["size"]).to eq "s-4vcpu-8gb"
+      expect(node_pools.first["count"]).to eq 2
+      expect(node_pools.first["tags"]).to eq [ "omar-left-his-mark" ]
+      expect(node_pools.first["nodes"].length).to eq 2
     end
   end
 
 end
 
-def check_node_pools(pools)
-  expect(pools.length).to eq 1
-  expect(pools[0]["id"]).to eq "0a209365-2fac-465e-a959-bb91f232923a"
-  expect(pools[0]["name"]).to eq "k8s-1-12-1-do-1-nyc1-1540837045848-1"
-  expect(pools[0]["size"]).to eq "s-4vcpu-8gb"
-  expect(pools[0]["count"]).to eq 2
-  expect(pools[0]["tags"]).to eq [ "omar-left-his-mark" ]
-  expect(pools[0]["nodes"].length).to eq 2
-end
