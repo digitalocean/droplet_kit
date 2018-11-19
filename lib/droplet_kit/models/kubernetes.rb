@@ -1,6 +1,6 @@
 module DropletKit
   class Kubernetes < BaseModel
-    [:id, :name, :region].each do |key|
+    [:id, :name, :region, :version, :cluster_subnet, :service_subnet, :ipv4, :endpoint, :tags, :node_pools].each do |key|
       attribute(key)
     end
   end
