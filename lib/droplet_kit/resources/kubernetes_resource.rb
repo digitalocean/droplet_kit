@@ -18,7 +18,8 @@ module DropletKit
         handler(422) { |response| ErrorMapping.fail_with(FailedCreate, response.body) }
       end
 
-      action :config, 'GET /v2/kubernetes/clusters/:cluster_id/kubeconfig' do
+      action :config, 'GET /v2/kubernetes/clusters/:id/kubeconfig' do
+        handler(200) { |response| response.body }
       end
 
       action :update, 'PUT /v2/kubernetes/clusters/:id' do
