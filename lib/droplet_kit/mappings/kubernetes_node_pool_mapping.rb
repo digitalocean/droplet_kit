@@ -19,6 +19,9 @@ module DropletKit
       property :size, scopes: [:create, :update]
       property :count, scopes: [:create, :update]
       property :tags, scopes: [:create, :update]
+
+      # recycle
+      property :nodes, plural: true, scopes: [:recycle]
     end
   end
 end

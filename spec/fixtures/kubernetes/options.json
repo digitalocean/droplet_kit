@@ -1,0 +1,34 @@
+{
+  "options": {
+    "versions": [
+      {
+        "slug": "1.12.1-do.2",
+        "kubernetes_version": "1.12.1"
+      },
+      {
+        "slug": "1.12.1-do.1",
+        "kubernetes_version": "1.12.1"
+      },
+      {
+        "slug": "1.11.1-do.2",
+        "kubernetes_version": "1.11.1"
+      },
+      {
+        "slug": "1.11.1-do.1",
+        "kubernetes_version": "1.11.1"
+      },
+      {
+        "slug": "1.10.7-gen2",
+        "kubernetes_version": "1.10.7"
+      },
+      {
+        "slug": "1.10.7-gen1",
+        "kubernetes_version": "1.10.7"
+      },
+      {
+        "slug": "1.10.7-gen0",
+        "kubernetes_version": "1.10.7"
+      }
+    ]
+  }
+}

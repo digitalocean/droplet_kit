@@ -106,5 +106,53 @@ RSpec.describe DropletKit::KubernetesResource do
       expect(updated_node_pool.nodes.length).to eq 2
     end
   end
+
+  describe 'cluster_node_pool_delete' do
+    it 'should delete a clusters node_pool' do
+      node_pool_id = "f9f16e5a-83b8-4c9b-acf1-4f91492a6652"
+      stub_do_api("/v2/kubernetes/clusters/#{cluster_id}/node_pools/#{node_pool_id}", :delete).to_return(status: 202)
+      deleted_node_pool = resource.cluster_node_pool_delete(cluster_id: cluster_id, pool_id: node_pool_id)
+
+      expect(deleted_node_pool).to eq true
+    end
+  end
+
+  describe 'cluster_node_pool_recycle' do
+    it 'should recycle the clusters node_pool' do
+      stub_do_api("/v2/kubernetes/clusters/#{cluster_id}/node_pools", :get).to_return(body: api_fixture('kubernetes/cluster_node_pools'))
+      node_pools = resource.cluster_node_pools(cluster_id: cluster_id)
+      node_pools.each do |pool|
+        expect(pool).to be_kind_of(DropletKit::KubernetesNodePool)
+      end
+      node_pool_id = "0a209365-2fac-465e-a959-bb91f232923a"
+      expect(node_pools.length).to eq 1
+      expect(node_pools.first["id"]).to eq node_pool_id
+      expect(node_pools.first["name"]).to eq "k8s-1-12-1-do-1-nyc1-1540837045848-1"
+      expect(node_pools.first["count"]).to eq 2
+
+      nodes = node_pools.first.nodes
+      expect(nodes.length).to eq 2
+      node_ids = nodes.map(&:id)
+      recycle_json = { nodes: node_ids}.to_json
+      stub_do_api("/v2/kubernetes/clusters/#{cluster_id}/node_pools/#{node_pool_id}/recycle", :post).with(body: recycle_json).to_return(status: 202)
+      response = resource.cluster_node_pool_recycle(node_ids, cluster_id: cluster_id, pool_id: node_pool_id)
+
+      expect(response).to eq true
+    end
+  end
+
+  describe 'get_options' do
+    it 'should get the kubernetes options' do
+      stub_do_api("/v2/kubernetes/options", :get).to_return(body: api_fixture('kubernetes/options'))
+      options = resource.get_options
+      expect(options).to be_kind_of(DropletKit::KubernetesOptions)
+      expect(options.versions.length).to eq 7
+      options.versions.each do |version|
+        expect(version).to be_kind_of(DropletKit::KubernetesOptionsMapping::Version)
+        expect(version.slug).to be_present
+        expect(version.kubernetes_version).to be_present
+      end
+    end
+  end
 end
 

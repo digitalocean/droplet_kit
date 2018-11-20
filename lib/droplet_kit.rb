@@ -46,6 +46,7 @@ module DropletKit
   autoload :Kubernetes, 'droplet_kit/models/kubernetes'
   autoload :KubernetesNodePool, 'droplet_kit/models/kubernetes_node_pool'
   autoload :KubernetesNode, 'droplet_kit/models/kubernetes_node'
+  autoload :KubernetesOptions, 'droplet_kit/models/kubernetes_options'
 
   # Resources
   autoload :DropletResource, 'droplet_kit/resources/droplet_resource'
@@ -113,6 +114,7 @@ module DropletKit
   autoload :KubernetesMapping, 'droplet_kit/mappings/kubernetes_mapping'
   autoload :KubernetesNodePoolMapping, 'droplet_kit/mappings/kubernetes_node_pool_mapping'
   autoload :KubernetesNodeMapping, 'droplet_kit/mappings/kubernetes_node_mapping'
+  autoload :KubernetesOptionsMapping, 'droplet_kit/mappings/kubernetes_options_mapping'
 
   # Utils
   autoload :PaginatedResource, 'droplet_kit/paginated_resource'
