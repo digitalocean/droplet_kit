@@ -24,31 +24,31 @@ module DropletKit
       action :delete, 'DELETE /v2/kubernetes/clusters/:cluster_id' do
       end
 
-      action :cluster_node_pools, 'GET /v2/kubernetes/clusters/:cluster_id/node_pools' do
+      action :cluster_node_pools, 'GET /v2/kubernetes/clusters/:id/node_pools' do
         handler(200) { |response| KubernetesNodePoolMapping.extract_collection(response.body, :read) }
       end
 
-      action :cluster_find_node_pool, 'GET /v2/kubernetes/clusters/:cluster_id/node_pools/:pool_id' do
+      action :cluster_find_node_pool, 'GET /v2/kubernetes/clusters/:id/node_pools/:pool_id' do
         handler(200) { |response| KubernetesNodePoolMapping.extract_single(response.body, :read) }
       end
 
-      action :cluster_node_pool_create, 'POST /v2/kubernetes/clusters/:cluster_id/node_pools' do
+      action :cluster_node_pool_create, 'POST /v2/kubernetes/clusters/:id/node_pools' do
         body { |node_pool| KubernetesNodePoolMapping.representation_for(:create, node_pool) }
         handler(202) { |response| KubernetesNodePoolMapping.extract_single(response.body, :read) }
         handler(422) { |response| ErrorMapping.fail_with(FailedCreate, response.body) }
       end
 
-      action :cluster_node_pool_update, 'PUT /v2/kubernetes/clusters/:cluster_id/node_pools/:pool_id' do
+      action :cluster_node_pool_update, 'PUT /v2/kubernetes/clusters/:id/node_pools/:pool_id' do
         body { |node_pool| KubernetesNodePoolMapping.representation_for(:update, node_pool) }
         handler(200) { |response| KubernetesNodePoolMapping.extract_single(response.body, :read) }
         handler(404) { |response| ErrorMapping.fail_with(FailedUpdate, response.body) }
       end
 
-      action :cluster_node_pool_delete, 'DELETE /v2/kubernetes/clusters/:cluster_id/node_pools/:pool_id' do
+      action :cluster_node_pool_delete, 'DELETE /v2/kubernetes/clusters/:id/node_pools/:pool_id' do
         handler(202) { |response| true }
       end
 
-      action :cluster_node_pool_recycle, 'POST /v2/kubernetes/clusters/:cluster_id/node_pools/:pool_id/recycle' do
+      action :cluster_node_pool_recycle, 'POST /v2/kubernetes/clusters/:id/node_pools/:pool_id/recycle' do
         body { |node_ids| { nodes: node_ids }.to_json }
         handler(202) { |response| true }
         handler(404) { |response| ErrorMapping.fail_with(FailedUpdate, response.body) }
