@@ -8,21 +8,21 @@ RSpec.describe DropletKit::KubernetesResource do
     let(:path) { '/v2/kubernetes/clusters' }
     let(:new_attrs) do
       {
-        "name": "test-cluster-01",
-        "region": "nyc1",
-        "version": "1.12.1-do.2",
-        "tags": ["test"],
-        "node_pools": [
+        "name" => "test-cluster-01",
+        "region" => "nyc1",
+        "version" => "1.12.1-do.2",
+        "tags" => ["test"],
+        "node_pools" => [
           {
-            "size": "s-1vcpu-1gb",
-            "count": 3,
-            "name": "frontend-pool",
-            "tags": ["frontend"]
+            "size" => "s-1vcpu-1gb",
+            "count" => 3,
+            "name" => "frontend-pool",
+            "tags" => ["frontend"]
           },
           {
-            "size": "c-4",
-            "count": 2,
-            "name": "backend-pool"
+            "size" => "c-4",
+            "count" => 2,
+            "name" => "backend-pool"
           }
         ]
       }
