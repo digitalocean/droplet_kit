@@ -13,6 +13,9 @@ module DropletKit
       end
 
       action :create, 'POST /v2/kubernetes/clusters' do
+        body { |object| KubernetesMapping.representation_for(:create, object) }
+        handler(201) { |response, cluster| KubernetesMapping.extract_into_object(cluster, response.body, :read) }
+        handler(422) { |response| ErrorMapping.fail_with(FailedCreate, response.body) }
       end
 
       action :config, 'GET /v2/kubernetes/clusters/:cluster_id/kubeconfig' do
