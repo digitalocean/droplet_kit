@@ -6,7 +6,7 @@ RSpec.describe DropletKit::KubernetesResource do
 
   describe '#find' do
     it 'returns a singular cluster' do
-      stub_do_api('/v2/kubernetes/clusters/20', :get).to_return(body: api_fixture('kubernetes/find'))
+      stub_do_api('/v2/kubernetes/clusters/20', :get).to_return(body: api_fixture('kubernetes/clusters/find'))
       cluster = resource.find(id: 20)
       expect(cluster).to be_kind_of(DropletKit::Kubernetes)
 
