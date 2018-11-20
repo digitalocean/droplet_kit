@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'pry'
 
 RSpec.describe DropletKit::KubernetesResource do
   subject(:resource) { described_class.new(connection: connection) }
