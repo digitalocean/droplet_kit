@@ -123,7 +123,7 @@ RSpec.describe DropletKit::KubernetesResource do
 
 
         as_string = DropletKit::KubernetesMapping.representation_for(:create, cluster)
-        stub_do_api(path, :post).with(body: as_string).to_return(body: api_fixture('kubernetes/create'), status: 201)
+        stub_do_api(path, :post).with(body: as_string).to_return(body: api_fixture('kubernetes/clusters/create'), status: 201)
         created_cluster = resource.create(cluster)
         expect(cluster.id).to eq("cluster-1-id")
         expect(cluster.name).to eq("test-cluster")
@@ -139,7 +139,7 @@ RSpec.describe DropletKit::KubernetesResource do
         cluster = DropletKit::Kubernetes.new(new_attrs)
 
         json = DropletKit::KubernetesMapping.representation_for(:create, cluster)
-        stub_do_api(path, :post).with(body: json).to_return(body: api_fixture('kubernetes/create'), status: 201)
+        stub_do_api(path, :post).with(body: json).to_return(body: api_fixture('kubernetes/clusters/create'), status: 201)
         created_cluster = resource.create(cluster)
         expect(created_cluster).to be cluster
       end
