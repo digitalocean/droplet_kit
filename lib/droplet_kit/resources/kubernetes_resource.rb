@@ -15,7 +15,10 @@ module DropletKit
       action :config, 'GET /v2/kubernetes/clusters/:cluster_id/kubeconfig' do
       end
 
-      action :update, 'PUT /v2/kubernetes/clusters/:cluster_id' do
+      action :update, 'PUT /v2/kubernetes/clusters/:id' do
+        body { |cluster| KubernetesMapping.representation_for(:update, cluster) }
+        handler(202) { |response| KubernetesMapping.extract_single(response.body, :read) }
+        handler(422) { |response| ErrorMapping.fail_with(FailedUpdate, response.body) }
       end
 
       action :upgrade, 'GET /v2/kubernetes/clusters/:cluster_id/upgrade' do
