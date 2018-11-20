@@ -30,7 +30,8 @@ module DropletKit
       action :upgrade, 'GET /v2/kubernetes/clusters/:cluster_id/upgrade' do
       end
 
-      action :delete, 'DELETE /v2/kubernetes/clusters/:cluster_id' do
+      action :delete, 'DELETE /v2/kubernetes/clusters/:id' do
+        handler(202) { |response| true }
       end
 
       action :cluster_node_pools, 'GET /v2/kubernetes/clusters/:cluster_id/node_pools' do
