@@ -39,6 +39,21 @@ RSpec.describe DropletKit::Client do
       expect(client.connection.headers['Content-Type']).to eq("application/json")
     end
 
+    context 'with default user agent' do
+      it 'contains the version of DropletKit and Faraday' do
+        stub_const('DropletKit::VERSION', '1.2.3')
+        stub_const('Faraday::VERSION', '1.2.3')
+        expect(client.connection.headers['User-Agent']).to eq('DropletKit/1.2.3 Faraday/1.2.3')
+      end
+    end
+
+    context 'with user provided user agent' do
+      it 'includes their agent string as well' do
+        client = DropletKit::Client.new(access_token: 'bunk', user_agent: 'tugboat')
+        expect(client.connection.headers['User-Agent']).to include('tugboat')
+      end
+    end
+
     it 'allows access to faraday instance' do
       client.connection.use AcmeApp::CustomLogger
       expect(client.connection.builder.handlers).to include(AcmeApp::CustomLogger)
