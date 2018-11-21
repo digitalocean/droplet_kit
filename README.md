@@ -29,6 +29,16 @@ require 'droplet_kit'
 client = DropletKit::Client.new(access_token: 'YOUR_TOKEN')
 ```
 
+### Custom User-Agent
+
+If you would like to include a custom User-Agent header beyond what DropletKit
+uses, you can pass one in at the client initialization like so:
+
+```ruby
+require 'droplet_kit'
+client = DropletKit::Client.new(access_token: 'YOUR_TOKEN', user_agent: 'custom')
+```
+
 ## Design
 
 DropletKit follows a strict design of resources as methods on your client. For examples, for droplets, you will call your client like this:
