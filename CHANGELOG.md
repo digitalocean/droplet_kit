@@ -1,3 +1,6 @@
+### Version 2.6.1
+* Added custom User-Agent for DropletKit
+
 ### Version 2.6.0
 * Added ability to manage projects.
 
