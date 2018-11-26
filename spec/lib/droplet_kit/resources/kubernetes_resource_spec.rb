@@ -24,11 +24,11 @@ RSpec.describe DropletKit::KubernetesResource do
     end
   end
 
-  describe "cluster_find_node_pool" do
+  describe "cluster_node_pool_find" do
     it "should return a single node pool" do
       node_pool_id = "f9f16e5a-83b8-4c9b-acf1-4f91492a6652"
       stub_do_api("/v2/kubernetes/clusters/#{cluster_id}/node_pools/#{node_pool_id}", :get).to_return(body: api_fixture('kubernetes/cluster_node_pool'))
-      node_pool = resource.cluster_find_node_pool(id: cluster_id, pool_id: node_pool_id)
+      node_pool = resource.cluster_node_pool_find(id: cluster_id, pool_id: node_pool_id)
 
       expect(node_pool.id).to eq node_pool_id
       expect(node_pool.name).to eq "k8s-1-12-1-do-2-nyc1-1542638764614-1"

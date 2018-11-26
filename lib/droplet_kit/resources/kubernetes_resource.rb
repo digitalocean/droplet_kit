@@ -28,7 +28,7 @@ module DropletKit
         handler(200) { |response| KubernetesNodePoolMapping.extract_collection(response.body, :read) }
       end
 
-      action :cluster_find_node_pool, 'GET /v2/kubernetes/clusters/:id/node_pools/:pool_id' do
+      action :cluster_node_pool_find, 'GET /v2/kubernetes/clusters/:id/node_pools/:pool_id' do
         handler(200) { |response| KubernetesNodePoolMapping.extract_single(response.body, :read) }
       end
 
