@@ -56,7 +56,7 @@ RSpec.describe DropletKit::KubernetesResource do
       expect(as_hash['tags']).to eq(node_pool.tags)
 
       as_string = DropletKit::KubernetesNodePoolMapping.representation_for(:create, node_pool)
-      stub_do_api("/v2/kubernetes/clusters/#{cluster_id}/node_pools", :post).with(body: as_string).to_return(body: api_fixture('kubernetes/cluster_node_pool_create'), status: 202)
+      stub_do_api("/v2/kubernetes/clusters/#{cluster_id}/node_pools", :post).with(body: as_string).to_return(body: api_fixture('kubernetes/cluster_node_pool_create'), status: 201)
       new_node_pool = resource.cluster_node_pool_create(node_pool, id: cluster_id)
 
       expect(new_node_pool).to be_kind_of(DropletKit::KubernetesNodePool)
@@ -94,7 +94,7 @@ RSpec.describe DropletKit::KubernetesResource do
       node_pool.count = 2
       node_pool.tags = ['updated-k8-tag']
       as_string = DropletKit::KubernetesNodePoolMapping.representation_for(:update, node_pool)
-      stub_do_api("/v2/kubernetes/clusters/#{cluster_id}/node_pools/#{node_pool_id}", :put).with(body: as_string).to_return(body: api_fixture('kubernetes/cluster_node_pool_update'), status: 200)
+      stub_do_api("/v2/kubernetes/clusters/#{cluster_id}/node_pools/#{node_pool_id}", :put).with(body: as_string).to_return(body: api_fixture('kubernetes/cluster_node_pool_update'), status: 202)
       updated_node_pool = resource.cluster_node_pool_update(node_pool, id: cluster_id, pool_id: node_pool_id)
 
       expect(updated_node_pool.id).to eq node_pool_id
