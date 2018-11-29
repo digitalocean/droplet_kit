@@ -8,7 +8,7 @@ RSpec.describe DropletKit::KubernetesResource do
     it 'returns a singular cluster' do
       stub_do_api('/v2/kubernetes/clusters/20', :get).to_return(body: api_fixture('kubernetes/clusters/find'))
       cluster = resource.find(id: 20)
-      expect(cluster).to be_kind_of(DropletKit::Kubernetes)
+      expect(cluster).to be_kind_of(DropletKit::KubernetesCluster)
 
       expect(cluster.id).to eq("cluster-1-id")
       expect(cluster.name).to eq("test-cluster")
@@ -39,14 +39,14 @@ RSpec.describe DropletKit::KubernetesResource do
 
     context 'for a successful update' do
       it 'returns the created cluster' do
-        cluster = DropletKit::Kubernetes.new(new_attrs)
+        cluster = DropletKit::KubernetesCluster.new(new_attrs)
 
-        as_hash = DropletKit::KubernetesMapping.hash_for(:update, cluster)
+        as_hash = DropletKit::KubernetesClusterMapping.hash_for(:update, cluster)
         expect(as_hash['name']).to eq(cluster.name)
         expect(as_hash['tags']).to eq(cluster.tags)
 
 
-        as_string = DropletKit::KubernetesMapping.representation_for(:update, cluster)
+        as_string = DropletKit::KubernetesClusterMapping.representation_for(:update, cluster)
         stub_do_api(path, :put).with(body: as_string).to_return(body: api_fixture('kubernetes/clusters/update'), status: 202)
 
         updated_cluster = resource.update(cluster)
@@ -60,7 +60,7 @@ RSpec.describe DropletKit::KubernetesResource do
     it 'returns all of the clusters' do
       stub_do_api('/v2/kubernetes/clusters', :get).to_return(body: api_fixture('kubernetes/all'))
       clusters = resource.all
-      expect(clusters).to all(be_kind_of(DropletKit::Kubernetes))
+      expect(clusters).to all(be_kind_of(DropletKit::KubernetesCluster))
 
       cluster = clusters.first
 
@@ -112,9 +112,9 @@ RSpec.describe DropletKit::KubernetesResource do
 
     context 'for a successful create' do
       it 'returns the created cluster' do
-        cluster = DropletKit::Kubernetes.new(new_attrs)
+        cluster = DropletKit::KubernetesCluster.new(new_attrs)
 
-        as_hash = DropletKit::KubernetesMapping.hash_for(:create, cluster)
+        as_hash = DropletKit::KubernetesClusterMapping.hash_for(:create, cluster)
         expect(as_hash['name']).to eq(cluster.name)
         expect(as_hash['region']).to eq(cluster.region)
         expect(as_hash['version']).to eq(cluster.version)
@@ -122,7 +122,7 @@ RSpec.describe DropletKit::KubernetesResource do
         expect(as_hash['node_pools']).to eq(cluster.node_pools)
 
 
-        as_string = DropletKit::KubernetesMapping.representation_for(:create, cluster)
+        as_string = DropletKit::KubernetesClusterMapping.representation_for(:create, cluster)
         stub_do_api(path, :post).with(body: as_string).to_return(body: api_fixture('kubernetes/clusters/create'), status: 201)
         created_cluster = resource.create(cluster)
         expect(cluster.id).to eq("cluster-1-id")
@@ -136,9 +136,9 @@ RSpec.describe DropletKit::KubernetesResource do
       end
 
       it 'reuses the same object' do
-        cluster = DropletKit::Kubernetes.new(new_attrs)
+        cluster = DropletKit::KubernetesCluster.new(new_attrs)
 
-        json = DropletKit::KubernetesMapping.representation_for(:create, cluster)
+        json = DropletKit::KubernetesClusterMapping.representation_for(:create, cluster)
         stub_do_api(path, :post).with(body: json).to_return(body: api_fixture('kubernetes/clusters/create'), status: 201)
         created_cluster = resource.create(cluster)
         expect(created_cluster).to be cluster
@@ -147,7 +147,7 @@ RSpec.describe DropletKit::KubernetesResource do
 
     it_behaves_like 'an action that handles invalid parameters' do
       let(:action) { 'create' }
-      let(:arguments) { DropletKit::Kubernetes.new }
+      let(:arguments) { DropletKit::KubernetesCluster.new }
     end
   end
 

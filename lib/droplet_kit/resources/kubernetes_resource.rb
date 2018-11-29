@@ -5,16 +5,16 @@ module DropletKit
     resources do
       action :all, 'GET /v2/kubernetes/clusters' do
         query_keys :per_page, :page, :tag_name
-        handler(200) { |response| KubernetesMapping.extract_collection(response.body, :read) }
+        handler(200) { |response| KubernetesClusterMapping.extract_collection(response.body, :read) }
       end
 
       action :find, 'GET /v2/kubernetes/clusters/:id' do
-        handler(200) { |response| KubernetesMapping.extract_single(response.body, :read) }
+        handler(200) { |response| KubernetesClusterMapping.extract_single(response.body, :read) }
       end
 
       action :create, 'POST /v2/kubernetes/clusters' do
-        body { |object| KubernetesMapping.representation_for(:create, object) }
-        handler(201) { |response, cluster| KubernetesMapping.extract_into_object(cluster, response.body, :read) }
+        body { |object| KubernetesClusterMapping.representation_for(:create, object) }
+        handler(201) { |response, cluster| KubernetesClusterMapping.extract_into_object(cluster, response.body, :read) }
         handler(422) { |response| ErrorMapping.fail_with(FailedCreate, response.body) }
       end
 
@@ -23,8 +23,8 @@ module DropletKit
       end
 
       action :update, 'PUT /v2/kubernetes/clusters/:id' do
-        body { |cluster| KubernetesMapping.representation_for(:update, cluster) }
-        handler(202) { |response| KubernetesMapping.extract_single(response.body, :read) }
+        body { |cluster| KubernetesClusterMapping.representation_for(:update, cluster) }
+        handler(202) { |response| KubernetesClusterMapping.extract_single(response.body, :read) }
         handler(422) { |response| ErrorMapping.fail_with(FailedUpdate, response.body) }
       end
 
