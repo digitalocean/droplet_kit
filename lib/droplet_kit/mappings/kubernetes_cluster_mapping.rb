@@ -1,8 +1,8 @@
 module DropletKit
-  class KubernetesMapping
+  class KubernetesClusterMapping
     include Kartograph::DSL
     kartograph do
-      mapping Kubernetes
+      mapping KubernetesCluster
       root_key plural: 'kubernetes_clusters', singular: 'kubernetes_cluster', scopes: [:read]
 
       property :id, scopes: [:read]
