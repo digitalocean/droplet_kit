@@ -24,6 +24,7 @@ module DropletKit
         certificates: CertificateResource,
         droplets: DropletResource,
         kubernetes: KubernetesResource,
+        kubernetes_options: KubernetesOptionsResource,
         domains: DomainResource,
         domain_records: DomainRecordResource,
         droplet_actions: DropletActionResource,

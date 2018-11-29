@@ -73,6 +73,7 @@ module DropletKit
   autoload :FirewallResource, 'droplet_kit/resources/firewall_resource'
   autoload :CDNResource, 'droplet_kit/resources/cdn_resource'
   autoload :KubernetesResource, 'droplet_kit/resources/kubernetes_resource'
+  autoload :KubernetesOptionsResource, 'droplet_kit/resources/kubernetes_options_resource'
 
   # JSON Maps
   autoload :DropletMapping, 'droplet_kit/mappings/droplet_mapping'
