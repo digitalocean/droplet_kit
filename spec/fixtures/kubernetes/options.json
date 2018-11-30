@@ -1,6 +1,68 @@
 {
   "options": {
+    "regions": [
+      {
+        "name": "New York 1",
+        "slug": "nyc1"
+      },
+      {
+        "name": "Amsterdam 1",
+        "slug": "ams1"
+      },
+      {
+        "name": "San Francisco 1",
+        "slug": "sfo1"
+      },
+      {
+        "name": "New York 2",
+        "slug": "nyc2"
+      },
+      {
+        "name": "Amsterdam 2",
+        "slug": "ams2"
+      },
+      {
+        "name": "Singapore 1",
+        "slug": "sgp1"
+      },
+      {
+        "name": "London 1",
+        "slug": "lon1"
+      },
+      {
+        "name": "New York 3",
+        "slug": "nyc3"
+      },
+      {
+        "name": "Amsterdam 3",
+        "slug": "ams3"
+      },
+      {
+        "name": "Frankfurt 1",
+        "slug": "fra1"
+      },
+      {
+        "name": "Toronto 1",
+        "slug": "tor1"
+      },
+      {
+        "name": "San Francisco 2",
+        "slug": "sfo2"
+      },
+      {
+        "name": "Bangalore 1",
+        "slug": "blr1"
+      }
+    ],
     "versions": [
+      {
+        "slug": "1.13.0-do.not.use",
+        "kubernetes_version": "1.13.0"
+      },
+      {
+        "slug": "1.12.1-do.3",
+        "kubernetes_version": "1.12.1"
+      },
       {
         "slug": "1.12.1-do.2",
         "kubernetes_version": "1.12.1"
@@ -28,6 +90,60 @@
       {
         "slug": "1.10.7-gen0",
         "kubernetes_version": "1.10.7"
+      }
+    ],
+    "sizes": [
+      {
+        "name": "s-1vcpu-1gb",
+        "slug": "s-1vcpu-1gb"
+      },
+      {
+        "name": "s-1vcpu-2gb",
+        "slug": "s-1vcpu-2gb"
+      },
+      {
+        "name": "s-1vcpu-3gb",
+        "slug": "s-1vcpu-3gb"
+      },
+      {
+        "name": "s-2vcpu-2gb",
+        "slug": "s-2vcpu-2gb"
+      },
+      {
+        "name": "s-3vcpu-1gb",
+        "slug": "s-3vcpu-1gb"
+      },
+      {
+        "name": "s-2vcpu-4gb",
+        "slug": "s-2vcpu-4gb"
+      },
+      {
+        "name": "c-2-4GiB",
+        "slug": "c-2"
+      },
+      {
+        "name": "s-4vcpu-8gb",
+        "slug": "s-4vcpu-8gb"
+      },
+      {
+        "name": "c-4-8GiB",
+        "slug": "c-4"
+      },
+      {
+        "name": "s-6vcpu-16gb",
+        "slug": "s-6vcpu-16gb"
+      },
+      {
+        "name": "c-8-16GiB",
+        "slug": "c-8"
+      },
+      {
+        "name": "s-8vcpu-32gb",
+        "slug": "s-8vcpu-32gb"
+      },
+      {
+        "name": "c-16",
+        "slug": "c-16"
       }
     ]
   }
