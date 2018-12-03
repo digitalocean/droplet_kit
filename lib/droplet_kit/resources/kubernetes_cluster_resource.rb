@@ -1,5 +1,5 @@
 module DropletKit
-  class KubernetesClustersResource < ResourceKit::Resource
+  class KubernetesClusterResource < ResourceKit::Resource
     include ErrorHandlingResourcable
 
     resources do

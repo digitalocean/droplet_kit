@@ -69,7 +69,7 @@ module DropletKit
   autoload :CertificateResource, 'droplet_kit/resources/certificate_resource'
   autoload :FirewallResource, 'droplet_kit/resources/firewall_resource'
   autoload :CDNResource, 'droplet_kit/resources/cdn_resource'
-  autoload :KubernetesClustersResource, 'droplet_kit/resources/kubernetes_clusters_resource'
+  autoload :KubernetesClusterResource, 'droplet_kit/resources/kubernetes_cluster_resource'
 
   # JSON Maps
   autoload :DropletMapping, 'droplet_kit/mappings/droplet_mapping'
