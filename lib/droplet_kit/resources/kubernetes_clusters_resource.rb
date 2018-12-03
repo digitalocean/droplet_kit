@@ -18,7 +18,7 @@ module DropletKit
         handler(422) { |response| ErrorMapping.fail_with(FailedCreate, response.body) }
       end
 
-      action :config, 'GET /v2/kubernetes/clusters/:id/kubeconfig' do
+      action :kubeconfig, 'GET /v2/kubernetes/clusters/:id/kubeconfig' do
         handler(200) { |response| response.body }
       end
 
@@ -26,9 +26,6 @@ module DropletKit
         body { |cluster| KubernetesClusterMapping.representation_for(:update, cluster) }
         handler(202) { |response| KubernetesClusterMapping.extract_single(response.body, :read) }
         handler(422) { |response| ErrorMapping.fail_with(FailedUpdate, response.body) }
-      end
-
-      action :upgrade, 'GET /v2/kubernetes/clusters/:cluster_id/upgrade' do
       end
 
       action :delete, 'DELETE /v2/kubernetes/clusters/:id' do
