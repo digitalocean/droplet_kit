@@ -23,7 +23,7 @@ module DropletKit
         cdns: CDNResource,
         certificates: CertificateResource,
         droplets: DropletResource,
-        kubernetes_clusters: KubernetesClustersResource,
+        kubernetes_clusters: KubernetesClusterResource,
         domains: DomainResource,
         domain_records: DomainRecordResource,
         droplet_actions: DropletActionResource,
