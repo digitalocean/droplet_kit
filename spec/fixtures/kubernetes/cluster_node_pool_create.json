@@ -1,0 +1,40 @@
+{
+  "node_pool": {
+    "id": "5abb80b7-de9e-4e47-bf2d-9318e64ef390",
+    "name": "frontend",
+    "size": "s-1vcpu-1gb",
+    "count": 3,
+    "tags": [
+      "k8-tag"
+    ],
+    "nodes": [
+      {
+        "id": "6f981ff5-560e-4375-a46d-03336d18b4d2",
+        "name": "",
+        "status": {
+          "state": "provisioning"
+        },
+        "created_at": "2018-11-19T17:34:37Z",
+        "updated_at": "2018-11-19T17:34:37Z"
+      },
+      {
+        "id": "af4a3da4-b4c5-490c-a481-0b780d67842a",
+        "name": "",
+        "status": {
+          "state": "provisioning"
+        },
+        "created_at": "2018-11-19T17:34:37Z",
+        "updated_at": "2018-11-19T17:34:37Z"
+      },
+      {
+        "id": "e58e0d0b-52e5-4f3a-8d7d-c7efd34b5f8a",
+        "name": "",
+        "status": {
+          "state": "provisioning"
+        },
+        "created_at": "2018-11-19T17:34:37Z",
+        "updated_at": "2018-11-19T17:34:37Z"
+      }
+    ]
+  }
+}

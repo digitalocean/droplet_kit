@@ -288,6 +288,40 @@ Image Actions Supported:
 * `client.image_actions.transfer(image_id: 123, region: 'nyc3')`
 
 
+## Kubernetes Resource
+
+```
+client = DropletKit::Client.new(access_token: 'TOKEN')
+client.kubernetes_clusters #=> DropletKit::KubernetesClusterResource
+```
+
+Actions supported
+
+When the arguments below refer to cluster, they refer to:
+```
+cluster = DropletKit::KubernetesCluster.new(name: "foo", region: "nyc1", ...) # cluster attributes
+```
+
+When the arguments below refer to node_pool, they refer to:
+```
+node_pool = DropletKit::KubernetesNodePool.new(name: 'frontend', size: 's-1vcpu-1gb', count: 3, ...) # Node Pool attributes
+```
+
+* `client.kubernetes_clusters.all()`
+* `client.kubernetes_clusters.find(id: 'cluster_id')`
+* `client.kubernetes_clusters.create(cluster, id: 'cluster_id')`
+* `client.kubernetes_clusters.kubeconfig(id: 'cluster_id')`
+* `client.kubernetes_clusters.update(cluster, id: 'cluster_id')`
+* `client.kubernetes_clusters.delete(id: 'cluster_id')`
+* `client.kubernetes_clusters.node_pools(id: 'cluster_id')`
+* `client.kubernetes_clusters.find_node_pool(id: 'cluster_id', pool_id: 'node_pool_id')`
+* `client.kubernetes_clusters.create_node_pool(node_pool, id: 'cluster_id')`
+* `client.kubernetes_clusters.update_node_pool(node_pool, id: 'cluster_id', pool_id: 'node_pool_id')`
+* `client.kubernetes_clusters.delete_node_pool(id: 'cluster_id', pool_id: 'node_pool_id')`
+* `client.kubernetes_clusters.recycle_node_pool([node_id, node_id, ...], id: 'cluster_id', pool_id: 'node_pool_id')`
+* `client.kubernetes_options.all()`
+
+
 ## Load balancer resource
 ```ruby
 client = DropletKit::Client.new(access_token: 'TOKEN')

@@ -43,6 +43,10 @@ module DropletKit
   autoload :FirewallOutboundRule, 'droplet_kit/models/firewall_outbound_rule'
   autoload :FirewallPendingChange, 'droplet_kit/models/firewall_pending_change'
   autoload :CDN, 'droplet_kit/models/cdn'
+  autoload :KubernetesCluster, 'droplet_kit/models/kubernetes_cluster'
+  autoload :KubernetesNodePool, 'droplet_kit/models/kubernetes_node_pool'
+  autoload :KubernetesNode, 'droplet_kit/models/kubernetes_node'
+  autoload :KubernetesOptions, 'droplet_kit/models/kubernetes_options'
 
   # Resources
   autoload :DropletResource, 'droplet_kit/resources/droplet_resource'
@@ -68,6 +72,8 @@ module DropletKit
   autoload :CertificateResource, 'droplet_kit/resources/certificate_resource'
   autoload :FirewallResource, 'droplet_kit/resources/firewall_resource'
   autoload :CDNResource, 'droplet_kit/resources/cdn_resource'
+  autoload :KubernetesClusterResource, 'droplet_kit/resources/kubernetes_cluster_resource'
+  autoload :KubernetesOptionsResource, 'droplet_kit/resources/kubernetes_options_resource'
 
   # JSON Maps
   autoload :DropletMapping, 'droplet_kit/mappings/droplet_mapping'
@@ -106,6 +112,10 @@ module DropletKit
   autoload :FirewallOutboundRuleMapping, 'droplet_kit/mappings/firewall_outbound_rule_mapping'
   autoload :FirewallPendingChangeMapping, 'droplet_kit/mappings/firewall_pending_change_mapping'
   autoload :CDNMapping, 'droplet_kit/mappings/cdn_mapping'
+  autoload :KubernetesClusterMapping, 'droplet_kit/mappings/kubernetes_cluster_mapping'
+  autoload :KubernetesNodePoolMapping, 'droplet_kit/mappings/kubernetes_node_pool_mapping'
+  autoload :KubernetesNodeMapping, 'droplet_kit/mappings/kubernetes_node_mapping'
+  autoload :KubernetesOptionsMapping, 'droplet_kit/mappings/kubernetes_options_mapping'
 
   # Utils
   autoload :PaginatedResource, 'droplet_kit/paginated_resource'

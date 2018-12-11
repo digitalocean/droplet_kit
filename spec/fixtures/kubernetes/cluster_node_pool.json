@@ -1,0 +1,24 @@
+{
+  "node_pool": {
+    "id": "f9f16e5a-83b8-4c9b-acf1-4f91492a6652",
+    "name": "k8s-1-12-1-do-2-nyc1-1542638764614-1",
+    "size": "s-1vcpu-1gb",
+    "count": 1,
+    "tags": [
+      "k8s",
+      "k8s:c28bf806-eba8-4a6d-a98f-8fd388740bd0",
+      "k8s:worker"
+    ],
+    "nodes": [
+      {
+        "id": "1607ad61-2d9b-4366-9cb4-5ab6483a7e09",
+        "name": "blissful-antonelli-3u87",
+        "status": {
+          "state": "running"
+        },
+        "created_at": "2018-11-19T14:46:38Z",
+        "updated_at": "2018-11-19T14:56:42Z"
+      }
+    ]
+  }
+}
