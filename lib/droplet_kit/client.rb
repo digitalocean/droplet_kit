@@ -2,18 +2,24 @@ require 'faraday'
 
 module DropletKit
   class Client
+    DEFAULT_OPEN_TIMEOUT = 60
+    DEFAULT_TIMEOUT = 120
     DIGITALOCEAN_API = 'https://api.digitalocean.com'
 
-    attr_reader :access_token, :user_agent
+    attr_reader :access_token, :timeout, :open_timeout, :user_agent
 
     def initialize(options = {})
       @access_token = options.with_indifferent_access[:access_token]
-      @user_agent = options.with_indifferent_access[:user_agent]
+      @open_timeout = options.with_indifferent_access[:open_timeout] || DEFAULT_OPEN_TIMEOUT
+      @timeout      = options.with_indifferent_access[:timeout] || DEFAULT_TIMEOUT
+      @user_agent   = options.with_indifferent_access[:user_agent]
     end
 
     def connection
       @faraday ||= Faraday.new connection_options do |req|
         req.adapter :net_http
+        req.options.open_timeout = open_timeout
+        req.options.timeout = timeout
       end
     end
 
@@ -23,6 +29,8 @@ module DropletKit
         cdns: CDNResource,
         certificates: CertificateResource,
         droplets: DropletResource,
+        kubernetes_clusters: KubernetesClusterResource,
+        kubernetes_options: KubernetesOptionsResource,
         domains: DomainResource,
         domain_records: DomainRecordResource,
         droplet_actions: DropletActionResource,
