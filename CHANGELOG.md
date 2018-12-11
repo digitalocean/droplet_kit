@@ -1,3 +1,8 @@
+### [2.8.0] - 2018-12-11
+* #144 Adds the ability to set timeout options for Faraday - @tgturner
+* #145 Bump Faraday version to 0.15 - @petems
+* #170 Remove test rb file - @scottcrawford03
+
 ### Version 2.7.0
 * Added KubernetesCluster resource
 * Added KubernetesOptions resource
