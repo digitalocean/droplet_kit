@@ -1,8 +1,6 @@
 module DropletKit
   class KubernetesOptionsMapping
-
     include Kartograph::DSL
-
     kartograph do
       mapping KubernetesOptions
       root_key singular: 'options', scopes: [:read]

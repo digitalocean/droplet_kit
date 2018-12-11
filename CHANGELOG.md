@@ -1,4 +1,4 @@
-### Version 2.6.2
+### Version 2.7.0
 * Added KubernetesCluster resource
 * Added KubernetesOptions resource
 * Added kubernetes cluster and node pool functionality

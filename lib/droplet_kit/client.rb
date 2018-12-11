@@ -1,5 +1,4 @@
 require 'faraday'
-require 'pry'
 
 module DropletKit
   class Client

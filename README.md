@@ -297,12 +297,12 @@ client.kubernetes_clusters #=> DropletKit::KubernetesClusterResource
 
 Actions supported
 
-When `cluster` is refered to in some of the arguments below, it is referring to:
+When the arguments below refer to cluster, they refer to:
 ```
 cluster = DropletKit::KubernetesCluster.new(name: "foo", region: "nyc1", ...) # cluster attributes
 ```
 
-When `node_pool` is refered to in some of the arguments below, it is referring to:
+When the arguments below refer to node_pool, they refer to:
 ```
 node_pool = DropletKit::KubernetesNodePool.new(name: 'frontend', size: 's-1vcpu-1gb', count: 3, ...) # Node Pool attributes
 ```

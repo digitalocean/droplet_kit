@@ -1,7 +1,6 @@
 module DropletKit
   class KubernetesNodePoolMapping
     include Kartograph::DSL
-
     kartograph do
       mapping KubernetesNodePool
       root_key plural: 'node_pools', singular: 'node_pool', scopes: [:read]
