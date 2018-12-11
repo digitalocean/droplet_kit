@@ -292,14 +292,14 @@ Image Actions Supported:
 
 ```
 client = DropletKit::Client.new(access_token: 'TOKEN')
-client.kubernetes #=> DropletKit::KubernetesResource
+client.kubernetes_clusters #=> DropletKit::KubernetesClusterResource
 ```
 
 Actions supported
 
 When `cluster` is refered to in some of the arguments below, it is referring to:
 ```
-cluster = DropletKit::Kubernetes.new(name: "foo", region: "nyc1", ...) # cluster attributes
+cluster = DropletKit::KubernetesCluster.new(name: "foo", region: "nyc1", ...) # cluster attributes
 ```
 
 When `node_pool` is refered to in some of the arguments below, it is referring to:
@@ -307,20 +307,19 @@ When `node_pool` is refered to in some of the arguments below, it is referring t
 node_pool = DropletKit::KubernetesNodePool.new(name: 'frontend', size: 's-1vcpu-1gb', count: 3, ...) # Node Pool attributes
 ```
 
-* `client.kubernetes.all()`
-* `client.kubernetes.find(id: 'cluster_id')`
-* `client.kubernetes.create(cluster, id: 'cluster_id')`
-* `client.kubernetes.config(id: 'cluster_id')`
-* `client.kubernetes.update(cluster, id: 'cluster_id')`
-* `client.kubernetes.upgrade(id: 'cluster_id')`
-* `client.kubernetes.delete(id: 'cluster_id')`
-* `client.kubernetes.cluster_node_pools(id: 'cluster_id')`
-* `client.kubernetes.cluster_find_node_pool(id: 'cluster_id', pool_id: 'node_pool_id')`
-* `client.kubernetes.cluster_node_pool_create(node_pool, id: 'cluster_id')`
-* `client.kubernetes.cluster_node_pool_update(node_pool, id: 'cluster_id', pool_id: 'node_pool_id')`
-* `client.kubernetes.cluster_node_pool_delete(id: 'cluster_id', pool_id: 'node_pool_id')`
-* `client.kubernetes.cluster_node_pool_recycle(id: 'cluster_id', pool_id: 'node_pool_id')`
-* `client.kubernetes.get_options()`
+* `client.kubernetes_clusters.all()`
+* `client.kubernetes_clusters.find(id: 'cluster_id')`
+* `client.kubernetes_clusters.create(cluster, id: 'cluster_id')`
+* `client.kubernetes_clusters.kubeconfig(id: 'cluster_id')`
+* `client.kubernetes_clusters.update(cluster, id: 'cluster_id')`
+* `client.kubernetes_clusters.delete(id: 'cluster_id')`
+* `client.kubernetes_clusters.node_pools(id: 'cluster_id')`
+* `client.kubernetes_clusters.find_node_pool(id: 'cluster_id', pool_id: 'node_pool_id')`
+* `client.kubernetes_clusters.create_node_pool(node_pool, id: 'cluster_id')`
+* `client.kubernetes_clusters.update_node_pool(node_pool, id: 'cluster_id', pool_id: 'node_pool_id')`
+* `client.kubernetes_clusters.delete_node_pool(id: 'cluster_id', pool_id: 'node_pool_id')`
+* `client.kubernetes_clusters.recycle_node_pool([node_id, node_id, ...], id: 'cluster_id', pool_id: 'node_pool_id')`
+* `client.kubernetes_options.all()`
 
 
 ## Load balancer resource

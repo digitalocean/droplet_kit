@@ -1,3 +1,8 @@
+### Version 2.6.2
+* Added KubernetesCluster resource
+* Added KubernetesOptions resource
+* Added kubernetes cluster and node pool functionality
+
 ### Version 2.6.1
 * Added custom User-Agent for DropletKit
 
