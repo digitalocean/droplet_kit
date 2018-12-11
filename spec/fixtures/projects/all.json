@@ -1,0 +1,37 @@
+{
+  "projects": [
+    {
+      "id": "ec104091-d6d3-41b6-b803-780156de20ae",
+      "owner_uuid": "34fc5c195b417b7157649f6b8ae273ae9b1b2970",
+      "owner_id": 123,
+      "name": "digitalocean",
+      "description": "Update your project information under Settings",
+      "purpose": "",
+      "environment": "",
+      "is_default": true,
+      "created_at": "2018-07-25T08:10:03Z",
+      "updated_at": "2018-07-25T08:10:03Z"
+    },
+    {
+      "id": "c177dc8c-12c1-4483-af1c-877eed0f14cb",
+      "owner_uuid": "34fc5c195b417b7157649f6b8ae273ae9b1b2970",
+      "owner_id": 123,
+      "name": "cloud.digitalocean.com",
+      "description": "Our control panel",
+      "purpose": "Web Application",
+      "environment": "Production",
+      "is_default": false,
+      "created_at": "2018-08-22T20:23:12Z",
+      "updated_at": "2018-08-22T21:55:34Z"
+    }
+  ],
+  "meta": {
+    "total": 2
+  },
+  "links": {
+    "pages": {
+      "first": "https://api.digitalocean.com/v2/projects",
+      "last": "https://api.digitalocean.com/v2/projects"
+    }
+  }
+}

@@ -1,3 +1,23 @@
+### Version 2.7.0
+* Added KubernetesCluster resource
+* Added KubernetesOptions resource
+* Added kubernetes cluster and node pool functionality
+
+### Version 2.6.1
+* Added custom User-Agent for DropletKit
+
+### Version 2.6.0
+* Added ability to manage projects.
+
+### Version 2.5.0
+* Added ability to tag images and retrieving new fields for tagged resources.
+
+### Version 2.4.0
+* Added CDN resource.
+
+### Version 2.3.0
+* Added support for Let's Encrypt certificates.
+
 ### Version 2.2.2
 * Fix tag / untag resources request body
 
@@ -8,7 +28,7 @@
 * Added Firewall resource.
 * Added support for updating TTLs for DomainRecord resource.
 * Added support of all Rails 5 releases.
-* Added depreciation for Tag resource rename.
+* Added deprecation for Tag resource rename.
 
 ### Version 2.1.0
 * Added monitoring to the Droplet resource.

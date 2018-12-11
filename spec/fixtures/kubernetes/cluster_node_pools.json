@@ -1,0 +1,33 @@
+{
+  "node_pools": [
+    {
+      "id": "0a209365-2fac-465e-a959-bb91f232923a",
+      "name": "k8s-1-12-1-do-1-nyc1-1540837045848-1",
+      "size": "s-4vcpu-8gb",
+      "count": 2,
+      "tags": [
+        "omar-left-his-mark"
+      ],
+      "nodes": [
+        {
+          "id": "94bf2bde-e135-11e8-81bd-3cfdfe9e5ea0",
+          "name": "nostalgic-buck-5y1",
+          "status": {
+            "state": "running"
+          },
+          "created_at": "2018-10-29T18:17:48Z",
+          "updated_at": "2018-11-05T20:01:27Z"
+        },
+        {
+          "id": "94bf2c6f-e135-11e8-81bd-3cfdfe9e5ea0",
+          "name": "nostalgic-buck-5yz",
+          "status": {
+            "state": "running"
+          },
+          "created_at": "2018-10-29T18:17:48Z",
+          "updated_at": "2018-11-05T20:01:27Z"
+        }
+      ]
+    }
+  ]
+}

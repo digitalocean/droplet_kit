@@ -47,9 +47,15 @@ describe DropletKit::TagResource do
 
       expect(tag).to be_kind_of(DropletKit::Tag)
       expect(tag).to match_tag_fixture
+      expect(tag.resources.count).to eq(2)
       expect(tag.resources.droplets.count).to eq(1)
       expect(tag.resources.droplets.last_tagged).to be_kind_of(DropletKit::Droplet)
       expect(tag.resources.droplets.last_tagged.id).to eq(1)
+      expect(tag.resources.droplets.last_tagged_uri).to eq('https://api.digitalocean.com/v2/droplets/1')
+
+      expect(tag.resources.images.count).to eq(1)
+      expect(tag.resources.images.attributes).to_not include(:last_tagged)
+      expect(tag.resources.images.last_tagged_uri).to eq('https://api.digitalocean.com/v2/images/146')
     end
   end
 
@@ -84,6 +90,10 @@ describe DropletKit::TagResource do
           {
             resource_id: '1',
             resource_type: "droplet"
+          },
+          {
+            resource_id: '146',
+            resource_type: "images"
           }
         ]
       }
@@ -105,6 +115,10 @@ describe DropletKit::TagResource do
           {
             resource_id: '1',
             resource_type: "droplet"
+          },
+          {
+            resource_id: '146',
+            resource_type: "images"
           }
         ]
       }

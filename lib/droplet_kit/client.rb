@@ -6,12 +6,13 @@ module DropletKit
     DEFAULT_TIMEOUT = 120
     DIGITALOCEAN_API = 'https://api.digitalocean.com'
 
-    attr_reader :access_token, :timeout, :open_timeout
+    attr_reader :access_token, :timeout, :open_timeout, :user_agent
 
     def initialize(options = {})
       @access_token = options.with_indifferent_access[:access_token]
       @open_timeout = options.with_indifferent_access[:open_timeout] || DEFAULT_OPEN_TIMEOUT
       @timeout      = options.with_indifferent_access[:timeout] || DEFAULT_TIMEOUT
+      @user_agent   = options.with_indifferent_access[:user_agent]
     end
 
     def connection
@@ -25,8 +26,11 @@ module DropletKit
     def self.resources
       {
         actions: ActionResource,
+        cdns: CDNResource,
         certificates: CertificateResource,
         droplets: DropletResource,
+        kubernetes_clusters: KubernetesClusterResource,
+        kubernetes_options: KubernetesOptionsResource,
         domains: DomainResource,
         domain_records: DomainRecordResource,
         droplet_actions: DropletActionResource,
@@ -42,6 +46,7 @@ module DropletKit
         floating_ips: FloatingIpResource,
         floating_ip_actions: FloatingIpActionResource,
         tags: TagResource,
+        projects: ProjectResource,
         volumes: VolumeResource,
         volume_actions: VolumeActionResource
       }
@@ -60,6 +65,10 @@ module DropletKit
       @resources ||= {}
     end
 
+    def default_user_agent
+      "DropletKit/#{DropletKit::VERSION} Faraday/#{Faraday::VERSION}"
+    end
+
     private
 
     def connection_options
@@ -67,7 +76,8 @@ module DropletKit
         url: DIGITALOCEAN_API,
         headers: {
           content_type: 'application/json',
-          authorization: "Bearer #{access_token}"
+          authorization: "Bearer #{access_token}",
+          user_agent: "#{user_agent} #{default_user_agent}".strip
         }
       }
     end

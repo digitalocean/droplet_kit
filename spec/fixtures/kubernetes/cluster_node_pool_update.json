@@ -1,0 +1,31 @@
+{
+  "node_pool": {
+    "id": "0a209365-2fac-465e-a959-bb91f232923a",
+    "name": "backend",
+    "size": "s-1vcpu-1gb",
+    "count": 2,
+    "tags": [
+      "backend"
+    ],
+    "nodes": [
+      {
+        "id": "80118696-468e-4615-a5b6-33f1a659d116",
+        "name": "",
+        "status": {
+          "state": "provisioning"
+        },
+        "created_at": "2018-11-19T20:52:41Z",
+        "updated_at": "2018-11-19T20:52:41Z"
+      },
+      {
+        "id": "d1e2b1ff-a5d4-456c-b86a-ea28f53a47ad",
+        "name": "",
+        "status": {
+          "state": "provisioning"
+        },
+        "created_at": "2018-11-19T20:52:41Z",
+        "updated_at": "2018-11-19T20:52:41Z"
+      }
+    ]
+  }
+}

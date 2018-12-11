@@ -1,8 +1,8 @@
 # DropletKit
+[![Build Status](https://travis-ci.org/digitalocean/droplet_kit.svg?branch=master)](https://travis-ci.org/digitalocean/droplet_kit)
+[![Gem Version](https://badge.fury.io/rb/droplet_kit.svg)](https://badge.fury.io/rb/droplet_kit)
 
 DropletKit is the official [DigitalOcean V2 API](https://developers.digitalocean.com/v2/) client. It supports everything the API can do with a simple interface written in Ruby.
-
-[![Build Status](https://travis-ci.org/digitalocean/droplet_kit.svg?branch=master)](https://travis-ci.org/digitalocean/droplet_kit)
 
 ## Installation
 
@@ -25,17 +25,31 @@ You'll need to generate an access token in Digital Ocean's control panel at http
 With your access token, retrieve a client instance with it.
 
 ```ruby
+require 'droplet_kit'
 client = DropletKit::Client.new(access_token: 'YOUR_TOKEN')
 ```
+
+### Timeout
 
 You may also set timeout and time to first byte options on the client.
 
 ```ruby
+require 'droplet_kit'
 client = DropletKit::Client.new(
   access_token: 'YOUR_TOKEN',
   open_timeout: 60, # time to first byte in seconds
   timeout:      120, # response timeout in seconds
 )
+```
+
+### Custom User-Agent
+
+If you would like to include a custom User-Agent header beyond what DropletKit
+uses, you can pass one in at the client initialization like so:
+
+```ruby
+require 'droplet_kit'
+client = DropletKit::Client.new(access_token: 'YOUR_TOKEN', user_agent: 'custom')
 ```
 
 ## Design
@@ -73,6 +87,26 @@ droplet = client.droplets.find(id: 123)
 ```
 
 # All Resources and actions.
+
+## CDN resource
+
+```ruby
+client = DropletKit::Client.new(access_token: 'TOKEN')
+client.cdns #=> DropletKit::CertificateResource
+cdn = DropletKit::CDN.new(
+  origin: 'myspace.nyc3.digitaloceanspaces.com',
+  ttl: 1800
+)
+```
+
+Actions supported:
+
+* `client.cdns.find(id: 'id')`
+* `client.cdns.all()`
+* `client.cdns.create(cdn)`
+* `client.cdns.update_ttl(id: 'id', ttl: 3600)`
+* `client.cdns.flush_cache(id: 'id', files: ['*', 'path/to/css/*'])`
+* `client.cdns.delete(id: 'id')`
 
 ## Certificate resource
 
@@ -267,6 +301,40 @@ Image Actions Supported:
 * `client.image_actions.transfer(image_id: 123, region: 'nyc3')`
 
 
+## Kubernetes Resource
+
+```
+client = DropletKit::Client.new(access_token: 'TOKEN')
+client.kubernetes_clusters #=> DropletKit::KubernetesClusterResource
+```
+
+Actions supported
+
+When the arguments below refer to cluster, they refer to:
+```
+cluster = DropletKit::KubernetesCluster.new(name: "foo", region: "nyc1", ...) # cluster attributes
+```
+
+When the arguments below refer to node_pool, they refer to:
+```
+node_pool = DropletKit::KubernetesNodePool.new(name: 'frontend', size: 's-1vcpu-1gb', count: 3, ...) # Node Pool attributes
+```
+
+* `client.kubernetes_clusters.all()`
+* `client.kubernetes_clusters.find(id: 'cluster_id')`
+* `client.kubernetes_clusters.create(cluster, id: 'cluster_id')`
+* `client.kubernetes_clusters.kubeconfig(id: 'cluster_id')`
+* `client.kubernetes_clusters.update(cluster, id: 'cluster_id')`
+* `client.kubernetes_clusters.delete(id: 'cluster_id')`
+* `client.kubernetes_clusters.node_pools(id: 'cluster_id')`
+* `client.kubernetes_clusters.find_node_pool(id: 'cluster_id', pool_id: 'node_pool_id')`
+* `client.kubernetes_clusters.create_node_pool(node_pool, id: 'cluster_id')`
+* `client.kubernetes_clusters.update_node_pool(node_pool, id: 'cluster_id', pool_id: 'node_pool_id')`
+* `client.kubernetes_clusters.delete_node_pool(id: 'cluster_id', pool_id: 'node_pool_id')`
+* `client.kubernetes_clusters.recycle_node_pool([node_id, node_id, ...], id: 'cluster_id', pool_id: 'node_pool_id')`
+* `client.kubernetes_options.all()`
+
+
 ## Load balancer resource
 ```ruby
 client = DropletKit::Client.new(access_token: 'TOKEN')
@@ -335,6 +403,24 @@ Actions supported:
 * `client.ssh_keys.delete(id: 'id')`
 * `client.ssh_keys.update(ssh_key, id: 'id')`
 
+## Project resource
+
+```ruby
+client = DropletKit::Client.new(access_token: 'TOKEN')
+client.projects #=> DropletKit::ProjectResource
+```
+
+Actions supported:
+
+* `client.projects.all()`
+* `client.projects.find(id: 'id')`
+* `client.projects.find_default` is equivalent to `client.projects.find(id: DropletKit::Project::DEFAULT)`
+* `client.projects.create(DropletKit::Project.new(name: 'name', purpose: 'Service or API'))`
+* `client.projects.update(project, id: 'id')`
+* `client.projects.delete(id: 'id')`
+* `client.projects.list_resources(id: 'id')`
+* `client.projects.assign_resources([DropletKit::Droplet.new(id: 123), "do:space:myspace.com"], id: 'id')`
+
 ## Tag resource
 
 ```ruby
@@ -348,8 +434,8 @@ Actions supported:
 * `client.tags.find(name: 'name')`
 * `client.tags.create(DropletKit::Tag.new(name: 'name'))`
 * `client.tags.delete(name: 'name')`
-* `client.tags.tag_resources(name: 'name', resources: [{ resource_id => 'droplet_id', resource_type: 'droplet' }])`
-* `client.tags.untag_resources(name 'name', resources: [{ resource_id => 'droplet_id', resource_type: 'droplet' }])`
+* `client.tags.tag_resources(name: 'name', resources: [{ resource_id => 'droplet_id', resource_type: 'droplet' },{ resource_id => 'image_id', resource_type: 'image' }])`
+* `client.tags.untag_resources(name 'name', resources: [{ resource_id => 'droplet_id', resource_type: 'droplet' },{ resource_id => 'image_id', resource_type: 'image' }])`
 
 ## Account resource
 
