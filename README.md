@@ -29,6 +29,19 @@ require 'droplet_kit'
 client = DropletKit::Client.new(access_token: 'YOUR_TOKEN')
 ```
 
+### Timeout
+
+You may also set timeout and time to first byte options on the client.
+
+```ruby
+require 'droplet_kit'
+client = DropletKit::Client.new(
+  access_token: 'YOUR_TOKEN',
+  open_timeout: 60, # time to first byte in seconds
+  timeout:      120, # response timeout in seconds
+)
+```
+
 ### Custom User-Agent
 
 If you would like to include a custom User-Agent header beyond what DropletKit
