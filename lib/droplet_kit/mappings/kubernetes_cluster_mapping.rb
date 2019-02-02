@@ -14,7 +14,7 @@ module DropletKit
       property :ipv4, scopes: [:read]
       property :endpoint, scopes: [:read]
       property :tags, scopes: [:read, :update, :create]
-      property :node_pools, scopes: [:read, :create]
+      property :node_pools, plural: true, include: KubernetesNodePoolMapping
     end
   end
 end
