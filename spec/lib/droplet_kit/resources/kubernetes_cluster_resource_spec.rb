@@ -97,17 +97,15 @@ RSpec.describe DropletKit::KubernetesClusterResource do
         "version" => "1.12.1-do.2",
         "tags" => ["test"],
         "node_pools" => [
-          {
-            "size" => "s-1vcpu-1gb",
-            "count" => 3,
-            "name" => "frontend-pool",
-            "tags" => ["frontend"]
-          },
-          {
-            "size" => "c-4",
-            "count" => 2,
-            "name" => "backend-pool"
-          }
+          DropletKit::KubernetesNodePool.new(
+            size: "s-1vcpu-1gb",
+            count: 3,
+            name: "frontend-pool",
+            tags: ["frontend"]),
+          DropletKit::KubernetesNodePool.new(
+            size: "c-4",
+            count: 2,
+            name: "backend-pool")
         ]
       }
     end
@@ -121,8 +119,14 @@ RSpec.describe DropletKit::KubernetesClusterResource do
         expect(as_hash['region']).to eq(cluster.region)
         expect(as_hash['version']).to eq(cluster.version)
         expect(as_hash['tags']).to eq(cluster.tags)
-        expect(as_hash['node_pools']).to eq(cluster.node_pools)
-
+        expect(as_hash['node_pools'].size).to eq(2)
+        expect(as_hash['node_pools'].first["size"]).to eq("s-1vcpu-1gb")
+        expect(as_hash['node_pools'].first["count"]).to eq(3)
+        expect(as_hash['node_pools'].first["name"]).to eq("frontend-pool")
+        expect(as_hash['node_pools'].first["tags"]).to eq(["frontend"])
+        expect(as_hash['node_pools'].last["size"]).to eq("c-4")
+        expect(as_hash['node_pools'].last["count"]).to eq(2)
+        expect(as_hash['node_pools'].last["name"]).to eq("backend-pool")
 
         as_string = DropletKit::KubernetesClusterMapping.representation_for(:create, cluster)
         stub_do_api(path, :post).with(body: as_string).to_return(body: api_fixture('kubernetes/clusters/create'), status: 201)
