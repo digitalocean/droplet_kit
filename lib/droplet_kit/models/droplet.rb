@@ -1,6 +1,6 @@
 module DropletKit
   class Droplet < BaseModel
-    [:id, :name, :memory, :vcpus, :disk, :locked, :created_at,
+    [:id, :name, :memory, :vcpus, :disk, :locked, :created_at, :user_data,
       :status, :backup_ids, :snapshot_ids, :action_ids, :features,
       :region, :image, :networks, :kernel, :size_slug, :tags].each do |key|
       attribute(key)
