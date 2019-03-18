@@ -19,6 +19,7 @@ module DropletKit
         property :algorithm
         property :tag
         property :redirect_http_to_https
+        property :enable_proxy_protocol
         property :droplet_ids
         property :sticky_sessions, include: StickySessionMapping
         property :health_check, include: HealthCheckMapping
