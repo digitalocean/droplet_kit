@@ -55,7 +55,8 @@
         3164444,
         3164445
       ],
-      "redirect_http_to_https": false
+      "redirect_http_to_https": false,
+      "enable_proxy_protocol": false
     },
     {
       "id": "3de7ac8b-495b-4884-9a69-1050c6793cd6",
@@ -118,7 +119,8 @@
       },
       "tag": "",
       "droplet_ids": [],
-      "redirect_http_to_https": true
+      "redirect_http_to_https": true,
+      "enable_proxy_protocol": false
     }
   ],
   "links": {
