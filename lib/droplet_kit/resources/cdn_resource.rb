@@ -24,6 +24,12 @@ module DropletKit
         handler(422) { |response| ErrorMapping.fail_with(FailedUpdate, response.body) }
       end
 
+      action :update_custom_domain, 'PUT /v2/cdn/endpoints/:id' do
+        body { |hash| { custom_domain: hash[:custom_domain] || '', certificate_id: hash[:certificate_id] || '' }.to_json }
+        handler(200) { |response| CDNMapping.extract_single(response.body, :read) }
+        handler(409, 412, 422) { |response| ErrorMapping.fail_with(FailedUpdate, response.body) }
+      end
+
       action :flush_cache, 'DELETE /v2/cdn/endpoints/:id/cache' do
         body { |hash| { files: hash[:files] }.to_json }
         handler(204) { |_| true }

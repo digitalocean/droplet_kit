@@ -95,7 +95,9 @@ client = DropletKit::Client.new(access_token: 'TOKEN')
 client.cdns #=> DropletKit::CertificateResource
 cdn = DropletKit::CDN.new(
   origin: 'myspace.nyc3.digitaloceanspaces.com',
-  ttl: 1800
+  ttl: 1800,
+  custom_domain: 'www.myacme.xyz',
+  certificate_id: 'a6689b98-2bb9-40be-8638-fb8426aabd26'
 )
 ```
 
@@ -105,6 +107,7 @@ Actions supported:
 * `client.cdns.all()`
 * `client.cdns.create(cdn)`
 * `client.cdns.update_ttl(id: 'id', ttl: 3600)`
+* `client.cdns.update_custom_domain(id: 'id', custom_domain: 'www.myacme.xyz', certificate_id: 'a6689b98-2bb9-40be-8638-fb8426aabd26')`
 * `client.cdns.flush_cache(id: 'id', files: ['*', 'path/to/css/*'])`
 * `client.cdns.delete(id: 'id')`
 

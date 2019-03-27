@@ -8,6 +8,8 @@ RSpec.describe DropletKit::CDNResource do
   let(:origin) { 'my-space-cdn.nyc3.digitaloceanspaces.com' }
   let(:endpoint) { 'my-space-cdn.nyc3.cdn.digitaloceanspaces.com' }
   let(:ttl) { 3600 }
+  let(:custom_domain) { 'assets.myacme.xyz' }
+  let(:certificate_id) { '53847804-2efe-4fd5-8a4a-3fc9a747eb4c' }
   let(:created_at) { '2016-03-02T17:00:49Z' }
 
   let(:path) { '/v2/cdn/endpoints' }
@@ -21,6 +23,8 @@ RSpec.describe DropletKit::CDNResource do
       expect(cdn.origin).to eq(origin)
       expect(cdn.endpoint).to eq(endpoint)
       expect(cdn.ttl).to eq(ttl)
+      expect(cdn.custom_domain).to eq(custom_domain)
+      expect(cdn.certificate_id).to eq(certificate_id)
       expect(cdn.created_at).to eq(created_at)
     end
   end
@@ -53,7 +57,9 @@ RSpec.describe DropletKit::CDNResource do
     it 'returns the created cdn' do
       cdn = DropletKit::CDN.new(
         origin: origin,
-        ttl: ttl
+        ttl: ttl,
+        custom_domain: 'assets.myacme.xyz',
+        certificate_id: '53847804-2efe-4fd5-8a4a-3fc9a747eb4c'
       )
 
       as_string = DropletKit::CDNMapping.representation_for(:create, cdn)
@@ -89,6 +95,45 @@ RSpec.describe DropletKit::CDNResource do
       stub_do_api(path_with_id, :put).with(body: as_string).to_return(body: response_body.to_json, status: 422)
 
       expect { resource.update_ttl(id: id, ttl: 0) }.to raise_exception(exception).with_message(response_body[:message])
+    end
+  end
+
+  describe '#update_custom_domain' do
+    let(:exception) { DropletKit::FailedUpdate }
+
+    it 'returns the updated cdn' do
+      certificate_id = '8dd43ed4-fe62-4077-8dc7-5ac59f255213'
+      custom_domain = 'www.myacme.xyz'
+      as_string = { custom_domain: custom_domain, certificate_id: certificate_id}.to_json
+      stub_do_api(path_with_id, :put).with(body: as_string).to_return(body: api_fixture('cdns/update_custom_domain'))
+      updated_cdn = resource.update_custom_domain(id: id, custom_domain: custom_domain, certificate_id: certificate_id)
+
+      expect(updated_cdn).to be_kind_of(DropletKit::CDN)
+
+      expect(updated_cdn.id).to eq(id)
+      expect(updated_cdn.custom_domain).to eq(custom_domain)
+      expect(updated_cdn.certificate_id).to eq(certificate_id)
+    end
+
+    it 'allows removing custom domain' do
+      as_string = { custom_domain: '', certificate_id: ''}.to_json
+      stub_do_api(path_with_id, :put).with(body: as_string).to_return(body: api_fixture('cdns/remove_custom_domain'))
+      updated_cdn = resource.update_custom_domain(id: id, custom_domain: '')
+
+      expect(updated_cdn).to be_kind_of(DropletKit::CDN)
+
+      expect(updated_cdn.id).to eq(id)
+      expect(updated_cdn.custom_domain).to eq(nil)
+    end
+
+    it "fails if custom domain is in use" do
+      certificate_id = '8dd43ed4-fe62-4077-8dc7-5ac59f255213'
+      custom_domain = 'www.myacme.xyz'
+      as_string = { custom_domain: custom_domain, certificate_id: certificate_id }.to_json
+      response_body = { id: :conflict, message: 'hostname is in use' }
+      stub_do_api(path_with_id, :put).with(body: as_string).to_return(body: response_body.to_json, status: 409)
+
+      expect { resource.update_custom_domain(id: id, custom_domain: custom_domain, certificate_id: certificate_id) }.to raise_exception(exception).with_message(response_body[:message])
     end
   end
 

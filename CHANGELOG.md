@@ -1,3 +1,6 @@
+### Version 2.9.0
+* #179 Add support for custom domains in Spaces CDN
+
 ### [2.8.0] - 2018-12-11
 * #144 Adds the ability to set timeout options for Faraday - @tgturner
 * #145 Bump Faraday version to 0.15 - @petems
