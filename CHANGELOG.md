@@ -1,3 +1,9 @@
+### Version 2.9.0
+* #179 Add support for custom domains in Spaces CDN - @xornivore
+* #178 Add enable_proxy_protocol support - @mregmi
+* #174 Bump ruby verions in Travis - @tas50
+* #173 Only ship the required libraries in the gem artifact - @tas50
+
 ### [2.8.0] - 2018-12-11
 * #144 Adds the ability to set timeout options for Faraday - @tgturner
 * #145 Bump Faraday version to 0.15 - @petems

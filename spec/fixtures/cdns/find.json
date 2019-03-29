@@ -4,6 +4,8 @@
     "origin": "my-space-cdn.nyc3.digitaloceanspaces.com",
     "endpoint": "my-space-cdn.nyc3.cdn.digitaloceanspaces.com",
     "ttl": 3600,
+    "custom_domain": "assets.myacme.xyz",
+    "certificate_id": "53847804-2efe-4fd5-8a4a-3fc9a747eb4c",
     "created_at": "2016-03-02T17:00:49Z"
   }
 }
