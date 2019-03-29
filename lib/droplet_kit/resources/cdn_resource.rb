@@ -25,7 +25,7 @@ module DropletKit
       end
 
       action :update_custom_domain, 'PUT /v2/cdn/endpoints/:id' do
-        body { |hash| { custom_domain: hash[:custom_domain] || '', certificate_id: hash[:certificate_id] || '' }.to_json }
+        body { |hash| { custom_domain: hash[:custom_domain].to_s, certificate_id: hash[:certificate_id].to_s }.to_json }
         handler(200) { |response| CDNMapping.extract_single(response.body, :read) }
         handler(409, 412, 422) { |response| ErrorMapping.fail_with(FailedUpdate, response.body) }
       end
