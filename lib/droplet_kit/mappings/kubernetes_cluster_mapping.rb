@@ -15,6 +15,7 @@ module DropletKit
       property :endpoint, scopes: [:read]
       property :tags, scopes: [:read, :update, :create]
       property :node_pools, scopes: [:read, :create]
+      property :vpc_uuid, scopes: [:read, :create]
     end
   end
 end

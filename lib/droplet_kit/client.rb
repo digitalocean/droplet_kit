@@ -48,7 +48,8 @@ module DropletKit
         tags: TagResource,
         projects: ProjectResource,
         volumes: VolumeResource,
-        volume_actions: VolumeActionResource
+        volume_actions: VolumeActionResource,
+        vpcs: VPCResource
       }
     end
 

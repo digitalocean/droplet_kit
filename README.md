@@ -511,6 +511,21 @@ Actions supported:
 * `client.snapshots.find(id: 'id')`
 * `client.snapshots.delete(id: 'id')`
 
+## VPC resource
+
+    client = DropletKit::Client.new(access_token: 'TOKEN')
+    client.vpcs #=> DropletKit::VPCResource
+
+Actions supported:
+
+* `client.vpcs.find(id: 'id')`
+* `client.vpcs.all()`
+* `client.vpcs.create(vpc)`
+* `client.vpcs.update(vpc, id: 'id')`
+* `client.vpcs.patch(vpc, id: 'id')`
+* `client.vpcs.delete(id: 'id')`
+* `client.vpcs.all_members(id: 'id')`
+
 ## Contributing
 
 1. Fork it ( https://github.com/digitalocean/droplet_kit/fork )

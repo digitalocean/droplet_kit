@@ -14,5 +14,6 @@ module DropletKit
     attribute :sticky_sessions
     attribute :health_check
     attribute :forwarding_rules
+    attribute :vpc_uuid
   end
 end

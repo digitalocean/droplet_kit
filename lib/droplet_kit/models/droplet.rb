@@ -16,6 +16,7 @@ module DropletKit
     attribute :ipv6
     attribute :user_data
     attribute :private_networking
+    attribute :vpc_uuid
 
     def public_ip
       network = network_for(:v4, 'public')
