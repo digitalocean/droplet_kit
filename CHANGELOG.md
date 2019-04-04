@@ -1,3 +1,6 @@
+### Version 3.0.0
+* #180 Add support for VPC - @viola
+
 ### Version 2.9.0
 * #179 Add support for custom domains in Spaces CDN - @xornivore
 * #178 Add enable_proxy_protocol support - @mregmi

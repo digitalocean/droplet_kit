@@ -47,6 +47,8 @@ module DropletKit
   autoload :KubernetesNodePool, 'droplet_kit/models/kubernetes_node_pool'
   autoload :KubernetesNode, 'droplet_kit/models/kubernetes_node'
   autoload :KubernetesOptions, 'droplet_kit/models/kubernetes_options'
+  autoload :VPC, 'droplet_kit/models/vpc'
+  autoload :VPCMember, 'droplet_kit/models/vpc_member'
 
   # Resources
   autoload :DropletResource, 'droplet_kit/resources/droplet_resource'
@@ -74,6 +76,7 @@ module DropletKit
   autoload :CDNResource, 'droplet_kit/resources/cdn_resource'
   autoload :KubernetesClusterResource, 'droplet_kit/resources/kubernetes_cluster_resource'
   autoload :KubernetesOptionsResource, 'droplet_kit/resources/kubernetes_options_resource'
+  autoload :VPCResource, 'droplet_kit/resources/vpc_resource'
 
   # JSON Maps
   autoload :DropletMapping, 'droplet_kit/mappings/droplet_mapping'
@@ -116,6 +119,8 @@ module DropletKit
   autoload :KubernetesNodePoolMapping, 'droplet_kit/mappings/kubernetes_node_pool_mapping'
   autoload :KubernetesNodeMapping, 'droplet_kit/mappings/kubernetes_node_mapping'
   autoload :KubernetesOptionsMapping, 'droplet_kit/mappings/kubernetes_options_mapping'
+  autoload :VPCMapping, 'droplet_kit/mappings/vpc_mapping'
+  autoload :VPCMemberMapping, 'droplet_kit/mappings/vpc_member_mapping'
 
   # Utils
   autoload :PaginatedResource, 'droplet_kit/paginated_resource'
