@@ -14,6 +14,12 @@ RSpec.describe DropletKit::Client do
       expect(client.access_token).to eq('my-token')
     end
 
+    it 'allows string option for api url' do
+      _my_url = 'https://api.example.com'
+      client = DropletKit::Client.new('api_url' => _my_url)
+      expect(client.api_url).to eq(_my_url)
+    end
+
     it 'has default open_timeout for faraday' do
       client = DropletKit::Client.new('access_token' => 'my-token')
       expect(client.open_timeout).to eq(DropletKit::Client::DEFAULT_OPEN_TIMEOUT)
