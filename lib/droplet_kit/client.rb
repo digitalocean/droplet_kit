@@ -6,10 +6,11 @@ module DropletKit
     DEFAULT_TIMEOUT = 120
     DIGITALOCEAN_API = 'https://api.digitalocean.com'
 
-    attr_reader :access_token, :timeout, :open_timeout, :user_agent
+    attr_reader :access_token, :api_url, :open_timeout, :timeout, :user_agent
 
     def initialize(options = {})
       @access_token = options.with_indifferent_access[:access_token]
+      @api_url      = options.with_indifferent_access[:api_url] || DIGITALOCEAN_API
       @open_timeout = options.with_indifferent_access[:open_timeout] || DEFAULT_OPEN_TIMEOUT
       @timeout      = options.with_indifferent_access[:timeout] || DEFAULT_TIMEOUT
       @user_agent   = options.with_indifferent_access[:user_agent]
@@ -74,7 +75,7 @@ module DropletKit
 
     def connection_options
       {
-        url: DIGITALOCEAN_API,
+        url: @api_url,
         headers: {
           content_type: 'application/json',
           authorization: "Bearer #{access_token}",
