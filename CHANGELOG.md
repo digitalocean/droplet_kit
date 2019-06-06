@@ -1,3 +1,6 @@
+### Version 3.0.1
+* #184 Add client override for API URL - @leprasmurf
+
 ### Version 3.0.0
 * #180 Add support for VPC - @viola
 
