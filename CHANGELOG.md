@@ -1,3 +1,6 @@
+### Version 3.0.2
+* noop - yanked 3.0.1
+
 ### Version 3.0.1
 * #184 Add client override for API URL - @leprasmurf
 
