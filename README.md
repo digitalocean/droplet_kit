@@ -325,7 +325,7 @@ node_pool = DropletKit::KubernetesNodePool.new(name: 'frontend', size: 's-1vcpu-
 
 * `client.kubernetes_clusters.all()`
 * `client.kubernetes_clusters.find(id: 'cluster_id')`
-* `client.kubernetes_clusters.create(cluster, id: 'cluster_id')`
+* `client.kubernetes_clusters.create(cluster)`
 * `client.kubernetes_clusters.kubeconfig(id: 'cluster_id')`
 * `client.kubernetes_clusters.update(cluster, id: 'cluster_id')`
 * `client.kubernetes_clusters.delete(id: 'cluster_id')`
