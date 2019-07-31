@@ -1,3 +1,7 @@
+### Version 3.0.3
+* #190 Kubernetes clusters can not be created with user assigned IDs - @andrewsomething
+* #187 Release docs - @leprasmurf
+
 ### Version 3.0.2
 * noop - yanked 3.0.1
 
