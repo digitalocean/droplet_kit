@@ -30,6 +30,9 @@
           "k8s:worker",
           "test-k8"
         ],
+        "auto_scale": true,
+        "min_nodes": 1,
+        "max_nodes": 10,
         "nodes": [
           {
             "id": "node-1-id",

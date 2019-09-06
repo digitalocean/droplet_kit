@@ -7,6 +7,9 @@
     "tags": [
       "backend"
     ],
+    "auto_scale": true,
+    "min_nodes": 1,
+    "max_nodes": 10,
     "nodes": [
       {
         "id": "80118696-468e-4615-a5b6-33f1a659d116",
