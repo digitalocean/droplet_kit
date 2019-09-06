@@ -4,6 +4,7 @@
     "name": "new-test-name",
     "region": "nyc1",
     "version": "1.12.1-do.2",
+    "auto_upgrade": true,
     "cluster_subnet": "10.244.0.0/16",
     "service_subnet": "",
     "ipv4": "0.0.0.0",
@@ -11,6 +12,10 @@
     "tags": [
       "new-test"
     ],
+    "maintenance_policy": {
+      "start_time": "12:00",
+      "day": "Tuesday"
+    },
     "node_pools": [
       {
         "id": "node-pool-id",
