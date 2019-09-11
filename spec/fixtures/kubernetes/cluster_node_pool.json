@@ -4,6 +4,9 @@
     "name": "k8s-1-12-1-do-2-nyc1-1542638764614-1",
     "size": "s-1vcpu-1gb",
     "count": 1,
+    "auto_scale": true,
+    "min_nodes": 1,
+    "max_nodes": 10,
     "tags": [
       "k8s",
       "k8s:c28bf806-eba8-4a6d-a98f-8fd388740bd0",

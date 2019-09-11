@@ -8,6 +8,9 @@
       "tags": [
         "omar-left-his-mark"
       ],
+      "auto_scale": true,
+      "min_nodes": 1,
+      "max_nodes": 10,
       "nodes": [
         {
           "id": "94bf2bde-e135-11e8-81bd-3cfdfe9e5ea0",

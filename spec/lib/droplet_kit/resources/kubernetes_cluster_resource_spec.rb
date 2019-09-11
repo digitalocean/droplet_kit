@@ -26,6 +26,10 @@ RSpec.describe DropletKit::KubernetesClusterResource do
         "start_time" => "15:00",
         "day" => "any"
       )
+      node_pool = cluster.node_pools.first
+      expect(node_pool["auto_scale"]).to eq(true)
+      expect(node_pool["min_nodes"]).to eq(1)
+      expect(node_pool["max_nodes"]).to eq(10)
     end
 
     it_behaves_like 'resource that handles common errors' do
@@ -160,6 +164,10 @@ RSpec.describe DropletKit::KubernetesClusterResource do
         expect(cluster.ipv4).to eq("0.0.0.0")
         expect(cluster.tags).to match_array(["test-k8", "k8s", "k8s:cluster-1-id"])
         expect(cluster.node_pools.count).to eq(1)
+        node_pool = cluster.node_pools.first
+        expect(node_pool["auto_scale"]).to eq(true)
+        expect(node_pool["min_nodes"]).to eq(1)
+        expect(node_pool["max_nodes"]).to eq(10)
       end
 
       it 'reuses the same object' do
@@ -218,6 +226,9 @@ RSpec.describe DropletKit::KubernetesClusterResource do
       expect(node_pools.first["count"]).to eq 2
       expect(node_pools.first["tags"]).to eq [ "omar-left-his-mark" ]
       expect(node_pools.first["nodes"].length).to eq 2
+      expect(node_pools.first["auto_scale"]).to eq(true)
+      expect(node_pools.first["min_nodes"]).to eq(1)
+      expect(node_pools.first["max_nodes"]).to eq(10)
     end
   end
 
@@ -232,6 +243,9 @@ RSpec.describe DropletKit::KubernetesClusterResource do
       expect(node_pool.size).to eq "s-1vcpu-1gb"
       expect(node_pool.count).to eq 1
       expect(node_pool.tags).to eq ["k8s", "k8s:c28bf806-eba8-4a6d-a98f-8fd388740bd0", "k8s:worker"]
+      expect(node_pool.auto_scale).to eq(true)
+      expect(node_pool.min_nodes).to eq(1)
+      expect(node_pool.max_nodes).to eq(10)
       expect(node_pool.nodes.length).to eq 1
       expect(node_pool.nodes.first.name).to eq "blissful-antonelli-3u87"
       expect(node_pool.nodes.first.status['state']).to eq "running"
@@ -244,7 +258,10 @@ RSpec.describe DropletKit::KubernetesClusterResource do
         name: 'frontend',
         size: 's-1vcpu-1gb',
         count: 3,
-        tags: ['k8-tag']
+        tags: ['k8-tag'],
+        auto_scale: true,
+        min_nodes: 1,
+        max_nodes: 10
       )
       as_hash = DropletKit::KubernetesNodePoolMapping.hash_for(:create, node_pool)
       expect(as_hash['name']).to eq(node_pool.name)
@@ -261,6 +278,9 @@ RSpec.describe DropletKit::KubernetesClusterResource do
       expect(new_node_pool.size).to eq 's-1vcpu-1gb'
       expect(new_node_pool.count).to eq 3
       expect(new_node_pool.tags).to eq ['k8-tag']
+      expect(node_pool.auto_scale).to eq(true)
+      expect(node_pool.min_nodes).to eq(1)
+      expect(node_pool.max_nodes).to eq(10)
       expect(new_node_pool.nodes.length).to eq 3
       new_node_pool.nodes.each do |node|
         expect(node['name']).to eq ""
