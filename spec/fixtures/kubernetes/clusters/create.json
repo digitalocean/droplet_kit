@@ -4,6 +4,7 @@
     "name": "test-cluster",
     "region": "nyc1",
     "version": "1.12.1-do.2",
+    "auto_upgrade": true,
     "cluster_subnet": "10.244.0.0/16",
     "service_subnet": "",
     "ipv4": "0.0.0.0",
@@ -13,6 +14,10 @@
       "k8s",
       "k8s:cluster-1-id"
     ],
+    "maintenance_policy": {
+      "start_time": "15:00",
+      "day": "any"
+    },
     "node_pools": [
       {
         "id": "node-pool-id",

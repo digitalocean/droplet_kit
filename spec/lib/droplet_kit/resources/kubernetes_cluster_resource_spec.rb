@@ -3,6 +3,7 @@ require 'spec_helper'
 RSpec.describe DropletKit::KubernetesClusterResource do
   subject(:resource) { described_class.new(connection: connection) }
   let(:kubernetes_node_pool_attributes) { DropletKit::KubernetesNodePool.new.attributes }
+  let(:kubernetes_maintenance_policy_attributes) { DropletKit::KubernetesMaintenancePolicy.new.attributes }
   let(:cluster_id) { "c28bf806-eba8-4a6d-a98f-8fd388740bd0" }
   include_context 'resources'
 
@@ -16,10 +17,15 @@ RSpec.describe DropletKit::KubernetesClusterResource do
       expect(cluster.name).to eq("test-cluster")
       expect(cluster.region).to eq("nyc1")
       expect(cluster.version).to eq("1.12.1-do.2")
+      expect(cluster.auto_upgrade).to eq(true)
       expect(cluster.cluster_subnet).to eq("10.244.0.0/16")
       expect(cluster.ipv4).to eq("0.0.0.0")
       expect(cluster.tags).to match_array(["test-k8", "k8s", "k8s:cluster-1-id"])
       expect(cluster.node_pools.count).to eq(1)
+      expect(cluster.maintenance_policy).to eq(
+        "start_time" => "15:00",
+        "day" => "any"
+      )
     end
 
     it_behaves_like 'resource that handles common errors' do
@@ -35,7 +41,12 @@ RSpec.describe DropletKit::KubernetesClusterResource do
     let(:new_attrs) do
       {
         "name" => "new-test-name",
-        "tags" => ["new-test"]
+        "tags" => ["new-test"],
+        "auto_upgrade" => true,
+        "maintenance_policy" => {
+          "start_time" => "12:00",
+          "day" => "Tuesday"
+        }
       }
     end
 
@@ -54,6 +65,11 @@ RSpec.describe DropletKit::KubernetesClusterResource do
         updated_cluster = resource.update(cluster)
         expect(updated_cluster.name).to eq("new-test-name")
         expect(updated_cluster.tags).to match_array(["new-test"])
+        expect(updated_cluster.auto_upgrade).to eq(true)
+        expect(updated_cluster.maintenance_policy).to eq(
+          "start_time" => "12:00",
+          "day" => "Tuesday"
+        )
       end
     end
   end
@@ -96,6 +112,11 @@ RSpec.describe DropletKit::KubernetesClusterResource do
         "region" => "nyc1",
         "version" => "1.12.1-do.2",
         "tags" => ["test"],
+        "auto_upgrade" => true,
+        "maintenance_policy" => {
+          "start_time" => "15:00",
+          "day" => "any"
+        },
         "node_pools" => [
           {
             "size" => "s-1vcpu-1gb",
@@ -131,6 +152,10 @@ RSpec.describe DropletKit::KubernetesClusterResource do
         expect(cluster.name).to eq("test-cluster")
         expect(cluster.region).to eq("nyc1")
         expect(cluster.version).to eq("1.12.1-do.2")
+        expect(cluster.maintenance_policy).to eq(
+          "start_time" => "15:00",
+          "day" => "any"
+        )
         expect(cluster.cluster_subnet).to eq("10.244.0.0/16")
         expect(cluster.ipv4).to eq("0.0.0.0")
         expect(cluster.tags).to match_array(["test-k8", "k8s", "k8s:cluster-1-id"])
