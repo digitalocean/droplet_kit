@@ -500,7 +500,7 @@ Actions supported:
 * `client.volume_actions.detach(volume_id: volume.id, droplet_id: droplet.id, region: droplet.region.slug)`
 * `client.volume_actions.resize(volume_id: volume.id, size_gigabytes: 123, region: droplet.region.slug)`
 
-## Volume resource
+## Snapshot resource
 
     client = DropletKit::Client.new(access_token: 'TOKEN')
     client.snapshots #=> DropletKit::SnapshotResource
