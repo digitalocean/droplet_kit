@@ -10,6 +10,26 @@ RSpec.describe DropletKit::BaseModel do
     end
   end
 
+  describe '.valid_urn?' do
+    it 'is true when there is a constant matching the collection' do
+      urn = 'do:droplet:123456'
+
+      expect(described_class.valid_urn?(urn)).to be true
+    end
+
+    it 'is true when it is an unsupported collection' do
+      urn = 'do:space:234567'
+
+      expect(described_class.valid_urn?(urn)).to be true
+    end
+
+    it 'is false when there is no constant matching the name' do
+      urn = 'do:whale:345678'
+
+      expect(described_class.valid_urn?(urn)).to be false
+    end
+  end
+
   describe '#inspect' do
     it 'returns the information about the current user' do
       instance = resource.new(droplet_limit: 5)

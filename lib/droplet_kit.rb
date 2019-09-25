@@ -1,5 +1,4 @@
 require 'droplet_kit/version'
-require 'active_support/all'
 require 'resource_kit'
 require 'kartograph'
 

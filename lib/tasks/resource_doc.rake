@@ -1,15 +1,22 @@
 require 'droplet_kit'
+require 'droplet_kit/utils'
 
 namespace :doc do
   task :resources do
     resources = DropletKit::Client.resources
 
     resources.each do |key, klass|
-      if klass.name.in?((ENV['SKIP_CLASSES'] || '').split(','))
+      if (ENV['SKIP_CLASSES'] || '').split(',').include?(klass.name)
         next
       end
 
-      puts "## #{klass.name.demodulize.underscore.humanize}"
+      class_name = DropletKit::Utils.underscore klass.name.split('::'.freeze).last
+      human_name = class_name.dup
+      human_name.tr!('_'.freeze, ' '.freeze)
+      human_name.gsub!(/([a-z\d]*)/i) { |match| match.downcase }
+      human_name.gsub!(/\A\w/) { |match| match.upcase }
+
+      puts "## #{human_name}"
       puts
       puts "    client = DropletKit::Client.new(access_token: 'TOKEN')"
       puts "    client.#{key} #=> #{klass.name}"
@@ -21,7 +28,10 @@ namespace :doc do
         params = []
 
         if action.body && action.body.arity > 0
-          params << klass.name.demodulize.underscore.downcase.gsub('_resource', '')
+          resource = class_name.dup
+          resource.gsub!('_resource', '')
+          resource.downcase!
+          params << resource
         end
 
         if action_options.any?

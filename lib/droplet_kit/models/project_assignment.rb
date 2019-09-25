@@ -5,7 +5,9 @@ module DropletKit
     attribute :links
 
     def self_link
-      links.try(:myself)
+      return unless links
+
+      links.myself
     end
 
     def to_model

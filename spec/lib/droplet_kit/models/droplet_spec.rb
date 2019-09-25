@@ -4,6 +4,12 @@ RSpec.describe DropletKit::Droplet do
   let(:droplet_fixture) { api_fixture('droplets/find') }
   let(:droplet) { DropletKit::DropletMapping.extract_single(droplet_fixture, :read) }
 
+  describe '#urn' do
+    it 'correctly underscores the collection' do
+      expect(droplet.urn).to eq 'do:droplet:19'
+    end
+  end
+
   describe '#public_ip' do
     it 'returns the public IP for ipv4' do
       expect(droplet.public_ip).to eq('127.0.0.19')
