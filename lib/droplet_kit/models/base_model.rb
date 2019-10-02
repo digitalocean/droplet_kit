@@ -1,4 +1,5 @@
 require 'virtus'
+require 'droplet_kit/utils'
 
 module DropletKit
   class BaseModel
@@ -18,7 +19,7 @@ module DropletKit
     end
 
     def collection_name
-      self.class.name.split('::').last.underscore
+      DropletKit::Utils.underscore self.class.name.split('::').last
     end
 
     def identifier
@@ -36,7 +37,7 @@ module DropletKit
       return true if UNSUPPORTED_COLLECTIONS.include?(collection)
 
       begin
-        "DropletKit::#{collection.camelize}".constantize
+        const_get "DropletKit::#{DropletKit::Utils.camelize(collection)}"
       rescue NameError
         return false
       end
@@ -53,7 +54,7 @@ module DropletKit
 
       return nil if UNSUPPORTED_COLLECTIONS.include?(collection)
 
-      klass = "DropletKit::#{collection.camelize}".constantize
+      klass = const_get("DropletKit::#{DropletKit::Utils.camelize(collection)}")
       klass.from_identifier(identifier)
     end
 

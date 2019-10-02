@@ -1,4 +1,5 @@
 require 'faraday'
+require 'droplet_kit/utils'
 
 module DropletKit
   class Client
@@ -9,11 +10,12 @@ module DropletKit
     attr_reader :access_token, :api_url, :open_timeout, :timeout, :user_agent
 
     def initialize(options = {})
-      @access_token = options.with_indifferent_access[:access_token]
-      @api_url      = options.with_indifferent_access[:api_url] || DIGITALOCEAN_API
-      @open_timeout = options.with_indifferent_access[:open_timeout] || DEFAULT_OPEN_TIMEOUT
-      @timeout      = options.with_indifferent_access[:timeout] || DEFAULT_TIMEOUT
-      @user_agent   = options.with_indifferent_access[:user_agent]
+      options = DropletKit::Utils.transform_keys(options, &:to_sym)
+      @access_token = options[:access_token]
+      @api_url      = options[:api_url] || DIGITALOCEAN_API
+      @open_timeout = options[:open_timeout] || DEFAULT_OPEN_TIMEOUT
+      @timeout      = options[:timeout] || DEFAULT_TIMEOUT
+      @user_agent   = options[:user_agent]
     end
 
     def connection
