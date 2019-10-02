@@ -1,3 +1,8 @@
+### Version 3.2.0
+* #201 update release instructions - @hilary
+* #202 droplet: Expose volume_ids attribute (Fixes: #189). - @andrewsomething
+* #199 Drop ActiveSupport as a dependency - @michaelherold
+
 ### Version 3.1.0
 * #197 Fix Snapshots documentation header - @ruf-io
 * #196 add ruby 2.6 to CI - @hilary
