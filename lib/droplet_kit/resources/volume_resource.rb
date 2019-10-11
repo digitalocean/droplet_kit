@@ -1,4 +1,3 @@
-require 'pry'
 module DropletKit
   class VolumeResource < ResourceKit::Resource
     include ErrorHandlingResourcable
