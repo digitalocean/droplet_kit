@@ -1,3 +1,4 @@
+require 'pry'
 module DropletKit
   class VolumeResource < ResourceKit::Resource
     include ErrorHandlingResourcable
@@ -9,7 +10,7 @@ module DropletKit
       end
 
       action :create, 'POST /v2/volumes' do
-        body { |object| VolumeMapping.representation_for(:create, object) }
+        body { |object| binding.pry; VolumeMapping.representation_for(:create, object) }
         handler(201) { |response| VolumeMapping.extract_single(response.body, :read) }
         handler(422) { |response| ErrorMapping.fail_with(FailedCreate, response.body) }
       end

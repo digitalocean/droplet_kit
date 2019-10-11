@@ -16,6 +16,7 @@ module DropletKit
 
       property :region, scopes: [:create]
       property :snapshot_id, scopes: [:create]
+      property :filesystem_type, scopes: [:create]
     end
   end
 end
