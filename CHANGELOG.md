@@ -1,3 +1,24 @@
+### Version 3.2.0
+* #201 update release instructions - @hilary
+* #202 droplet: Expose volume_ids attribute (Fixes: #189). - @andrewsomething
+* #199 Drop ActiveSupport as a dependency - @michaelherold
+
+### Version 3.1.0
+* #197 Fix Snapshots documentation header - @ruf-io
+* #196 add ruby 2.6 to CI - @hilary
+* #195 DOKS cluster node pool auto-scaling fields - @snormore
+* #194 DOKS cluster auto-upgrade fields - @snormore
+
+### Version 3.0.3
+* #190 Kubernetes clusters can not be created with user assigned IDs - @andrewsomething
+* #187 Release docs - @leprasmurf
+
+### Version 3.0.2
+* noop - yanked 3.0.1
+
+### Version 3.0.1
+* #184 Add client override for API URL - @leprasmurf
+
 ### Version 3.0.0
 * #180 Add support for VPC - @viola
 

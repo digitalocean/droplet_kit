@@ -1,5 +1,4 @@
 require 'droplet_kit/version'
-require 'active_support/all'
 require 'resource_kit'
 require 'kartograph'
 
@@ -116,6 +115,7 @@ module DropletKit
   autoload :FirewallPendingChangeMapping, 'droplet_kit/mappings/firewall_pending_change_mapping'
   autoload :CDNMapping, 'droplet_kit/mappings/cdn_mapping'
   autoload :KubernetesClusterMapping, 'droplet_kit/mappings/kubernetes_cluster_mapping'
+  autoload :KubernetesMaintenancePolicyMapping, 'droplet_kit/mappings/kubernetes_maintenance_policy_mapping'
   autoload :KubernetesNodePoolMapping, 'droplet_kit/mappings/kubernetes_node_pool_mapping'
   autoload :KubernetesNodeMapping, 'droplet_kit/mappings/kubernetes_node_mapping'
   autoload :KubernetesOptionsMapping, 'droplet_kit/mappings/kubernetes_options_mapping'

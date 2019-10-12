@@ -325,7 +325,7 @@ node_pool = DropletKit::KubernetesNodePool.new(name: 'frontend', size: 's-1vcpu-
 
 * `client.kubernetes_clusters.all()`
 * `client.kubernetes_clusters.find(id: 'cluster_id')`
-* `client.kubernetes_clusters.create(cluster, id: 'cluster_id')`
+* `client.kubernetes_clusters.create(cluster)`
 * `client.kubernetes_clusters.kubeconfig(id: 'cluster_id')`
 * `client.kubernetes_clusters.update(cluster, id: 'cluster_id')`
 * `client.kubernetes_clusters.delete(id: 'cluster_id')`
@@ -500,7 +500,7 @@ Actions supported:
 * `client.volume_actions.detach(volume_id: volume.id, droplet_id: droplet.id, region: droplet.region.slug)`
 * `client.volume_actions.resize(volume_id: volume.id, size_gigabytes: 123, region: droplet.region.slug)`
 
-## Volume resource
+## Snapshot resource
 
     client = DropletKit::Client.new(access_token: 'TOKEN')
     client.snapshots #=> DropletKit::SnapshotResource
@@ -535,11 +535,4 @@ Actions supported:
 5. Create a new Pull Request
 
 ## Releasing
-
-Bump the [version](https://github.com/digitalocean/droplet_kit/blob/master/lib/droplet_kit/version.rb), add all changes
-that are being released to the [CHANGELOG](https://github.com/digitalocean/droplet_kit/blob/master/CHANGELOG.md) and
-if you have already done the rubygems sign in from the account, just run `rake release`, if not continue reading.
-
-Find the password on DO's lastpass account (search for rubygems), sign in with the user (run gem `gem push` and it
-will ask you for DO's email and password you found on lastpass), the `gem push` command will fail, ignore. Now just run
-`rake release` and the gem will be pushed to rubygems.
+See [RELEASE](RELEASE.md) for details
