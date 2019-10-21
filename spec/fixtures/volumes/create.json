@@ -29,6 +29,8 @@
     "name": "Example",
     "description": "Block store for examples",
     "size_gigabytes": 10,
-    "created_at": "2016-03-02T17:00:49Z"
+    "created_at": "2016-03-02T17:00:49Z",
+    "filesystem_type": "ext4",
+    "filesystem_label": "archive"
   }
 }
