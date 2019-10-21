@@ -15,6 +15,8 @@ RSpec.describe DropletKit::VolumeResource do
       expect(volume.description).to eq("Block store for examples")
       expect(volume.size_gigabytes).to eq(10)
       expect(volume.created_at).to eq("2016-03-02T17:00:49Z")
+      expect(volume.filesystem_type).to eq("ext4")
+      expect(volume.filesystem_label).to eq("archive")
     end
   end
 
@@ -79,8 +81,8 @@ RSpec.describe DropletKit::VolumeResource do
       end
     end
 
-    context 'with a filesystem_type' do 
-      it 'allows the filesystem_type' do 
+    context 'with a filesystem_type' do
+      it 'allows the filesystem_type' do
         volume = DropletKit::Volume.new(
           size_gigabytes: 10,
           name: "Example",
@@ -97,7 +99,7 @@ RSpec.describe DropletKit::VolumeResource do
     end
 
     context 'with a filesystem_label' do
-      it 'allows the filesystem_label' do 
+      it 'allows the filesystem_label' do
         volume = DropletKit::Volume.new(
           size_gigabytes: 10,
           name: "Example",
