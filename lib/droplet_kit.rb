@@ -7,6 +7,7 @@ module DropletKit
 
   # Models
   autoload :BaseModel, 'droplet_kit/models/base_model'
+  autoload :ContainerRegistry, 'droplet_kit/models/container_registry'
   autoload :Droplet, 'droplet_kit/models/droplet'
   autoload :Region, 'droplet_kit/models/region'
   autoload :Image, 'droplet_kit/models/image'
@@ -52,6 +53,7 @@ module DropletKit
   # Resources
   autoload :DropletResource, 'droplet_kit/resources/droplet_resource'
   autoload :ActionResource, 'droplet_kit/resources/action_resource'
+  autoload :ContainerRegistryResource, 'droplet_kit/resources/container_registry_resource'
   autoload :DomainResource, 'droplet_kit/resources/domain_resource'
   autoload :DomainRecordResource, 'droplet_kit/resources/domain_record_resource'
   autoload :DropletActionResource, 'droplet_kit/resources/droplet_action_resource'
@@ -79,6 +81,7 @@ module DropletKit
 
   # JSON Maps
   autoload :DropletMapping, 'droplet_kit/mappings/droplet_mapping'
+  autoload :ContainerRegistryMapping, 'droplet_kit/mappings/container_registry_mapping'
   autoload :ImageMapping, 'droplet_kit/mappings/image_mapping'
   autoload :RegionMapping, 'droplet_kit/mappings/region_mapping'
   autoload :SizeMapping, 'droplet_kit/mappings/size_mapping'
