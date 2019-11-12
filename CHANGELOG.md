@@ -1,3 +1,8 @@
+### Version 3.3.0
+
+* #206 Add container registry support - @snormore
+* #204 Allowing :filesystem_type on a Volume - @iCreateJB
+
 ### Version 3.2.0
 * #201 update release instructions - @hilary
 * #202 droplet: Expose volume_ids attribute (Fixes: #189). - @andrewsomething
