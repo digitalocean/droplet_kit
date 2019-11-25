@@ -1,5 +1,7 @@
-### Version 3.3.0
+### Version 3.3.1
+* #209 loadbalancer: default fields to false, not null - @zachgersh
 
+### Version 3.3.0
 * #206 Add container registry support - @snormore
 * #204 Allowing :filesystem_type on a Volume - @iCreateJB
 
