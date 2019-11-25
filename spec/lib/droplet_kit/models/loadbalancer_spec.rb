@@ -4,7 +4,7 @@ RSpec.describe DropletKit::LoadBalancer do
   let(:lb) { DropletKit::LoadBalancer.new }
 
   describe 'default' do
-    it 'sets rediect_http_to_https to false' do
+    it 'sets redirect_http_to_https to false' do
       expect(lb.redirect_http_to_https).to be false
     end
 
@@ -14,7 +14,7 @@ RSpec.describe DropletKit::LoadBalancer do
   end
 
   describe 'setting' do
-    it 'sets rediect_http_to_https to false' do
+    it 'sets redirect_http_to_https to false' do
       lb.redirect_http_to_https = true
       expect(lb.redirect_http_to_https).to be true
     end
