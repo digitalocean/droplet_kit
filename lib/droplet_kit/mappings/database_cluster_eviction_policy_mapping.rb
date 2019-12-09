@@ -4,7 +4,7 @@ module DropletKit
 
     kartograph do
       mapping DatabaseClusterEvictionPolicy
-      scoped :read, :create do
+      scoped :read, :update do
         property :eviction_policy
       end
     end

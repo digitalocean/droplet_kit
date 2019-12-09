@@ -5,7 +5,7 @@ module DropletKit
     kartograph do
       mapping DatabaseClusterUser
 
-      scoped :read, :create do
+      scoped :read, :update do
         property :name
       end
 
