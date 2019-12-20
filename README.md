@@ -22,7 +22,7 @@ Or install it yourself as:
 
 You'll need to generate an access token in DigitalOcean's control panel at https://cloud.digitalocean.com/settings/applications
 
-With your access token, retrieve a client instance with it.
+Using your access token, retrieve a client instance.
 
 ```ruby
 require 'droplet_kit'
