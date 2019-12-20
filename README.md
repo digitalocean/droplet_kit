@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-You'll need to generate an access token in Digital Ocean's control panel at https://cloud.digitalocean.com/settings/applications
+You'll need to generate an access token in DigitalOcean's control panel at https://cloud.digitalocean.com/settings/applications
 
 With your access token, retrieve a client instance with it.
 
@@ -125,6 +125,37 @@ Actions supported:
 * `client.certificates.create(certificate)`
 * `client.certificates.delete(id: 'id')`
 
+## Database resource
+
+```ruby
+client = DropletKit::Client.new(access_token: 'TOKEN')
+client.databases #=> DropletKit::DatabaseResource
+database_cluster = DropletKit::DatabaseCluster.new(
+  name: 'backend',
+  engine: 'pg',
+  version: '10',
+  region: 'nyc3',
+  size: 'db-s-2vcpu-4gb',
+  num_nodes: 2,
+  tags: ['production']
+)
+```
+
+Actions supported:
+
+* `client.databases.create_cluster(database_cluster)`
+* `client.databases.find_cluster(id: 'id')`
+* `client.databases.all_clusters()`
+* `client.databases.resize_cluster(database_cluster, id: 'id')`
+* `client.databases.migrate_cluster(database_cluster, id: 'id')`
+* `client.databases.update_maintenance_window(database_maintenance_window, id: 'id')`
+* `client.databases.list_backups(id: 'id')`
+* `client.databases.restore_from_backup(database_backup)`
+* `client.databases.delete_cluster()`
+* `client.database.create_db(database, id: 'id')`
+* `client.databases.find_db(id: 'id', name: 'name')`
+* `client.databases.all_dbs(id: 'id')`
+* `client.databases.delete_db(id: 'id', name: 'name')`
 
 ## Droplet resource
 

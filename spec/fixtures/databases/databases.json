@@ -1,0 +1,10 @@
+{
+  "dbs": [
+    {
+      "name": "alpha"
+    },
+    {
+      "name": "defaultdb"
+    }
+  ]
+}
