@@ -1,3 +1,7 @@
+### Version 3.4.0
+- #212 Fix awkward sentence - @bentranter
+- #211 Add partial support for managed databases - @bentranter
+
 ### Version 3.3.1
 * #209 loadbalancer: default fields to false, not null - @zachgersh
 
