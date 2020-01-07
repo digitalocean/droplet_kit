@@ -84,7 +84,7 @@ module DropletKit
         handler(422) { |response| ErrorMapping.fail_with(FailedCreate, response.body) }
       end
 
-      action :find_database_user, 'GET /v2/databases/:id/users/:username' do
+      action :find_database_user, 'GET /v2/databases/:id/users/:name' do
         handler(200) { |response| DatabaseClusterUserMapping.extract_single(response.body, :read) }
       end
 
@@ -92,7 +92,7 @@ module DropletKit
         handler(200) { |response| DatabaseClusterUserMapping.extract_collection(response.body, :read) }
       end
 
-      action :delete_database_user, 'DELETE /v2/databases/:id/users/:username' do
+      action :delete_database_user, 'DELETE /v2/databases/:id/users/:name' do
         handler(204) { |response| true }
       end
 

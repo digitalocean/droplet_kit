@@ -368,12 +368,12 @@ RSpec.describe DropletKit::DatabaseClusterResource do
 
   describe '#find_database_user' do
     let(:database_id) { "9cc10173-e9ea-4176-9dbc-a4cee4c4ff30" }
-    let(:username) { "app-01" }
-    let(:path) { "/v2/databases/#{database_id}/users/#{username}" }
+    let(:name) { "app-01" }
+    let(:path) { "/v2/databases/#{database_id}/users/#{name}" }
 
     it 'retrieves the proper database user' do
       request = stub_do_api(path, :get).to_return(body: api_fixture('databases/get_database_user_response'), status: 200)
-      database_user = resource.find_database_user(id: database_id, username: username)
+      database_user = resource.find_database_user(id: database_id, name: name)
       
       expect(database_user).to match_cluster_user
       expect(request).to have_been_made
@@ -396,12 +396,12 @@ RSpec.describe DropletKit::DatabaseClusterResource do
 
   describe '#delete_database_user' do
     let(:database_id) { "9cc10173-e9ea-4176-9dbc-a4cee4c4ff30" }
-    let(:username) { "app-01" }
-    let(:path) { "/v2/databases/#{database_id}/users/#{username}" }
+    let(:name) { "app-01" }
+    let(:path) { "/v2/databases/#{database_id}/users/#{name}" }
 
     it 'retrieves the proper database user' do
       request = stub_do_api(path, :delete).to_return(status: 204)
-      database_user = resource.delete_database_user(id: database_id, username: username)
+      database_user = resource.delete_database_user(id: database_id, name: name)
 
       expect(request).to have_been_made
     end
