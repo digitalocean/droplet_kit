@@ -4,8 +4,9 @@ module DropletKit
 
     kartograph do
       mapping DatabaseClusterUser
+      root_key plural: 'users', singular: 'user', scopes: [:read]
 
-      scoped :read, :update do
+      scoped :read, :create do
         property :name
       end
 

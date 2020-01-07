@@ -15,7 +15,7 @@ module DropletKit
       end
 
       scoped :read do
-        property :connection include: DatabaseClusterConnectionMapping
+        property :connection, include: DatabaseClusterConnectionMapping
       end
     end
   end

@@ -44,7 +44,7 @@ module DropletKit
         handler(422) { |response| ErrorMapping.fail_with(FailedCreate, response.body) }
       end
 
-      action :set_maintenance_window, 'POST /v2/databases/:id/maintenance' do
+      action :set_maintenance_window, 'PUT /v2/databases/:id/maintenance' do
         body { |object| DatabaseClusterMaintenanceWindowMapping.representation_for(:update, object) }
         handler(204) { |response| true }
         handler(422) { |response| ErrorMapping.fail_with(FailedCreate, response.body) }
@@ -55,7 +55,7 @@ module DropletKit
       end
 
       action :set_firewall_rules, 'PUT /v2/databases/:id/firewall' do
-        body { |object| DatabaseClusterFirewallRulesMapping.representation_for(:update, object) }
+        body { |object| DatabaseClusterFirewallRulesMapping.represent_collection_for(:update, object) }
         handler(204) { |response| true }
         handler(422) { |response| ErrorMapping.fail_with(FailedUpdate, response.body) }
       end
@@ -66,33 +66,33 @@ module DropletKit
         handler(422) { |response| ErrorMapping.fail_with(FailedCreate, response.body) }
       end
 
-      action :find_read_only_replica, 'POST /v2/databases/:id/replicas/:name' do
+      action :find_read_only_replica, 'GET /v2/databases/:id/replicas/:name' do
         handler(200) { |response| DatabaseClusterReplicaMapping.extract_single(response.body, :read) }
       end
 
-      action :list_read_only_replicas, 'POST /v2/databases/:id/replicas' do
-        handler(200) { |response| DatabaseClusterReplicaMapping.extract_collection(response.body, :read) }
+      action :list_read_only_replicas, 'GET /v2/databases/:id/replicas' do
+        handler(200) { |response| DatabaseClusterReplicaMapping.extract_single(response.body, :read) }
       end
 
       action :delete_read_only_replica, 'DELETE /v2/databases/:id/replicas/:name' do
         handler(204) { |response| true }
       end
 
-      action :create_database_user, 'POST /v2/databases/:id/user' do
+      action :create_database_user, 'POST /v2/databases/:id/users' do
         body { |object| DatabaseClusterUserMapping.representation_for(:create, object) }
         handler(201) { |response| DatabaseClusterUserMapping.extract_single(response.body, :read) }
         handler(422) { |response| ErrorMapping.fail_with(FailedCreate, response.body) }
       end
 
-      action :find_database_user, 'POST /v2/databases/:id/user/:username' do
+      action :find_database_user, 'GET /v2/databases/:id/users/:username' do
         handler(200) { |response| DatabaseClusterUserMapping.extract_single(response.body, :read) }
       end
 
-      action :list_database_users, 'POST /v2/databases/:id/user' do
+      action :list_database_users, 'GET /v2/databases/:id/users' do
         handler(200) { |response| DatabaseClusterUserMapping.extract_collection(response.body, :read) }
       end
 
-      action :delete_database_user, 'DELETE /v2/databases/:id/user/:username' do
+      action :delete_database_user, 'DELETE /v2/databases/:id/users/:username' do
         handler(204) { |response| true }
       end
 
@@ -102,11 +102,11 @@ module DropletKit
         handler(422) { |response| ErrorMapping.fail_with(FailedCreate, response.body) }
       end
 
-      action :find_database, 'POST /v2/databases/:id/dbs/:name' do
+      action :find_database, 'GET /v2/databases/:id/dbs/:name' do
         handler(200) { |response| DatabaseMapping.extract_single(response.body, :read) }
       end
 
-      action :list_databases, 'POST /v2/databases/:id/dbs' do
+      action :list_databases, 'GET /v2/databases/:id/dbs' do
         handler(200) { |response| DatabaseMapping.extract_collection(response.body, :read) }
       end
 
@@ -120,11 +120,11 @@ module DropletKit
         handler(422) { |response| ErrorMapping.fail_with(FailedCreate, response.body) }
       end
 
-      action :find_connection_pool, 'POST /v2/databases/:id/pools/:name' do
+      action :find_connection_pool, 'GET /v2/databases/:id/pools/:name' do
         handler(200) { |response| DatabaseClusterConnectionPoolMapping.extract_single(response.body, :read) }
       end
 
-      action :list_connection_pools, 'POST /v2/databases/:id/pools' do
+      action :list_connection_pools, 'GET /v2/databases/:id/pools' do
         handler(200) { |response| DatabaseClusterConnectionPoolMapping.extract_collection(response.body, :read) }
       end
 
@@ -138,7 +138,7 @@ module DropletKit
         handler(422) { |response| ErrorMapping.fail_with(FailedCreate, response.body) }
       end
 
-      action :get_eviction_policy, 'POST /v2/databases/:id/eviction_policy' do
+      action :get_eviction_policy, 'GET /v2/databases/:id/eviction_policy' do
         handler(200) { |response| DatabaseClusterEvictionPolicyMapping.extract_single(response.body, :read) }
       end
 
@@ -148,7 +148,7 @@ module DropletKit
         handler(422) { |response| ErrorMapping.fail_with(FailedCreate, response.body) }
       end
 
-      action :get_sql_mode, 'POST /v2/databases/:id/sql_mode' do
+      action :get_sql_mode, 'GET /v2/databases/:id/sql_mode' do
         handler(200) { |response| DatabaseClusterSQLModeMapping.extract_single(response.body, :read) }
       end
     end
