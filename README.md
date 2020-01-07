@@ -557,6 +557,46 @@ Actions supported:
 * `client.vpcs.delete(id: 'id')`
 * `client.vpcs.all_members(id: 'id')`
 
+## Databases resource
+```ruby
+client = DropletKit::Client.new(access_token: 'TOKEN')
+client.databases #=> DropletKit::DatabaseClusterResource
+```
+
+Actions supported:
+
+* `client.databases.all(id: 'id')`
+* `client.databases.create(database_cluster)`
+* `client.databases.migrate(database_cluster, id: 'id')`
+* `client.databases.resize(database_cluster, id: 'id')`
+* `client.databases.find(id: 'id')`
+* `client.databases.delete(id: 'id')`
+* `client.databases.list_backups(id: 'id')`
+* `client.databases.restore_from_backup(backup)`
+* `client.databases.set_maintenance_window(window, id: 'id')`
+* `client.databases.list_firewall_rules(id: 'id')`
+* `client.databases.set_firewall_rules(rules, id: 'id')`
+* `client.databases.create_read_only_replica(replica, id: 'id')`
+* `client.databases.find_read_only_replica(id: 'id', name: 'name')`
+* `client.databases.list_read_only_replicas(id: 'id')`
+* `client.databases.delete_read_only_replica(id: 'id', name: 'name')`
+* `client.databases.create_database_user(user, id: 'id')`
+* `client.databases.find_database_user(id: 'id', name: 'name')`
+* `client.databases.list_database_users(id: 'id')`
+* `client.databases.delete_database_user(id: 'id', name: 'name')`
+* `client.databases.create_database(logical_database, id: 'id')`
+* `client.databases.find_database(id: 'id', name: 'name')`
+* `client.databases.list_databases(id: 'id')`
+* `client.databases.delete_database(id: 'id', name: 'name')`
+* `client.databases.create_connection_pool(pool, id: 'id')`
+* `client.databases.find_connection_pool(id: 'id', name: 'name')`
+* `client.databases.list_connection_pools(id: 'id')`
+* `client.databases.delete_connection_pool(id: 'id', name: 'name')`
+* `client.databases.set_eviction_policy(policy, id: 'id')`
+* `client.databases.get_eviction_policy(id: 'id')`
+* `client.databases.set_sql_mode(sql_mode, id: 'id')`
+* `client.databases.get_sql_mode(id: 'id')`
+
 ## Contributing
 
 1. Fork it ( https://github.com/digitalocean/droplet_kit/fork )
