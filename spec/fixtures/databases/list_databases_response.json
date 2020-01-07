@@ -1,0 +1,15 @@
+{
+  "dbs": [
+    {
+      "name": "alpha"
+    },
+    {
+      "name": "defaultdb"
+    }
+  ],
+  "links": {
+  },
+  "meta": {
+    "total": 1
+  }
+}

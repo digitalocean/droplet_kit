@@ -1,0 +1,19 @@
+{
+  "users": [
+    {
+      "name": "app-01",
+      "role": "normal",
+      "password": "jge5lfxtzhx42iff"
+    },
+    {
+      "name": "doadmin",
+      "role": "primary",
+      "password": "wv78n3zpz42xezdk"
+    }
+  ],
+  "links": {
+  },
+  "meta": {
+    "total": 1
+  }
+}
