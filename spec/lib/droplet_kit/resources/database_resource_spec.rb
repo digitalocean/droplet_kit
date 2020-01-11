@@ -92,7 +92,7 @@ RSpec.describe DropletKit::DatabaseResource do
       expect(as_hash['tags']).to eq(database_cluster.tags)
 
       json_body = DropletKit::DatabaseClusterMapping.representation_for(:create, database_cluster)
-      stub_do_api('/v2/databases', :post).with(body: json_body).to_return(body: api_fixture('databases/create_cluster'), status: 202)
+      stub_do_api('/v2/databases', :post).with(body: json_body).to_return(body: api_fixture('databases/create_cluster'), status: 201)
 
       created_database_cluster = resource.create_cluster(database_cluster)
       expect(created_database_cluster).to be_kind_of(DropletKit::DatabaseCluster)
