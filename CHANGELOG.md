@@ -1,3 +1,7 @@
+### Version 3.4.1
+
+- #215 Change create_cluster handler to 201 IAW DO::Database docs - @swanny85
+
 ### Version 3.4.0
 - #212 Fix awkward sentence - @bentranter
 - #211 Add partial support for managed databases - @bentranter
