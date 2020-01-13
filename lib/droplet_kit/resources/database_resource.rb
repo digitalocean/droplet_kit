@@ -13,7 +13,7 @@ module DropletKit
 
       action :create_cluster, 'POST /v2/databases' do
         body { |object| DatabaseClusterMapping.representation_for(:create, object) }
-        handler(202) { |response, database| DatabaseClusterMapping.extract_into_object(database, response.body, :read) }
+        handler(201) { |response, database| DatabaseClusterMapping.extract_into_object(database, response.body, :read) }
         handler(422) { |response| ErrorMapping.fail_with(FailedCreate, response.body) }
       end
 
