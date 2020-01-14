@@ -4,11 +4,11 @@ module DropletKit
 
     kartograph do
       mapping DatabaseUser
-      root_key singular: 'database_user', plural: 'database_users', scopes: [:read]
+      root_key singular: 'user', plural: 'users', scopes: [:read]
 
       property :name, scopes: [:read]
-      property :role, scopes: [:read, :create, :update]
-      property :password, scopes: [:read, :create, :update]
+      property :role, scopes: [:read, :create]
+      property :password, scopes: [:read, :create]
     end
   end
 end
