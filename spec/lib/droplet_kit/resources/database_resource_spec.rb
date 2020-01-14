@@ -44,6 +44,37 @@ RSpec.describe DropletKit::DatabaseResource do
     end
   end
 
+  RSpec::Matchers.define :match_read_only_database_cluster_replica do
+    match do |cluster|
+      expect(cluster).to be_kind_of(DropletKit::DatabaseCluster)
+      expect(cluster.name).to eq("read-nyc3-01")
+      expect(cluster.region).to eq("nyc3")
+      expect(cluster.connection).to be_kind_of(DropletKit::DatabaseConnection)
+      expect(cluster.private_connection).to be_kind_of(DropletKit::DatabaseConnection)
+    end
+  end
+
+  RSpec::Matchers.define :match_cluster_user do
+    match do |cluster_user|
+      expect(cluster_user).to be_kind_of(DropletKit::DatabaseUser)
+      expect(cluster_user.name).to eq("app-01",)
+      expect(cluster_user.role).to eq("normal",)
+      expect(cluster_user.password).to eq("jge5lfxtzhx42iff")
+    end
+  end
+
+  RSpec::Matchers.define :match_database_connection_pool do
+    match do |pool|
+      expect(pool).to be_kind_of(DropletKit::DatabaseConnectionPool)
+      expect(pool.user).to eq("doadmin")
+      expect(pool.name).to eq("backend-pool")
+      expect(pool.size).to eq(10)
+      expect(pool.db).to eq("defaultdb")
+      expect(pool.mode).to eq("transaction")
+      expect(pool.connection).to be_kind_of(DropletKit::DatabaseConnection)
+    end
+  end
+
   describe '#find_cluster' do
     it 'finds a database cluster' do
       stub_do_api("/v2/databases/#{database_cluster_id}", :get).to_return(body: api_fixture('databases/find_cluster'))
@@ -131,7 +162,7 @@ RSpec.describe DropletKit::DatabaseResource do
       expect(as_hash['num_nodes']).to eq(database_cluster.num_nodes)
 
       json_body = DropletKit::DatabaseClusterMapping.representation_for(:resize, database_cluster)
-      request = stub_do_api("/v2/databases/#{database_cluster_id}/resize", :put).with(body: json_body).to_return(status: 202)
+      request = stub_do_api("/v2/databases/#{database_cluster_id}/resize", :put).with(body: json_body).to_return(status: 201)
 
       resource.resize_cluster(database_cluster, id: database_cluster_id)
       expect(request).to have_been_made
@@ -146,7 +177,7 @@ RSpec.describe DropletKit::DatabaseResource do
       expect(as_hash['region']).to eq(database_cluster.region)
 
       json_body = DropletKit::DatabaseClusterMapping.representation_for(:migrate, database_cluster)
-      request = stub_do_api("/v2/databases/#{database_cluster_id}/migrate", :put).with(body: json_body).to_return(status: 202)
+      request = stub_do_api("/v2/databases/#{database_cluster_id}/migrate", :put).with(body: json_body).to_return(status: 201)
 
       resource.migrate_cluster(database_cluster, id: database_cluster_id)
       expect(request).to have_been_made
@@ -280,6 +311,266 @@ RSpec.describe DropletKit::DatabaseResource do
       request = stub_do_api("/v2/databases/#{database_cluster_id}/dbs/#{database_name}", :delete).to_return(status: 204)
       resource.delete_db(id: database_cluster_id, name: database_name)
 
+      expect(request).to have_been_made
+    end
+  end
+
+  describe '#set_maintenance_window' do
+    context 'for a successful maintenance window configuration' do
+      it 'returns a no content response' do
+        maintenance_window = DropletKit::DatabaseMaintenanceWindow.new(
+          day: "tuesday",
+          hour: "14:00",
+        )
+
+        json_body = DropletKit::DatabaseMaintenanceWindowMapping.representation_for(:update, maintenance_window)
+        request = stub_do_api("/v2/databases/#{database_cluster_id}/maintenance", :put).with(body: json_body).to_return(status: 204)
+        resource.set_maintenance_window(maintenance_window, id: database_cluster_id)
+
+        expect(request).to have_been_made
+      end
+    end
+  end
+
+  describe '#list_firewall_rules' do
+    it 'returns all of the database cluster\'s firewall rules' do
+      request = stub_do_api("/v2/databases/#{database_cluster_id}/firewall", :get).to_return(body: api_fixture('databases/list_firewall_rules_response'), status: 200)
+      database_firewall_rules = resource.list_firewall_rules(id: database_cluster_id)
+
+      expect(database_firewall_rules).to all(be_kind_of(DropletKit::DatabaseFirewallRule))
+      expect(database_firewall_rules.first.uuid).to eq("79f26d28-ea8a-41f2-8ad8-8cfcdd020095")
+      expect(database_firewall_rules.first.type).to eq("k8s")
+      expect(database_firewall_rules.first.value).to eq("ff2a6c52-5a44-4b63-b99c-0e98e7a63d61")
+      expect(database_firewall_rules.first.created_at).to eq("2019-11-14T20:30:28Z")
+      expect(request).to have_been_made
+    end
+  end
+
+  describe '#set_firewall_rules' do
+    context 'for a successful firewall rules configuration' do
+      it 'returns a no content response' do
+        firewall_rules = [
+          DropletKit::DatabaseFirewallRule.new(
+            type: "ip_addr",
+            value: "192.168.1.1",
+          ),
+          DropletKit::DatabaseFirewallRule.new(
+            type: "k8s",
+            value: "ff2a6c52-5a44-4b63-b99c-0e98e7a63d61",
+          ),
+        ]
+
+        json_body = DropletKit::DatabaseFirewallRuleMapping.represent_collection_for(:update, firewall_rules)
+        request = stub_do_api("/v2/databases/#{database_cluster_id}/firewall", :put).with(body: json_body).to_return(status: 204)
+        resource.set_firewall_rules(firewall_rules, id: database_cluster_id)
+
+        expect(request).to have_been_made
+      end
+    end
+  end
+
+  describe '#create_read_only_replica' do
+    context 'for a successful read only replica creation' do
+      it 'returns a newly created database replica' do
+        database_replica = DropletKit::DatabaseCluster.new(
+          name: "read-nyc3-01",
+          size: "db-s-2vcpu-4gb",
+          region: "nyc3",
+        )
+
+        json_body = DropletKit::DatabaseClusterMapping.representation_for(:create, database_replica)
+
+        request = stub_do_api("/v2/databases/#{database_cluster_id}/replicas", :post).with(body: json_body).to_return(body: api_fixture('databases/create_read_only_replica_response'), status: 201)
+        read_only_replica = resource.create_read_only_replica(database_replica, id: database_cluster_id)
+
+        expect(read_only_replica.replica).to match_read_only_database_cluster_replica
+        expect(request).to have_been_made
+      end
+    end
+  end
+
+  describe '#list_read_only_replicas' do
+    it 'returns all of the database cluster\'s read_only_replicas' do
+      request = stub_do_api("/v2/databases/#{database_cluster_id}/replicas", :get).to_return(body: api_fixture('databases/list_read_only_replica_response'), status: 200)
+      database_cluster_read_only_replicas = resource.list_read_only_replicas(id: database_cluster_id)
+
+      expect(database_cluster_read_only_replicas.replicas).to all(be_kind_of(DropletKit::DatabaseCluster))
+      expect(database_cluster_read_only_replicas.replicas.first).to match_read_only_database_cluster_replica
+      expect(request).to have_been_made
+    end
+  end
+
+  describe '#delete_read_only_replica' do
+    let(:database_id) { "9cc10173-e9ea-4176-9dbc-a4cee4c4ff30" }
+    let(:replica_name) { "read-nyc3-01" }
+    let(:path) { "/v2/databases/#{database_id}/replicas/#{replica_name}" }
+
+    it 'sends a delete request for the volume' do
+      request = stub_do_api(path, :delete).to_return(status: 204)
+      resource.delete_read_only_replica(id: database_id, name: replica_name)
+
+      expect(request).to have_been_made
+    end
+  end
+
+
+  describe '#create_database_user' do
+    context 'for a successful create of a database user' do
+      it 'returns a created database cluster user' do
+        database_user = DropletKit::DatabaseUser.new(
+          name: "app-01",
+        )
+
+        json_body = DropletKit::DatabaseUserMapping.representation_for(:create, database_user)
+        request = stub_do_api("/v2/databases/#{database_cluster_id}/users", :post).with(body: json_body).to_return(body: api_fixture('databases/create_database_user_response'), status: 201)
+        created_database_user = resource.create_database_user(database_user, id: database_cluster_id)
+
+        expect(created_database_user).to match_cluster_user
+        expect(request).to have_been_made
+      end
+    end
+  end
+
+  describe '#find_database_user' do
+    let(:name) { "app-01" }
+
+    it 'retrieves the proper database user' do
+      request = stub_do_api("/v2/databases/#{database_cluster_id}/users/#{name}", :get).to_return(body: api_fixture('databases/get_database_user_response'), status: 200)
+      database_user = resource.find_database_user(id: database_cluster_id, name: name)
+
+      expect(database_user).to match_cluster_user
+      expect(request).to have_been_made
+    end
+  end
+
+  describe '#list_database_users' do
+    it 'retrieves all database users' do
+      request = stub_do_api("/v2/databases/#{database_cluster_id}/users", :get).to_return(body: api_fixture('databases/list_database_user_response'), status: 200)
+      database_user = resource.list_database_users(id: database_cluster_id)
+
+      expect(database_user).to all(be_kind_of(DropletKit::DatabaseUser))
+      expect(database_user.first).to match_cluster_user
+      expect(request).to have_been_made
+    end
+  end
+
+  describe '#delete_database_user' do
+    let(:name) { "app-01" }
+
+    it 'retrieves the proper database user' do
+      request = stub_do_api("/v2/databases/#{database_cluster_id}/users/#{name}", :delete).to_return(status: 204)
+      database_user = resource.delete_database_user(id: database_cluster_id, name: name)
+
+      expect(request).to have_been_made
+    end
+  end
+
+
+  describe '#create_connection_pool' do
+    context 'for a successful create of a database connection pool' do
+      it 'returns a created database connection pool' do
+        database_connection_pool = DropletKit::DatabaseConnectionPool.new(
+          name: "backend-pool",
+          mode: "transaction",
+          size: 10,
+          db: "defaultdb",
+          user: "doadmin",
+        )
+
+        json_body = DropletKit::DatabaseConnectionPoolMapping.representation_for(:create, database_connection_pool)
+        request = stub_do_api("/v2/databases/#{database_cluster_id}/pools", :post).with(body: json_body).to_return(body: api_fixture('databases/create_connection_pool_response'), status: 201)
+        created_database_connection_pool = resource.create_connection_pool(database_connection_pool, id: database_cluster_id)
+
+        expect(created_database_connection_pool).to match_database_connection_pool
+        expect(request).to have_been_made
+      end
+    end
+  end
+
+  describe '#find_connection_pool' do
+    let(:connection_pool_name) { "backend-pool" }
+
+    it 'returns the database connection pool' do
+      request = stub_do_api("/v2/databases/#{database_cluster_id}/pools/#{connection_pool_name}", :get).to_return(body: api_fixture('databases/get_connection_pool_response'), status: 200)
+      database_connection_pool = resource.find_connection_pool(id: database_cluster_id, name: connection_pool_name)
+
+      expect(database_connection_pool).to match_database_connection_pool
+      expect(request).to have_been_made
+    end
+  end
+
+  describe '#list_connection_pool' do
+    it 'returns all database connection pools' do
+      request = stub_do_api("/v2/databases/#{database_cluster_id}/pools", :get).to_return(body: api_fixture('databases/list_connection_pools_response'), status: 200)
+      database_connection_pool = resource.list_connection_pools(id: database_cluster_id)
+
+      expect(database_connection_pool).to all(be_kind_of(DropletKit::DatabaseConnectionPool))
+      expect(database_connection_pool.first).to match_database_connection_pool
+      expect(request).to have_been_made
+    end
+  end
+
+  describe '#delete_connection_pool' do
+    let(:connection_pool_name) { "backend-pool" }
+
+    it 'deletes the database connection' do
+      request = stub_do_api("/v2/databases/#{database_cluster_id}/pools", :delete).to_return(status: 204)
+      database_connection_pool = resource.delete_connection_pool(id: database_cluster_id, name: connection_pool_name)
+
+      expect(request).to have_been_made
+    end
+  end
+
+  describe '#set_eviction_policy' do
+    context 'for a successful eviction policy configuration' do
+      it 'returns a no content response' do
+        eviction_policy = DropletKit::DatabaseEvictionPolicy.new(
+          eviction_policy: "allkeys_lru",
+        )
+
+        json_body = DropletKit::DatabaseEvictionPolicyMapping.representation_for(:update, eviction_policy)
+        request = stub_do_api("/v2/databases/#{database_cluster_id}/eviction_policy", :put).with(body: json_body).to_return(status: 204)
+        resource.set_eviction_policy(eviction_policy, id: database_cluster_id)
+
+        expect(request).to have_been_made
+      end
+    end
+  end
+
+  describe '#get_eviction_policy' do
+    it 'returns the eviction policy' do
+      request = stub_do_api("/v2/databases/#{database_cluster_id}/eviction_policy", :get).to_return(body: api_fixture('databases/get_eviction_policy_response'),status: 200)
+      eviction_policy = resource.get_eviction_policy(id: database_cluster_id)
+
+      expect(eviction_policy).to be_kind_of(DropletKit::DatabaseEvictionPolicy)
+      expect(eviction_policy.eviction_policy).to eq("allkeys_lru")
+      expect(request).to have_been_made
+    end
+  end
+
+  describe '#set_sql_mode' do
+    context 'for a successful eviction policy configuration' do
+      it 'returns a no content response' do
+        sql_mode = DropletKit::DatabaseSQLMode.new(
+          sql_mode: "ANSI,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION,NO_ZERO_DATE,NO_ZERO_IN_DATE,STRICT_ALL_TABLES",
+        )
+
+        json_body = DropletKit::DatabaseSQLModeMapping.representation_for(:update, sql_mode)
+        request = stub_do_api("/v2/databases/#{database_cluster_id}/sql_mode", :put).with(body: json_body).to_return(status: 204)
+        resource.set_sql_mode(sql_mode, id: database_cluster_id)
+
+        expect(request).to have_been_made
+      end
+    end
+  end
+
+  describe '#get_sql_mode' do
+    it 'returns the eviction policy' do
+      request = stub_do_api("/v2/databases/#{database_cluster_id}/sql_mode", :get).to_return(body: api_fixture('databases/get_sql_modes_response'),status: 200)
+      sql_mode = resource.get_sql_mode(id: database_cluster_id)
+
+      expect(sql_mode).to be_kind_of(DropletKit::DatabaseSQLMode)
+      expect(sql_mode.sql_mode).to eq("ANSI,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION,NO_ZERO_DATE,NO_ZERO_IN_DATE,STRICT_ALL_TABLES")
       expect(request).to have_been_made
     end
   end

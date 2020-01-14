@@ -1,5 +1,5 @@
 module DropletKit
-  class DatabaseClusterEvictionPolicy < BaseModel
+  class DatabaseEvictionPolicy < BaseModel
     attribute :eviction_policy
   end
 end

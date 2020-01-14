@@ -1,5 +1,5 @@
 module DropletKit
-  class DatabaseClusterConnectionPool < BaseModel
+  class DatabaseConnectionPool < BaseModel
     attribute :name
     attribute :mode
     attribute :size

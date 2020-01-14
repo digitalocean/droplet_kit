@@ -1,5 +1,5 @@
 module DropletKit
-  class DatabaseClusterSQLMode < BaseModel
+  class DatabaseSQLMode < BaseModel
     attribute :sql_mode
   end
 end

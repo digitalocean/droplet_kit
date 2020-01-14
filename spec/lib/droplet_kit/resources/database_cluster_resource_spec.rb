@@ -99,7 +99,7 @@ RSpec.describe DropletKit::DatabaseClusterResource do
     let(:database_id) { "9cc10173-e9ea-4176-9dbc-a4cee4c4ff30" }
     let(:path) { "/v2/databases/#{database_id}" }
 
-    it 'returns a singular database cluster' do  
+    it 'returns a singular database cluster' do
       request = stub_do_api(path, :get).to_return(body: api_fixture('databases/get_response'), status: 200)
       database_cluster = resource.find(id: database_id)
 
@@ -132,12 +132,12 @@ RSpec.describe DropletKit::DatabaseClusterResource do
       end
     end
   end
-  
+
   describe '#delete' do
     let(:database_id) { "9cc10173-e9ea-4176-9dbc-a4cee4c4ff30" }
     let(:path) { "/v2/databases/#{database_id}" }
 
-    it 'sends a delete request for the volume' do  
+    it 'sends a delete request for the volume' do
       request = stub_do_api(path, :delete).to_return(status: 204)
       resource.delete(id: database_id)
 
@@ -247,7 +247,7 @@ RSpec.describe DropletKit::DatabaseClusterResource do
         as_string = DropletKit::DatabaseClusterMaintenanceWindowMapping.representation_for(:update, maintenance_window)
         request = stub_do_api(path, :put).with(body: as_string).to_return(status: 204)
         resource.set_maintenance_window(maintenance_window, id: database_id)
-        
+
         expect(request).to have_been_made
       end
     end
@@ -338,7 +338,7 @@ RSpec.describe DropletKit::DatabaseClusterResource do
     let(:replica_name) { "read-nyc3-01" }
     let(:path) { "/v2/databases/#{database_id}/replicas/#{replica_name}" }
 
-    it 'sends a delete request for the volume' do  
+    it 'sends a delete request for the volume' do
       request = stub_do_api(path, :delete).to_return(status: 204)
       resource.delete_read_only_replica(id: database_id, name: replica_name)
 
@@ -359,7 +359,7 @@ RSpec.describe DropletKit::DatabaseClusterResource do
         as_string = DropletKit::DatabaseClusterUserMapping.representation_for(:create, database_user)
         request = stub_do_api(path, :post).with(body: as_string).to_return(body: api_fixture('databases/create_database_user_response'), status: 201)
         created_database_user = resource.create_database_user(database_user, id: database_id)
-        
+
         expect(created_database_user).to match_cluster_user
         expect(request).to have_been_made
       end
@@ -374,12 +374,12 @@ RSpec.describe DropletKit::DatabaseClusterResource do
     it 'retrieves the proper database user' do
       request = stub_do_api(path, :get).to_return(body: api_fixture('databases/get_database_user_response'), status: 200)
       database_user = resource.find_database_user(id: database_id, name: name)
-      
+
       expect(database_user).to match_cluster_user
       expect(request).to have_been_made
     end
   end
-  
+
   describe '#list_database_users' do
     let(:database_id) { "9cc10173-e9ea-4176-9dbc-a4cee4c4ff30" }
     let(:path) { "/v2/databases/#{database_id}/users" }
@@ -387,7 +387,7 @@ RSpec.describe DropletKit::DatabaseClusterResource do
     it 'retrieves all database users' do
       request = stub_do_api(path, :get).to_return(body: api_fixture('databases/list_database_user_response'), status: 200)
       database_user = resource.list_database_users(id: database_id)
-      
+
       expect(database_user).to all(be_kind_of(DropletKit::DatabaseClusterUser))
       expect(database_user.first).to match_cluster_user
       expect(request).to have_been_made
@@ -420,7 +420,7 @@ RSpec.describe DropletKit::DatabaseClusterResource do
         as_string = DropletKit::DatabaseMapping.representation_for(:create, database)
         request = stub_do_api(path, :post).with(body: as_string).to_return(body: api_fixture('databases/create_database_response'), status: 201)
         created_database = resource.create_database(database, id: database_id)
-        
+
         expect(created_database).to match_database
         expect(request).to have_been_made
       end
@@ -435,7 +435,7 @@ RSpec.describe DropletKit::DatabaseClusterResource do
     it 'returns a logical database' do
       request = stub_do_api(path, :get).to_return(body: api_fixture('databases/get_database_response'), status: 200)
       database = resource.find_database(name: database_name, id: database_id)
-      
+
       expect(database).to match_database
       expect(request).to have_been_made
     end
@@ -448,7 +448,7 @@ RSpec.describe DropletKit::DatabaseClusterResource do
     it 'returns all logical databases' do
       request = stub_do_api(path, :get).to_return(body: api_fixture('databases/list_databases_response'), status: 200)
       database = resource.list_databases(id: database_id)
-      
+
       expect(database).to all(be_kind_of(DropletKit::Database))
       expect(database.first).to match_database
       expect(request).to have_been_made
@@ -463,7 +463,7 @@ RSpec.describe DropletKit::DatabaseClusterResource do
     it 'deletes the logical database' do
       request = stub_do_api(path, :delete).to_return(status: 204)
       database = resource.delete_database(id: database_id, name: database_name)
-      
+
       expect(request).to have_been_made
     end
   end
@@ -485,7 +485,7 @@ RSpec.describe DropletKit::DatabaseClusterResource do
         as_string = DropletKit::DatabaseClusterConnectionPoolMapping.representation_for(:create, database_connection_pool)
         request = stub_do_api(path, :post).with(body: as_string).to_return(body: api_fixture('databases/create_connection_pool_response'), status: 201)
         created_database_connection_pool = resource.create_connection_pool(database_connection_pool, id: database_id)
-        
+
         expect(created_database_connection_pool).to match_database_connection_pool
         expect(request).to have_been_made
       end
@@ -500,7 +500,7 @@ RSpec.describe DropletKit::DatabaseClusterResource do
     it 'returns the database connection pool' do
       request = stub_do_api(path, :get).to_return(body: api_fixture('databases/get_connection_pool_response'), status: 200)
       database_connection_pool = resource.find_connection_pool(id: database_id, name: connection_pool_name)
-      
+
       expect(database_connection_pool).to match_database_connection_pool
       expect(request).to have_been_made
     end
@@ -513,7 +513,7 @@ RSpec.describe DropletKit::DatabaseClusterResource do
     it 'returns all database connection pools' do
       request = stub_do_api(path, :get).to_return(body: api_fixture('databases/list_connection_pools_response'), status: 200)
       database_connection_pool = resource.list_connection_pools(id: database_id)
-      
+
       expect(database_connection_pool).to all(be_kind_of(DropletKit::DatabaseClusterConnectionPool))
       expect(database_connection_pool.first).to match_database_connection_pool
       expect(request).to have_been_made
@@ -528,7 +528,7 @@ RSpec.describe DropletKit::DatabaseClusterResource do
     it 'deletes the database connection' do
       request = stub_do_api(path, :delete).to_return(status: 204)
       database_connection_pool = resource.delete_connection_pool(id: database_id, name: connection_pool_name)
-      
+
       expect(request).to have_been_made
     end
   end

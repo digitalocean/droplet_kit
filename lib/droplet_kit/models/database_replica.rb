@@ -1,5 +1,5 @@
 module DropletKit
-  class DatabaseClusterReplica < BaseModel
+  class DatabaseReplica < BaseModel
     attribute :replicas
     attribute :replica
   end

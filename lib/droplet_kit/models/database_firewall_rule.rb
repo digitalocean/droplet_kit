@@ -1,5 +1,5 @@
 module DropletKit
-  class DatabaseClusterFirewallRules < BaseModel
+  class DatabaseFirewallRule < BaseModel
     attribute :type
     attribute :value
     attribute :uuid
