@@ -60,15 +60,6 @@ module DropletKit
   autoload :KubernetesOptions, 'droplet_kit/models/kubernetes_options'
   autoload :VPC, 'droplet_kit/models/vpc'
   autoload :VPCMember, 'droplet_kit/models/vpc_member'
-  autoload :DatabaseCluster, 'droplet_kit/models/database_cluster'
-  autoload :Database, 'droplet_kit/models/database'
-
-  autoload :DatabaseClusterUser, 'droplet_kit/models/database_cluster_user'
-  autoload :DatabaseClusterRestoreBackup, 'droplet_kit/models/database_cluster_restore_backup'
-  autoload :DatabaseClusterBackupRestore, 'droplet_kit/models/database_cluster_restore_backup'
-  autoload :DatabaseClusterMaintenanceWindow, 'droplet_kit/models/database_cluster_maintenance_window'
-  autoload :DatabaseClusterConnection, 'droplet_kit/models/database_cluster_connection'
-  autoload :DatabaseClusterBackup, 'droplet_kit/models/database_cluster_backup'
 
   # Resources
   autoload :DropletResource, 'droplet_kit/resources/droplet_resource'
@@ -99,7 +90,6 @@ module DropletKit
   autoload :KubernetesClusterResource, 'droplet_kit/resources/kubernetes_cluster_resource'
   autoload :KubernetesOptionsResource, 'droplet_kit/resources/kubernetes_options_resource'
   autoload :VPCResource, 'droplet_kit/resources/vpc_resource'
-  autoload :DatabaseClusterResource, 'droplet_kit/resources/database_cluster_resource'
 
   # JSON Maps
   autoload :DropletMapping, 'droplet_kit/mappings/droplet_mapping'
@@ -158,14 +148,6 @@ module DropletKit
   autoload :KubernetesOptionsMapping, 'droplet_kit/mappings/kubernetes_options_mapping'
   autoload :VPCMapping, 'droplet_kit/mappings/vpc_mapping'
   autoload :VPCMemberMapping, 'droplet_kit/mappings/vpc_member_mapping'
-
-  autoload :DatabaseClusterMapping, 'droplet_kit/mappings/database_cluster_mapping'
-  autoload :DatabaseMapping, 'droplet_kit/mappings/database_mapping'
-  autoload :DatabaseClusterUserMapping, 'droplet_kit/mappings/database_cluster_user_mapping'
-  autoload :DatabaseClusterRestoreBackupMapping, 'droplet_kit/mappings/database_cluster_restore_backup_mapping'
-  autoload :DatabaseClusterMaintenanceWindowMapping, 'droplet_kit/mappings/database_cluster_maintenance_window_mapping'
-  autoload :DatabaseClusterConnectionMapping, 'droplet_kit/mappings/database_cluster_connection_mapping'
-  autoload :DatabaseClusterBackupMapping, 'droplet_kit/mappings/database_cluster_backup_mapping'
 
   # Utils
   autoload :PaginatedResource, 'droplet_kit/paginated_resource'

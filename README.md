@@ -143,16 +143,16 @@ database_cluster = DropletKit::DatabaseCluster.new(
 
 Actions supported:
 
-* `client.databases.create_cluster(database_cluster)`
 * `client.databases.find_cluster(id: 'id')`
 * `client.databases.all_clusters()`
+* `client.databases.create_cluster(database_cluster)`
 * `client.databases.resize_cluster(database_cluster, id: 'id')`
 * `client.databases.migrate_cluster(database_cluster, id: 'id')`
 * `client.databases.set_maintenance_window(database_maintenance_window, id: 'id')`
 * `client.databases.update_maintenance_window(database_maintenance_window, id: 'id')`
 * `client.databases.list_backups(id: 'id')`
 * `client.databases.restore_from_backup(database_backup)`
-* `client.databases.delete_cluster()`
+* `client.databases.delete_cluster(id: 'id')`
 * `client.database.create_db(database, id: 'id')`
 * `client.databases.find_db(id: 'id', name: 'name')`
 * `client.databases.all_dbs(id: 'id')`
