@@ -1,3 +1,7 @@
+### Version 3.5.0
+
+- #214 Add dbaas support - @gregmankes
+
 ### Version 3.4.1
 
 - #215 Change create_cluster handler to 201 IAW DO::Database docs - @swanny85
