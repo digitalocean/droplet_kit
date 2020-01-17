@@ -82,4 +82,22 @@ RSpec.describe DropletKit::PaginatedResource do
       end
     end
   end
+
+  describe '#last?' do
+    let(:instance) { DropletKit::PaginatedResource.new(action, resource) }
+
+    it 'returns true when no request is made' do
+      expect(instance.last?).to eq(true)
+    end
+
+    it 'returns false on the first page of results' do
+      instance.first
+      expect(instance.last?).to eq(false)
+    end
+
+    it 'returns true on the last page of results' do
+      instance.each do end
+      expect(instance.last?).to eq(true)
+    end
+  end
 end
