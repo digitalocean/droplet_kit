@@ -44,6 +44,7 @@ module DropletKit
     end
 
     def last?
+      return true if self.total.nil?
       @current_page == total_pages || self.total.zero?
     end
 
