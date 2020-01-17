@@ -1,3 +1,10 @@
+### Version 3.5.1
+
+- #227 Fix PaginatedResource's "last?" method - @bentranter
+- #225 make sure cookie_ttl_seconds always int - @zachgersh
+- #224 Remove Sinatra development dependency. - @andrewsomething
+- #220 Configure WhiteSource Bolt for GitHub - @whitesource-bolt-for-github[bot]
+
 ### Version 3.5.0
 
 - #214 Add dbaas support - @gregmankes
