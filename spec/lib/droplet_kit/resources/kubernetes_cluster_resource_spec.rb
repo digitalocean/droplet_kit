@@ -259,6 +259,7 @@ RSpec.describe DropletKit::KubernetesClusterResource do
         size: 's-1vcpu-1gb',
         count: 3,
         tags: ['k8-tag'],
+        labels: { foo: 'bar' },
         auto_scale: true,
         min_nodes: 1,
         max_nodes: 10
@@ -278,6 +279,7 @@ RSpec.describe DropletKit::KubernetesClusterResource do
       expect(new_node_pool.size).to eq 's-1vcpu-1gb'
       expect(new_node_pool.count).to eq 3
       expect(new_node_pool.tags).to eq ['k8-tag']
+      expect(new_node_pool.labels).to eq('foo' => 'bar')
       expect(node_pool.auto_scale).to eq(true)
       expect(node_pool.min_nodes).to eq(1)
       expect(node_pool.max_nodes).to eq(10)
@@ -309,6 +311,7 @@ RSpec.describe DropletKit::KubernetesClusterResource do
       node_pool.size = 's-1vcpu-1gb'
       node_pool.count = 2
       node_pool.tags = ['updated-k8-tag']
+      node_pool.labels = { foo: 'bar' }
       as_string = DropletKit::KubernetesNodePoolMapping.representation_for(:update, node_pool)
       stub_do_api("/v2/kubernetes/clusters/#{cluster_id}/node_pools/#{node_pool_id}", :put).with(body: as_string).to_return(body: api_fixture('kubernetes/cluster_node_pool_update'), status: 202)
       updated_node_pool = resource.update_node_pool(node_pool, id: cluster_id, pool_id: node_pool_id)
@@ -318,6 +321,7 @@ RSpec.describe DropletKit::KubernetesClusterResource do
       expect(updated_node_pool.size).to eq 's-1vcpu-1gb'
       expect(updated_node_pool.count).to eq 2
       expect(updated_node_pool.tags).to eq ['backend']
+      expect(updated_node_pool.labels).to eq('foo' => 'bar')
       expect(updated_node_pool.nodes.length).to eq 2
     end
   end
