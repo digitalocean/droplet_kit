@@ -7,6 +7,9 @@
     "tags": [
       "backend"
     ],
+    "labels": {
+      "foo": "bar"
+    },
     "auto_scale": true,
     "min_nodes": 1,
     "max_nodes": 10,

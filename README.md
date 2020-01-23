@@ -342,7 +342,7 @@ Actions supported:
 
 ## Image Action Resource
 
-```
+```ruby
 client = DropletKit::Client.new(access_token: 'TOKEN')
 client.image_actions #=> DropletKit::ImageActionResource
 ```
@@ -356,7 +356,7 @@ Image Actions Supported:
 
 ## Kubernetes Resource
 
-```
+```ruby
 client = DropletKit::Client.new(access_token: 'TOKEN')
 client.kubernetes_clusters #=> DropletKit::KubernetesClusterResource
 ```
