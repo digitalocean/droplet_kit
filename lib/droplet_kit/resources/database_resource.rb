@@ -116,6 +116,12 @@ module DropletKit
         handler(200) { |response| DatabaseUserMapping.extract_collection(response.body, :read) }
       end
 
+      action :reset_database_user_auth, 'POST /v2/databases/:id/users/:name/reset_auth' do
+        body { |object| DatabaseUserResetAuthMapping.representation_for(:create, object) }
+        handler(200) { |response| DatabaseUserMapping.extract_single(response.body, :read) }
+        handler(422) { |response| ErrorMapping.fail_with(FailedUpdate, response.body) }
+      end
+
       action :delete_database_user, 'DELETE /v2/databases/:id/users/:name' do
         handler(204) { |response| true }
       end
