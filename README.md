@@ -166,6 +166,7 @@ Actions supported:
 * `client.databases.create_database_user(database_user, id: 'id')`
 * `client.databases.find_database_user(id: 'id', name: 'name')`
 * `client.databases.list_database_users(id: 'id')`
+* `client.databases.reset_database_user_auth(reset_auth, id: 'id', name: 'name')`
 * `client.databases.delete_database_user(id: 'id', name: 'name')`
 * `client.databases.create_connection_pool(database_connection_pool, id: 'id')`
 * `client.databases.find_connection_pool(id: 'id', name: 'name')`
