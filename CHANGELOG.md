@@ -1,3 +1,7 @@
+### Version 3.6.0
+
+- #231 Add method to reset database user auth - @zbarahal-do
+
 ### Version 3.5.1
 
 - #227 Fix PaginatedResource's "last?" method - @bentranter
