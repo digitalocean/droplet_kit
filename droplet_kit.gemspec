@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "kartograph", '~> 0.2.3'
   spec.add_dependency "faraday", '~> 0.15'
 
-  spec.add_development_dependency "bundler", ">= 2.1.4"
+  spec.add_development_dependency "bundler", ">= 2.1.2"
   spec.add_development_dependency "rake"
   spec.add_development_dependency "rspec", "~> 3.9.0"
   spec.add_development_dependency "rb-readline"
