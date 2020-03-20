@@ -25,6 +25,17 @@ RSpec.describe DropletKit::LoadBalancer do
     end
   end
 
+  describe 'enable_backend_keepalive' do
+    it 'defaults to false' do
+      expect(lb.enable_backend_keepalive).to be false
+    end
+
+    it 'can be set to true' do
+      lb.enable_backend_keepalive = true
+      expect(lb.enable_backend_keepalive).to be true
+    end
+  end
+
   describe 'sticky_sessions' do
     it 'cookie_ttl_seconds is never a string' do
       expect(lb.sticky_sessions.cookie_ttl_seconds).to eq 500
