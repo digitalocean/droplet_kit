@@ -55,6 +55,7 @@
       3164445
     ],
     "redirect_http_to_https": false,
-    "enable_proxy_protocol": false
+    "enable_proxy_protocol": false,
+    "enable_backend_keepalive": false
   }
 }

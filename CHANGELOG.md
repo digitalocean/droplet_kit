@@ -1,3 +1,7 @@
+## unreleased
+
+- #234 Add support for enable_backend_keepalive to LBs - @anitgandhi
+
 ### Version 3.6.0
 
 - #231 Add method to reset database user auth - @zbarahal-do
