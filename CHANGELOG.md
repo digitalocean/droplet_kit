@@ -1,6 +1,9 @@
 ## unreleased
 
-- #234 Add support for enable_backend_keepalive to LBs - @anitgandhi
+### Version 3.7.0
+
+- #237 Add VPC v3 attributes - @viola
+- #234 load balancers: add new field enable_backend_keepalive - @anitgandhi
 
 ### Version 3.6.0
 
