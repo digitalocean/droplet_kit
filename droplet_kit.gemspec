@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
   spec.files         = %w{LICENSE.txt README.md} + Dir.glob("lib/**/*", File::FNM_DOTMATCH).reject { |f| File.directory?(f) }
   spec.require_paths = ["lib"]
 
-  spec.required_ruby_version = '>= 2.4.0'
+  spec.required_ruby_version = '>= 2.5.0'
 
   spec.add_dependency 'virtus', '~> 1.0.3'
   spec.add_dependency "resource_kit", '~> 0.1.5'
