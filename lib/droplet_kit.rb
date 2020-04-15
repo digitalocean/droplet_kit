@@ -8,6 +8,8 @@ module DropletKit
   # Models
   autoload :BaseModel, 'droplet_kit/models/base_model'
   autoload :ContainerRegistry, 'droplet_kit/models/container_registry'
+  autoload :ContainerRegistryRepository, 'droplet_kit/models/container_registry_repository'
+  autoload :ContainerRegistryRepositoryTag, 'droplet_kit/models/container_registry_repository_tag'
   autoload :Droplet, 'droplet_kit/models/droplet'
   autoload :Region, 'droplet_kit/models/region'
   autoload :Image, 'droplet_kit/models/image'
@@ -67,6 +69,7 @@ module DropletKit
   autoload :DropletResource, 'droplet_kit/resources/droplet_resource'
   autoload :ActionResource, 'droplet_kit/resources/action_resource'
   autoload :ContainerRegistryResource, 'droplet_kit/resources/container_registry_resource'
+  autoload :ContainerRegistryRepositoryResource, 'droplet_kit/resources/container_registry_repository_resource'
   autoload :DomainResource, 'droplet_kit/resources/domain_resource'
   autoload :DomainRecordResource, 'droplet_kit/resources/domain_record_resource'
   autoload :DropletActionResource, 'droplet_kit/resources/droplet_action_resource'
@@ -96,6 +99,8 @@ module DropletKit
   # JSON Maps
   autoload :DropletMapping, 'droplet_kit/mappings/droplet_mapping'
   autoload :ContainerRegistryMapping, 'droplet_kit/mappings/container_registry_mapping'
+  autoload :ContainerRegistryRepositoryMapping, 'droplet_kit/mappings/container_registry_repository_mapping'
+  autoload :ContainerRegistryRepositoryTagMapping, 'droplet_kit/mappings/container_registry_repository_tag_mapping'
   autoload :ImageMapping, 'droplet_kit/mappings/image_mapping'
   autoload :RegionMapping, 'droplet_kit/mappings/region_mapping'
   autoload :SizeMapping, 'droplet_kit/mappings/size_mapping'

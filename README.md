@@ -577,6 +577,28 @@ Actions supported:
 * `client.vpcs.delete(id: 'id')`
 * `client.vpcs.all_members(id: 'id')`
 
+## Container Registry resource
+
+    client = DropletKit::Client.new(access_token: 'TOKEN')
+    client.registry #=> DropletKit::ContainerRegistryResource
+
+Actions supported:
+
+* `client.registry.get()`
+* `client.registry.create(registry)`
+* `client.registry.delete()`
+* `client.registry.docker_credentials()`
+
+## Container Registry Repository resource
+
+    client = DropletKit::Client.new(access_token: 'TOKEN')
+    client.repository #=> DropletKit::ContainerRegistryRepositoryResource
+
+Actions supported:
+
+* `client.repository.all(registry_name: 'registry')`
+* `client.repository.tags(registry_name: 'registry', repository: 'repo')`
+
 ## Contributing
 
 1. Fork it ( https://github.com/digitalocean/droplet_kit/fork )
