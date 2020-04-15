@@ -580,24 +580,26 @@ Actions supported:
 ## Container Registry resource
 
     client = DropletKit::Client.new(access_token: 'TOKEN')
-    client.registry #=> DropletKit::ContainerRegistryResource
+    client.container_registry #=> DropletKit::ContainerRegistryResource
 
 Actions supported:
 
-* `client.registry.get()`
-* `client.registry.create(registry)`
-* `client.registry.delete()`
-* `client.registry.docker_credentials()`
+* `client.container_registry.get()`
+* `client.container_registry.create(registry)`
+* `client.container_registry.delete()`
+* `client.container_registry.docker_credentials()`
 
 ## Container Registry Repository resource
 
     client = DropletKit::Client.new(access_token: 'TOKEN')
-    client.repository #=> DropletKit::ContainerRegistryRepositoryResource
+    client.container_registry_repository #=> DropletKit::ContainerRegistryRepositoryResource
 
 Actions supported:
 
-* `client.repository.all(registry_name: 'registry')`
-* `client.repository.tags(registry_name: 'registry', repository: 'repo')`
+* `client.container_registry_repository.all(registry_name: 'registry')`
+* `client.container_registry_repository.tags(registry_name: 'registry', repository: 'repo')`
+* `client.container_registry_repository.delete_tag(registry_name: 'registry', repository: 'repo', tag: 'tag')`
+* `client.container_registry_repository.delete_manifest(registry_name: 'registry', repository: 'repo', manifest_digest: 'sha256:cb8a924afdf0229ef7515d9e5b3024e23b3eb03ddbba287f4a19c6ac90b8d221')`
 
 ## Contributing
 
