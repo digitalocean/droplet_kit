@@ -8,6 +8,7 @@ module DropletKit
       property :registry_name, scopes: [:read]
       property :name, scopes: [:read]
       property :latest_tag, scopes: [:read], include: ContainerRegistryRepositoryTagMapping
+      property :tag_count, scopes: [:read]
     end
   end
 end
