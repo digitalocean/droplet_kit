@@ -3,6 +3,7 @@
     {
       "registry_name": "my-registry",
       "name": "my-repo",
+      "tag_count": 4,
       "latest_tag": {
         "registry_name": "my-registry",
         "repository": "my-repo",
