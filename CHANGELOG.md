@@ -1,5 +1,11 @@
 ## unreleased
 
+### Version 3.8.0
+
+- #242 Add support for registry/repository.TagCount - @nicktate
+- #241 Add DOCR EA routes - @nicktate
+- #240 Upgrade minimum Ruby version to 2.5 - @bentranter
+
 ### Version 3.7.0
 
 - #237 Add VPC v3 attributes - @viola
