@@ -6,7 +6,7 @@ require 'droplet_kit/version'
 Gem::Specification.new do |spec|
   spec.name          = "droplet_kit"
   spec.version       = DropletKit::VERSION
-  spec.authors       = ["Digital Ocean API/CLI team"]
+  spec.authors       = ["DigitalOcean API Engineering team"]
   spec.email         = ["devex-api-engineering@digitalocean.com"]
   spec.summary       = %q{Droplet Kit is the official Ruby library for DigitalOcean's API}
   spec.description   = %q{Droplet Kit is the official Ruby library for DigitalOcean's API}
@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'virtus', '~> 1.0.3'
   spec.add_dependency "resource_kit", '~> 0.1.5'
   spec.add_dependency "kartograph", '~> 0.2.3'
-  spec.add_dependency "faraday", '~> 0.15'
+  spec.add_dependency "faraday", '>= 0.15'
 
   spec.add_development_dependency "bundler", ">= 2.1.2"
   spec.add_development_dependency "rake"
