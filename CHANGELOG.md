@@ -2,6 +2,7 @@
 
 ### Version 3.8.0
 
+- #245 Allow any Faraday version greater than 0.15 - @bentranter
 - #242 Add support for registry/repository.TagCount - @nicktate
 - #241 Add DOCR EA routes - @nicktate
 - #240 Upgrade minimum Ruby version to 2.5 - @bentranter
