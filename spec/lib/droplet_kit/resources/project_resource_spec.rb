@@ -96,6 +96,11 @@ describe DropletKit::ProjectResource do
   end
 
   describe '#list_resources' do
+    it_behaves_like 'a paginated index' do
+      let(:fixture_path) { 'projects/resources' }
+      let(:api_path) { '/v2/projects/c177dc8c-12c1-4483-af1c-877eed0f14cb/resources' }
+    end
+
     it 'list resources in the specified project' do
       stub_do_api('/v2/projects/c177dc8c-12c1-4483-af1c-877eed0f14cb/resources', :get)
         .to_return(body: api_fixture('projects/resources'), status: 200)
