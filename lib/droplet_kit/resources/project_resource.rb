@@ -34,6 +34,7 @@ module DropletKit
       end
 
       action :list_resources, 'GET /v2/projects/:id/resources' do
+        query_keys :per_page, :page
         handler(200) { |response| ProjectAssignmentMapping.extract_collection(response.body, :read) }
       end
 
@@ -60,6 +61,10 @@ module DropletKit
 
     def all(*args)
       PaginatedResource.new(action(:all), self, *args)
+    end
+
+    def list_resources(*args)
+      PaginatedResource.new(action(:list_resources), self, *args)
     end
   end
 end
