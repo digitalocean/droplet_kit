@@ -1,4 +1,8 @@
-## unreleased
+## Version 3.8.1
+
+- #252 Fix response code handler to return created VPC - @viola
+- #247 Update spec.email. - @andrewsomething
+- #183 Updates `list_resources` action to paginated resource - @bikerdave
 
 ### Version 3.8.0
 
