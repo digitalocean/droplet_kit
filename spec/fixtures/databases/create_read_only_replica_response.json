@@ -1,0 +1,26 @@
+{
+  "replica": {
+    "name": "read-nyc3-01",
+    "connection": {
+      "uri": "postgres://doadmin:wv78n3zpz42xezdk@read-nyc3-01-do-user-19081923-0.db.ondigitalocean.com:25060/defaultdb?sslmode=require",
+      "database": "",
+      "host": "read-nyc3-01-do-user-19081923-0.db.ondigitalocean.com",
+      "port": 25060,
+      "user": "doadmin",
+      "password": "wv78n3zpz42xezdk",
+      "ssl": true
+    },
+    "private_connection": {
+      "uri": "postgres://doadmin:wv78n3zpz42xezdk@private-read-nyc3-01-do-user-19081923-0.db.ondigitalocean.com:25060/defaultdb?sslmode=require",
+      "database": "",
+      "host": "private-read-nyc3-01-do-user-19081923-0.db.ondigitalocean.com",
+      "port": 25060,
+      "user": "doadmin",
+      "password": "wv78n3zpz42xezdk",
+      "ssl": true
+    },
+    "region": "nyc3",
+    "status": "forking",
+    "created_at": "2019-01-31T19:57:32Z"
+  }
+}

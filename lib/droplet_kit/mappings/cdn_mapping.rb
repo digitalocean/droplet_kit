@@ -9,6 +9,8 @@ module DropletKit
       scoped :read do
         property :id
         property :ttl
+        property :custom_domain
+        property :certificate_id
         property :origin
         property :endpoint
         property :created_at
@@ -17,10 +19,14 @@ module DropletKit
       scoped :create do
         property :origin
         property :ttl
+        property :custom_domain
+        property :certificate_id
       end
 
       scoped :update do
         property :ttl
+        property :custom_domain
+        property :certificate_id
       end
 
       scoped :delete_cache do

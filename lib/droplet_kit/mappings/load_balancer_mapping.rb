@@ -12,6 +12,7 @@ module DropletKit
         property :status
         property :created_at
         property :region, include: RegionMapping
+        property :vpc_uuid
       end
 
       scoped :read, :update, :create do
@@ -19,6 +20,8 @@ module DropletKit
         property :algorithm
         property :tag
         property :redirect_http_to_https
+        property :enable_proxy_protocol
+        property :enable_backend_keepalive
         property :droplet_ids
         property :sticky_sessions, include: StickySessionMapping
         property :health_check, include: HealthCheckMapping
@@ -27,6 +30,10 @@ module DropletKit
 
       scoped  :update, :create do
         property :region
+      end
+
+      scoped :create do
+        property :vpc_uuid
       end
     end
   end

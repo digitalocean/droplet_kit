@@ -15,6 +15,8 @@ RSpec.describe DropletKit::VolumeResource do
       expect(volume.description).to eq("Block store for examples")
       expect(volume.size_gigabytes).to eq(10)
       expect(volume.created_at).to eq("2016-03-02T17:00:49Z")
+      expect(volume.filesystem_type).to eq("ext4")
+      expect(volume.filesystem_label).to eq("archive")
     end
   end
 
@@ -69,6 +71,40 @@ RSpec.describe DropletKit::VolumeResource do
           name: "Example",
           description: "Block store for examples",
           snapshot_id: "7724db7c-e098-11e5-b522-000f53304e51"
+        )
+
+        as_string = DropletKit::VolumeMapping.representation_for(:create, volume)
+        stub_do_api(path, :post).with(body: as_string).to_return(body: api_fixture('volumes/create'), status: 201)
+        created_volume = resource.create(volume)
+
+        expect(created_volume).to match_volume_fixture
+      end
+    end
+
+    context 'with a filesystem_type' do
+      it 'allows the filesystem_type' do
+        volume = DropletKit::Volume.new(
+          size_gigabytes: 10,
+          name: "Example",
+          description: "Block store for examples",
+          filesystem_type: 'ext4'
+        )
+
+        as_string = DropletKit::VolumeMapping.representation_for(:create, volume)
+        stub_do_api(path, :post).with(body: as_string).to_return(body: api_fixture('volumes/create'), status: 201)
+        created_volume = resource.create(volume)
+
+        expect(created_volume).to match_volume_fixture
+      end
+    end
+
+    context 'with a filesystem_label' do
+      it 'allows the filesystem_label' do
+        volume = DropletKit::Volume.new(
+          size_gigabytes: 10,
+          name: "Example",
+          description: "Block store for examples",
+          filesystem_label: 'archive'
         )
 
         as_string = DropletKit::VolumeMapping.representation_for(:create, volume)

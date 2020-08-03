@@ -23,6 +23,7 @@ RSpec.describe DropletKit::DropletResource do
     expect(droplet.created_at).to be_present
     expect(droplet.backup_ids).to include(449676382)
     expect(droplet.snapshot_ids).to include(449676383)
+    expect(droplet.volume_ids).to include("ffaa8716-59e1-11e8-92b6-0242ac110b0c")
     expect(droplet.action_ids).to be_empty
     expect(droplet.features).to include('ipv6')
     tags.each do |tag|

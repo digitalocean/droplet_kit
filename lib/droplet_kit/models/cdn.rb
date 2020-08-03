@@ -5,5 +5,7 @@ module DropletKit
     attribute :origin
     attribute :endpoint
     attribute :created_at
+    attribute :custom_domain
+    attribute :certificate_id
   end
 end

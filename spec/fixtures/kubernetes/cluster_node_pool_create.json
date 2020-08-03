@@ -7,6 +7,12 @@
     "tags": [
       "k8-tag"
     ],
+    "labels": {
+      "foo": "bar"
+    },
+    "auto_scale": true,
+    "min_nodes": 1,
+    "max_nodes": 10,
     "nodes": [
       {
         "id": "6f981ff5-560e-4375-a46d-03336d18b4d2",

@@ -1,4 +1,5 @@
 require 'faraday'
+require 'droplet_kit/utils'
 
 module DropletKit
   class Client
@@ -6,13 +7,15 @@ module DropletKit
     DEFAULT_TIMEOUT = 120
     DIGITALOCEAN_API = 'https://api.digitalocean.com'
 
-    attr_reader :access_token, :timeout, :open_timeout, :user_agent
+    attr_reader :access_token, :api_url, :open_timeout, :timeout, :user_agent
 
     def initialize(options = {})
-      @access_token = options.with_indifferent_access[:access_token]
-      @open_timeout = options.with_indifferent_access[:open_timeout] || DEFAULT_OPEN_TIMEOUT
-      @timeout      = options.with_indifferent_access[:timeout] || DEFAULT_TIMEOUT
-      @user_agent   = options.with_indifferent_access[:user_agent]
+      options = DropletKit::Utils.transform_keys(options, &:to_sym)
+      @access_token = options[:access_token]
+      @api_url      = options[:api_url] || DIGITALOCEAN_API
+      @open_timeout = options[:open_timeout] || DEFAULT_OPEN_TIMEOUT
+      @timeout      = options[:timeout] || DEFAULT_TIMEOUT
+      @user_agent   = options[:user_agent]
     end
 
     def connection
@@ -28,6 +31,9 @@ module DropletKit
         actions: ActionResource,
         cdns: CDNResource,
         certificates: CertificateResource,
+        container_registry: ContainerRegistryResource,
+        container_registry_repository: ContainerRegistryRepositoryResource,
+        databases: DatabaseResource,
         droplets: DropletResource,
         kubernetes_clusters: KubernetesClusterResource,
         kubernetes_options: KubernetesOptionsResource,
@@ -48,7 +54,8 @@ module DropletKit
         tags: TagResource,
         projects: ProjectResource,
         volumes: VolumeResource,
-        volume_actions: VolumeActionResource
+        volume_actions: VolumeActionResource,
+        vpcs: VPCResource
       }
     end
 
@@ -73,7 +80,7 @@ module DropletKit
 
     def connection_options
       {
-        url: DIGITALOCEAN_API,
+        url: @api_url,
         headers: {
           content_type: 'application/json',
           authorization: "Bearer #{access_token}",

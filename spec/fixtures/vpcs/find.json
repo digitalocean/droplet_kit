@@ -1,0 +1,13 @@
+{
+  "vpc":
+    {
+      "id":"880b7f98-f062-404d-b33c-458d545696f6",
+      "urn":"do:vpc:880b7f98-f062-404d-b33c-458d545696f6",
+      "name":"my-new-vpc-1",
+      "description":"vpc desc",
+      "ip_range":"10.108.0.0/20",
+      "region":"nyc3",
+      "created_at":"2019-03-29T21:48:40.995304079Z",
+      "default":false
+    }
+}

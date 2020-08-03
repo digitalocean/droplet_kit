@@ -76,6 +76,8 @@ RSpec.describe DropletKit::LoadBalancerResource do
         algorithm: 'round_robin',
         droplet_ids: [ 3164444, 3164445],
         redirect_http_to_https: true,
+        enable_proxy_protocol: true,
+        enable_backend_keepalive: true,
         region: 'nyc1',
         forwarding_rules: [
           DropletKit::ForwardingRule.new(

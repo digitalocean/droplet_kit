@@ -20,6 +20,8 @@ module DropletKit
       property :features, scopes: [:read]
       property :size_slug, scopes: [:read]
       property :tags, scopes: [:read]
+      property :vpc_uuid, scopes: [:read]
+      property :volume_ids, scopes: [:read]
 
       property :region, scopes: [:read], include: RegionMapping
       property :image, scopes: [:read], include: ImageMapping
@@ -39,6 +41,7 @@ module DropletKit
       property :ipv6, scopes: [:create]
       property :user_data, scopes: [:create]
       property :private_networking, scopes: [:create]
+      property :vpc_uuid, scopes: [:create]
       property :tags, scopes: [:create]
     end
   end

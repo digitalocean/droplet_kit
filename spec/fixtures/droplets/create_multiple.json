@@ -74,6 +74,9 @@
       "snapshot_ids": [
         449676383
       ],
+      "volume_ids": [
+        "ffaa8716-59e1-11e8-92b6-0242ac110b0c"
+      ],
       "action_ids": [
 
       ],
@@ -155,6 +158,9 @@
       ],
       "snapshot_ids": [
         449676383
+      ],
+      "volume_ids": [
+        "ffaa8716-59e1-11e8-92b6-0242ac110b0c"
       ],
       "action_ids": [
 
