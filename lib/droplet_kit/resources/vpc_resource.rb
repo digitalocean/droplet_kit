@@ -19,7 +19,7 @@ module DropletKit
 
       action :create, 'POST /v2/vpcs' do
         body { |vpc| VPCMapping.representation_for(:create, vpc) }
-        handler(202) { |response| VPCMapping.extract_single(response.body, :read) }
+        handler(201) { |response| VPCMapping.extract_single(response.body, :read) }
         handler(422) { |response| ErrorMapping.fail_with(FailedCreate, response.body) }
       end
 
