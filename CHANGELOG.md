@@ -1,6 +1,16 @@
 ## unreleased
 
-- #234 Add support for enable_backend_keepalive to LBs - @anitgandhi
+### Version 3.8.0
+
+- #245 Allow any Faraday version greater than 0.15 - @bentranter
+- #242 Add support for registry/repository.TagCount - @nicktate
+- #241 Add DOCR EA routes - @nicktate
+- #240 Upgrade minimum Ruby version to 2.5 - @bentranter
+
+### Version 3.7.0
+
+- #237 Add VPC v3 attributes - @viola
+- #234 load balancers: add new field enable_backend_keepalive - @anitgandhi
 
 ### Version 3.6.0
 
