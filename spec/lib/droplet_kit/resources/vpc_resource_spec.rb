@@ -12,7 +12,10 @@ RSpec.describe DropletKit::VPCResource do
   RSpec::Matchers.define :match_vpc_fixture do
     match do |vpc|
       expect(vpc.id).to eq('880b7f98-f062-404d-b33c-458d545696f6')
-      expect(vpc.name).to eq('my-new-vpc')
+      expect(vpc.urn).to eq('do:vpc:880b7f98-f062-404d-b33c-458d545696f6')
+      expect(vpc.name).to eq('my-new-vpc-1')
+      expect(vpc.description).to eq('vpc desc')
+      expect(vpc.ip_range).to eq('10.108.0.0/20')
       expect(vpc.region).to eq('nyc3')
       expect(vpc.default).to be_falsy
       expect(vpc.created_at).to eq('2019-03-29T21:48:40.995304079Z')
@@ -65,7 +68,7 @@ RSpec.describe DropletKit::VPCResource do
 
       it 'returns created vpc' do
         json_body = DropletKit::VPCMapping.representation_for(:create, vpc)
-        stub_do_api(path, :post).with(body: json_body).to_return(body: api_fixture(vpc_fixture_path), status: 202)
+        stub_do_api(path, :post).with(body: json_body).to_return(body: api_fixture(vpc_fixture_path), status: 201)
 
         expect(resource.create(vpc)).to match_vpc_fixture
       end

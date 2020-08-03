@@ -25,7 +25,7 @@ module DropletKit
       @collection[index]
     end
 
-    def each(start = 0)
+    def each(start = 0, &block)
       # Start off with the first page if we have no idea of anything yet
       fetch_next_page if total.nil?
 
@@ -37,13 +37,14 @@ module DropletKit
       unless last?
         start = [@collection.size, start].max
         fetch_next_page
-        each(start, &Proc.new)
+        each(start, &block)
       end
 
       self
     end
 
     def last?
+      return true if self.total.nil?
       @current_page == total_pages || self.total.zero?
     end
 

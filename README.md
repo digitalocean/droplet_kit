@@ -20,9 +20,9 @@ Or install it yourself as:
 
 ## Usage
 
-You'll need to generate an access token in Digital Ocean's control panel at https://cloud.digitalocean.com/settings/applications
+You'll need to generate an access token in DigitalOcean's control panel at https://cloud.digitalocean.com/settings/applications
 
-With your access token, retrieve a client instance with it.
+Using your access token, retrieve a client instance.
 
 ```ruby
 require 'droplet_kit'
@@ -125,6 +125,57 @@ Actions supported:
 * `client.certificates.create(certificate)`
 * `client.certificates.delete(id: 'id')`
 
+## Database resource
+
+```ruby
+client = DropletKit::Client.new(access_token: 'TOKEN')
+client.databases #=> DropletKit::DatabaseResource
+database_cluster = DropletKit::DatabaseCluster.new(
+  name: 'backend',
+  engine: 'pg',
+  version: '10',
+  region: 'nyc3',
+  size: 'db-s-2vcpu-4gb',
+  num_nodes: 2,
+  tags: ['production']
+)
+```
+
+Actions supported:
+
+* `client.databases.find_cluster(id: 'id')`
+* `client.databases.all_clusters()`
+* `client.databases.create_cluster(database_cluster)`
+* `client.databases.resize_cluster(database_cluster, id: 'id')`
+* `client.databases.migrate_cluster(database_cluster, id: 'id')`
+* `client.databases.set_maintenance_window(database_maintenance_window, id: 'id')`
+* `client.databases.update_maintenance_window(database_maintenance_window, id: 'id')`
+* `client.databases.list_backups(id: 'id')`
+* `client.databases.restore_from_backup(database_backup)`
+* `client.databases.delete_cluster(id: 'id')`
+* `client.database.create_db(database, id: 'id')`
+* `client.databases.find_db(id: 'id', name: 'name')`
+* `client.databases.all_dbs(id: 'id')`
+* `client.databases.delete_db(id: 'id', name: 'name')`
+* `client.databases.list_firewall_rules(id: 'id')`
+* `client.databases.set_firewall_rules(database_firewall_rules, id: 'id')`
+* `client.databases.create_read_only_replica(database_read_only_replica, id: 'id')`
+* `client.databases.find_read_only_replica(id: 'id', name: 'name')`
+* `client.databases.list_read_only_replicas(id: 'id')`
+* `client.databases.delete_read_only_replica(id: 'id', name: 'name')`
+* `client.databases.create_database_user(database_user, id: 'id')`
+* `client.databases.find_database_user(id: 'id', name: 'name')`
+* `client.databases.list_database_users(id: 'id')`
+* `client.databases.reset_database_user_auth(reset_auth, id: 'id', name: 'name')`
+* `client.databases.delete_database_user(id: 'id', name: 'name')`
+* `client.databases.create_connection_pool(database_connection_pool, id: 'id')`
+* `client.databases.find_connection_pool(id: 'id', name: 'name')`
+* `client.databases.list_connection_pools(id: 'id')`
+* `client.databases.delete_connection_pool(id: 'id', name: 'name')`
+* `client.databases.set_eviction_policy(database_eviction_policy, id: 'id')`
+* `client.databases.get_eviction_policy(id: 'id')`
+* `client.databases.set_sql_mode(database_sql_mode, id: 'id')`
+* `client.databases.get_sql_mode(id: 'id')`
 
 ## Droplet resource
 
@@ -292,7 +343,7 @@ Actions supported:
 
 ## Image Action Resource
 
-```
+```ruby
 client = DropletKit::Client.new(access_token: 'TOKEN')
 client.image_actions #=> DropletKit::ImageActionResource
 ```
@@ -306,7 +357,7 @@ Image Actions Supported:
 
 ## Kubernetes Resource
 
-```
+```ruby
 client = DropletKit::Client.new(access_token: 'TOKEN')
 client.kubernetes_clusters #=> DropletKit::KubernetesClusterResource
 ```
@@ -525,6 +576,30 @@ Actions supported:
 * `client.vpcs.patch(vpc, id: 'id')`
 * `client.vpcs.delete(id: 'id')`
 * `client.vpcs.all_members(id: 'id')`
+
+## Container Registry resource
+
+    client = DropletKit::Client.new(access_token: 'TOKEN')
+    client.container_registry #=> DropletKit::ContainerRegistryResource
+
+Actions supported:
+
+* `client.container_registry.get()`
+* `client.container_registry.create(registry)`
+* `client.container_registry.delete()`
+* `client.container_registry.docker_credentials()`
+
+## Container Registry Repository resource
+
+    client = DropletKit::Client.new(access_token: 'TOKEN')
+    client.container_registry_repository #=> DropletKit::ContainerRegistryRepositoryResource
+
+Actions supported:
+
+* `client.container_registry_repository.all(registry_name: 'registry')`
+* `client.container_registry_repository.tags(registry_name: 'registry', repository: 'repo')`
+* `client.container_registry_repository.delete_tag(registry_name: 'registry', repository: 'repo', tag: 'tag')`
+* `client.container_registry_repository.delete_manifest(registry_name: 'registry', repository: 'repo', manifest_digest: 'sha256:cb8a924afdf0229ef7515d9e5b3024e23b3eb03ddbba287f4a19c6ac90b8d221')`
 
 ## Contributing
 

@@ -1,7 +1,7 @@
 module DropletKit
   class StickySession < BaseModel
-    attribute :type
-    attribute :cookie_name
-    attribute :cookie_ttl_seconds
+    attribute :type, String
+    attribute :cookie_name, String
+    attribute :cookie_ttl_seconds, Integer
   end
 end

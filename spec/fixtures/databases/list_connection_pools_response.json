@@ -1,0 +1,41 @@
+{
+  "pools": [
+    {
+      "user": "doadmin",
+      "name": "backend-pool",
+      "size": 10,
+      "db": "defaultdb",
+      "mode": "transaction",
+      "connection": {
+        "uri": "postgres://doadmin:wv78n3zpz42xezdk@backend-do-user-19081923-0.db.ondigitalocean.com:25061/backend-pool?sslmode=require",
+        "database": "backend-pool",
+        "host": "backend-do-user-19081923-0.db.ondigitalocean.com",
+        "port": 25061,
+        "user": "doadmin",
+        "password": "wv78n3zpz42xezdk",
+        "ssl": true
+      }
+    },
+    {
+      "user": "doadmin",
+      "name": "reporting-pool",
+      "size": 10,
+      "db": "defaultdb",
+      "mode": "session",
+      "connection": {
+        "uri": "postgres://doadmin:wv78n3zpz42xezdk@backend-do-user-19081923-0.db.ondigitalocean.com:25061/foo?sslmode=require",
+        "database": "foo",
+        "host": "backend-do-user-19081923-0.db.ondigitalocean.com",
+        "port": 25061,
+        "user": "doadmin",
+        "password": "wv78n3zpz42xezdk",
+        "ssl": true
+      }
+    }
+  ],
+  "links": {
+  },
+  "meta": {
+    "total": 1
+  }
+}

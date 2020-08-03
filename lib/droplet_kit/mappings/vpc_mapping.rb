@@ -8,7 +8,10 @@ module DropletKit
 
       scoped :read do
         property :id
+        property :urn
         property :name
+        property :description
+        property :ip_range
         property :region
         property :created_at
         property :default
@@ -16,11 +19,14 @@ module DropletKit
 
       scoped :update, :patch do
         property :name
+        property :description
       end
 
       scoped :create do
         property :name
+        property :description
         property :region
+        property :ip_range
       end
     end
   end

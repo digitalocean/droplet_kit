@@ -1,0 +1,3 @@
+{
+  "eviction_policy": "allkeys_lru"
+}
