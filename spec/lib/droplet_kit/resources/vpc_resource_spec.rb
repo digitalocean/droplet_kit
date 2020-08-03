@@ -68,7 +68,7 @@ RSpec.describe DropletKit::VPCResource do
 
       it 'returns created vpc' do
         json_body = DropletKit::VPCMapping.representation_for(:create, vpc)
-        stub_do_api(path, :post).with(body: json_body).to_return(body: api_fixture(vpc_fixture_path), status: 202)
+        stub_do_api(path, :post).with(body: json_body).to_return(body: api_fixture(vpc_fixture_path), status: 201)
 
         expect(resource.create(vpc)).to match_vpc_fixture
       end
