@@ -5,7 +5,7 @@ RSpec.describe DropletKit::BalanceResource do
   include_context 'resources'
 
   describe '#info' do
-    it 'returns the information about the current user' do
+    it 'returns the balance information about the current user' do
       fixture = api_fixture('balance/info')
       parsed  = JSON.load(fixture)
 
