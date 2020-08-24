@@ -502,6 +502,16 @@ Actions supported:
 
 * `client.account.info()`
 
+## Balance resource
+
+```ruby
+client = DropletKit::Client.new(access_token: 'TOKEN')
+client.balance #=> DropletKit::AccountResource
+```
+
+Actions supported:
+
+* `client.balance.info()`
 
 ## Floating IP resource
 
