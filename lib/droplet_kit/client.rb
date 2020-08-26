@@ -49,6 +49,7 @@ module DropletKit
         ssh_keys: SSHKeyResource,
         snapshots: SnapshotResource,
         account: AccountResource,
+        balance: BalanceResource,
         floating_ips: FloatingIpResource,
         floating_ip_actions: FloatingIpActionResource,
         tags: TagResource,
