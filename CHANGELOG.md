@@ -1,3 +1,7 @@
+## Version 3.9.0
+
+- #255 Balance Endpoint support added - @mberbero
+
 ## Version 3.8.1
 
 - #252 Fix response code handler to return created VPC - @viola
