@@ -354,6 +354,16 @@ Image Actions Supported:
 * `client.image_actions.find(image_id: 123, id: 123455)`
 * `client.image_actions.transfer(image_id: 123, region: 'nyc3')`
 
+## Invoice resource
+
+```ruby
+client = DropletKit::Client.new(access_token: 'TOKEN')
+client.invoices #=> DropletKit::InvoiceResource
+```
+
+Actions supported:
+
+* `client.invoices.list()`
 
 ## Kubernetes Resource
 
@@ -506,7 +516,7 @@ Actions supported:
 
 ```ruby
 client = DropletKit::Client.new(access_token: 'TOKEN')
-client.balance #=> DropletKit::AccountResource
+client.balance #=> DropletKit::BalanceResource
 ```
 
 Actions supported:
