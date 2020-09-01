@@ -43,6 +43,7 @@ module DropletKit
         firewalls: FirewallResource,
         images: ImageResource,
         image_actions: ImageActionResource,
+        invoices: InvoiceResource,
         load_balancers: LoadBalancerResource,
         regions: RegionResource,
         sizes: SizeResource,

@@ -1,0 +1,14 @@
+{
+    "invoices": [
+        {
+            "invoice_uuid": "80-046ca2e-edfa-4c35-5285-08317a996e46",
+            "amount": "21.46",
+            "invoice_period": "2019-07"
+        },
+        {
+            "invoice_uuid": "e90-69cbf-97eb-4dd4-aa17-b9aecb73dd5f",
+            "amount": "20.04",
+            "invoice_period": "2019-06"
+        }
+    ]
+}
