@@ -19,4 +19,21 @@ RSpec.describe DropletKit::InvoiceResource do
       let(:action) { :list }
     end
   end
+
+  describe '#find' do
+    it 'returns a Invoice by UUID' do
+      invoice_json = api_fixture('invoice/find')
+      stub_do_api('/v2/customers/my/invoices/123', :get).to_return(body: invoice_json)
+      expected_data = DropletKit::InvoiceMapping.extract_collection invoice_json, :find
+
+      expect(resource.find(id:123)).to eq(expected_data)
+    end
+
+    it_behaves_like 'resource that handles common errors' do
+      let(:path) { '/v2/customers/my/invoices/123' }
+      let(:method) { :get }
+      let(:action) { :find }
+      let(:arguments) { { id: 123 } }
+    end
+  end
 end

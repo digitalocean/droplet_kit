@@ -364,6 +364,7 @@ client.invoices #=> DropletKit::InvoiceResource
 Actions supported:
 
 * `client.invoices.list()`
+* `client.invoices.find(id:123)`
 
 ## Kubernetes Resource
 
