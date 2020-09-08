@@ -1,3 +1,8 @@
+## Version 3.10.0
+
+- #258 Invoice EP retrieve a by UUID - @mberbero
+- #257 Invoice List Endpoint support added - @mberbero
+
 ## Version 3.9.0
 
 - #255 Balance Endpoint support added - @mberbero
