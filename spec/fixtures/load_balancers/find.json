@@ -38,6 +38,7 @@
       "cookie_name": "DO-LB",
       "cookie_ttl_seconds": 5
     },
+    "size": "lb-small",
     "region": {
       "name": "New York 3",
       "slug": "nyc3",

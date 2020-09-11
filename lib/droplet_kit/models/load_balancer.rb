@@ -8,6 +8,7 @@ module DropletKit
     attribute :created_at
     attribute :tag
     attribute :region
+    attribute :size
     attribute :redirect_http_to_https, Boolean, :default => false
     attribute :enable_proxy_protocol, Boolean, :default => false
     attribute :enable_backend_keepalive, Boolean, :default => false
