@@ -4,6 +4,7 @@ RSpec.describe DropletKit::VPCResource do
   include_context 'resources'
 
   let(:vpc_fixture_path) { 'vpcs/find' }
+  let(:default_vpc_fixture_path) { 'vpcs/find_default' }
   let(:base_path) { '/v2/vpcs'}
   let(:vpc_uuid) { '880b7f98-f062-404d-b33c-458d545696f6' }
 
@@ -18,6 +19,19 @@ RSpec.describe DropletKit::VPCResource do
       expect(vpc.ip_range).to eq('10.108.0.0/20')
       expect(vpc.region).to eq('nyc3')
       expect(vpc.default).to be_falsy
+      expect(vpc.created_at).to eq('2019-03-29T21:48:40.995304079Z')
+    end
+  end
+
+  RSpec::Matchers.define :match_default_vpc_fixture do
+    match do |vpc|
+      expect(vpc.id).to eq('880b7f98-f062-404d-b33c-458d545696f6')
+      expect(vpc.urn).to eq('do:vpc:880b7f98-f062-404d-b33c-458d545696f6')
+      expect(vpc.name).to eq('my-new-vpc-1')
+      expect(vpc.description).to eq('vpc desc')
+      expect(vpc.ip_range).to eq('10.108.0.0/20')
+      expect(vpc.region).to eq('nyc3')
+      expect(vpc.default).to be_truthy
       expect(vpc.created_at).to eq('2019-03-29T21:48:40.995304079Z')
     end
   end
@@ -89,6 +103,15 @@ RSpec.describe DropletKit::VPCResource do
         expect(resource.update(vpc, id: vpc_uuid)).to match_vpc_fixture
       end
 
+      it 'allows a VPC to be set as default' do
+        vpc.default = true
+
+        json_body = DropletKit::VPCMapping.representation_for(:update, vpc)
+        stub_do_api(File.join(base_path, vpc_uuid), :put).with(body: json_body).to_return(body: api_fixture(default_vpc_fixture_path), status: 200)
+
+        expect(resource.update(vpc, id: vpc_uuid)).to match_default_vpc_fixture
+      end
+
       it_behaves_like 'an action that handles invalid parameters' do
         let(:verb) { :put }
         let(:exception) { DropletKit::FailedUpdate }
@@ -105,7 +128,16 @@ RSpec.describe DropletKit::VPCResource do
         stub_do_api(File.join(base_path, vpc_uuid), :patch).with(body: json_body).to_return(body: api_fixture(vpc_fixture_path), status: 200)
 
         expect(resource.patch(vpc, id: vpc_uuid)).to match_vpc_fixture
-    end
+      end
+
+      it 'allows a VPC to be set as default' do
+        vpc = DropletKit::VPC.new(default: true)
+        json_body = DropletKit::VPCMapping.representation_for(:patch, vpc)
+
+        stub_do_api(File.join(base_path, vpc_uuid), :patch).with(body: json_body).to_return(body: api_fixture(default_vpc_fixture_path), status: 200)
+
+        expect(resource.patch(vpc, id: vpc_uuid)).to match_default_vpc_fixture
+      end
 
       it_behaves_like 'an action that handles invalid parameters' do
         let(:verb) { :patch }
