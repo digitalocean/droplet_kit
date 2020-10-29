@@ -1,3 +1,7 @@
+## Version 3.11.0
+
+- #262 Allow VPCs to be set as default - @caiofilipini
+
 ## Version 3.10.0
 
 - #258 Invoice EP retrieve a by UUID - @mberbero
