@@ -20,6 +20,7 @@ module DropletKit
       scoped :update, :patch do
         property :name
         property :description
+        property :default
       end
 
       scoped :create do
