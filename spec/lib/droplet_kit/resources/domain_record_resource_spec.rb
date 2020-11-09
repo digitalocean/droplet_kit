@@ -16,6 +16,32 @@ RSpec.describe DropletKit::DomainRecordResource do
       expect(returned_records).to eq(expected_records)
     end
 
+    it 'with queried CNAME type returns all of the CNAME domain records for a domain' do
+      response = api_fixture('domain_records/list_cname')
+      stub_do_api('/v2/domains/example.com/records', :get)
+        .with(query: hash_including({ type: 'CNAME' }))
+        .to_return(body: response)
+
+      expected_records = DropletKit::DomainRecordMapping.extract_collection(response, :read)
+      returned_records = resource.all(for_domain: 'example.com', type: 'CNAME')
+
+      expect(returned_records).to all(be_kind_of(DropletKit::DomainRecord))
+      expect(returned_records).to eq(expected_records)
+    end
+
+    it 'with queried name returns all of the domain records with the same name for a domain' do
+      response = api_fixture('domain_records/cname')
+      stub_do_api('/v2/domains/example.com/records', :get)
+        .with(query: hash_including({ name: 'example' }))
+        .to_return(body: response)
+
+      expected_records = DropletKit::DomainRecordMapping.extract_collection(response, :read)
+      returned_records = resource.all(for_domain: 'example.com', name: 'example')
+
+      expect(returned_records).to all(be_kind_of(DropletKit::DomainRecord))
+      expect(returned_records).to eq(expected_records)
+    end
+
     it_behaves_like 'a paginated index' do
       let(:fixture_path) {'domain_records/all'}
       let(:api_path) {'/v2/domains/example.com/records'}
