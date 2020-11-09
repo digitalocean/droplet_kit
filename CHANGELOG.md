@@ -1,3 +1,7 @@
+## Version 3.12.0
+
+- #264 Add ability to query a domain record resources by name and type - @svyatmuzyka
+
 ## Version 3.11.0
 
 - #262 Allow VPCs to be set as default - @caiofilipini
