@@ -12,6 +12,7 @@ module DropletKit
         property :status
         property :created_at
         property :region, include: RegionMapping
+        property :size
         property :vpc_uuid
       end
 
@@ -30,6 +31,7 @@ module DropletKit
 
       scoped  :update, :create do
         property :region
+        property :size
       end
 
       scoped :create do

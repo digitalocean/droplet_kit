@@ -1,3 +1,7 @@
+## Version 3.13.0
+
+- #266 load balancers: add new field size - @anitgandhi
+
 ## Version 3.12.0
 
 - #264 Add ability to query a domain record resources by name and type - @svyatmuzyka
