@@ -1,5 +1,6 @@
 ## Version 3.13.0
 
+- #269 database user: Add name to create scope - @jonnyarnold
 - #266 load balancers: add new field size - @anitgandhi
 
 ## Version 3.12.0
