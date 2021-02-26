@@ -284,7 +284,8 @@ inbound_rule = DropletKit::FirewallInboundRule.new(
   ports: '0',
   sources: {
     tags: ['frontend', 'backend'],
-    load_balancer_uids: ['d2d3920a-9d45-41b0-b018-d15e18ec60a4']
+    load_balancer_uids: ['d2d3920a-9d45-41b0-b018-d15e18ec60a4'],
+    kubernetes_ids: ['a47b6fb1-4791-4b29-aae1-2b1b9f68a2da']
   }
 )
 

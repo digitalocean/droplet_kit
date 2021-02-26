@@ -15,7 +15,8 @@ RSpec.describe DropletKit::FirewallResource do
           ports: '0',
           sources: {
             tags: ['backend'],
-            load_balancer_uids: ['d2d3920a-9d45-41b0-b018-d15e18ec60a4']
+            load_balancer_uids: ['d2d3920a-9d45-41b0-b018-d15e18ec60a4'],
+            kubernetes_ids: ['20efb1a7-1f04-4486-87aa-5f5114e6aae9']
           }
         ),
         DropletKit::FirewallInboundRule.new(
@@ -57,7 +58,8 @@ RSpec.describe DropletKit::FirewallResource do
       expect(firewall.inbound_rules.count).to eq(2)
       expect(firewall.inbound_rules.first.attributes)
         .to match(a_hash_including(protocol: 'icmp', ports: '0',
-                                   sources: { 'load_balancer_uids' => ['d2d3920a-9d45-41b0-b018-d15e18ec60a4'],
+                                   sources: { 'kubernetes_ids' => ['20efb1a7-1f04-4486-87aa-5f5114e6aae9'],
+                                              'load_balancer_uids' => ['d2d3920a-9d45-41b0-b018-d15e18ec60a4'],
                                               'tags' => ['backend'] }))
       expect(firewall.inbound_rules.last.attributes)
         .to match(a_hash_including(protocol: 'tcp', ports: '8000-9000',
