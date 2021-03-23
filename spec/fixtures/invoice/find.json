@@ -1,0 +1,49 @@
+{
+    "invoice_items": [
+        {
+            "product": "Kubernetes Clusters",
+            "resource_uuid": "e0f95-0898-4695-90d8-95989a195623",
+            "group_description": "k8s-1-18-6-do-0-fra1-1598194313548",
+            "description": "4 nodes - 2 GB / 1 vCPU / 50 GB SSD",
+            "amount": "0.04",
+            "duration": "0",
+            "duration_unit": "Hours",
+            "start_time": "2020-05-23T14:59:45Z",
+            "end_time": "2020-05-23T15:18:48Z",
+            "project_name": "lorem",
+            "category": "iaas"
+        },
+        {
+            "product": "Taxes",
+            "description": "VAT Turkey (18.00%)",
+            "amount": "0.00",
+            "duration": "0",
+            "duration_unit": "Hours",
+            "start_time": "2020-05-01T00:00:00Z",
+            "end_time": "2020-05-31T23:59:59Z",
+            "category": "iaas"
+        },
+        {
+            "product": "Credits",
+            "description": "DigitalOcean Credit Applied",
+            "amount": "-21.04",
+            "duration": "0",
+            "duration_unit": "Hours",
+            "start_time": "2020-05-01T00:00:00Z",
+            "end_time": "2020-05-31T23:59:59Z",
+            "category": "iaas"
+        },
+        {
+            "product": "Droplets",
+            "resource_id": "206179956",
+            "description": "example.com (s-1vcpu-1gb)",
+            "amount": "0.01",
+            "duration": "0",
+            "duration_unit": "Hours",
+            "start_time": "2020-05-31T23:47:37Z",
+            "end_time": "2020-05-31T23:52:06Z",
+            "project_name": "lorem",
+            "category": "iaas"
+        }
+    ]
+}

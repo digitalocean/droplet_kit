@@ -1,5 +1,5 @@
 # DropletKit
-[![Build Status](https://travis-ci.org/digitalocean/droplet_kit.svg?branch=master)](https://travis-ci.org/digitalocean/droplet_kit)
+[![Build Status](https://github.com/digitalocean/droplet_kit/workflows/CI/badge.svg?branch=main)](https://github.com/digitalocean/droplet_kit/actions)
 [![Gem Version](https://badge.fury.io/rb/droplet_kit.svg)](https://badge.fury.io/rb/droplet_kit)
 
 DropletKit is the official [DigitalOcean V2 API](https://developers.digitalocean.com/v2/) client. It supports everything the API can do with a simple interface written in Ruby.
@@ -354,6 +354,17 @@ Image Actions Supported:
 * `client.image_actions.find(image_id: 123, id: 123455)`
 * `client.image_actions.transfer(image_id: 123, region: 'nyc3')`
 
+## Invoice resource
+
+```ruby
+client = DropletKit::Client.new(access_token: 'TOKEN')
+client.invoices #=> DropletKit::InvoiceResource
+```
+
+Actions supported:
+
+* `client.invoices.list()`
+* `client.invoices.find(id:123)`
 
 ## Kubernetes Resource
 
@@ -502,6 +513,16 @@ Actions supported:
 
 * `client.account.info()`
 
+## Balance resource
+
+```ruby
+client = DropletKit::Client.new(access_token: 'TOKEN')
+client.balance #=> DropletKit::BalanceResource
+```
+
+Actions supported:
+
+* `client.balance.info()`
 
 ## Floating IP resource
 

@@ -1,4 +1,30 @@
-## unreleased
+## Version 3.13.0
+
+- #269 database user: Add name to create scope - @jonnyarnold
+- #266 load balancers: add new field size - @anitgandhi
+
+## Version 3.12.0
+
+- #264 Add ability to query a domain record resources by name and type - @svyatmuzyka
+
+## Version 3.11.0
+
+- #262 Allow VPCs to be set as default - @caiofilipini
+
+## Version 3.10.0
+
+- #258 Invoice EP retrieve a by UUID - @mberbero
+- #257 Invoice List Endpoint support added - @mberbero
+
+## Version 3.9.0
+
+- #255 Balance Endpoint support added - @mberbero
+
+## Version 3.8.1
+
+- #252 Fix response code handler to return created VPC - @viola
+- #247 Update spec.email. - @andrewsomething
+- #183 Updates `list_resources` action to paginated resource - @bikerdave
 
 ### Version 3.8.0
 

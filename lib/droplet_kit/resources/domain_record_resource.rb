@@ -4,7 +4,7 @@ module DropletKit
 
     resources do
       action :all, 'GET /v2/domains/:for_domain/records' do
-        query_keys :per_page, :page
+        query_keys :per_page, :page, :name, :type
         handler(200) { |response| DomainRecordMapping.extract_collection(response.body, :read) }
       end
 

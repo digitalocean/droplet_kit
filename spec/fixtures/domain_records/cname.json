@@ -1,0 +1,17 @@
+{
+  "domain_records": [
+    {
+      "id": 1,
+      "type": "CNAME",
+      "name": "example",
+      "data": "@",
+      "priority": null,
+      "port": null,
+      "ttl": 1800,
+      "weight": null
+    }
+  ],
+  "meta": {
+    "total": 1
+  }
+}
