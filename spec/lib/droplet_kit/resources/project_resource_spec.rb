@@ -127,4 +127,28 @@ describe DropletKit::ProjectResource do
       let(:api_path) { '/v2/projects/c177dc8c-12c1-4483-af1c-877eed0f14cb/resources' }
     end
   end
+
+  describe '#assign_resources' do
+    it 'calls the api when passing a valid urn' do
+      request = stub_do_api('/v2/projects/:id/resources', :post)
+        .to_return(body: '', status: 201)
+
+      resource.assign_resources(['do:droplet:123'])
+      expect(request).to have_been_made
+    end
+
+    it 'calls the api when passing a model than can be converted to urn' do
+      request = stub_do_api('/v2/projects/:id/resources', :post)
+        .to_return(body: '', status: 201)
+
+      resource.assign_resources([DropletKit::Droplet.new(id: 123)])
+      expect(request).to have_been_made
+    end
+
+    it 'raises an error when the resouce cannot be assigned' do
+      expect {
+        resource.assign_resources(['invalid'])
+      }.to raise_error(DropletKit::Error, 'cannot assign resource without valid urn: invalid')
+    end
+  end
 end
