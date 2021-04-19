@@ -1,3 +1,7 @@
+## Version 3.13.1
+
+- #274 - @fwitzke - Remove dependency on `try` (Fixes: [#251](https://github.com/digitalocean/droplet_kit/issues/251))
+
 ## Version 3.13.0
 
 - #269 database user: Add name to create scope - @jonnyarnold
