@@ -49,7 +49,7 @@ module DropletKit
           resources.to_a.map do |resource|
             if resource.is_a?(String) && DropletKit::BaseModel.valid_urn?(resource)
               resource
-            elsif resource.try(:urn) && DropletKit::BaseModel.valid_urn?(resource.urn)
+            elsif resource.respond_to?(:urn) && resource.urn && DropletKit::BaseModel.valid_urn?(resource.urn)
               resource.urn
             else
               raise DropletKit::Error.new("cannot assign resource without valid urn: #{resource}")
