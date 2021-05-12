@@ -9,6 +9,9 @@
           "protocol": "icmp",
           "ports": "0",
           "sources": {
+            "kubernetes_ids": [
+              "20efb1a7-1f04-4486-87aa-5f5114e6aae9"
+            ],
             "load_balancer_uids": [
               "d2d3920a-9d45-41b0-b018-d15e18ec60a4"
             ],
