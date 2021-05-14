@@ -1,3 +1,7 @@
+## Version 3.14.0
+
+- #277 - Add support for DOKS clusters as peers in Firewall rules
+
 ## Version 3.13.1
 
 - #274 - @fwitzke - Remove dependency on `try` (Fixes: [#251](https://github.com/digitalocean/droplet_kit/issues/251))
