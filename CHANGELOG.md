@@ -1,6 +1,6 @@
 ## Version 3.14.0
 
-- #277 - Add support for DOKS clusters as peers in Firewall rules
+- #277 - @caiofilipini - Add support for DOKS clusters as peers in Firewall rules
 
 ## Version 3.13.1
 
