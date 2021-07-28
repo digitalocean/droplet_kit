@@ -13,6 +13,7 @@ module DropletKit
     attribute :ssh_keys
     attribute :backups
     attribute :monitoring
+    attribute :with_droplet_agent
     attribute :size
     attribute :ipv6
     attribute :user_data

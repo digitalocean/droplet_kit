@@ -162,6 +162,69 @@ RSpec.describe DropletKit::DropletResource do
       end
     end
 
+    context 'when creating with with_droplet_agent' do
+      context "not set" do
+        droplet = DropletKit::Droplet.new(
+          name: 'test.example.com',
+          region: 'nyc1',
+          size: '512mb',
+          image: 'ubuntu-14-04-x86',
+        )
+        it 'does not include it in the request' do
+          as_hash = DropletKit::DropletMapping.hash_for(:create, droplet)
+          expect(as_hash['with_droplet_agent']).to eq(nil)
+
+          as_string = DropletKit::DropletMapping.representation_for(:create, droplet)
+          expect(as_string).to include('"with_droplet_agent":null')
+          stub_do_api(path, :post).with(body: as_string).to_return(body: api_fixture('droplets/create'), status: 202)
+          created_droplet = resource.create(droplet)
+          check_droplet(created_droplet)
+        end
+      end
+
+      context "set to false" do
+        droplet = DropletKit::Droplet.new(
+          name: 'test.example.com',
+          region: 'nyc1',
+          size: '512mb',
+          image: 'ubuntu-14-04-x86',
+          with_droplet_agent: false,
+        )
+        it 'includes it in the request' do
+          as_hash = DropletKit::DropletMapping.hash_for(:create, droplet)
+          expect(as_hash['with_droplet_agent']).to eq(droplet.with_droplet_agent)
+
+          as_string = DropletKit::DropletMapping.representation_for(:create, droplet)
+          expect(as_string).to include('"with_droplet_agent":false')
+          stub_do_api(path, :post).with(body: as_string).to_return(body: api_fixture('droplets/create'), status: 202)
+          created_droplet = resource.create(droplet)
+          check_droplet(created_droplet)
+        end
+      end
+
+      context "set to true" do
+        droplet = DropletKit::Droplet.new(
+          name: 'test.example.com',
+          region: 'nyc1',
+          size: '512mb',
+          image: 'ubuntu-14-04-x86',
+          with_droplet_agent: true,
+        )
+        it 'includes it in the request' do
+          droplet.with_droplet_agent = true
+
+          as_hash = DropletKit::DropletMapping.hash_for(:create, droplet)
+          expect(as_hash['with_droplet_agent']).to eq(droplet.with_droplet_agent)
+
+          as_string = DropletKit::DropletMapping.representation_for(:create, droplet)
+          expect(as_string).to include('"with_droplet_agent":true')
+          stub_do_api(path, :post).with(body: as_string).to_return(body: api_fixture('droplets/create'), status: 202)
+          created_droplet = resource.create(droplet)
+          check_droplet(created_droplet)
+        end
+      end
+    end
+
     it_behaves_like 'an action that handles invalid parameters' do
       let(:action) { 'create' }
       let(:arguments) { DropletKit::Droplet.new }
