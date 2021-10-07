@@ -57,39 +57,85 @@
     "versions": [
       {
         "slug": "1.13.0-do.not.use",
-        "kubernetes_version": "1.13.0"
+        "kubernetes_version": "1.13.0",
+        "supported_features": [
+          "cluster-autoscaler",
+          "docr-integration",
+          "ha-control-plane",
+          "token-authentication"
+        ]
       },
       {
         "slug": "1.12.1-do.3",
-        "kubernetes_version": "1.12.1"
+        "kubernetes_version": "1.12.1",
+        "supported_features": [
+          "cluster-autoscaler",
+          "docr-integration",
+          "token-authentication"
+        ]
       },
       {
         "slug": "1.12.1-do.2",
-        "kubernetes_version": "1.12.1"
+        "kubernetes_version": "1.12.1",
+        "supported_features": [
+          "cluster-autoscaler",
+          "docr-integration",
+          "token-authentication"
+        ]
       },
       {
         "slug": "1.12.1-do.1",
-        "kubernetes_version": "1.12.1"
+        "kubernetes_version": "1.12.1",
+        "supported_features": [
+          "cluster-autoscaler",
+          "docr-integration",
+          "token-authentication"
+        ]
       },
       {
         "slug": "1.11.1-do.2",
-        "kubernetes_version": "1.11.1"
+        "kubernetes_version": "1.11.1",
+        "supported_features": [
+          "cluster-autoscaler",
+          "docr-integration",
+          "token-authentication"
+        ]
       },
       {
         "slug": "1.11.1-do.1",
-        "kubernetes_version": "1.11.1"
+        "kubernetes_version": "1.11.1",
+        "supported_features": [
+          "cluster-autoscaler",
+          "docr-integration",
+          "token-authentication"
+        ]
       },
       {
         "slug": "1.10.7-gen2",
-        "kubernetes_version": "1.10.7"
+        "kubernetes_version": "1.10.7",
+        "supported_features": [
+          "cluster-autoscaler",
+          "docr-integration",
+          "token-authentication"
+        ]
       },
       {
         "slug": "1.10.7-gen1",
-        "kubernetes_version": "1.10.7"
+        "kubernetes_version": "1.10.7",
+        "supported_features": [
+          "cluster-autoscaler",
+          "docr-integration",
+          "token-authentication"
+        ]
       },
       {
         "slug": "1.10.7-gen0",
-        "kubernetes_version": "1.10.7"
+        "kubernetes_version": "1.10.7",
+        "supported_features": [
+          "cluster-autoscaler",
+          "docr-integration",
+          "token-authentication"
+        ]
       }
     ],
     "sizes": [

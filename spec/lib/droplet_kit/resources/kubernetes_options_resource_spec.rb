@@ -14,6 +14,7 @@ RSpec.describe DropletKit::KubernetesOptionsResource do
         expect(version).to be_kind_of(DropletKit::KubernetesOptionsMapping::Version)
         expect(version.slug).to be_present
         expect(version.kubernetes_version).to be_present
+        expect(version.supported_features).to be_present
       end
       expect(options.regions.length).to eq 13
       options.regions.each do |region|

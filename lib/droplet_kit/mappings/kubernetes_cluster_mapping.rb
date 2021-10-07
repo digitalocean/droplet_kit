@@ -18,6 +18,7 @@ module DropletKit
       property :maintenance_policy, scopes: [:read, :update, :create]
       property :node_pools, scopes: [:read, :create]
       property :vpc_uuid, scopes: [:read, :create]
+      property :ha, scopes: [:read, :create]
     end
   end
 end
