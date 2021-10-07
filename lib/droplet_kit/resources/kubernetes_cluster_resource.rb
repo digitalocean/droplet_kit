@@ -13,7 +13,20 @@ module DropletKit
       end
 
       action :create, 'POST /v2/kubernetes/clusters' do
-        body { |object| KubernetesClusterMapping.representation_for(:create, object) }
+        body do |object| 
+          # This ensures that both a hash and an instance of KubernetesNodePool can be passed
+          # into the node_pools array
+          # 
+          # Ex:
+          # KubernetesCluster.new(node_pools: [{}])
+          # or
+          # KubernetesCluster.new(node_pools: [KubernetesNodePool.new()])
+          if object.respond_to?(:node_pools)
+             object.node_pools = object.node_pools.map(&:to_hash)
+          end
+
+          KubernetesClusterMapping.representation_for(:create, object)
+        end
         handler(201) { |response, cluster| KubernetesClusterMapping.extract_into_object(cluster, response.body, :read) }
         handler(422) { |response| ErrorMapping.fail_with(FailedCreate, response.body) }
       end
