@@ -1,3 +1,10 @@
+## Version 3.15.0
+
+- #283 - @sunny-b - K8s: add ha and supported_features fields
+- #281 - @bentranter - Add Ruby 3 to CI
+- #280 - @andrewsomething - droplet: Add with_droplet_agent attribute.
+- #279 - @danaelhe - Doc update- Release.md
+
 ## Version 3.14.0
 
 - #277 - @caiofilipini - Add support for DOKS clusters as peers in Firewall rules
