@@ -5,11 +5,12 @@ module DropletKit
       mapping KubernetesOptions
       root_key singular: 'options', scopes: [:read]
 
-      Version = Struct.new(:slug, :kubernetes_version)
+      Version = Struct.new(:slug, :kubernetes_version, :supported_features)
       property :versions, plural: true, scopes: [:read] do
         mapping Version
         property :slug, scopes: [:read]
         property :kubernetes_version, scopes: [:read]
+        property :supported_features, scopes: [:read]
       end
 
       Region = Struct.new(:name, :slug)

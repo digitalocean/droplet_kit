@@ -8,6 +8,7 @@
     "cluster_subnet": "10.244.0.0/16",
     "service_subnet": "",
     "ipv4": "0.0.0.0",
+    "ha": true,
     "endpoint": "",
     "tags": [
       "test-k8",
