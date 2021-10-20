@@ -58,7 +58,8 @@
       ],
       "redirect_http_to_https": false,
       "enable_proxy_protocol": false,
-      "enable_backend_keepalive": false
+      "enable_backend_keepalive": false,
+      "disable_lets_encrypt_dns_records": true
     },
     {
       "id": "3de7ac8b-495b-4884-9a69-1050c6793cd6",
@@ -124,7 +125,8 @@
       "droplet_ids": [],
       "redirect_http_to_https": true,
       "enable_proxy_protocol": false,
-      "enable_backend_keepalive": false
+      "enable_backend_keepalive": false,
+      "disable_lets_encrypt_dns_records": false
     },
     {
       "id": "3de7ac8b-495b-4884-9a69-1050c6793cd6",
@@ -190,7 +192,8 @@
       "droplet_ids": [],
       "redirect_http_to_https": true,
       "enable_proxy_protocol": false,
-      "enable_backend_keepalive": false
+      "enable_backend_keepalive": false,
+      "disable_lets_encrypt_dns_records": false
     }
   ],
   "links": {

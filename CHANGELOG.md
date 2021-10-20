@@ -1,3 +1,7 @@
+## Version 3.16.0
+
+- #266 load balancers: add new field disable_lets_encrypt_dns_records - @dikshant
+
 ## Version 3.15.0
 
 - #283 - @sunny-b - K8s: add ha and supported_features fields

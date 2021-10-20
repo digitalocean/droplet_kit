@@ -33,6 +33,7 @@ RSpec.describe DropletKit::LoadBalancerResource do
                                    check_interval_seconds: 10, response_timeout_seconds: 5,
                                    healthy_threshold: 5, unhealthy_threshold: 3))
       expect(load_balancer.forwarding_rules.count).to eq(2)
+      expect(load_balancer.disable_lets_encrypt_dns_records).to eq(true)
       expect(load_balancer.forwarding_rules.first.attributes)
         .to match(a_hash_including(entry_protocol: 'http', entry_port: 80,
                                    target_protocol: 'http', target_port: 80,
@@ -81,6 +82,7 @@ RSpec.describe DropletKit::LoadBalancerResource do
         enable_backend_keepalive: true,
         region: 'nyc1',
         size: 'lb-small',
+        disable_lets_encrypt_dns_records: true,
         forwarding_rules: [
           DropletKit::ForwardingRule.new(
             entry_protocol: 'https',
