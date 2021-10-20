@@ -27,6 +27,7 @@ module DropletKit
         property :sticky_sessions, include: StickySessionMapping
         property :health_check, include: HealthCheckMapping
         property :forwarding_rules, plural: true, include: ForwardingRuleMapping
+        property :disable_lets_encrypt_dns_records
       end
 
       scoped  :update, :create do

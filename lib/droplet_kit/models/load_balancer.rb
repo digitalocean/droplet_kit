@@ -12,6 +12,7 @@ module DropletKit
     attribute :redirect_http_to_https, Boolean, :default => false
     attribute :enable_proxy_protocol, Boolean, :default => false
     attribute :enable_backend_keepalive, Boolean, :default => false
+    attribute :disable_lets_encrypt_dns_records, Boolean, :default => false
     attribute :droplet_ids
     attribute :sticky_sessions, StickySession
     attribute :health_check
