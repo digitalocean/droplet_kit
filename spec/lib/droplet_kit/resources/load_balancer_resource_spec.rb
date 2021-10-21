@@ -19,6 +19,7 @@ RSpec.describe DropletKit::LoadBalancerResource do
       expect(load_balancer.created_at).to eq('2017-02-01T22:22:58Z')
       expect(load_balancer.tag).to be_blank
       expect(load_balancer.size).to eq('lb-small')
+      expect(load_balancer.size_unit).to eq(1)
       expect(load_balancer.region).to be_kind_of(DropletKit::Region)
       expect(load_balancer.region.attributes)
         .to match(a_hash_including(slug: 'nyc3', name: 'New York 3',
@@ -82,6 +83,7 @@ RSpec.describe DropletKit::LoadBalancerResource do
         enable_backend_keepalive: true,
         region: 'nyc1',
         size: 'lb-small',
+        size_unit: 1,
         disable_lets_encrypt_dns_records: true,
         forwarding_rules: [
           DropletKit::ForwardingRule.new(

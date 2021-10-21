@@ -1,6 +1,7 @@
 ## Version 3.16.0
 
-- #266 load balancers: add new field disable_lets_encrypt_dns_records - @dikshant
+- #286 load balancers: add new field disable_lets_encrypt_dns_records - @dikshant
+- #287 load balancers: add new field size_unit - @dikshant
 
 ## Version 3.15.0
 

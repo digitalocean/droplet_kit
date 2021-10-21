@@ -39,6 +39,7 @@
       "cookie_ttl_seconds": 5
     },
     "size": "lb-small",
+    "size_unit": 1,
     "region": {
       "name": "New York 3",
       "slug": "nyc3",
