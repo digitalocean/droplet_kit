@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # To use this, `fixture_path`, `api_path` and a `resource` must be defined
 # using `let`s.
 shared_examples_for 'a paginated index' do

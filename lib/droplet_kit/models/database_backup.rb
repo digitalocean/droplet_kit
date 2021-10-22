@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DropletKit
   class DatabaseBackup < BaseModel
     attribute :created_at

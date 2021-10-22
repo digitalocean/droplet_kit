@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DropletKit
   class Droplet < BaseModel
     [:id, :name, :memory, :vcpus, :disk, :locked, :created_at,

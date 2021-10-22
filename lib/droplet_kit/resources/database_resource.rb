@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DropletKit
   class DatabaseResource < ResourceKit::Resource
     include ErrorHandlingResourcable

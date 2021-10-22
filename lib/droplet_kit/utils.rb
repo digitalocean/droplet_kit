@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DropletKit
   module Utils
     def self.camelize(term)

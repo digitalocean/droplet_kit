@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DropletKit
   class FirewallInboundRule < BaseModel
     attribute :protocol

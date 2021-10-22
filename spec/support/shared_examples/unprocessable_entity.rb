@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 shared_examples_for 'an action that handles invalid parameters' do
   let(:verb) { :post }
   let(:exception) { DropletKit::FailedCreate }

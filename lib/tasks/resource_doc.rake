@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'droplet_kit'
 require 'droplet_kit/utils'
 
