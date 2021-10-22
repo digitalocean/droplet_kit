@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DropletKitHelpers
   BLANK_RE = /\A[[:space:]]*\z/
 

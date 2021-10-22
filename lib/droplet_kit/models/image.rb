@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DropletKit
   class Image < BaseModel
     # @!attribute id

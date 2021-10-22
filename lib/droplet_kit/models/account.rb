@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DropletKit
   class Account < BaseModel
     attribute :droplet_limit

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 shared_examples_for 'resource that handles common errors' do
   let(:arguments) { {} }
 

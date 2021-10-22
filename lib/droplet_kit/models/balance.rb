@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DropletKit
   class Balance < BaseModel
     attribute :month_to_date_balance
