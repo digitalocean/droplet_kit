@@ -1,3 +1,8 @@
+## Version 3.16.1
+
+- #291 - @bentranter - Upgrade Kartograph and Ruby versions
+- #290 - @bentranter - Add frozen_string_literal: true comment to all files
+
 ## Version 3.16.0
 
 - #286 load balancers: add new field disable_lets_encrypt_dns_records - @dikshant
