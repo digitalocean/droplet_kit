@@ -12,26 +12,14 @@ jobs:
       fail-fast: true
       matrix:
         os: [ ubuntu-latest, macos-latest ]
-        ruby: [ 2.5, 2.6, 2.7, 3.0, 3.1 ]
+        ruby: [ 2.5, 2.6, 2.7, "3.0", 3.1 ] # "x.0" to workaround: https://github.com/ruby/setup-ruby/issues/252
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - uses: ruby/setup-ruby@v1
       with:
         ruby-version: ${{ matrix.ruby }}
-
-    # Cache dependencies.
-    - uses: actions/cache@v1
-      with:
-        path: vendor/bundle
-        key: bundle-use-ruby-${{ matrix.os }}-${{ matrix.ruby }}-${{ hashFiles('**/Gemfile.lock') }}
-        restore-keys: |
-          bundle-use-ruby-${{ matrix.os }}-${{ matrix.ruby }}-
-
-    - name: Setup
-      run: |
-        gem install bundler
-        bundle install --jobs 4 --retry 3
+        bundler-cache: true
 
     - name: Test
       run: |
