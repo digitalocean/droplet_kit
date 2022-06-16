@@ -1,3 +1,9 @@
+## Version 3.17.0
+
+- #296 - @andrewsomething - Add support for reserved IPs.
+- #295 - @ShockwaveNN - Update `virtus` requirement to allow v2
+- #294 - @Firefishy - GH action: simplify ruby bundler caching
+
 ## Version 3.16.1
 
 - #291 - @bentranter - Upgrade Kartograph and Ruby versions
