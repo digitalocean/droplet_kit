@@ -55,6 +55,8 @@ module DropletKit
         balance: BalanceResource,
         floating_ips: FloatingIpResource,
         floating_ip_actions: FloatingIpActionResource,
+        reserved_ips: ReservedIpResource,
+        reserved_ip_actions: ReservedIpActionResource,
         tags: TagResource,
         projects: ProjectResource,
         volumes: VolumeResource,

@@ -525,27 +525,27 @@ Actions supported:
 
 * `client.balance.info()`
 
-## Floating IP resource
+## Reserved IP resource
 
     client = DropletKit::Client.new(access_token: 'TOKEN')
-    client.floating_ips #=> DropletKit::FloatingIpResource
+    client.reserved_ips #=> DropletKit::ReservedIpResource
 
 Actions supported:
 
-* `client.floating_ips.all()`
-* `client.floating_ips.find(ip: 'ip address')`
-* `client.floating_ips.create(floating_ip)`
-* `client.floating_ips.delete(ip: 'ip address')`
+* `client.reserved_ips.all()`
+* `client.reserved_ips.find(ip: 'ip address')`
+* `client.reserved_ips.create(reserved_ip)`
+* `client.reserved_ips.delete(ip: 'ip address')`
 
-## Floating IP Action resource
+## Reserved IP Action resource
 
     client = DropletKit::Client.new(access_token: 'TOKEN')
-    client.floating_ip_actions #=> DropletKit::FloatingIpActionResource
+    client.reserved_ip_actions #=> DropletKit::ReservedIpActionResource
 
 Actions supported:
 
-* `client.floating_ip_actions.assign(ip: floating_ip.ip, droplet_id: droplet.id)`
-* `client.floating_ip_actions.unassign(ip: floating_ip.ip)`
+* `client.reserved_ip_actions.assign(ip: reserved_ip.ip, droplet_id: droplet.id)`
+* `client.reserved_ip_actions.unassign(ip: reserved_ip.ip)`
 
 ## Volume resource
 
