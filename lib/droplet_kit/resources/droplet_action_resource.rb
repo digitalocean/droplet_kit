@@ -5,8 +5,8 @@ module DropletKit
     include ErrorHandlingResourcable
 
     ACTIONS_WITHOUT_INPUT = %w(reboot power_cycle shutdown power_off power_on
-      password_reset enable_ipv6 enable_backups disable_backups
-      enable_private_networking)
+                               password_reset enable_ipv6 enable_backups disable_backups
+                               enable_private_networking)
 
     TAG_ACTIONS = %w(
       enable_backups disable_backups power_cycle power_on power_off shutdown
