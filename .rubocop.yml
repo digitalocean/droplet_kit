@@ -4,6 +4,8 @@ require:
   - rubocop-rake
   - rubocop-rspec
 
+inherit_from: .rubocop_todo.yml
+
 AllCops:
   NewCops: enable
   # Should be the same as gem's `required_ruby_version`
