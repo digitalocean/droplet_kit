@@ -22,12 +22,6 @@ Gemspec/RubyVersionGlobalsUsage:
   Exclude:
     - 'droplet_kit.gemspec'
 
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-Layout/EmptyLineAfterMagicComment:
-  Exclude:
-    - 'droplet_kit.gemspec'
-
 # Offense count: 6
 # This cop supports safe autocorrection (--autocorrect).
 Layout/EmptyLines:
