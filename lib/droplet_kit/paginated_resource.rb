@@ -32,6 +32,7 @@ module DropletKit
       fetch_next_page if total.nil?
 
       return to_enum(:each, start) unless block_given?
+
       Array(@collection[start..-1]).each do |element|
         yield(element)
       end
@@ -47,6 +48,7 @@ module DropletKit
 
     def last?
       return true if self.total.nil?
+
       @current_page == total_pages || self.total.zero?
     end
 

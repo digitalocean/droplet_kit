@@ -22,12 +22,6 @@ Gemspec/RubyVersionGlobalsUsage:
   Exclude:
     - 'droplet_kit.gemspec'
 
-# Offense count: 2
-# This cop supports safe autocorrection (--autocorrect).
-Layout/EmptyLineAfterGuardClause:
-  Exclude:
-    - 'lib/droplet_kit/paginated_resource.rb'
-
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 Layout/EmptyLineAfterMagicComment:
