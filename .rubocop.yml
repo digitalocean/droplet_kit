@@ -16,3 +16,7 @@ AllCops:
 # want to use to enable MFA for gem releases
 Gemspec/RequireMFA:
   Enabled: false
+
+# Possible need to drop ruby-2.5 support
+Gemspec/RubyVersionGlobalsUsage:
+  Enabled: false
