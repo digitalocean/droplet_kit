@@ -37,7 +37,6 @@ RSpec.describe DropletKit::ContainerRegistryResource do
         as_hash = DropletKit::ContainerRegistryMapping.hash_for(:create, registry)
         expect(as_hash['name']).to eq(registry.name)
 
-
         as_string = DropletKit::ContainerRegistryMapping.representation_for(:create, registry)
         stub_do_api(path, :post).with(body: as_string).to_return(body: api_fixture('container_registry/create'), status: 201)
         created_registry = resource.create(registry)

@@ -65,7 +65,6 @@ RSpec.describe DropletKit::KubernetesClusterResource do
         expect(as_hash['name']).to eq(cluster.name)
         expect(as_hash['tags']).to eq(cluster.tags)
 
-
         as_string = DropletKit::KubernetesClusterMapping.representation_for(:update, cluster)
         stub_do_api(path, :put).with(body: as_string).to_return(body: api_fixture('kubernetes/clusters/update'), status: 202)
 
@@ -150,7 +149,6 @@ RSpec.describe DropletKit::KubernetesClusterResource do
         expect(as_hash['version']).to eq(cluster.version)
         expect(as_hash['tags']).to eq(cluster.tags)
         expect(as_hash['node_pools']).to eq(cluster.node_pools)
-
 
         as_string = DropletKit::KubernetesClusterMapping.representation_for(:create, cluster)
         stub_do_api(path, :post).with(body: as_string).to_return(body: api_fixture('kubernetes/clusters/create'), status: 201)

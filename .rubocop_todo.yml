@@ -22,13 +22,6 @@ Gemspec/RubyVersionGlobalsUsage:
   Exclude:
     - 'droplet_kit.gemspec'
 
-# Offense count: 6
-# This cop supports safe autocorrection (--autocorrect).
-Layout/EmptyLines:
-  Exclude:
-    - 'spec/lib/droplet_kit/resources/container_registry_resource_spec.rb'
-    - 'spec/lib/droplet_kit/resources/database_resource_spec.rb'
-    - 'spec/lib/droplet_kit/resources/kubernetes_cluster_resource_spec.rb'
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).

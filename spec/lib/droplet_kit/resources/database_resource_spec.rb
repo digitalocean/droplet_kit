@@ -415,7 +415,6 @@ RSpec.describe DropletKit::DatabaseResource do
     end
   end
 
-
   describe '#create_database_user' do
     context 'for a successful create of a database user' do
       it 'returns a created database cluster user' do
@@ -466,7 +465,6 @@ RSpec.describe DropletKit::DatabaseResource do
           }
         )
 
-
     it 'resets the db user auth' do
       request = stub_do_api("/v2/databases/#{database_cluster_id}/users/#{database_user.name}/reset_auth", :post).to_return(body: api_fixture('databases/reset_user_auth_response'), status: 200)
       reset_auth = DropletKit::DatabaseUserResetAuth.new(
@@ -489,7 +487,6 @@ RSpec.describe DropletKit::DatabaseResource do
       expect(request).to have_been_made
     end
   end
-
 
   describe '#create_connection_pool' do
     context 'for a successful create of a database connection pool' do
