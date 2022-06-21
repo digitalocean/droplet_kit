@@ -24,12 +24,6 @@ Gemspec/RubyVersionGlobalsUsage:
 
 # Offense count: 2
 # This cop supports safe autocorrection (--autocorrect).
-Layout/ClosingParenthesisIndentation:
-  Exclude:
-    - 'spec/lib/droplet_kit/resources/database_resource_spec.rb'
-
-# Offense count: 2
-# This cop supports safe autocorrection (--autocorrect).
 Layout/EmptyLineAfterGuardClause:
   Exclude:
     - 'lib/droplet_kit/paginated_resource.rb'

@@ -209,7 +209,7 @@ RSpec.describe DropletKit::DatabaseResource do
         backup_restore: DropletKit::DatabaseBackup.new(
             database_name: 'backend',
             backup_created_at: '2019-01-31T19:25:22Z'
-        ),
+          ),
         engine: 'pg',
         version: '10',
         region: 'nyc3',
@@ -472,7 +472,7 @@ RSpec.describe DropletKit::DatabaseResource do
       reset_auth = DropletKit::DatabaseUserResetAuth.new(
         mysql_settings: DropletKit::DatabaseUserMySQLSettings.new(
           auth_plugin: "mysql_native_password"
-      ))
+        ))
       resp_database_user = resource.reset_database_user_auth(reset_auth, id: database_cluster_id, name: database_user.name)
       expect(database_user).to match_cluster_user
       expect(request).to have_been_made
