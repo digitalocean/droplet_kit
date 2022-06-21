@@ -32,10 +32,10 @@ module DropletKit
       end
 
       action :patch, 'PATCH /v2/vpcs/:id' do
-          body {|vpc| VPCMapping.representation_for(:patch, vpc) }
-          handler(200) { |response| VPCMapping.extract_single(response.body, :read) }
-          handler(422) { |response| ErrorMapping.fail_with(FailedUpdate, response.body) }
-        end
+        body {|vpc| VPCMapping.representation_for(:patch, vpc) }
+        handler(200) { |response| VPCMapping.extract_single(response.body, :read) }
+        handler(422) { |response| ErrorMapping.fail_with(FailedUpdate, response.body) }
+      end
 
       action :delete, 'DELETE /v2/vpcs/:id' do
         handler(204) { |_| true }
