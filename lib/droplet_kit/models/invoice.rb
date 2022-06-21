@@ -16,5 +16,5 @@ module DropletKit
       attribute :project_name
       attribute :category
     end
-  end
+end
   
