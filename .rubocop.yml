@@ -11,3 +11,8 @@ AllCops:
   # Should be the same as gem's `required_ruby_version`
   TargetRubyVersion: 2.5
 
+
+# Maintainers need to decide if they
+# want to use to enable MFA for gem releases
+Gemspec/RequireMFA:
+  Enabled: false
