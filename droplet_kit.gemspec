@@ -27,7 +27,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake"
   spec.add_development_dependency "rspec", "~> 3.9.0"
   spec.add_development_dependency "rb-readline"
-  spec.add_development_dependency 'rubocop', '>= 1.30.1'
+  spec.add_development_dependency 'rubocop', '>= 1.29.0' # latest rubocop with ruby 2.5 support
   spec.add_development_dependency 'rubocop-packaging', '>= 0.5.1'
   spec.add_development_dependency 'rubocop-performance', '>= 1.14.2'
   spec.add_development_dependency 'rubocop-rake', '>= 0.6.0'
