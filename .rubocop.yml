@@ -1,0 +1,11 @@
+require:
+  - rubocop-packaging
+  - rubocop-performance
+  - rubocop-rake
+  - rubocop-rspec
+
+AllCops:
+  NewCops: enable
+  # Should be the same as gem's `required_ruby_version`
+  TargetRubyVersion: 2.5
+

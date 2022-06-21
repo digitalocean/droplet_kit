@@ -1,3 +1,7 @@
+## main 
+
+- #299 - @ShockwaveNN - Add `rubocop` support in CI and fix a lot of issues
+
 ## Version 3.17.0
 
 - #296 - @andrewsomething - Add support for reserved IPs.
