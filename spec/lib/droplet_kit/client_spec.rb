@@ -105,6 +105,5 @@ RSpec.describe DropletKit::Client do
       expect(client.connection.options.timeout).to eq(DropletKit::Client::DEFAULT_TIMEOUT)
     end
   end
-
 end
 
