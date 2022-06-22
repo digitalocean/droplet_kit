@@ -215,7 +215,7 @@ RSpec.describe DropletKit::KubernetesClusterResource do
   describe "node_pools" do
     it 'returns the node_pools for a cluster' do
       stub_do_api("/v2/kubernetes/clusters/#{cluster_id}/node_pools", :get).to_return(body: api_fixture('kubernetes/cluster_node_pools'))
-      node_pools= resource.node_pools(id: cluster_id)
+      node_pools = resource.node_pools(id: cluster_id)
       node_pools.each do |pool|
         expect(pool).to be_kind_of(DropletKit::KubernetesNodePool)
         expect(pool.attributes.keys).to eq kubernetes_node_pool_attributes.keys
