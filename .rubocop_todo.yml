@@ -171,16 +171,6 @@ Style/FloatDivision:
   Exclude:
     - 'lib/droplet_kit/paginated_resource.rb'
 
-# Offense count: 3
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: always, always_true, never
-Style/FrozenStringLiteralComment:
-  Exclude:
-    - 'Gemfile'
-    - 'Rakefile'
-    - 'droplet_kit.gemspec'
-
 # Offense count: 1
 # Configuration parameters: MinBodyLength, AllowConsecutiveConditionals.
 Style/GuardClause:
