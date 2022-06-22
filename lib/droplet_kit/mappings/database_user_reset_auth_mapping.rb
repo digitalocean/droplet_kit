@@ -9,7 +9,7 @@ module DropletKit
       scoped :create do
         property :mysql_settings do
           mapping DatabaseUserMySQLSettings
-            property :auth_plugin, scopes: [:create]
+          property :auth_plugin, scopes: [:create]
         end
       end
     end

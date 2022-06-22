@@ -465,16 +465,16 @@ RSpec.describe DropletKit::DatabaseResource do
           }
         )
 
-    it 'resets the db user auth' do
-      request = stub_do_api("/v2/databases/#{database_cluster_id}/users/#{database_user.name}/reset_auth", :post).to_return(body: api_fixture('databases/reset_user_auth_response'), status: 200)
-      reset_auth = DropletKit::DatabaseUserResetAuth.new(
-        mysql_settings: DropletKit::DatabaseUserMySQLSettings.new(
-          auth_plugin: "mysql_native_password"
-        ))
-      resp_database_user = resource.reset_database_user_auth(reset_auth, id: database_cluster_id, name: database_user.name)
-      expect(database_user).to match_cluster_user
-      expect(request).to have_been_made
-    end
+        it 'resets the db user auth' do
+          request = stub_do_api("/v2/databases/#{database_cluster_id}/users/#{database_user.name}/reset_auth", :post).to_return(body: api_fixture('databases/reset_user_auth_response'), status: 200)
+          reset_auth = DropletKit::DatabaseUserResetAuth.new(
+            mysql_settings: DropletKit::DatabaseUserMySQLSettings.new(
+              auth_plugin: "mysql_native_password"
+            ))
+          resp_database_user = resource.reset_database_user_auth(reset_auth, id: database_cluster_id, name: database_user.name)
+          expect(database_user).to match_cluster_user
+          expect(request).to have_been_made
+        end
   end
 
   describe '#delete_database_user' do
