@@ -176,12 +176,6 @@ Style/Documentation:
   Enabled: false
 
 # Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-Style/ExplicitBlockArgument:
-  Exclude:
-    - 'lib/droplet_kit/paginated_resource.rb'
-
-# Offense count: 1
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: left_coerce, right_coerce, single_coerce, fdiv

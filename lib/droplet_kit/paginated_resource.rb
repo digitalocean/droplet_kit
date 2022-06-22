@@ -33,9 +33,7 @@ module DropletKit
 
       return to_enum(:each, start) unless block
 
-      Array(@collection[start..-1]).each do |element|
-        yield(element)
-      end
+      Array(@collection[start..-1]).each(&block)
 
       unless last?
         start = [@collection.size, start].max
