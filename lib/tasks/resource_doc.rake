@@ -9,7 +9,7 @@ namespace :doc do
     resources = DropletKit::Client.resources
 
     resources.each do |key, klass|
-      if (ENV['SKIP_CLASSES'] || '').split(',').include?(klass.name)
+      if (ENV.fetch('SKIP_CLASSES', '')).split(',').include?(klass.name)
         next
       end
 
