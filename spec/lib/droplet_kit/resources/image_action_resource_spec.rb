@@ -8,7 +8,7 @@ RSpec.describe DropletKit::ImageActionResource do
   include_context 'resources'
 
   describe '#transfer' do
-    let(:image_id) { 449676391 }
+    let(:image_id) { 449_676_391 }
     let(:path) { "/v2/images/#{image_id}/actions" }
     let(:action) { 'transfer' }
 
@@ -29,7 +29,7 @@ RSpec.describe DropletKit::ImageActionResource do
       expect(action.type).to eq("transfer")
       expect(action.started_at).to eq("2014-08-05T15:15:28Z")
       expect(action.completed_at).to eq(nil)
-      expect(action.resource_id).to eq(449676391)
+      expect(action.resource_id).to eq(449_676_391)
       expect(action.resource_type).to eq("image")
       expect(action.region_slug).to eq("nyc1")
 
@@ -48,7 +48,7 @@ RSpec.describe DropletKit::ImageActionResource do
   end
 
   describe '#convert' do
-    let(:image_id) { 449676391 }
+    let(:image_id) { 449_676_391 }
     let(:path) { "/v2/images/#{image_id}/actions" }
     let(:action) { 'convert' }
 
@@ -69,7 +69,7 @@ RSpec.describe DropletKit::ImageActionResource do
       expect(action.type).to eq("convert")
       expect(action.started_at).to eq("2014-08-05T15:15:28Z")
       expect(action.completed_at).to eq(nil)
-      expect(action.resource_id).to eq(449676391)
+      expect(action.resource_id).to eq(449_676_391)
       expect(action.resource_type).to eq("image")
       expect(action.region_slug).to eq("nyc1")
 
@@ -94,7 +94,7 @@ RSpec.describe DropletKit::ImageActionResource do
         status: 200
       )
 
-      actions = resource.all(image_id: 449676391).take(20)
+      actions = resource.all(image_id: 449_676_391).take(20)
 
       expect(request).to have_been_made
 
@@ -102,12 +102,12 @@ RSpec.describe DropletKit::ImageActionResource do
 
       action = actions.first
 
-      expect(action.id).to eq(298374)
+      expect(action.id).to eq(298_374)
       expect(action.status).to eq("completed")
       expect(action.type).to eq("image_destroy")
       expect(action.started_at).to eq("2014-10-28T17:11:05Z")
       expect(action.completed_at).to eq("2014-10-28T17:11:06Z")
-      expect(action.resource_id).to eq(45646587)
+      expect(action.resource_id).to eq(45_646_587)
       expect(action.resource_type).to eq("image")
       expect(action.region).to eq(nil)
       expect(action.region_slug).to eq(nil)
@@ -122,7 +122,7 @@ RSpec.describe DropletKit::ImageActionResource do
   describe '#find' do
     it 'returns a single action' do
       stub_do_api('/v2/images/449676391/actions/23').to_return(body: api_fixture('image_actions/find'))
-      action = resource.find(image_id: 449676391, id: 23)
+      action = resource.find(image_id: 449_676_391, id: 23)
 
       expect(action).to be_kind_of(DropletKit::Action)
       expect(action.id).to eq(23)
@@ -130,7 +130,7 @@ RSpec.describe DropletKit::ImageActionResource do
       expect(action.type).to eq("transfer")
       expect(action.started_at).to eq("2014-08-05T15:15:28Z")
       expect(action.completed_at).to eq(nil)
-      expect(action.resource_id).to eq(449676391)
+      expect(action.resource_id).to eq(449_676_391)
       expect(action.resource_type).to eq("image")
       expect(action.region_slug).to eq("nyc1")
 

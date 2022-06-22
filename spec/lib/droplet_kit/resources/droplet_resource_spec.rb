@@ -24,8 +24,8 @@ RSpec.describe DropletKit::DropletResource do
     end
 
     expect(droplet.created_at).to be_present
-    expect(droplet.backup_ids).to include(449676382)
-    expect(droplet.snapshot_ids).to include(449676383)
+    expect(droplet.backup_ids).to include(449_676_382)
+    expect(droplet.snapshot_ids).to include(449_676_383)
     expect(droplet.volume_ids).to include("ffaa8716-59e1-11e8-92b6-0242ac110b0c")
     expect(droplet.action_ids).to be_empty
     expect(droplet.features).to include('ipv6')
@@ -41,7 +41,7 @@ RSpec.describe DropletKit::DropletResource do
     expect(droplet.region.features).to include("virtio", "private_networking", "backups", "ipv6")
 
     expect(droplet.image).to be_kind_of(DropletKit::Image)
-    expect(droplet.image.id).to eq(119192817)
+    expect(droplet.image.id).to eq(119_192_817)
     expect(droplet.image.name).to eq("Ubuntu 13.04")
     expect(droplet.image.distribution).to eq("ubuntu")
     expect(droplet.image.slug).to eq("ubuntu1304")
@@ -70,7 +70,7 @@ RSpec.describe DropletKit::DropletResource do
     expect(v6_network.type).to eq("public")
 
     expect(droplet.kernel).to be_kind_of(DropletKit::Kernel)
-    expect(droplet.kernel.id).to eq(485432985)
+    expect(droplet.kernel.id).to eq(485_432_985)
     expect(droplet.kernel.name).to eq("DO-recovery-static-fsck")
     expect(droplet.kernel.version).to eq("3.8.0-25-generic")
   end
@@ -300,11 +300,11 @@ RSpec.describe DropletKit::DropletResource do
       kernels = resource.kernels(id: 1066).take(20)
 
       expect(kernels).to all(be_kind_of(DropletKit::Kernel))
-      expect(kernels[0].id).to eq(61833229)
+      expect(kernels[0].id).to eq(61_833_229)
       expect(kernels[0].name).to eq('Ubuntu 14.04 x32 vmlinuz-3.13.0-24-generic')
       expect(kernels[0].version).to eq('3.13.0-24-generic')
 
-      expect(kernels[1].id).to eq(485432972)
+      expect(kernels[1].id).to eq(485_432_972)
       expect(kernels[1].name).to eq('Ubuntu 14.04 x64 vmlinuz-3.13.0-24-generic (1221)')
       expect(kernels[1].version).to eq('3.13.0-24-generic')
     end
@@ -322,7 +322,7 @@ RSpec.describe DropletKit::DropletResource do
       snapshots = resource.snapshots(id: 1066).take(20)
 
       expect(snapshots).to all(be_kind_of(DropletKit::Image))
-      expect(snapshots[0].id).to eq(449676387)
+      expect(snapshots[0].id).to eq(449_676_387)
       expect(snapshots[0].name).to eq("Ubuntu 13.04")
       expect(snapshots[0].distribution).to eq("ubuntu")
       expect(snapshots[0].slug).to eq(nil)
@@ -343,7 +343,7 @@ RSpec.describe DropletKit::DropletResource do
       backups = resource.backups(id: 1066).take(20)
 
       expect(backups).to all(be_kind_of(DropletKit::Image))
-      expect(backups[0].id).to eq(449676388)
+      expect(backups[0].id).to eq(449_676_388)
       expect(backups[0].name).to eq("Ubuntu 13.04")
       expect(backups[0].distribution).to eq("ubuntu")
       expect(backups[0].slug).to eq(nil)

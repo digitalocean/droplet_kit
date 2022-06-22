@@ -26,7 +26,7 @@ RSpec.describe DropletKit::LoadBalancerResource do
       expect(load_balancer.region.attributes)
         .to match(a_hash_including(slug: 'nyc3', name: 'New York 3',
                                    available: true, sizes: ['512mb'], features: ['private_networking']))
-      expect(load_balancer.droplet_ids).to match_array([3164445, 3164444])
+      expect(load_balancer.droplet_ids).to match_array([3_164_445, 3_164_444])
       expect(load_balancer.sticky_sessions).to be_kind_of(DropletKit::StickySession)
       expect(load_balancer.sticky_sessions.attributes)
         .to match(a_hash_including(cookie_ttl_seconds: 5, cookie_name: 'DO-LB', type: 'cookies'))
@@ -79,7 +79,7 @@ RSpec.describe DropletKit::LoadBalancerResource do
       DropletKit::LoadBalancer.new(
         name: 'example-lb-01',
         algorithm: 'round_robin',
-        droplet_ids: [3164444, 3164445],
+        droplet_ids: [3_164_444, 3_164_445],
         redirect_http_to_https: true,
         enable_proxy_protocol: true,
         enable_backend_keepalive: true,

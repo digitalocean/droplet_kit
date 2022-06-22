@@ -10,7 +10,7 @@ RSpec.describe DropletKit::VolumeActionResource do
   RSpec::Matchers.define :match_volume_action_fixture do |type|
     match do |action|
       expect(action).to be_kind_of(DropletKit::Action)
-      expect(action.id).to eq(72531856)
+      expect(action.id).to eq(72_531_856)
       expect(action.status).to eq("in-progress")
       expect(action.type).to eq(type) if type
       expect(action.started_at).to eq("2015-11-12T17:51:03Z")
@@ -147,7 +147,7 @@ RSpec.describe DropletKit::VolumeActionResource do
   end
 
   describe '#find' do
-    let(:id) { 72531856 }
+    let(:id) { 72_531_856 }
     let(:volume_id) { '7724db7c-e098-11e5-b522-000f53304e51' }
 
     it 'returns a single action' do
