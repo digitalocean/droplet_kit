@@ -45,7 +45,7 @@ module DropletKit
         handler(204) { |_| true }
       end
 
-      action :add_tags, 'POST /v2/firewalls/:id/tags'  do
+      action :add_tags, 'POST /v2/firewalls/:id/tags' do
         body { |tags| { tags: tags}.to_json }
         handler(204) { |_| true }
       end
