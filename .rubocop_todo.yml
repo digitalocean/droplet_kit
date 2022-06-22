@@ -296,13 +296,6 @@ Style/HashSyntax:
     - 'lib/droplet_kit/models/load_balancer.rb'
     - 'spec/lib/droplet_kit/models/loadbalancer_spec.rb'
 
-# Offense count: 2
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: IgnoredMethods.
-Style/MethodCallWithoutArgsParentheses:
-  Exclude:
-    - 'spec/lib/droplet_kit/resources/database_resource_spec.rb'
-
 # Offense count: 1
 Style/MissingRespondToMissing:
   Exclude:

@@ -89,7 +89,7 @@ RSpec.describe DropletKit::DatabaseResource do
   describe '#all_clusters' do
     it 'returns all database clusters' do
       stub_do_api('/v2/databases', :get).to_return(body: api_fixture('databases/all_clusters'))
-      database_clusters = resource.all_clusters()
+      database_clusters = resource.all_clusters
       expect(database_clusters).to all(be_kind_of(DropletKit::DatabaseCluster))
 
       database_cluster = database_clusters.first
@@ -98,7 +98,7 @@ RSpec.describe DropletKit::DatabaseResource do
 
     it 'returns an empty array of database clusters' do
       stub_do_api('/v2/databases', :get).to_return(body: api_fixture('databases/all_clusters_empty'))
-      database_clusters = resource.all_clusters()
+      database_clusters = resource.all_clusters
       expect(database_clusters).to be_empty
     end
   end
