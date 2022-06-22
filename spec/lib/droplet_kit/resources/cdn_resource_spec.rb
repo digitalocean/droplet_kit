@@ -4,6 +4,7 @@ require 'spec_helper'
 
 RSpec.describe DropletKit::CDNResource do
   subject(:resource) { described_class.new(connection: connection) }
+
   include_context 'resources'
 
   let(:id) { '7724db7c-e098-11e5-b522-000f53304e51' }

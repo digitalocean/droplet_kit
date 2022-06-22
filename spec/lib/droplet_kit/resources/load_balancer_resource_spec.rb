@@ -4,6 +4,7 @@ require 'spec_helper'
 
 RSpec.describe DropletKit::LoadBalancerResource do
   subject(:resource) { described_class.new(connection: connection) }
+
   include_context 'resources'
 
   let(:load_balancer_fixture_path) { 'load_balancers/find' }

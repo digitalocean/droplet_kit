@@ -4,6 +4,7 @@ require 'spec_helper'
 
 RSpec.describe DropletKit::KubernetesClusterResource do
   subject(:resource) { described_class.new(connection: connection) }
+
   let(:kubernetes_node_pool_attributes) { DropletKit::KubernetesNodePool.new.attributes }
   let(:kubernetes_maintenance_policy_attributes) { DropletKit::KubernetesMaintenancePolicy.new.attributes }
   let(:cluster_id) { "c28bf806-eba8-4a6d-a98f-8fd388740bd0" }

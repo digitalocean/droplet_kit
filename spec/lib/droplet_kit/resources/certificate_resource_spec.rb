@@ -4,6 +4,7 @@ require 'spec_helper'
 
 RSpec.describe DropletKit::CertificateResource do
   subject(:resource) { described_class.new(connection: connection) }
+
   include_context 'resources'
 
   let(:certificate_fixture_path) { 'certificates/find' }

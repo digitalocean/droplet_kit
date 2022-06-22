@@ -124,11 +124,6 @@ RSpec/ContextWording:
     - 'spec/lib/droplet_kit/resources/vpc_resource_spec.rb'
     - 'spec/support/resource_context.rb'
 
-# Offense count: 29
-# This cop supports safe autocorrection (--autocorrect).
-RSpec/EmptyLineAfterSubject:
-  Enabled: false
-
 # Offense count: 114
 # Configuration parameters: CountAsOne.
 RSpec/ExampleLength:

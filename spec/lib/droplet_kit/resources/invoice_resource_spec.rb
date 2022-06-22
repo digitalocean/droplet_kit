@@ -4,6 +4,7 @@ require 'spec_helper'
 
 RSpec.describe DropletKit::InvoiceResource do
   subject(:resource) { described_class.new(connection: connection) }
+
   include_context 'resources'
 
   describe '#invoices' do

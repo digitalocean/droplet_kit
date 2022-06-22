@@ -4,6 +4,7 @@ require 'spec_helper'
 
 RSpec.describe DropletKit::VPCResource do
   subject(:resource) { described_class.new(connection: connection) }
+
   include_context 'resources'
 
   let(:vpc_fixture_path) { 'vpcs/find' }
