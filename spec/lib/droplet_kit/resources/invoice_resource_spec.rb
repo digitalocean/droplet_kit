@@ -28,7 +28,7 @@ RSpec.describe DropletKit::InvoiceResource do
       stub_do_api('/v2/customers/my/invoices/123', :get).to_return(body: invoice_json)
       expected_data = DropletKit::InvoiceMapping.extract_collection invoice_json, :find
 
-      expect(resource.find(id:123)).to eq(expected_data)
+      expect(resource.find(id: 123)).to eq(expected_data)
     end
 
     it_behaves_like 'resource that handles common errors' do
