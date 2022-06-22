@@ -39,7 +39,7 @@ RSpec.describe DropletKit::ContainerRegistryResource do
 
         as_string = DropletKit::ContainerRegistryMapping.representation_for(:create, registry)
         stub_do_api(path, :post).with(body: as_string).to_return(body: api_fixture('container_registry/create'), status: 201)
-        created_registry = resource.create(registry)
+        resource.create(registry)
         expect(registry.name).to eq("foobar")
       end
 

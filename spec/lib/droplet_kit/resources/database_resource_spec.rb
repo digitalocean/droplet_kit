@@ -472,7 +472,7 @@ RSpec.describe DropletKit::DatabaseResource do
           auth_plugin: "mysql_native_password"
         )
       )
-      resp_database_user = resource.reset_database_user_auth(reset_auth, id: database_cluster_id, name: database_user.name)
+      resource.reset_database_user_auth(reset_auth, id: database_cluster_id, name: database_user.name)
       expect(database_user).to match_cluster_user
       expect(request).to have_been_made
     end
@@ -483,7 +483,7 @@ RSpec.describe DropletKit::DatabaseResource do
 
     it 'retrieves the proper database user' do
       request = stub_do_api("/v2/databases/#{database_cluster_id}/users/#{name}", :delete).to_return(status: 204)
-      database_user = resource.delete_database_user(id: database_cluster_id, name: name)
+      resource.delete_database_user(id: database_cluster_id, name: name)
 
       expect(request).to have_been_made
     end
@@ -538,7 +538,7 @@ RSpec.describe DropletKit::DatabaseResource do
 
     it 'deletes the database connection' do
       request = stub_do_api("/v2/databases/#{database_cluster_id}/pools", :delete).to_return(status: 204)
-      database_connection_pool = resource.delete_connection_pool(id: database_cluster_id, name: connection_pool_name)
+      resource.delete_connection_pool(id: database_cluster_id, name: connection_pool_name)
 
       expect(request).to have_been_made
     end

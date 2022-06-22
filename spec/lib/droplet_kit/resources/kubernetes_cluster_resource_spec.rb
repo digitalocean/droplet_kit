@@ -152,7 +152,7 @@ RSpec.describe DropletKit::KubernetesClusterResource do
 
         as_string = DropletKit::KubernetesClusterMapping.representation_for(:create, cluster)
         stub_do_api(path, :post).with(body: as_string).to_return(body: api_fixture('kubernetes/clusters/create'), status: 201)
-        created_cluster = resource.create(cluster)
+        resource.create(cluster)
         expect(cluster.id).to eq("cluster-1-id")
         expect(cluster.name).to eq("test-cluster")
         expect(cluster.region).to eq("nyc1")
