@@ -23,7 +23,7 @@ module DropletKit
 
     def self.transform_keys(hash, &block)
       return hash.transform_keys(&block) if hash.respond_to?(:transform_keys)
-      return to_enum(__caller__) unless block_given?
+      return to_enum(__caller__) unless block
 
       {}.tap do |result|
         hash.each do |key, value|
