@@ -149,9 +149,9 @@ describe DropletKit::ProjectResource do
     end
 
     it 'raises an error when the resouce cannot be assigned' do
-      expect {
+      expect do
         resource.assign_resources(['invalid'])
-      }.to raise_error(DropletKit::Error, 'cannot assign resource without valid urn: invalid')
+      end.to raise_error(DropletKit::Error, 'cannot assign resource without valid urn: invalid')
     end
   end
 end

@@ -100,7 +100,7 @@ RSpec.describe DropletKit::PaginatedResource do
     end
 
     it 'returns true on the last page of results' do
-      instance.each do end
+      instance.each {}
       expect(instance.last?).to eq(true)
     end
   end
