@@ -191,14 +191,6 @@ Style/RaiseArgs:
     - 'lib/droplet_kit/models/base_model.rb'
     - 'lib/droplet_kit/resources/project_resource.rb'
 
-# Offense count: 12
-# This cop supports safe autocorrection (--autocorrect).
-Style/RedundantFreeze:
-  Exclude:
-    - 'lib/droplet_kit/models/project.rb'
-    - 'lib/droplet_kit/utils.rb'
-    - 'lib/tasks/resource_doc.rake'
-
 # Offense count: 2
 # This cop supports safe autocorrection (--autocorrect).
 Style/RedundantPercentQ:

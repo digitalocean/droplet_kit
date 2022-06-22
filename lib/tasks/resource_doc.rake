@@ -11,9 +11,9 @@ namespace :doc do
     resources.each do |key, klass|
       next if (ENV.fetch('SKIP_CLASSES', '')).split(',').include?(klass.name)
 
-      class_name = DropletKit::Utils.underscore klass.name.split('::'.freeze).last
+      class_name = DropletKit::Utils.underscore klass.name.split('::').last
       human_name = class_name.dup
-      human_name.tr!('_'.freeze, ' '.freeze)
+      human_name.tr!('_', ' ')
       human_name.gsub!(/([a-z\d]*)/i) { |match| match.downcase }
       human_name.gsub!(/\A\w/) { |match| match.upcase }
 

@@ -6,17 +6,17 @@ module DropletKit
       string = term.to_s
       string.sub!(/^[a-z\d]*/, &:capitalize)
       string.gsub!(%r{(?:_|(/))([a-z\d]*)}i) { $2.capitalize }
-      string.gsub!('/'.freeze, '::'.freeze)
+      string.gsub!('/', '::')
       string
     end
 
     def self.underscore(term)
       return term unless /[A-Z-]|::/.match?(term)
 
-      word = term.to_s.gsub('::'.freeze, '/'.freeze)
-      word.gsub!(/([A-Z\d]+)([A-Z][a-z])/, '\1_\2'.freeze)
-      word.gsub!(/([a-z\d])([A-Z])/, '\1_\2'.freeze)
-      word.tr!('-'.freeze, '_'.freeze)
+      word = term.to_s.gsub('::', '/')
+      word.gsub!(/([A-Z\d]+)([A-Z][a-z])/, '\1_\2')
+      word.gsub!(/([a-z\d])([A-Z])/, '\1_\2')
+      word.tr!('-', '_')
       word.downcase!
       word
     end
