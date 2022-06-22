@@ -28,7 +28,7 @@ namespace :doc do
         action_options = action.path.scan(/\:[\w_\-]+/i)
         params = []
 
-        if action.body && action.body.arity > 0
+        if action.body&.arity&.positive?
           resource = class_name.dup
           resource.gsub!('_resource', '')
           resource.downcase!
