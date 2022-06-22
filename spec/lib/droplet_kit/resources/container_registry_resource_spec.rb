@@ -76,7 +76,7 @@ RSpec.describe DropletKit::ContainerRegistryResource do
       creds = resource.docker_credentials
 
       expect(creds).to be_kind_of(String)
-      parsed_creds = JSON.load(creds)
+      parsed_creds = JSON.parse(creds)
       expect(parsed_creds).to eq(
         'auths' => {
           'registry.digitalocean.com' => {

@@ -15,7 +15,7 @@ RSpec.describe DropletKit::PaginatedResource do
 
   before do
     action.query_keys :per_page, :page
-    action.handler(200) { |r| JSON.load(r.body)['objects'] }
+    action.handler(200) { |r| JSON.parse(r.body)['objects'] }
   end
 
   describe '#initialize' do

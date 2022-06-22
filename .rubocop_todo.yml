@@ -269,15 +269,6 @@ Rake/Desc:
   Exclude:
     - 'lib/tasks/resource_doc.rake'
 
-# Offense count: 4
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Security/JSONLoad:
-  Exclude:
-    - 'spec/lib/droplet_kit/paginated_resource_spec.rb'
-    - 'spec/lib/droplet_kit/resources/account_resource_spec.rb'
-    - 'spec/lib/droplet_kit/resources/balance_resource_spec.rb'
-    - 'spec/lib/droplet_kit/resources/container_registry_resource_spec.rb'
-
 # Offense count: 1
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Security/YAMLLoad:
