@@ -68,7 +68,7 @@ describe DropletKit::TagResource do
       as_string = DropletKit::TagMapping.representation_for(:create, tag)
 
       stub_do_api('/v2/tags', :post).with(body: as_string)
-        .to_return(body: api_fixture('tags/create'), status: 201)
+                                    .to_return(body: api_fixture('tags/create'), status: 201)
       created_tag = resource.create(tag)
 
       expect(created_tag).to match_tag_fixture
@@ -78,7 +78,7 @@ describe DropletKit::TagResource do
   describe '#delete' do
     it 'deletes a tag' do
       request = stub_do_api('/v2/tags/testing-1', :delete)
-        .to_return(body: '', status: 204)
+                .to_return(body: '', status: 204)
 
       resource.delete(name: 'testing-1')
       expect(request).to have_been_made
@@ -101,8 +101,8 @@ describe DropletKit::TagResource do
       }
 
       request = stub_do_api('/v2/tags/testing-1/resources', :post)
-        .with(body: params.to_json)
-        .to_return(body: '', status: 204)
+                .with(body: params.to_json)
+                .to_return(body: '', status: 204)
 
       resource.tag_resources(params.merge(name: 'testing-1'))
 
@@ -126,8 +126,8 @@ describe DropletKit::TagResource do
       }
 
       request = stub_do_api('/v2/tags/testing-1/resources', :delete)
-        .with(body: params.to_json)
-        .to_return(body: '', status: 204)
+                .with(body: params.to_json)
+                .to_return(body: '', status: 204)
 
       resource.untag_resources(params.merge(name: 'testing-1'))
 

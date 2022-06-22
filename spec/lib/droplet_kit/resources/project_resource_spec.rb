@@ -80,7 +80,7 @@ describe DropletKit::ProjectResource do
       as_string = DropletKit::ProjectMapping.representation_for(:create, project)
 
       stub_do_api('/v2/projects', :post).with(body: as_string)
-        .to_return(body: api_fixture('projects/find'), status: 201)
+                                        .to_return(body: api_fixture('projects/find'), status: 201)
       created_project = resource.create(project)
 
       expect(created_project).to match_project_fixture
@@ -90,7 +90,7 @@ describe DropletKit::ProjectResource do
   describe '#delete' do
     it 'deletes a project' do
       request = stub_do_api('/v2/projects/c177dc8c-12c1-4483-af1c-877eed0f14cb', :delete)
-        .to_return(body: '', status: 204)
+                .to_return(body: '', status: 204)
 
       resource.delete(id: 'c177dc8c-12c1-4483-af1c-877eed0f14cb')
       expect(request).to have_been_made
@@ -133,7 +133,7 @@ describe DropletKit::ProjectResource do
   describe '#assign_resources' do
     it 'calls the api when passing a valid urn' do
       request = stub_do_api('/v2/projects/:id/resources', :post)
-        .to_return(body: '', status: 201)
+                .to_return(body: '', status: 201)
 
       resource.assign_resources(['do:droplet:123'])
       expect(request).to have_been_made
@@ -141,7 +141,7 @@ describe DropletKit::ProjectResource do
 
     it 'calls the api when passing a model than can be converted to urn' do
       request = stub_do_api('/v2/projects/:id/resources', :post)
-        .to_return(body: '', status: 201)
+                .to_return(body: '', status: 201)
 
       resource.assign_resources([DropletKit::Droplet.new(id: 123)])
       expect(request).to have_been_made
