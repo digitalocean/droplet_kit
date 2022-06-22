@@ -7,6 +7,7 @@ RSpec.describe DropletKit::KubernetesClusterResource do
   let(:kubernetes_node_pool_attributes) { DropletKit::KubernetesNodePool.new.attributes }
   let(:kubernetes_maintenance_policy_attributes) { DropletKit::KubernetesMaintenancePolicy.new.attributes }
   let(:cluster_id) { "c28bf806-eba8-4a6d-a98f-8fd388740bd0" }
+
   include_context 'resources'
 
   describe '#find' do

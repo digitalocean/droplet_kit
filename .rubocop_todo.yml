@@ -134,15 +134,6 @@ RSpec/DescribedClass:
     - 'spec/lib/droplet_kit/models/loadbalancer_spec.rb'
     - 'spec/lib/droplet_kit/paginated_resource_spec.rb'
 
-# Offense count: 5
-# This cop supports safe autocorrection (--autocorrect).
-RSpec/EmptyLineAfterFinalLet:
-  Exclude:
-    - 'spec/lib/droplet_kit/paginated_resource_spec.rb'
-    - 'spec/lib/droplet_kit/resources/certificate_resource_spec.rb'
-    - 'spec/lib/droplet_kit/resources/database_resource_spec.rb'
-    - 'spec/lib/droplet_kit/resources/kubernetes_cluster_resource_spec.rb'
-
 # Offense count: 29
 # This cop supports safe autocorrection (--autocorrect).
 RSpec/EmptyLineAfterSubject:

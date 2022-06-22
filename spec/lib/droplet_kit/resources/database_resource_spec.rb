@@ -5,6 +5,7 @@ require 'spec_helper'
 RSpec.describe DropletKit::DatabaseResource do
   subject(:resource) { described_class.new(connection: connection) }
   let(:database_cluster_id) { '9cc10173-e9ea-4176-9dbc-a4cee4c4ff30' }
+
   include_context 'resources'
 
   RSpec::Matchers.define :match_database_cluster do

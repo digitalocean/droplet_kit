@@ -8,6 +8,7 @@ RSpec.describe DropletKit::CertificateResource do
   let(:certificate_fixture_path) { 'certificates/find' }
   let(:base_path) { '/v2/certificates' }
   let(:certificate_id) { '892071a0-bb95-49bc-8021-3afd67a210bf' }
+
   subject(:resource) { described_class.new(connection: connection) }
 
   RSpec::Matchers.define :match_certificate_fixture do

@@ -28,6 +28,7 @@ RSpec.describe DropletKit::PaginatedResource do
 
   describe "#total_pages" do
     let(:instance) { DropletKit::PaginatedResource.new(action, resource) }
+
     it "returns nil if no request made" do
       expect(instance.total_pages).to be_nil
     end
@@ -39,6 +40,7 @@ RSpec.describe DropletKit::PaginatedResource do
 
     context "when results are empty" do
       let(:stubs) { stub_pager_request(0) }
+
       it "returns 0" do
         instance.take(1)
         expect(instance.total_pages).to eq(0)
