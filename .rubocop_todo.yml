@@ -155,15 +155,6 @@ RSpec/IteratedExpectation:
   Exclude:
     - 'spec/lib/droplet_kit/resources/kubernetes_cluster_resource_spec.rb'
 
-# Offense count: 4
-# This cop supports safe autocorrection (--autocorrect).
-RSpec/LeadingSubject:
-  Exclude:
-    - 'spec/lib/droplet_kit/resources/certificate_resource_spec.rb'
-    - 'spec/lib/droplet_kit/resources/firewall_resource_spec.rb'
-    - 'spec/lib/droplet_kit/resources/load_balancer_resource_spec.rb'
-    - 'spec/lib/droplet_kit/resources/vpc_resource_spec.rb'
-
 # Offense count: 2
 RSpec/LeakyConstantDeclaration:
   Exclude:

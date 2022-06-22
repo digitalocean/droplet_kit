@@ -3,6 +3,7 @@
 require 'spec_helper'
 
 RSpec.describe DropletKit::FirewallResource do
+  subject(:resource) { described_class.new(connection: connection) }
   include_context 'resources'
 
   let(:firewall_fixture_path) { 'firewalls/find' }
@@ -49,8 +50,6 @@ RSpec.describe DropletKit::FirewallResource do
       tags: ['backend']
     )
   end
-
-  subject(:resource) { described_class.new(connection: connection) }
 
   RSpec::Matchers.define :match_firewall_fixture do
     match do |firewall|
