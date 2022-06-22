@@ -23,7 +23,7 @@ module RequestStubHelpers
           num + ((page - 1) * per_page)
         end
 
-        [200, {}, { objects: range, meta: { total: total_results } }.to_json ]
+        [200, {}, { objects: range, meta: { total: total_results } }.to_json]
       end
     end
   end

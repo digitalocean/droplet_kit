@@ -225,7 +225,7 @@ RSpec.describe DropletKit::KubernetesClusterResource do
       expect(node_pools.first["name"]).to eq "k8s-1-12-1-do-1-nyc1-1540837045848-1"
       expect(node_pools.first["size"]).to eq "s-4vcpu-8gb"
       expect(node_pools.first["count"]).to eq 2
-      expect(node_pools.first["tags"]).to eq [ "omar-left-his-mark" ]
+      expect(node_pools.first["tags"]).to eq ["omar-left-his-mark"]
       expect(node_pools.first["nodes"].length).to eq 2
       expect(node_pools.first["auto_scale"]).to eq(true)
       expect(node_pools.first["min_nodes"]).to eq(1)
@@ -305,7 +305,7 @@ RSpec.describe DropletKit::KubernetesClusterResource do
       expect(node_pools.first["name"]).to eq "k8s-1-12-1-do-1-nyc1-1540837045848-1"
       expect(node_pools.first["size"]).to eq "s-4vcpu-8gb"
       expect(node_pools.first["count"]).to eq 2
-      expect(node_pools.first["tags"]).to eq [ "omar-left-his-mark" ]
+      expect(node_pools.first["tags"]).to eq ["omar-left-his-mark"]
 
       node_pool = node_pools.first
       node_pool.name = 'backend'
