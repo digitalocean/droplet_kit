@@ -297,12 +297,6 @@ Style/BlockDelimiters:
     - 'spec/lib/droplet_kit/resources/project_resource_spec.rb'
 
 # Offense count: 1
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Style/CaseLikeIf:
-  Exclude:
-    - 'lib/droplet_kit/error_handling_resourcable.rb'
-
-# Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: is_a?, kind_of?
