@@ -17,4 +17,3 @@ module DropletKit
     attribute :category
   end
 end
-  

@@ -15,10 +15,10 @@ module DropletKit
       end
 
       action :create, 'POST /v2/kubernetes/clusters' do
-        body do |object| 
+        body do |object|
           # This ensures that both a hash and an instance of KubernetesNodePool can be passed
           # into the node_pools array
-          # 
+          #
           # Ex:
           # KubernetesCluster.new(node_pools: [{}])
           # or

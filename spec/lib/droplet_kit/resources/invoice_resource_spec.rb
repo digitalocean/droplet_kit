@@ -14,7 +14,7 @@ RSpec.describe DropletKit::InvoiceResource do
 
       expect(resource.list).to eq(expected_data)
     end
-    
+
     it_behaves_like 'resource that handles common errors' do
       let(:path) { '/v2/customers/my/invoices' }
       let(:method) { :get }

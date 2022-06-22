@@ -10,7 +10,6 @@ module DropletKit
       property :account_balance, scopes: [:read]
       property :month_to_date_usage, scopes: [:read]
       property :generated_at, scopes: [:read]
-      
     end
   end
 end

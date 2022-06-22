@@ -74,7 +74,7 @@ RSpec.describe DropletKit::ContainerRegistryResource do
       response = Pathname.new('./spec/fixtures/container_registry/docker-credentials.json').read
       stub_do_api('/v2/registry/docker-credentials', :get).to_return(body: response)
       creds = resource.docker_credentials
-  
+
       expect(creds).to be_kind_of(String)
       parsed_creds = JSON.load(creds)
       expect(parsed_creds).to eq(

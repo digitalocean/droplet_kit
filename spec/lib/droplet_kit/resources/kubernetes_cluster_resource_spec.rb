@@ -211,7 +211,7 @@ RSpec.describe DropletKit::KubernetesClusterResource do
       expect(parsed_config.keys).to match_array(["apiVersion", "clusters", "contexts", "current-context", "kind", "preferences", "users"])
     end
   end
- 
+
   describe "node_pools" do
     it 'returns the node_pools for a cluster' do
       stub_do_api("/v2/kubernetes/clusters/#{cluster_id}/node_pools", :get).to_return(body: api_fixture('kubernetes/cluster_node_pools'))
