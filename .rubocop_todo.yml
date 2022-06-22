@@ -251,12 +251,6 @@ Style/Documentation:
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
-Style/Encoding:
-  Exclude:
-    - 'droplet_kit.gemspec'
-
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
 Style/ExpandPathArguments:
   Exclude:
     - 'droplet_kit.gemspec'
