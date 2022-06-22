@@ -115,12 +115,6 @@ Naming/VariableNumber:
     - 'spec/lib/droplet_kit/resources/load_balancer_resource_spec.rb'
 
 # Offense count: 1
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Performance/InefficientHashSearch:
-  Exclude:
-    - 'lib/droplet_kit/client.rb'
-
-# Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 Performance/RedundantBlockCall:
   Exclude:

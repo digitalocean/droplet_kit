@@ -66,7 +66,7 @@ module DropletKit
     end
 
     def method_missing(name, *args, &block)
-      if self.class.resources.keys.include?(name)
+      if self.class.resources.key?(name)
         resources[name] ||= self.class.resources[name].new(connection: connection)
         resources[name]
       else
