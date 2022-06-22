@@ -16,7 +16,7 @@ module DropletKit
       @resource = resource
       @collection = []
       @args = args
-      @options = args.last.kind_of?(Hash) ? args.last : {}
+      @options = args.last.is_a?(Hash) ? args.last : {}
     end
 
     def per_page
