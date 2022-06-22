@@ -9,12 +9,12 @@ Gem::Specification.new do |spec|
   spec.version       = DropletKit::VERSION
   spec.authors       = ["DigitalOcean API Engineering team"]
   spec.email         = ["api-engineering@digitalocean.com"]
-  spec.summary       = %q{Droplet Kit is the official Ruby library for DigitalOcean's API}
-  spec.description   = %q{Droplet Kit is the official Ruby library for DigitalOcean's API}
+  spec.summary       = %q(Droplet Kit is the official Ruby library for DigitalOcean's API)
+  spec.description   = %q(Droplet Kit is the official Ruby library for DigitalOcean's API)
   spec.homepage      = "https://github.com/digitalocean/droplet_kit"
   spec.license       = "MIT"
 
-  spec.files         = %w{LICENSE.txt README.md} + Dir.glob("lib/**/*", File::FNM_DOTMATCH).reject { |f| File.directory?(f) }
+  spec.files         = %w[LICENSE.txt README.md] + Dir.glob("lib/**/*", File::FNM_DOTMATCH).reject { |f| File.directory?(f) }
   spec.require_paths = ["lib"]
 
   spec.required_ruby_version = '>= 2.5.0'

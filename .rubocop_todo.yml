@@ -175,15 +175,6 @@ Style/MissingRespondToMissing:
   Exclude:
     - 'lib/droplet_kit/client.rb'
 
-# Offense count: 6
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: PreferredDelimiters.
-Style/PercentLiteralDelimiters:
-  Exclude:
-    - 'droplet_kit.gemspec'
-    - 'lib/droplet_kit/resources/droplet_action_resource.rb'
-    - 'spec/support/request_stub_helpers.rb'
-
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 Style/PerlBackrefs:
