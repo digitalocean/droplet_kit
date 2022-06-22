@@ -71,7 +71,7 @@ RSpec.describe DropletKit::PaginatedResource do
     end
 
     it 'called the API twice' do
-      expect { |b| paginated.each { |c| c } }.to change { request_count.count }.to(2).from(0)
+      expect { |b| paginated.each { |c| c } }.to change(request_count, :count).to(2).from(0)
     end
 
     it 'returns the correct objects' do
@@ -82,7 +82,7 @@ RSpec.describe DropletKit::PaginatedResource do
       subject(:paginated) { DropletKit::PaginatedResource.new(action, resource, per_page: 40) }
 
       it 'only calls the API once' do
-        expect { |b| paginated.each { |c| c } }.to change { request_count.count }.to(1).from(0)
+        expect { |b| paginated.each { |c| c } }.to change(request_count, :count).to(1).from(0)
       end
     end
   end

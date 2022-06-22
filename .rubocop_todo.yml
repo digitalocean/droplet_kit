@@ -144,14 +144,6 @@ RSpec/EmptyLineAfterSubject:
 RSpec/ExampleLength:
   Max: 43
 
-# Offense count: 2
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: method_call, block
-RSpec/ExpectChange:
-  Exclude:
-    - 'spec/lib/droplet_kit/paginated_resource_spec.rb'
-
 # Offense count: 36
 # Configuration parameters: Include, CustomTransform, IgnoreMethods, SpecSuffixOnly.
 # Include: **/*_spec*rb*, **/spec/**/*
