@@ -11,7 +11,7 @@ module DropletKit
     end
 
     def self.underscore(term)
-      return term unless /[A-Z-]|::/ =~ term
+      return term unless /[A-Z-]|::/.match?(term)
 
       word = term.to_s.gsub('::'.freeze, '/'.freeze)
       word.gsub!(/([A-Z\d]+)([A-Z][a-z])/, '\1_\2'.freeze)
