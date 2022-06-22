@@ -269,12 +269,6 @@ Rake/Desc:
   Exclude:
     - 'lib/tasks/resource_doc.rake'
 
-# Offense count: 1
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Security/YAMLLoad:
-  Exclude:
-    - 'spec/lib/droplet_kit/resources/kubernetes_cluster_resource_spec.rb'
-
 # Offense count: 2
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: EnforcedStyle, ProceduralMethods, FunctionalMethods, IgnoredMethods, AllowBracesOnProceduralOneLiners, BracesRequiredMethods.
