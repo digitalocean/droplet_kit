@@ -144,14 +144,6 @@ RSpec/EmptyLineAfterSubject:
 RSpec/ExampleLength:
   Max: 43
 
-# Offense count: 6
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: CustomTransform, IgnoredWords.
-RSpec/ExampleWording:
-  Exclude:
-    - 'spec/lib/droplet_kit/resources/kubernetes_cluster_resource_spec.rb'
-    - 'spec/lib/droplet_kit/resources/kubernetes_options_resource_spec.rb'
-
 # Offense count: 2
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: EnforcedStyle.

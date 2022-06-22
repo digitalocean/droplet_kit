@@ -235,7 +235,7 @@ RSpec.describe DropletKit::KubernetesClusterResource do
   end
 
   describe "find_node_pool" do
-    it "should return a single node pool" do
+    it "returns a single node pool" do
       node_pool_id = "f9f16e5a-83b8-4c9b-acf1-4f91492a6652"
       stub_do_api("/v2/kubernetes/clusters/#{cluster_id}/node_pools/#{node_pool_id}", :get).to_return(body: api_fixture('kubernetes/cluster_node_pool'))
       node_pool = resource.find_node_pool(id: cluster_id, pool_id: node_pool_id)
@@ -255,7 +255,7 @@ RSpec.describe DropletKit::KubernetesClusterResource do
   end
 
   describe "create_node_pool" do
-    it 'should create a node_pool in a cluster' do
+    it 'creates a node_pool in a cluster' do
       node_pool = DropletKit::KubernetesNodePool.new(
         name: 'frontend',
         size: 's-1vcpu-1gb',
@@ -294,7 +294,7 @@ RSpec.describe DropletKit::KubernetesClusterResource do
   end
 
   describe "update_node_pool" do
-    it "should update an existing node_pool" do
+    it "updates an existing node_pool" do
       stub_do_api("/v2/kubernetes/clusters/#{cluster_id}/node_pools", :get).to_return(body: api_fixture('kubernetes/cluster_node_pools'))
       node_pools = resource.node_pools(id: cluster_id)
       node_pools.each do |pool|
@@ -329,7 +329,7 @@ RSpec.describe DropletKit::KubernetesClusterResource do
   end
 
   describe 'delete_node_pool' do
-    it 'should delete a clusters node_pool' do
+    it 'deletes a clusters node_pool' do
       node_pool_id = "f9f16e5a-83b8-4c9b-acf1-4f91492a6652"
       stub_do_api("/v2/kubernetes/clusters/#{cluster_id}/node_pools/#{node_pool_id}", :delete).to_return(status: 202)
       deleted_node_pool = resource.delete_node_pool(id: cluster_id, pool_id: node_pool_id)
@@ -339,7 +339,7 @@ RSpec.describe DropletKit::KubernetesClusterResource do
   end
 
   describe 'recycle_node_pool' do
-    it 'should recycle the clusters node_pool' do
+    it 'recycles the clusters node_pool' do
       stub_do_api("/v2/kubernetes/clusters/#{cluster_id}/node_pools", :get).to_return(body: api_fixture('kubernetes/cluster_node_pools'))
       node_pools = resource.node_pools(id: cluster_id)
       node_pools.each do |pool|
