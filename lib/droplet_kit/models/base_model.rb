@@ -12,7 +12,7 @@ module DropletKit
     include Virtus::Equalizer.new(name || inspect)
 
     def inspect
-      values = Hash[instance_variables.map { |name| [name, instance_variable_get(name)] }]
+      values = instance_variables.map { |name| [name, instance_variable_get(name)] }.to_h
       "<#{self.class.name} #{values}>"
     end
 
