@@ -4,6 +4,7 @@ require 'droplet_kit'
 require 'droplet_kit/utils'
 
 namespace :doc do
+  desc 'Generate a resource documentation'
   task :resources do
     resources = DropletKit::Client.resources
 
