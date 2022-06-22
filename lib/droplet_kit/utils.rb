@@ -27,7 +27,7 @@ module DropletKit
 
       {}.tap do |result|
         hash.each do |key, value|
-          result[block.call(key)] = value
+          result[yield(key)] = value
         end
       end
     end

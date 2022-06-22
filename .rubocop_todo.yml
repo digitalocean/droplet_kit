@@ -116,12 +116,6 @@ Naming/VariableNumber:
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
-Performance/RedundantBlockCall:
-  Exclude:
-    - 'lib/droplet_kit/utils.rb'
-
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
 Performance/RegexpMatch:
   Exclude:
     - 'lib/droplet_kit/utils.rb'
