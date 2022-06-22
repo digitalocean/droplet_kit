@@ -124,16 +124,6 @@ RSpec/ContextWording:
     - 'spec/lib/droplet_kit/resources/vpc_resource_spec.rb'
     - 'spec/support/resource_context.rb'
 
-# Offense count: 16
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: SkipBlocks, EnforcedStyle.
-# SupportedStyles: described_class, explicit
-RSpec/DescribedClass:
-  Exclude:
-    - 'spec/lib/droplet_kit/client_spec.rb'
-    - 'spec/lib/droplet_kit/models/loadbalancer_spec.rb'
-    - 'spec/lib/droplet_kit/paginated_resource_spec.rb'
-
 # Offense count: 29
 # This cop supports safe autocorrection (--autocorrect).
 RSpec/EmptyLineAfterSubject:

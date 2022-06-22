@@ -20,14 +20,14 @@ RSpec.describe DropletKit::PaginatedResource do
 
   describe '#initialize' do
     it 'initializes with a action and resource' do
-      instance = DropletKit::PaginatedResource.new(action, resource)
+      instance = described_class.new(action, resource)
       expect(instance.action).to be(action)
       expect(instance.resource).to be(resource)
     end
   end
 
   describe "#total_pages" do
-    let(:instance) { DropletKit::PaginatedResource.new(action, resource) }
+    let(:instance) { described_class.new(action, resource) }
 
     it "returns nil if no request made" do
       expect(instance.total_pages).to be_nil
@@ -49,7 +49,7 @@ RSpec.describe DropletKit::PaginatedResource do
   end
 
   describe '#[]' do
-    subject(:paginated) { DropletKit::PaginatedResource.new(action, resource) }
+    subject(:paginated) { described_class.new(action, resource) }
 
     it 'returns the nth element in the collection' do
       paginated.each_with_index do |elem, i|
@@ -59,7 +59,7 @@ RSpec.describe DropletKit::PaginatedResource do
   end
 
   describe '#each' do
-    subject(:paginated) { DropletKit::PaginatedResource.new(action, resource) }
+    subject(:paginated) { described_class.new(action, resource) }
 
     it 'iterates over every object returned from the API' do
       total = 0
@@ -79,7 +79,7 @@ RSpec.describe DropletKit::PaginatedResource do
     end
 
     context 'for changing size' do
-      subject(:paginated) { DropletKit::PaginatedResource.new(action, resource, per_page: 40) }
+      subject(:paginated) { described_class.new(action, resource, per_page: 40) }
 
       it 'only calls the API once' do
         expect { |b| paginated.each { |c| c } }.to change(request_count, :count).to(1).from(0)
@@ -88,7 +88,7 @@ RSpec.describe DropletKit::PaginatedResource do
   end
 
   describe '#last?' do
-    let(:instance) { DropletKit::PaginatedResource.new(action, resource) }
+    let(:instance) { described_class.new(action, resource) }
 
     it 'returns true when no request is made' do
       expect(instance.last?).to eq(true)
