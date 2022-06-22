@@ -12,7 +12,7 @@ shared_examples_for 'resource that handles common errors' do
                                         })
 
     expect { resource.send(action, arguments).to_a }.to raise_exception(DropletKit::Error) do |exception|
-      expect(exception.message).to match /#{response_body[:message]}/
+      expect(exception.message).to match(/#{response_body[:message]}/)
       expect(exception.limit).to eq 1200
       expect(exception.remaining).to eq 1193
       expect(exception.reset_at).to eq "1402425459"
