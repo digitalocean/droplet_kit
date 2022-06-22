@@ -461,7 +461,7 @@ RSpec.describe DropletKit::DatabaseResource do
       role: "normal",
       password: "jge5lfxtzhx42iff",
       mysql_settings: {
-        "auth_plugin": "mysql_native_password"
+        auth_plugin: "mysql_native_password"
       }
     )
 

@@ -34,14 +34,6 @@ Lint/StructNewOverride:
     - 'spec/lib/droplet_kit/paginated_resource_spec.rb'
 
 # Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: strict, consistent
-Lint/SymbolConversion:
-  Exclude:
-    - 'spec/lib/droplet_kit/resources/database_resource_spec.rb'
-
-# Offense count: 1
 Lint/ToEnumArguments:
   Exclude:
     - 'lib/droplet_kit/utils.rb'
