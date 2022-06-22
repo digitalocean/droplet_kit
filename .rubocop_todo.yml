@@ -6,15 +6,6 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBrackets.
-# SupportedStyles: space, no_space
-# SupportedStylesForEmptyBrackets: space, no_space
-Layout/SpaceInsideReferenceBrackets:
-  Exclude:
-    - 'lib/droplet_kit/models/base_model.rb'
-
 # Offense count: 35
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: EnforcedStyle.
