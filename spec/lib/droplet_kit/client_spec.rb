@@ -106,4 +106,3 @@ RSpec.describe DropletKit::Client do
     end
   end
 end
-

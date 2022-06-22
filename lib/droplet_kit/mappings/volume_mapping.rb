@@ -23,4 +23,3 @@ module DropletKit
     end
   end
 end
-

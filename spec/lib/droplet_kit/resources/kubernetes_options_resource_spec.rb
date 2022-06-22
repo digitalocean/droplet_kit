@@ -33,4 +33,3 @@ RSpec.describe DropletKit::KubernetesOptionsResource do
     end
   end
 end
-
