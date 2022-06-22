@@ -470,7 +470,8 @@ RSpec.describe DropletKit::DatabaseResource do
       reset_auth = DropletKit::DatabaseUserResetAuth.new(
         mysql_settings: DropletKit::DatabaseUserMySQLSettings.new(
           auth_plugin: "mysql_native_password"
-        ))
+        )
+      )
       resp_database_user = resource.reset_database_user_auth(reset_auth, id: database_cluster_id, name: database_user.name)
       expect(database_user).to match_cluster_user
       expect(request).to have_been_made

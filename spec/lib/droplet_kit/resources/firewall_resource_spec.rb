@@ -46,7 +46,8 @@ RSpec.describe DropletKit::FirewallResource do
         )
       ],
       droplet_ids: [123],
-      tags: ['backend'])
+      tags: ['backend']
+    )
   end
 
   subject(:resource) { described_class.new(connection: connection) }
