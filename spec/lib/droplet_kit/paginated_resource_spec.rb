@@ -73,7 +73,7 @@ RSpec.describe DropletKit::PaginatedResource do
     end
 
     it 'returns the correct objects' do
-      expect(paginated.first(3)).to eq([0,1,2])
+      expect(paginated.first(3)).to eq([0, 1, 2])
     end
 
     context 'for changing size' do

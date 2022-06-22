@@ -562,7 +562,7 @@ RSpec.describe DropletKit::DatabaseResource do
 
   describe '#get_eviction_policy' do
     it 'returns the eviction policy' do
-      request = stub_do_api("/v2/databases/#{database_cluster_id}/eviction_policy", :get).to_return(body: api_fixture('databases/get_eviction_policy_response'),status: 200)
+      request = stub_do_api("/v2/databases/#{database_cluster_id}/eviction_policy", :get).to_return(body: api_fixture('databases/get_eviction_policy_response'), status: 200)
       eviction_policy = resource.get_eviction_policy(id: database_cluster_id)
 
       expect(eviction_policy).to be_kind_of(DropletKit::DatabaseEvictionPolicy)
@@ -589,7 +589,7 @@ RSpec.describe DropletKit::DatabaseResource do
 
   describe '#get_sql_mode' do
     it 'returns the eviction policy' do
-      request = stub_do_api("/v2/databases/#{database_cluster_id}/sql_mode", :get).to_return(body: api_fixture('databases/get_sql_modes_response'),status: 200)
+      request = stub_do_api("/v2/databases/#{database_cluster_id}/sql_mode", :get).to_return(body: api_fixture('databases/get_sql_modes_response'), status: 200)
       sql_mode = resource.get_sql_mode(id: database_cluster_id)
 
       expect(sql_mode).to be_kind_of(DropletKit::DatabaseSQLMode)
