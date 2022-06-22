@@ -19,7 +19,7 @@ module DropletKit
       end
 
       action :update, 'PUT /v2/images/:id' do
-        body {|image| ImageMapping.representation_for(:update, image) }
+        body { |image| ImageMapping.representation_for(:update, image) }
         handler(200) { |response| ImageMapping.extract_single(response.body, :read) }
       end
     end

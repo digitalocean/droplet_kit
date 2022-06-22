@@ -26,13 +26,13 @@ module DropletKit
       end
 
       action :update, 'PUT /v2/vpcs/:id' do
-        body {|vpc| VPCMapping.representation_for(:update, vpc) }
+        body { |vpc| VPCMapping.representation_for(:update, vpc) }
         handler(200) { |response| VPCMapping.extract_single(response.body, :read) }
         handler(422) { |response| ErrorMapping.fail_with(FailedUpdate, response.body) }
       end
 
       action :patch, 'PATCH /v2/vpcs/:id' do
-        body {|vpc| VPCMapping.representation_for(:patch, vpc) }
+        body { |vpc| VPCMapping.representation_for(:patch, vpc) }
         handler(200) { |response| VPCMapping.extract_single(response.body, :read) }
         handler(422) { |response| ErrorMapping.fail_with(FailedUpdate, response.body) }
       end

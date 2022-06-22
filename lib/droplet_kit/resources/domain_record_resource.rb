@@ -11,7 +11,7 @@ module DropletKit
       end
 
       action :create, 'POST /v2/domains/:for_domain/records' do
-        body {|object| DomainRecordMapping.representation_for(:create, object) }
+        body { |object| DomainRecordMapping.representation_for(:create, object) }
         handler(201) { |response| DomainRecordMapping.extract_single(response.body, :read) }
       end
 
@@ -24,7 +24,7 @@ module DropletKit
       end
 
       action :update, 'PUT /v2/domains/:for_domain/records/:id' do
-        body {|object| DomainRecordMapping.representation_for(:update, object) }
+        body { |object| DomainRecordMapping.representation_for(:update, object) }
         handler(200) { |response| DomainRecordMapping.extract_single(response.body, :read) }
       end
     end

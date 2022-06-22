@@ -8,7 +8,7 @@ RSpec.describe DropletKit::PaginatedResource do
   let(:resource) { ResourceKit::Resource.new(connection: connection) }
   let(:request_count) { RequestCounter.new(0) }
 
-  let(:connection) { Faraday.new {|b| b.adapter :test, stubs } }
+  let(:connection) { Faraday.new { |b| b.adapter :test, stubs } }
   let(:response_size) { 40 }
   let(:stubs) { stub_pager_request(response_size) }
   let(:action) { ResourceKit::Action.new(:find, :get, '/droplets') }
@@ -69,7 +69,7 @@ RSpec.describe DropletKit::PaginatedResource do
     end
 
     it 'called the API twice' do
-      expect {|b| paginated.each {|c| c } }.to change { request_count.count }.to(2).from(0)
+      expect { |b| paginated.each { |c| c } }.to change { request_count.count }.to(2).from(0)
     end
 
     it 'returns the correct objects' do
@@ -80,7 +80,7 @@ RSpec.describe DropletKit::PaginatedResource do
       subject(:paginated) { DropletKit::PaginatedResource.new(action, resource, per_page: 40) }
 
       it 'only calls the API once' do
-        expect {|b| paginated.each {|c| c } }.to change { request_count.count }.to(1).from(0)
+        expect { |b| paginated.each { |c| c } }.to change { request_count.count }.to(1).from(0)
       end
     end
   end

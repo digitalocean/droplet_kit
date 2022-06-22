@@ -45,8 +45,8 @@ RSpec.describe DropletKit::DomainRecordResource do
     end
 
     it_behaves_like 'a paginated index' do
-      let(:fixture_path) {'domain_records/all'}
-      let(:api_path) {'/v2/domains/example.com/records'}
+      let(:fixture_path) { 'domain_records/all' }
+      let(:api_path) { '/v2/domains/example.com/records' }
     end
   end
 

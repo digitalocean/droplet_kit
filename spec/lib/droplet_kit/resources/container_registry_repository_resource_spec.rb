@@ -19,8 +19,8 @@ RSpec.describe DropletKit::ContainerRegistryRepositoryResource do
     end
 
     it_behaves_like 'a paginated index' do
-      let(:fixture_path) {'container_registry/list-repos'}
-      let(:api_path) {'/v2/registry/my-registry/repositories'}
+      let(:fixture_path) { 'container_registry/list-repos' }
+      let(:api_path) { '/v2/registry/my-registry/repositories' }
     end
   end
 
@@ -37,8 +37,8 @@ RSpec.describe DropletKit::ContainerRegistryRepositoryResource do
     end
 
     it_behaves_like 'a paginated index' do
-      let(:fixture_path) {'container_registry/list-repo-tags'}
-      let(:api_path) {'/v2/registry/my-registry/repositories/my-repo/tags'}
+      let(:fixture_path) { 'container_registry/list-repo-tags' }
+      let(:api_path) { '/v2/registry/my-registry/repositories/my-repo/tags' }
     end
   end
 

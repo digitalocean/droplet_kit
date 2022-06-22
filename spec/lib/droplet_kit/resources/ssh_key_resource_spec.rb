@@ -20,8 +20,8 @@ RSpec.describe DropletKit::SSHKeyResource do
     end
 
     it_behaves_like 'a paginated index' do
-      let(:fixture_path) {'ssh_keys/all'}
-      let(:api_path) {'/v2/ssh_keys'}
+      let(:fixture_path) { 'ssh_keys/all' }
+      let(:api_path) { '/v2/ssh_keys' }
     end
   end
 

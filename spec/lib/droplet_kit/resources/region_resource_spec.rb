@@ -16,8 +16,8 @@ RSpec.describe DropletKit::RegionResource do
     end
 
     it_behaves_like 'a paginated index' do
-      let(:fixture_path) {'regions/all'}
-      let(:api_path) {'/v2/regions'}
+      let(:fixture_path) { 'regions/all' }
+      let(:api_path) { '/v2/regions' }
     end
 
     it_behaves_like 'resource that handles common errors' do

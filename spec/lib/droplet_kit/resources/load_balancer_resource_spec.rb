@@ -6,7 +6,7 @@ RSpec.describe DropletKit::LoadBalancerResource do
   include_context 'resources'
 
   let(:load_balancer_fixture_path) { 'load_balancers/find' }
-  let(:base_path) { '/v2/load_balancers'}
+  let(:base_path) { '/v2/load_balancers' }
   let(:load_balancer_id) { '37e6be88-01ec-4ec7-9bc6-a514d4719057' }
 
   subject(:resource) { described_class.new(connection: connection) }

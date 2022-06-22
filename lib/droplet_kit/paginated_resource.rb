@@ -59,7 +59,7 @@ module DropletKit
     end
 
     def ==(other)
-      each_with_index.each.all? {|object, index| object == other[index] }
+      each_with_index.each.all? { |object, index| object == other[index] }
     end
 
     private

@@ -7,7 +7,7 @@ RSpec.describe DropletKit::VPCResource do
 
   let(:vpc_fixture_path) { 'vpcs/find' }
   let(:default_vpc_fixture_path) { 'vpcs/find_default' }
-  let(:base_path) { '/v2/vpcs'}
+  let(:base_path) { '/v2/vpcs' }
   let(:vpc_uuid) { '880b7f98-f062-404d-b33c-458d545696f6' }
 
   subject(:resource) { described_class.new(connection: connection) }

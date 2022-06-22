@@ -3,8 +3,8 @@
 # To use this, `fixture_path`, `api_path` and a `resource` must be defined
 # using `let`s.
 shared_examples_for 'a paginated index' do
-  let(:fixture_path) { }
-  let(:api_path) { }
+  let(:fixture_path) {}
+  let(:api_path) {}
   let(:parameters) { {} }
   let(:action) { :all }
 
