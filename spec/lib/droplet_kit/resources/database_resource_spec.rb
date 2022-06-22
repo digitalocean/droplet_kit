@@ -207,9 +207,9 @@ RSpec.describe DropletKit::DatabaseResource do
       database_backup = DropletKit::DatabaseCluster.new(
         name: 'backend-restored',
         backup_restore: DropletKit::DatabaseBackup.new(
-            database_name: 'backend',
-            backup_created_at: '2019-01-31T19:25:22Z'
-          ),
+          database_name: 'backend',
+          backup_created_at: '2019-01-31T19:25:22Z'
+        ),
         engine: 'pg',
         version: '10',
         region: 'nyc3',
