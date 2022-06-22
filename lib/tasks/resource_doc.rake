@@ -9,9 +9,7 @@ namespace :doc do
     resources = DropletKit::Client.resources
 
     resources.each do |key, klass|
-      if (ENV.fetch('SKIP_CLASSES', '')).split(',').include?(klass.name)
-        next
-      end
+      next if (ENV.fetch('SKIP_CLASSES', '')).split(',').include?(klass.name)
 
       class_name = DropletKit::Utils.underscore klass.name.split('::'.freeze).last
       human_name = class_name.dup

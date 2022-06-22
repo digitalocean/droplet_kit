@@ -23,9 +23,7 @@ module DropletKit
           # KubernetesCluster.new(node_pools: [{}])
           # or
           # KubernetesCluster.new(node_pools: [KubernetesNodePool.new()])
-          if object.respond_to?(:node_pools) && object.node_pools.respond_to?(:map)
-            object.node_pools = object.node_pools.map(&:to_hash)
-          end
+          object.node_pools = object.node_pools.map(&:to_hash) if object.respond_to?(:node_pools) && object.node_pools.respond_to?(:map)
 
           KubernetesClusterMapping.representation_for(:create, object)
         end
