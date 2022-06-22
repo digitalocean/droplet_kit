@@ -6,7 +6,7 @@ require 'droplet_kit/utils'
 module DropletKit
   class BaseModel
     DO_NAMESPACE = 'do'
-    UNSUPPORTED_COLLECTIONS = ['space']
+    UNSUPPORTED_COLLECTIONS = ['space'].freeze
 
     include Virtus.model
     include Virtus::Equalizer.new(name || inspect)

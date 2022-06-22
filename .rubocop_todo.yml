@@ -301,16 +301,6 @@ Style/MissingRespondToMissing:
   Exclude:
     - 'lib/droplet_kit/client.rb'
 
-# Offense count: 4
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: literals, strict
-Style/MutableConstant:
-  Exclude:
-    - 'lib/droplet_kit/models/base_model.rb'
-    - 'lib/droplet_kit/resources/droplet_action_resource.rb'
-    - 'spec/support/matchers.rb'
-
 # Offense count: 32
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: Strict, AllowedNumbers.
