@@ -57,7 +57,7 @@ describe DropletKit::TagResource do
       expect(tag.resources.droplets.last_tagged_uri).to eq('https://api.digitalocean.com/v2/droplets/1')
 
       expect(tag.resources.images.count).to eq(1)
-      expect(tag.resources.images.attributes).to_not include(:last_tagged)
+      expect(tag.resources.images.attributes).not_to include(:last_tagged)
       expect(tag.resources.images.last_tagged_uri).to eq('https://api.digitalocean.com/v2/images/146')
     end
   end

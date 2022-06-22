@@ -113,7 +113,7 @@ describe DropletKit::ProjectResource do
       expect(resources.to_a.size).to eq(10)
       resources.each do |resource|
         expect(resource[:urn]).to start_with('do:')
-        expect(resource[:self_link]).to_not be_empty
+        expect(resource[:self_link]).not_to be_empty
       end
 
       objects = resources.map(&:to_model)
@@ -121,7 +121,7 @@ describe DropletKit::ProjectResource do
       droplets = objects[1..-1]
       droplets.each do |droplet|
         expect(droplet).to be_a(DropletKit::Droplet)
-        expect(droplet.id).to_not be_empty
+        expect(droplet.id).not_to be_empty
       end
     end
 
