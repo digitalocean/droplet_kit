@@ -106,7 +106,7 @@ RSpec.describe DropletKit::CDNResource do
     it 'returns the updated cdn' do
       certificate_id = '8dd43ed4-fe62-4077-8dc7-5ac59f255213'
       custom_domain = 'www.myacme.xyz'
-      as_string = { custom_domain: custom_domain, certificate_id: certificate_id}.to_json
+      as_string = { custom_domain: custom_domain, certificate_id: certificate_id }.to_json
       stub_do_api(path_with_id, :put).with(body: as_string).to_return(body: api_fixture('cdns/update_custom_domain'))
       updated_cdn = resource.update_custom_domain(id: id, custom_domain: custom_domain, certificate_id: certificate_id)
 
@@ -118,7 +118,7 @@ RSpec.describe DropletKit::CDNResource do
     end
 
     it 'allows removing custom domain' do
-      as_string = { custom_domain: '', certificate_id: ''}.to_json
+      as_string = { custom_domain: '', certificate_id: '' }.to_json
       stub_do_api(path_with_id, :put).with(body: as_string).to_return(body: api_fixture('cdns/remove_custom_domain'))
       updated_cdn = resource.update_custom_domain(id: id, custom_domain: '')
 

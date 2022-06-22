@@ -186,7 +186,7 @@ RSpec.describe DropletKit::FirewallResource do
 
     describe '#remove_droplets' do
       it 'sends request to remove droplets from a given firewall' do
-        request = stub_do_api(File.join(base_path, firewall_id, 'droplets'), :delete).with(body: { droplet_ids: [droplet_id_1, droplet_id_2]}.to_json)
+        request = stub_do_api(File.join(base_path, firewall_id, 'droplets'), :delete).with(body: { droplet_ids: [droplet_id_1, droplet_id_2] }.to_json)
         resource.remove_droplets([droplet_id_1, droplet_id_2], id: firewall_id)
 
         expect(request).to have_been_made
@@ -209,7 +209,7 @@ RSpec.describe DropletKit::FirewallResource do
 
     describe '#remove_tags' do
       it 'sends request to remove tags from a given firewall' do
-        request = stub_do_api(File.join(base_path, firewall_id, 'tags'), :delete).with(body: { tags: [frontend_tag, backend_tag]}.to_json)
+        request = stub_do_api(File.join(base_path, firewall_id, 'tags'), :delete).with(body: { tags: [frontend_tag, backend_tag] }.to_json)
         resource.remove_tags([frontend_tag, backend_tag], id: firewall_id)
 
         expect(request).to have_been_made

@@ -46,12 +46,12 @@ module DropletKit
       end
 
       action :add_tags, 'POST /v2/firewalls/:id/tags' do
-        body { |tags| { tags: tags}.to_json }
+        body { |tags| { tags: tags }.to_json }
         handler(204) { |_| true }
       end
 
       action :remove_tags, 'DELETE /v2/firewalls/:id/tags' do
-        body { |tags| { tags: tags}.to_json }
+        body { |tags| { tags: tags }.to_json }
         handler(204) { |_| true }
       end
 

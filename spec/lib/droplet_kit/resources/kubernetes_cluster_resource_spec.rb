@@ -353,7 +353,7 @@ RSpec.describe DropletKit::KubernetesClusterResource do
       nodes = node_pools.first.nodes
       expect(nodes.length).to eq 2
       node_ids = nodes.map(&:id)
-      recycle_json = { nodes: node_ids}.to_json
+      recycle_json = { nodes: node_ids }.to_json
       stub_do_api("/v2/kubernetes/clusters/#{cluster_id}/node_pools/#{node_pool_id}/recycle", :post).with(body: recycle_json).to_return(status: 202)
       response = resource.recycle_node_pool(node_ids, id: cluster_id, pool_id: node_pool_id)
 

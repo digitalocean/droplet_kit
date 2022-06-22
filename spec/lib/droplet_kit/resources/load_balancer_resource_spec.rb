@@ -171,7 +171,7 @@ RSpec.describe DropletKit::LoadBalancerResource do
 
     describe '#remove_droplets' do
       it 'sends a delete request for the load balancer to remove droplet' do
-        request = stub_do_api(File.join(base_path, load_balancer_id, 'droplets'), :delete).with(body: { droplet_ids: [droplet_id_1]}.to_json)
+        request = stub_do_api(File.join(base_path, load_balancer_id, 'droplets'), :delete).with(body: { droplet_ids: [droplet_id_1] }.to_json)
         resource.remove_droplets([droplet_id_1], id: load_balancer_id)
 
         expect(request).to have_been_made

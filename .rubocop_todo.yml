@@ -6,21 +6,6 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 12
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBraces.
-# SupportedStyles: space, no_space, compact
-# SupportedStylesForEmptyBraces: space, no_space
-Layout/SpaceInsideHashLiteralBraces:
-  Exclude:
-    - 'lib/droplet_kit/resources/firewall_resource.rb'
-    - 'spec/lib/droplet_kit/models/loadbalancer_spec.rb'
-    - 'spec/lib/droplet_kit/resources/cdn_resource_spec.rb'
-    - 'spec/lib/droplet_kit/resources/firewall_resource_spec.rb'
-    - 'spec/lib/droplet_kit/resources/kubernetes_cluster_resource_spec.rb'
-    - 'spec/lib/droplet_kit/resources/load_balancer_resource_spec.rb'
-    - 'spec/support/shared_examples/paginated_endpoint.rb'
-
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBrackets.
