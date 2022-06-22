@@ -55,11 +55,11 @@ RSpec.describe DropletKit::Client do
 
   describe "#method_missing" do
     context "called with an existing method" do
-      it { expect{ client.actions}.to_not raise_error }
+      it { expect { client.actions}.to_not raise_error }
     end
 
     context "called with a missing method" do
-      it { expect{client.this_is_wrong}.to raise_error(NoMethodError) }
+      it { expect {client.this_is_wrong}.to raise_error(NoMethodError) }
     end
   end
 
