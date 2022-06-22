@@ -6,10 +6,10 @@ shared_examples_for 'resource that handles common errors' do
   it 'handles rate limit' do
     response_body = { id: :rate_limit, message: 'Too much!!!' }
     stub_do_api(path, method).to_return(body: response_body.to_json, status: 429, headers: {
-      'RateLimit-Limit' => 1200,
-      'RateLimit-Remaining' => 1193,
-      'RateLimit-Reset' => 1402425459,
-    })
+                                          'RateLimit-Limit' => 1200,
+                                          'RateLimit-Remaining' => 1193,
+                                          'RateLimit-Reset' => 1402425459,
+                                        })
 
     expect { resource.send(action, arguments).to_a }.to raise_exception(DropletKit::Error) do |exception|
       expect(exception.message).to match /#{response_body[:message]}/
