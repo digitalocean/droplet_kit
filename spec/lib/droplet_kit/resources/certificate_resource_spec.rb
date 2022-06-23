@@ -34,7 +34,7 @@ RSpec.describe DropletKit::CertificateResource do
         sha1_fingerprint: 'dfcc9f57d86bf58e321c2c6c31c7a971be244ac7',
         created_at: '2017-02-08T16:02:37Z',
         status: 'verified',
-        type: 'custom',
+        type: 'custom'
       )
     end
 

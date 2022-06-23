@@ -61,8 +61,8 @@ RSpec.describe DropletKit::DatabaseResource do
   RSpec::Matchers.define :match_cluster_user do
     match do |cluster_user|
       expect(cluster_user).to be_kind_of(DropletKit::DatabaseUser)
-      expect(cluster_user.name).to eq('app-01',)
-      expect(cluster_user.role).to eq('normal',)
+      expect(cluster_user.name).to eq('app-01')
+      expect(cluster_user.role).to eq('normal')
       expect(cluster_user.password).to eq('jge5lfxtzhx42iff')
     end
   end
@@ -324,7 +324,7 @@ RSpec.describe DropletKit::DatabaseResource do
       it 'returns a no content response' do
         maintenance_window = DropletKit::DatabaseMaintenanceWindow.new(
           day: 'tuesday',
-          hour: '14:00',
+          hour: '14:00'
         )
 
         json_body = DropletKit::DatabaseMaintenanceWindowMapping.representation_for(:update, maintenance_window)
@@ -356,11 +356,11 @@ RSpec.describe DropletKit::DatabaseResource do
         firewall_rules = [
           DropletKit::DatabaseFirewallRule.new(
             type: 'ip_addr',
-            value: '192.168.1.1',
+            value: '192.168.1.1'
           ),
           DropletKit::DatabaseFirewallRule.new(
             type: 'k8s',
-            value: 'ff2a6c52-5a44-4b63-b99c-0e98e7a63d61',
+            value: 'ff2a6c52-5a44-4b63-b99c-0e98e7a63d61'
           ),
         ]
 
@@ -379,7 +379,7 @@ RSpec.describe DropletKit::DatabaseResource do
         database_replica = DropletKit::DatabaseCluster.new(
           name: 'read-nyc3-01',
           size: 'db-s-2vcpu-4gb',
-          region: 'nyc3',
+          region: 'nyc3'
         )
 
         json_body = DropletKit::DatabaseClusterMapping.representation_for(:create, database_replica)
@@ -421,7 +421,7 @@ RSpec.describe DropletKit::DatabaseResource do
     context 'for a successful create of a database user' do
       it 'returns a created database cluster user' do
         database_user = DropletKit::DatabaseUser.new(
-          name: 'app-01',
+          name: 'app-01'
         )
 
         json_body = DropletKit::DatabaseUserMapping.representation_for(:create, database_user)
@@ -499,7 +499,7 @@ RSpec.describe DropletKit::DatabaseResource do
           mode: 'transaction',
           size: 10,
           db: 'defaultdb',
-          user: 'doadmin',
+          user: 'doadmin'
         )
 
         json_body = DropletKit::DatabaseConnectionPoolMapping.representation_for(:create, database_connection_pool)
@@ -550,7 +550,7 @@ RSpec.describe DropletKit::DatabaseResource do
     context 'for a successful eviction policy configuration' do
       it 'returns a no content response' do
         eviction_policy = DropletKit::DatabaseEvictionPolicy.new(
-          eviction_policy: 'allkeys_lru',
+          eviction_policy: 'allkeys_lru'
         )
 
         json_body = DropletKit::DatabaseEvictionPolicyMapping.representation_for(:update, eviction_policy)
@@ -577,7 +577,7 @@ RSpec.describe DropletKit::DatabaseResource do
     context 'for a successful eviction policy configuration' do
       it 'returns a no content response' do
         sql_mode = DropletKit::DatabaseSQLMode.new(
-          sql_mode: 'ANSI,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION,NO_ZERO_DATE,NO_ZERO_IN_DATE,STRICT_ALL_TABLES',
+          sql_mode: 'ANSI,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION,NO_ZERO_DATE,NO_ZERO_IN_DATE,STRICT_ALL_TABLES'
         )
 
         json_body = DropletKit::DatabaseSQLModeMapping.representation_for(:update, sql_mode)

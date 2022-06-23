@@ -170,17 +170,6 @@ Style/MissingRespondToMissing:
   Exclude:
     - 'lib/droplet_kit/client.rb'
 
-# Offense count: 15
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyleForMultiline.
-# SupportedStylesForMultiline: comma, consistent_comma, no_comma
-Style/TrailingCommaInArguments:
-  Exclude:
-    - 'spec/lib/droplet_kit/resources/certificate_resource_spec.rb'
-    - 'spec/lib/droplet_kit/resources/database_resource_spec.rb'
-    - 'spec/lib/droplet_kit/resources/droplet_resource_spec.rb'
-    - 'spec/lib/droplet_kit/resources/vpc_resource_spec.rb'
-
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: EnforcedStyleForMultiline.

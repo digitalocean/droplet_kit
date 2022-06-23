@@ -171,7 +171,7 @@ RSpec.describe DropletKit::DropletResource do
           name: 'test.example.com',
           region: 'nyc1',
           size: '512mb',
-          image: 'ubuntu-14-04-x86',
+          image: 'ubuntu-14-04-x86'
         )
         it 'does not include it in the request' do
           as_hash = DropletKit::DropletMapping.hash_for(:create, droplet)
@@ -191,7 +191,7 @@ RSpec.describe DropletKit::DropletResource do
           region: 'nyc1',
           size: '512mb',
           image: 'ubuntu-14-04-x86',
-          with_droplet_agent: false,
+          with_droplet_agent: false
         )
         it 'includes it in the request' do
           as_hash = DropletKit::DropletMapping.hash_for(:create, droplet)
@@ -211,7 +211,7 @@ RSpec.describe DropletKit::DropletResource do
           region: 'nyc1',
           size: '512mb',
           image: 'ubuntu-14-04-x86',
-          with_droplet_agent: true,
+          with_droplet_agent: true
         )
         it 'includes it in the request' do
           droplet.with_droplet_agent = true

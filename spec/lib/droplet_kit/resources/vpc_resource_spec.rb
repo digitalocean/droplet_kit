@@ -75,7 +75,7 @@ RSpec.describe DropletKit::VPCResource do
   context 'create, update and patch' do
     let(:vpc) do
       DropletKit::VPC.new(
-        name: 'example-vpc',
+        name: 'example-vpc'
       )
     end
 
