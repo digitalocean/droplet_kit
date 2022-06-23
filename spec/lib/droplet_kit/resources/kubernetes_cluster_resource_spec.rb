@@ -21,8 +21,8 @@ RSpec.describe DropletKit::KubernetesClusterResource do
       expect(cluster.name).to eq("test-cluster")
       expect(cluster.region).to eq("nyc1")
       expect(cluster.version).to eq("1.12.1-do.2")
-      expect(cluster.auto_upgrade).to eq(true)
-      expect(cluster.ha).to eq(true)
+      expect(cluster.auto_upgrade).to be(true)
+      expect(cluster.ha).to be(true)
       expect(cluster.cluster_subnet).to eq("10.244.0.0/16")
       expect(cluster.ipv4).to eq("0.0.0.0")
       expect(cluster.tags).to match_array(["test-k8", "k8s", "k8s:cluster-1-id"])
@@ -32,7 +32,7 @@ RSpec.describe DropletKit::KubernetesClusterResource do
         "day" => "any"
       )
       node_pool = cluster.node_pools.first
-      expect(node_pool["auto_scale"]).to eq(true)
+      expect(node_pool["auto_scale"]).to be(true)
       expect(node_pool["min_nodes"]).to eq(1)
       expect(node_pool["max_nodes"]).to eq(10)
     end
@@ -73,7 +73,7 @@ RSpec.describe DropletKit::KubernetesClusterResource do
         updated_cluster = resource.update(cluster)
         expect(updated_cluster.name).to eq("new-test-name")
         expect(updated_cluster.tags).to match_array(["new-test"])
-        expect(updated_cluster.auto_upgrade).to eq(true)
+        expect(updated_cluster.auto_upgrade).to be(true)
         expect(updated_cluster.maintenance_policy).to eq(
           "start_time" => "12:00",
           "day" => "Tuesday"
@@ -168,7 +168,7 @@ RSpec.describe DropletKit::KubernetesClusterResource do
         expect(cluster.tags).to match_array(["test-k8", "k8s", "k8s:cluster-1-id"])
         expect(cluster.node_pools.count).to eq(1)
         node_pool = cluster.node_pools.first
-        expect(node_pool["auto_scale"]).to eq(true)
+        expect(node_pool["auto_scale"]).to be(true)
         expect(node_pool["min_nodes"]).to eq(1)
         expect(node_pool["max_nodes"]).to eq(10)
       end
@@ -195,7 +195,7 @@ RSpec.describe DropletKit::KubernetesClusterResource do
       response = resource.delete(id: 23)
 
       expect(request).to have_been_made
-      expect(response).to eq(true)
+      expect(response).to be(true)
     end
   end
 
@@ -229,7 +229,7 @@ RSpec.describe DropletKit::KubernetesClusterResource do
       expect(node_pools.first["count"]).to eq 2
       expect(node_pools.first["tags"]).to eq ["omar-left-his-mark"]
       expect(node_pools.first["nodes"].length).to eq 2
-      expect(node_pools.first["auto_scale"]).to eq(true)
+      expect(node_pools.first["auto_scale"]).to be(true)
       expect(node_pools.first["min_nodes"]).to eq(1)
       expect(node_pools.first["max_nodes"]).to eq(10)
     end
@@ -246,7 +246,7 @@ RSpec.describe DropletKit::KubernetesClusterResource do
       expect(node_pool.size).to eq "s-1vcpu-1gb"
       expect(node_pool.count).to eq 1
       expect(node_pool.tags).to eq ["k8s", "k8s:c28bf806-eba8-4a6d-a98f-8fd388740bd0", "k8s:worker"]
-      expect(node_pool.auto_scale).to eq(true)
+      expect(node_pool.auto_scale).to be(true)
       expect(node_pool.min_nodes).to eq(1)
       expect(node_pool.max_nodes).to eq(10)
       expect(node_pool.nodes.length).to eq 1
@@ -283,7 +283,7 @@ RSpec.describe DropletKit::KubernetesClusterResource do
       expect(new_node_pool.count).to eq 3
       expect(new_node_pool.tags).to eq ['k8-tag']
       expect(new_node_pool.labels).to eq('foo' => 'bar')
-      expect(node_pool.auto_scale).to eq(true)
+      expect(node_pool.auto_scale).to be(true)
       expect(node_pool.min_nodes).to eq(1)
       expect(node_pool.max_nodes).to eq(10)
       expect(new_node_pool.nodes.length).to eq 3
@@ -335,7 +335,7 @@ RSpec.describe DropletKit::KubernetesClusterResource do
       stub_do_api("/v2/kubernetes/clusters/#{cluster_id}/node_pools/#{node_pool_id}", :delete).to_return(status: 202)
       deleted_node_pool = resource.delete_node_pool(id: cluster_id, pool_id: node_pool_id)
 
-      expect(deleted_node_pool).to eq true
+      expect(deleted_node_pool).to be true
     end
   end
 
@@ -359,7 +359,7 @@ RSpec.describe DropletKit::KubernetesClusterResource do
       stub_do_api("/v2/kubernetes/clusters/#{cluster_id}/node_pools/#{node_pool_id}/recycle", :post).with(body: recycle_json).to_return(status: 202)
       response = resource.recycle_node_pool(node_ids, id: cluster_id, pool_id: node_pool_id)
 
-      expect(response).to eq true
+      expect(response).to be true
     end
   end
 end

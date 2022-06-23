@@ -14,8 +14,8 @@ RSpec.describe DropletKit::VolumeActionResource do
       expect(action.status).to eq("in-progress")
       expect(action.type).to eq(type) if type
       expect(action.started_at).to eq("2015-11-12T17:51:03Z")
-      expect(action.completed_at).to eq(nil)
-      expect(action.resource_id).to eq(nil)
+      expect(action.completed_at).to be_nil
+      expect(action.resource_id).to be_nil
       expect(action.resource_type).to eq("volume")
       expect(action.region_slug).to eq("nyc1")
 

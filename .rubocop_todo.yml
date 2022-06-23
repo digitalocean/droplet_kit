@@ -99,11 +99,6 @@ Naming/VariableNumber:
     - 'spec/lib/droplet_kit/resources/firewall_resource_spec.rb'
     - 'spec/lib/droplet_kit/resources/load_balancer_resource_spec.rb'
 
-# Offense count: 52
-# This cop supports safe autocorrection (--autocorrect).
-RSpec/BeEq:
-  Enabled: false
-
 # Offense count: 33
 # Configuration parameters: Prefixes.
 # Prefixes: when, with, without

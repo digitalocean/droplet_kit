@@ -45,7 +45,7 @@ RSpec.describe DropletKit::DropletResource do
     expect(droplet.image.name).to eq("Ubuntu 13.04")
     expect(droplet.image.distribution).to eq("ubuntu")
     expect(droplet.image.slug).to eq("ubuntu1304")
-    expect(droplet.image.public).to eq(true)
+    expect(droplet.image.public).to be(true)
     expect(droplet.image.regions).to include('nyc1')
 
     expect(droplet.size_slug).to eq("1024mb")
@@ -175,7 +175,7 @@ RSpec.describe DropletKit::DropletResource do
         )
         it 'does not include it in the request' do
           as_hash = DropletKit::DropletMapping.hash_for(:create, droplet)
-          expect(as_hash['with_droplet_agent']).to eq(nil)
+          expect(as_hash['with_droplet_agent']).to be_nil
 
           as_string = DropletKit::DropletMapping.representation_for(:create, droplet)
           expect(as_string).to include('"with_droplet_agent":null')
@@ -325,8 +325,8 @@ RSpec.describe DropletKit::DropletResource do
       expect(snapshots[0].id).to eq(449_676_387)
       expect(snapshots[0].name).to eq("Ubuntu 13.04")
       expect(snapshots[0].distribution).to eq("ubuntu")
-      expect(snapshots[0].slug).to eq(nil)
-      expect(snapshots[0].public).to eq(false)
+      expect(snapshots[0].slug).to be_nil
+      expect(snapshots[0].public).to be(false)
       expect(snapshots[0].regions).to eq(["nyc1"])
     end
 
@@ -346,8 +346,8 @@ RSpec.describe DropletKit::DropletResource do
       expect(backups[0].id).to eq(449_676_388)
       expect(backups[0].name).to eq("Ubuntu 13.04")
       expect(backups[0].distribution).to eq("ubuntu")
-      expect(backups[0].slug).to eq(nil)
-      expect(backups[0].public).to eq(false)
+      expect(backups[0].slug).to be_nil
+      expect(backups[0].public).to be(false)
       expect(backups[0].regions).to eq(["nyc1"])
     end
 
@@ -369,7 +369,7 @@ RSpec.describe DropletKit::DropletResource do
       expect(actions[0].status).to eq("in-progress")
       expect(actions[0].type).to eq("create")
       expect(actions[0].started_at).to eq("2014-07-29T14:35:39Z")
-      expect(actions[0].completed_at).to eq(nil)
+      expect(actions[0].completed_at).to be_nil
       expect(actions[0].resource_id).to eq(24)
       expect(actions[0].resource_type).to eq("droplet")
       expect(actions[0].region).to be_kind_of(DropletKit::Region)

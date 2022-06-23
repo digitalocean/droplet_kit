@@ -37,7 +37,7 @@ RSpec.describe DropletKit::DomainResource do
       created_domain = resource.create(domain)
       expect(created_domain.name).to eq('example.com')
       expect(created_domain.ttl).to eq(1800)
-      expect(created_domain.zone_file).to eq(nil)
+      expect(created_domain.zone_file).to be_nil
     end
   end
 

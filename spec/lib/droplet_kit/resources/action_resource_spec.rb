@@ -26,8 +26,8 @@ RSpec.describe DropletKit::ActionResource do
       expect(actions.first.status).to eq("in-progress")
       expect(actions.first.type).to eq("test")
       expect(actions.first.started_at).to eq("2014-07-29T14:35:26Z")
-      expect(actions.first.completed_at).to eq(nil)
-      expect(actions.first.resource_id).to eq(nil)
+      expect(actions.first.completed_at).to be_nil
+      expect(actions.first.resource_id).to be_nil
       expect(actions.first.resource_type).to eq("backend")
 
       expect(actions.first.region).to be_kind_of(DropletKit::Region)
@@ -63,8 +63,8 @@ RSpec.describe DropletKit::ActionResource do
       expect(action.status).to eq("in-progress")
       expect(action.type).to eq("test")
       expect(action.started_at).to eq("2014-07-29T14:35:27Z")
-      expect(action.completed_at).to eq(nil)
-      expect(action.resource_id).to eq(nil)
+      expect(action.completed_at).to be_nil
+      expect(action.resource_id).to be_nil
       expect(action.resource_type).to eq("backend")
       expect(action.region_slug).to eq("nyc1")
 

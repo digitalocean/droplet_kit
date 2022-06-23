@@ -28,7 +28,7 @@ RSpec.describe DropletKit::FloatingIpActionResource do
       expect(action.status).to eq("in-progress")
       expect(action.type).to eq("assign")
       expect(action.started_at).to eq("2014-08-05T15:15:28Z")
-      expect(action.completed_at).to eq(nil)
+      expect(action.completed_at).to be_nil
       expect(action.resource_id).to eq(12)
       expect(action.resource_type).to eq("floating_ip")
       expect(action.region_slug).to eq("nyc1")
@@ -66,7 +66,7 @@ RSpec.describe DropletKit::FloatingIpActionResource do
       expect(action.status).to eq("in-progress")
       expect(action.type).to eq("unassign")
       expect(action.started_at).to eq("2014-08-05T15:15:28Z")
-      expect(action.completed_at).to eq(nil)
+      expect(action.completed_at).to be_nil
       expect(action.resource_id).to eq(12)
       expect(action.resource_type).to eq("floating_ip")
       expect(action.region_slug).to eq("nyc1")

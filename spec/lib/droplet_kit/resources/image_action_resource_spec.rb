@@ -28,7 +28,7 @@ RSpec.describe DropletKit::ImageActionResource do
       expect(action.status).to eq("in-progress")
       expect(action.type).to eq("transfer")
       expect(action.started_at).to eq("2014-08-05T15:15:28Z")
-      expect(action.completed_at).to eq(nil)
+      expect(action.completed_at).to be_nil
       expect(action.resource_id).to eq(449_676_391)
       expect(action.resource_type).to eq("image")
       expect(action.region_slug).to eq("nyc1")
@@ -68,7 +68,7 @@ RSpec.describe DropletKit::ImageActionResource do
       expect(action.status).to eq("in-progress")
       expect(action.type).to eq("convert")
       expect(action.started_at).to eq("2014-08-05T15:15:28Z")
-      expect(action.completed_at).to eq(nil)
+      expect(action.completed_at).to be_nil
       expect(action.resource_id).to eq(449_676_391)
       expect(action.resource_type).to eq("image")
       expect(action.region_slug).to eq("nyc1")
@@ -109,8 +109,8 @@ RSpec.describe DropletKit::ImageActionResource do
       expect(action.completed_at).to eq("2014-10-28T17:11:06Z")
       expect(action.resource_id).to eq(45_646_587)
       expect(action.resource_type).to eq("image")
-      expect(action.region).to eq(nil)
-      expect(action.region_slug).to eq(nil)
+      expect(action.region).to be_nil
+      expect(action.region_slug).to be_nil
     end
 
     it_behaves_like 'a paginated index' do
@@ -129,7 +129,7 @@ RSpec.describe DropletKit::ImageActionResource do
       expect(action.status).to eq("in-progress")
       expect(action.type).to eq("transfer")
       expect(action.started_at).to eq("2014-08-05T15:15:28Z")
-      expect(action.completed_at).to eq(nil)
+      expect(action.completed_at).to be_nil
       expect(action.resource_id).to eq(449_676_391)
       expect(action.resource_type).to eq("image")
       expect(action.region_slug).to eq("nyc1")

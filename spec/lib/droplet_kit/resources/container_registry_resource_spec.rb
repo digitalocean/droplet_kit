@@ -66,7 +66,7 @@ RSpec.describe DropletKit::ContainerRegistryResource do
       response = resource.delete
 
       expect(request).to have_been_made
-      expect(response).to eq(true)
+      expect(response).to be(true)
     end
   end
 

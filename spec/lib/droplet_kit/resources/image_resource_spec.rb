@@ -49,9 +49,9 @@ RSpec.describe DropletKit::ImageResource do
 
       expect(image.id).to eq(146)
       expect(image.name).to eq("Ubuntu 13.04")
-      expect(image.distribution).to eq(nil)
-      expect(image.slug).to eq(nil)
-      expect(image.public).to eq(false)
+      expect(image.distribution).to be_nil
+      expect(image.slug).to be_nil
+      expect(image.public).to be(false)
       expect(image.regions).to eq(["region--1"])
       expect(image.type).to eq("snapshot")
 

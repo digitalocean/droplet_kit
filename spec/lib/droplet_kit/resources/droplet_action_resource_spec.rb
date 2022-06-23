@@ -203,8 +203,8 @@ RSpec.describe DropletKit::DropletActionResource do
 
       expect(returned_action.type).to eq('test')
       expect(returned_action.started_at).to eq("2014-07-29T14:35:27Z")
-      expect(returned_action.completed_at).to eq(nil)
-      expect(returned_action.resource_id).to eq(nil)
+      expect(returned_action.completed_at).to be_nil
+      expect(returned_action.resource_id).to be_nil
       expect(returned_action.resource_type).to eq("backend")
       expect(returned_action.region_slug).to eq('nyc1')
 

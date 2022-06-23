@@ -126,7 +126,7 @@ RSpec.describe DropletKit::CDNResource do
       expect(updated_cdn).to be_kind_of(DropletKit::CDN)
 
       expect(updated_cdn.id).to eq(id)
-      expect(updated_cdn.custom_domain).to eq(nil)
+      expect(updated_cdn.custom_domain).to be_nil
     end
 
     it "fails if custom domain is in use" do
