@@ -172,12 +172,6 @@ Style/MissingRespondToMissing:
 
 # Offense count: 2
 # This cop supports safe autocorrection (--autocorrect).
-Style/RedundantPercentQ:
-  Exclude:
-    - 'droplet_kit.gemspec'
-
-# Offense count: 2
-# This cop supports safe autocorrection (--autocorrect).
 Style/RedundantRegexpEscape:
   Exclude:
     - 'lib/tasks/resource_doc.rake'
