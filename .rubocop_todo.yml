@@ -21,12 +21,6 @@ Lint/EmptyBlock:
     - 'spec/lib/droplet_kit/paginated_resource_spec.rb'
     - 'spec/support/shared_examples/paginated_endpoint.rb'
 
-# Offense count: 1
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Lint/NonDeterministicRequireOrder:
-  Exclude:
-    - 'spec/spec_helper.rb'
-
 # Offense count: 2
 Lint/StructNewOverride:
   Exclude:

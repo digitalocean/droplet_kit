@@ -11,7 +11,7 @@ require 'webmock/rspec'
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(SimpleCov::Formatter::HTMLFormatter)
 
-Dir['./spec/support/**/*.rb'].each do |file|
+Dir['./spec/support/**/*.rb'].sort.each do |file|
   require file
 end
 
