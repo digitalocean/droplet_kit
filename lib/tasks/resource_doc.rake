@@ -25,7 +25,7 @@ namespace :doc do
       puts "Actions supported: "
       puts
       klass._resources.each do |action|
-        action_options = action.path.scan(/\:[\w_\-]+/i)
+        action_options = action.path.scan(/:[\w_\-]+/i)
         params = []
 
         if action.body&.arity&.positive?
@@ -37,7 +37,7 @@ namespace :doc do
 
         if action_options.any?
           action_string = action_options.map do |option|
-            option.gsub!(/^\:/, '')
+            option.gsub!(/^:/, '')
             "#{option}: '#{option}'"
           end.join(', ')
 
