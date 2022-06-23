@@ -224,7 +224,7 @@ RSpec.describe DropletKit::FirewallResource do
         ports: '22',
         sources: {
           addresses: ['127.0.0.0'],
-          tags: ['frontend', 'backend']
+          tags: %w[frontend backend]
         }
       )
     end

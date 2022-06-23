@@ -81,7 +81,7 @@ RSpec.describe DropletKit::DropletResource do
       droplets = resource.all
       expect(droplets).to all(be_kind_of(DropletKit::Droplet))
 
-      check_droplet(droplets.first, ['tag-1', 'tag-2'])
+      check_droplet(droplets.first, %w[tag-1 tag-2])
     end
 
     it 'returns an empty array of droplets' do
@@ -101,7 +101,7 @@ RSpec.describe DropletKit::DropletResource do
       stub_do_api('/v2/droplets/20', :get).to_return(body: api_fixture('droplets/find'))
       droplet = resource.find(id: 20)
       expect(droplet).to be_kind_of(DropletKit::Droplet)
-      check_droplet(droplet, ['tag-1', 'tag-2'])
+      check_droplet(droplet, %w[tag-1 tag-2])
     end
 
     it_behaves_like 'resource that handles common errors' do
@@ -128,7 +128,7 @@ RSpec.describe DropletKit::DropletResource do
           ipv6: true,
           private_networking: true,
           user_data: "#cloud-config\nruncmd\n\t- echo 'Hello!'",
-          tags: ['one', 'two']
+          tags: %w[one two]
         )
 
         as_hash = DropletKit::DropletMapping.hash_for(:create, droplet)
@@ -249,7 +249,7 @@ RSpec.describe DropletKit::DropletResource do
           ipv6: true,
           private_networking: true,
           user_data: "#cloud-config\nruncmd\n\t- echo 'Hello!'",
-          tags: ['one', 'two']
+          tags: %w[one two]
         )
 
         as_hash = DropletKit::DropletMapping.hash_for(:create, droplet)

@@ -210,7 +210,7 @@ RSpec.describe DropletKit::KubernetesClusterResource do
       expect(kubeconfig).to be_kind_of(String)
 
       parsed_config = YAML.safe_load(kubeconfig)
-      expect(parsed_config.keys).to match_array(['apiVersion', 'clusters', 'contexts', 'current-context', 'kind', 'preferences', 'users'])
+      expect(parsed_config.keys).to match_array(%w[apiVersion clusters contexts current-context kind preferences users])
     end
   end
 
