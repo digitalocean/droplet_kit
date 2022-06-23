@@ -6,7 +6,7 @@ module DropletKit
 
     kartograph do
       mapping FirewallInboundRule
-      root_key plural: 'inbound_rules', scopes: [:read, :create, :update]
+      root_key plural: 'inbound_rules', scopes: %i[read create update]
 
       scoped :read, :create, :update do
         property :protocol

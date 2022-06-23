@@ -8,9 +8,9 @@ module DropletKit
       mapping DatabaseUser
       root_key singular: 'user', plural: 'users', scopes: [:read]
 
-      property :name, scopes: [:read, :create]
-      property :role, scopes: [:read, :create]
-      property :password, scopes: [:read, :create]
+      property :name, scopes: %i[read create]
+      property :role, scopes: %i[read create]
+      property :password, scopes: %i[read create]
     end
   end
 end

@@ -8,7 +8,7 @@ module DropletKit
       mapping Database
       root_key singular: 'db', plural: 'dbs', scopes: [:read]
 
-      property :name, scopes: [:read, :create]
+      property :name, scopes: %i[read create]
     end
   end
 end

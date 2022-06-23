@@ -20,14 +20,14 @@ module DropletKit
       property :nodes, plural: true, scopes: [:read], include: KubernetesNodeMapping
 
       # Create properties
-      property :name, scopes: [:create, :update]
-      property :size, scopes: [:create, :update]
-      property :count, scopes: [:create, :update]
-      property :tags, scopes: [:create, :update]
-      property :labels, scopes: [:create, :update]
-      property :auto_scale, scopes: [:create, :update]
-      property :min_nodes, scopes: [:create, :update]
-      property :max_nodes, scopes: [:create, :update]
+      property :name, scopes: %i[create update]
+      property :size, scopes: %i[create update]
+      property :count, scopes: %i[create update]
+      property :tags, scopes: %i[create update]
+      property :labels, scopes: %i[create update]
+      property :auto_scale, scopes: %i[create update]
+      property :min_nodes, scopes: %i[create update]
+      property :max_nodes, scopes: %i[create update]
 
       # recycle
       property :nodes, plural: true, scopes: [:recycle]

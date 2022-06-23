@@ -7,7 +7,7 @@ module DropletKit
       mapping ContainerRegistry
       root_key singular: 'registry', scopes: [:read]
 
-      property :name, scopes: [:read, :create]
+      property :name, scopes: %i[read create]
     end
   end
 end
