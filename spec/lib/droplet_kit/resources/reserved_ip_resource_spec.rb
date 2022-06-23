@@ -12,7 +12,7 @@ RSpec.describe DropletKit::ReservedIpResource do
       expect(reserved_ip.region).to be_kind_of(DropletKit::Region)
       expect(reserved_ip.droplet).to be_kind_of(DropletKit::Droplet) if droplet
 
-      reserved_ip.ip == "45.55.96.32"
+      reserved_ip.ip == '45.55.96.32'
     end
   end
 
@@ -40,7 +40,7 @@ RSpec.describe DropletKit::ReservedIpResource do
   describe '#find' do
     it 'returns a singular reserved_ip' do
       stub_do_api('/v2/reserved_ips/45.55.96.32', :get).to_return(body: api_fixture('reserved_ips/find'))
-      reserved_ip = resource.find(ip: "45.55.96.32")
+      reserved_ip = resource.find(ip: '45.55.96.32')
       expect(reserved_ip).to be_kind_of(DropletKit::ReservedIp)
       expect(reserved_ip).to match_reserved_ip_fixture
     end
@@ -86,7 +86,7 @@ RSpec.describe DropletKit::ReservedIpResource do
   describe '#delete' do
     it 'sends a delete request for the reserved_ip' do
       request = stub_do_api('/v2/reserved_ips/45.55.96.32', :delete)
-      resource.delete(ip: "45.55.96.32")
+      resource.delete(ip: '45.55.96.32')
 
       expect(request).to have_been_made
     end

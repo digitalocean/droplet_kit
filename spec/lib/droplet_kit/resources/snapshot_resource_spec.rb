@@ -35,13 +35,13 @@ RSpec.describe DropletKit::SnapshotResource do
   describe '#find' do
     it 'returns a singular snapshot' do
       stub_do_api('/v2/snapshots/7724db7c-e098-11e5-b522-000f53304e51', :get).to_return(body: api_fixture('snapshots/find'))
-      snapshot = resource.find(id: "7724db7c-e098-11e5-b522-000f53304e51")
+      snapshot = resource.find(id: '7724db7c-e098-11e5-b522-000f53304e51')
 
-      expect(snapshot.id).to eq("7724db7c-e098-11e5-b522-000f53304e51")
-      expect(snapshot.name).to eq("Ubuntu Foo")
-      expect(snapshot.regions).to eq(["nyc1"])
-      expect(snapshot.resource_type).to eq("volume")
-      expect(snapshot.resource_id).to eq("7724db7c-e098-11e5-b522-000f53304e51")
+      expect(snapshot.id).to eq('7724db7c-e098-11e5-b522-000f53304e51')
+      expect(snapshot.name).to eq('Ubuntu Foo')
+      expect(snapshot.regions).to eq(['nyc1'])
+      expect(snapshot.resource_type).to eq('volume')
+      expect(snapshot.resource_id).to eq('7724db7c-e098-11e5-b522-000f53304e51')
       expect(snapshot.min_disk_size).to eq(10)
       expect(snapshot.size_gigabytes).to eq(0.4)
     end

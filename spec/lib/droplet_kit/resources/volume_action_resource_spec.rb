@@ -11,13 +11,13 @@ RSpec.describe DropletKit::VolumeActionResource do
     match do |action|
       expect(action).to be_kind_of(DropletKit::Action)
       expect(action.id).to eq(72_531_856)
-      expect(action.status).to eq("in-progress")
+      expect(action.status).to eq('in-progress')
       expect(action.type).to eq(type) if type
-      expect(action.started_at).to eq("2015-11-12T17:51:03Z")
+      expect(action.started_at).to eq('2015-11-12T17:51:03Z')
       expect(action.completed_at).to be_nil
       expect(action.resource_id).to be_nil
-      expect(action.resource_type).to eq("volume")
-      expect(action.region_slug).to eq("nyc1")
+      expect(action.resource_type).to eq('volume')
+      expect(action.region_slug).to eq('nyc1')
 
       expect(action.region).to be_kind_of(DropletKit::Region)
     end

@@ -92,11 +92,11 @@ describe DropletKit::TagResource do
         resources: [
           {
             resource_id: '1',
-            resource_type: "droplet"
+            resource_type: 'droplet'
           },
           {
             resource_id: '146',
-            resource_type: "images"
+            resource_type: 'images'
           }
         ]
       }
@@ -117,11 +117,11 @@ describe DropletKit::TagResource do
         resources: [
           {
             resource_id: '1',
-            resource_type: "droplet"
+            resource_type: 'droplet'
           },
           {
             resource_id: '146',
-            resource_type: "images"
+            resource_type: 'images'
           }
         ]
       }

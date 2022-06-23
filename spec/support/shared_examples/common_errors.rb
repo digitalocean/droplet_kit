@@ -15,7 +15,7 @@ shared_examples_for 'resource that handles common errors' do
       expect(exception.message).to match(/#{response_body[:message]}/)
       expect(exception.limit).to eq 1200
       expect(exception.remaining).to eq 1193
-      expect(exception.reset_at).to eq "1402425459"
+      expect(exception.reset_at).to eq '1402425459'
     end
   end
 

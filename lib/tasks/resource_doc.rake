@@ -22,7 +22,7 @@ namespace :doc do
       puts "    client = DropletKit::Client.new(access_token: 'TOKEN')"
       puts "    client.#{key} #=> #{klass.name}"
       puts
-      puts "Actions supported: "
+      puts 'Actions supported: '
       puts
       klass._resources.each do |action|
         action_options = action.path.scan(/:[\w_\-]+/i)

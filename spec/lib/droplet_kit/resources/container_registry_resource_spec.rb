@@ -13,7 +13,7 @@ RSpec.describe DropletKit::ContainerRegistryResource do
       registry = resource.get
       expect(registry).to be_kind_of(DropletKit::ContainerRegistry)
 
-      expect(registry.name).to eq("foobar")
+      expect(registry.name).to eq('foobar')
     end
 
     it_behaves_like 'resource that handles common errors' do
@@ -27,7 +27,7 @@ RSpec.describe DropletKit::ContainerRegistryResource do
     let(:path) { '/v2/registry' }
     let(:new_attrs) do
       {
-        "name" => "foobar"
+        'name' => 'foobar'
       }
     end
 
@@ -41,7 +41,7 @@ RSpec.describe DropletKit::ContainerRegistryResource do
         as_string = DropletKit::ContainerRegistryMapping.representation_for(:create, registry)
         stub_do_api(path, :post).with(body: as_string).to_return(body: api_fixture('container_registry/create'), status: 201)
         resource.create(registry)
-        expect(registry.name).to eq("foobar")
+        expect(registry.name).to eq('foobar')
       end
 
       it 'reuses the same object' do

@@ -92,7 +92,7 @@ RSpec.describe DropletKit::CDNResource do
       expect(updated_cdn.ttl).to eq(60)
     end
 
-    it "fails if ttl is invalid" do
+    it 'fails if ttl is invalid' do
       as_string = { ttl: 0 }.to_json
       response_body = { id: :unprocessable_entity, message: 'invalid ttl' }
       stub_do_api(path_with_id, :put).with(body: as_string).to_return(body: response_body.to_json, status: 422)
@@ -129,7 +129,7 @@ RSpec.describe DropletKit::CDNResource do
       expect(updated_cdn.custom_domain).to be_nil
     end
 
-    it "fails if custom domain is in use" do
+    it 'fails if custom domain is in use' do
       certificate_id = '8dd43ed4-fe62-4077-8dc7-5ac59f255213'
       custom_domain = 'www.myacme.xyz'
       as_string = { custom_domain: custom_domain, certificate_id: certificate_id }.to_json
@@ -145,14 +145,14 @@ RSpec.describe DropletKit::CDNResource do
     let(:exception) { DropletKit::FailedUpdate }
 
     it 'sends a delete request to cdn cache' do
-      as_string = { files: ["*"] }.to_json
+      as_string = { files: ['*'] }.to_json
       request = stub_do_api(cache_path, :delete).with(body: as_string)
-      resource.flush_cache(id: id, files: ["*"])
+      resource.flush_cache(id: id, files: ['*'])
 
       expect(request).to have_been_made
     end
 
-    it "fails if files are not passed in" do
+    it 'fails if files are not passed in' do
       as_string = { files: [] }.to_json
       response_body = { id: :unprocessable_entity, message: 'invalid request body' }
       stub_do_api(cache_path, :delete).with(body: as_string).to_return(body: response_body.to_json, status: 422)

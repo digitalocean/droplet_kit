@@ -9,7 +9,7 @@ RSpec.describe DropletKit::KubernetesOptionsResource do
 
   describe 'all' do
     it 'gets the kubernetes options' do
-      stub_do_api("/v2/kubernetes/options", :get).to_return(body: api_fixture('kubernetes/options'))
+      stub_do_api('/v2/kubernetes/options', :get).to_return(body: api_fixture('kubernetes/options'))
       options = resource.all
       expect(options).to be_kind_of(DropletKit::KubernetesOptions)
       expect(options.versions.length).to eq 9

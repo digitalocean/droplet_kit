@@ -12,14 +12,14 @@ RSpec.describe DropletKit::VolumeResource do
       expect(volume).to be_kind_of(DropletKit::Volume)
 
       expect(volume.region).to be_kind_of(DropletKit::Region)
-      expect(volume.id).to eq("7724db7c-e098-11e5-b522-000f53304e51")
+      expect(volume.id).to eq('7724db7c-e098-11e5-b522-000f53304e51')
       expect(volume.droplet_ids).to eq([])
-      expect(volume.name).to eq("Example")
-      expect(volume.description).to eq("Block store for examples")
+      expect(volume.name).to eq('Example')
+      expect(volume.description).to eq('Block store for examples')
       expect(volume.size_gigabytes).to eq(10)
-      expect(volume.created_at).to eq("2016-03-02T17:00:49Z")
-      expect(volume.filesystem_type).to eq("ext4")
-      expect(volume.filesystem_label).to eq("archive")
+      expect(volume.created_at).to eq('2016-03-02T17:00:49Z')
+      expect(volume.filesystem_type).to eq('ext4')
+      expect(volume.filesystem_label).to eq('archive')
     end
   end
 
@@ -41,7 +41,7 @@ RSpec.describe DropletKit::VolumeResource do
   describe '#find' do
     it 'returns a singular volume' do
       stub_do_api('/v2/volumes/7724db7c-e098-11e5-b522-000f53304e51', :get).to_return(body: api_fixture('volumes/find'))
-      volume = resource.find(id: "7724db7c-e098-11e5-b522-000f53304e51")
+      volume = resource.find(id: '7724db7c-e098-11e5-b522-000f53304e51')
 
       expect(volume).to match_volume_fixture
     end
@@ -54,9 +54,9 @@ RSpec.describe DropletKit::VolumeResource do
       it 'returns the created volume' do
         volume = DropletKit::Volume.new(
           size_gigabytes: 10,
-          name: "Example",
-          description: "Block store for examples",
-          region: "nyc1"
+          name: 'Example',
+          description: 'Block store for examples',
+          region: 'nyc1'
         )
 
         as_string = DropletKit::VolumeMapping.representation_for(:create, volume)
@@ -71,9 +71,9 @@ RSpec.describe DropletKit::VolumeResource do
       it 'returns the created volume' do
         volume = DropletKit::Volume.new(
           size_gigabytes: 10,
-          name: "Example",
-          description: "Block store for examples",
-          snapshot_id: "7724db7c-e098-11e5-b522-000f53304e51"
+          name: 'Example',
+          description: 'Block store for examples',
+          snapshot_id: '7724db7c-e098-11e5-b522-000f53304e51'
         )
 
         as_string = DropletKit::VolumeMapping.representation_for(:create, volume)
@@ -88,8 +88,8 @@ RSpec.describe DropletKit::VolumeResource do
       it 'allows the filesystem_type' do
         volume = DropletKit::Volume.new(
           size_gigabytes: 10,
-          name: "Example",
-          description: "Block store for examples",
+          name: 'Example',
+          description: 'Block store for examples',
           filesystem_type: 'ext4'
         )
 
@@ -105,8 +105,8 @@ RSpec.describe DropletKit::VolumeResource do
       it 'allows the filesystem_label' do
         volume = DropletKit::Volume.new(
           size_gigabytes: 10,
-          name: "Example",
-          description: "Block store for examples",
+          name: 'Example',
+          description: 'Block store for examples',
           filesystem_label: 'archive'
         )
 
@@ -136,11 +136,11 @@ RSpec.describe DropletKit::VolumeResource do
 
         expect(created_snapshot).to be_kind_of(DropletKit::Snapshot)
 
-        expect(created_snapshot.id).to eq("7724db7c-e098-11e5-b522-000f53304e51")
-        expect(created_snapshot.name).to eq("Ubuntu Foo")
-        expect(created_snapshot.regions).to eq(["nyc1"])
-        expect(created_snapshot.resource_type).to eq("volume")
-        expect(created_snapshot.resource_id).to eq("7724db7c-e098-11e5-b522-000f53304e51")
+        expect(created_snapshot.id).to eq('7724db7c-e098-11e5-b522-000f53304e51')
+        expect(created_snapshot.name).to eq('Ubuntu Foo')
+        expect(created_snapshot.regions).to eq(['nyc1'])
+        expect(created_snapshot.resource_type).to eq('volume')
+        expect(created_snapshot.resource_id).to eq('7724db7c-e098-11e5-b522-000f53304e51')
         expect(created_snapshot.min_disk_size).to eq(10)
         expect(created_snapshot.size_gigabytes).to eq(0.4)
       end
@@ -155,7 +155,7 @@ RSpec.describe DropletKit::VolumeResource do
   describe '#delete' do
     it 'sends a delete request for the volume' do
       request = stub_do_api('/v2/volumes/7724db7c-e098-11e5-b522-000f53304e51', :delete)
-      resource.delete(id: "7724db7c-e098-11e5-b522-000f53304e51")
+      resource.delete(id: '7724db7c-e098-11e5-b522-000f53304e51')
 
       expect(request).to have_been_made
     end

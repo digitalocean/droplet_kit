@@ -51,8 +51,8 @@ RSpec.describe DropletKit::DatabaseResource do
   RSpec::Matchers.define :match_read_only_database_cluster_replica do
     match do |cluster|
       expect(cluster).to be_kind_of(DropletKit::DatabaseCluster)
-      expect(cluster.name).to eq("read-nyc3-01")
-      expect(cluster.region).to eq("nyc3")
+      expect(cluster.name).to eq('read-nyc3-01')
+      expect(cluster.region).to eq('nyc3')
       expect(cluster.connection).to be_kind_of(DropletKit::DatabaseConnection)
       expect(cluster.private_connection).to be_kind_of(DropletKit::DatabaseConnection)
     end
@@ -61,20 +61,20 @@ RSpec.describe DropletKit::DatabaseResource do
   RSpec::Matchers.define :match_cluster_user do
     match do |cluster_user|
       expect(cluster_user).to be_kind_of(DropletKit::DatabaseUser)
-      expect(cluster_user.name).to eq("app-01",)
-      expect(cluster_user.role).to eq("normal",)
-      expect(cluster_user.password).to eq("jge5lfxtzhx42iff")
+      expect(cluster_user.name).to eq('app-01',)
+      expect(cluster_user.role).to eq('normal',)
+      expect(cluster_user.password).to eq('jge5lfxtzhx42iff')
     end
   end
 
   RSpec::Matchers.define :match_database_connection_pool do
     match do |pool|
       expect(pool).to be_kind_of(DropletKit::DatabaseConnectionPool)
-      expect(pool.user).to eq("doadmin")
-      expect(pool.name).to eq("backend-pool")
+      expect(pool.user).to eq('doadmin')
+      expect(pool.name).to eq('backend-pool')
       expect(pool.size).to eq(10)
-      expect(pool.db).to eq("defaultdb")
-      expect(pool.mode).to eq("transaction")
+      expect(pool.db).to eq('defaultdb')
+      expect(pool.mode).to eq('transaction')
       expect(pool.connection).to be_kind_of(DropletKit::DatabaseConnection)
     end
   end
@@ -190,7 +190,7 @@ RSpec.describe DropletKit::DatabaseResource do
 
   describe '#update_maintenance_window' do
     it 'sends a requets to update a database maintenance window' do
-      database_maintenance_window = DropletKit::DatabaseMaintenanceWindow.new(day: 'tuesday', hour: "14:00")
+      database_maintenance_window = DropletKit::DatabaseMaintenanceWindow.new(day: 'tuesday', hour: '14:00')
 
       as_hash = DropletKit::DatabaseMaintenanceWindowMapping.hash_for(:update, database_maintenance_window)
       expect(as_hash['day']).to eq(database_maintenance_window.day)
@@ -323,8 +323,8 @@ RSpec.describe DropletKit::DatabaseResource do
     context 'for a successful maintenance window configuration' do
       it 'returns a no content response' do
         maintenance_window = DropletKit::DatabaseMaintenanceWindow.new(
-          day: "tuesday",
-          hour: "14:00",
+          day: 'tuesday',
+          hour: '14:00',
         )
 
         json_body = DropletKit::DatabaseMaintenanceWindowMapping.representation_for(:update, maintenance_window)
@@ -342,10 +342,10 @@ RSpec.describe DropletKit::DatabaseResource do
       database_firewall_rules = resource.list_firewall_rules(id: database_cluster_id)
 
       expect(database_firewall_rules).to all(be_kind_of(DropletKit::DatabaseFirewallRule))
-      expect(database_firewall_rules.first.uuid).to eq("79f26d28-ea8a-41f2-8ad8-8cfcdd020095")
-      expect(database_firewall_rules.first.type).to eq("k8s")
-      expect(database_firewall_rules.first.value).to eq("ff2a6c52-5a44-4b63-b99c-0e98e7a63d61")
-      expect(database_firewall_rules.first.created_at).to eq("2019-11-14T20:30:28Z")
+      expect(database_firewall_rules.first.uuid).to eq('79f26d28-ea8a-41f2-8ad8-8cfcdd020095')
+      expect(database_firewall_rules.first.type).to eq('k8s')
+      expect(database_firewall_rules.first.value).to eq('ff2a6c52-5a44-4b63-b99c-0e98e7a63d61')
+      expect(database_firewall_rules.first.created_at).to eq('2019-11-14T20:30:28Z')
       expect(request).to have_been_made
     end
   end
@@ -355,12 +355,12 @@ RSpec.describe DropletKit::DatabaseResource do
       it 'returns a no content response' do
         firewall_rules = [
           DropletKit::DatabaseFirewallRule.new(
-            type: "ip_addr",
-            value: "192.168.1.1",
+            type: 'ip_addr',
+            value: '192.168.1.1',
           ),
           DropletKit::DatabaseFirewallRule.new(
-            type: "k8s",
-            value: "ff2a6c52-5a44-4b63-b99c-0e98e7a63d61",
+            type: 'k8s',
+            value: 'ff2a6c52-5a44-4b63-b99c-0e98e7a63d61',
           ),
         ]
 
@@ -377,9 +377,9 @@ RSpec.describe DropletKit::DatabaseResource do
     context 'for a successful read only replica creation' do
       it 'returns a newly created database replica' do
         database_replica = DropletKit::DatabaseCluster.new(
-          name: "read-nyc3-01",
-          size: "db-s-2vcpu-4gb",
-          region: "nyc3",
+          name: 'read-nyc3-01',
+          size: 'db-s-2vcpu-4gb',
+          region: 'nyc3',
         )
 
         json_body = DropletKit::DatabaseClusterMapping.representation_for(:create, database_replica)
@@ -405,8 +405,8 @@ RSpec.describe DropletKit::DatabaseResource do
   end
 
   describe '#delete_read_only_replica' do
-    let(:database_id) { "9cc10173-e9ea-4176-9dbc-a4cee4c4ff30" }
-    let(:replica_name) { "read-nyc3-01" }
+    let(:database_id) { '9cc10173-e9ea-4176-9dbc-a4cee4c4ff30' }
+    let(:replica_name) { 'read-nyc3-01' }
     let(:path) { "/v2/databases/#{database_id}/replicas/#{replica_name}" }
 
     it 'sends a delete request for the volume' do
@@ -421,7 +421,7 @@ RSpec.describe DropletKit::DatabaseResource do
     context 'for a successful create of a database user' do
       it 'returns a created database cluster user' do
         database_user = DropletKit::DatabaseUser.new(
-          name: "app-01",
+          name: 'app-01',
         )
 
         json_body = DropletKit::DatabaseUserMapping.representation_for(:create, database_user)
@@ -435,7 +435,7 @@ RSpec.describe DropletKit::DatabaseResource do
   end
 
   describe '#find_database_user' do
-    let(:name) { "app-01" }
+    let(:name) { 'app-01' }
 
     it 'retrieves the proper database user' do
       request = stub_do_api("/v2/databases/#{database_cluster_id}/users/#{name}", :get).to_return(body: api_fixture('databases/get_database_user_response'), status: 200)
@@ -459,11 +459,11 @@ RSpec.describe DropletKit::DatabaseResource do
 
   describe '#reset_database_user_auth' do
     database_user = DropletKit::DatabaseUser.new(
-      name: "app-01",
-      role: "normal",
-      password: "jge5lfxtzhx42iff",
+      name: 'app-01',
+      role: 'normal',
+      password: 'jge5lfxtzhx42iff',
       mysql_settings: {
-        auth_plugin: "mysql_native_password"
+        auth_plugin: 'mysql_native_password'
       }
     )
 
@@ -471,7 +471,7 @@ RSpec.describe DropletKit::DatabaseResource do
       request = stub_do_api("/v2/databases/#{database_cluster_id}/users/#{database_user.name}/reset_auth", :post).to_return(body: api_fixture('databases/reset_user_auth_response'), status: 200)
       reset_auth = DropletKit::DatabaseUserResetAuth.new(
         mysql_settings: DropletKit::DatabaseUserMySQLSettings.new(
-          auth_plugin: "mysql_native_password"
+          auth_plugin: 'mysql_native_password'
         )
       )
       resource.reset_database_user_auth(reset_auth, id: database_cluster_id, name: database_user.name)
@@ -481,7 +481,7 @@ RSpec.describe DropletKit::DatabaseResource do
   end
 
   describe '#delete_database_user' do
-    let(:name) { "app-01" }
+    let(:name) { 'app-01' }
 
     it 'retrieves the proper database user' do
       request = stub_do_api("/v2/databases/#{database_cluster_id}/users/#{name}", :delete).to_return(status: 204)
@@ -495,11 +495,11 @@ RSpec.describe DropletKit::DatabaseResource do
     context 'for a successful create of a database connection pool' do
       it 'returns a created database connection pool' do
         database_connection_pool = DropletKit::DatabaseConnectionPool.new(
-          name: "backend-pool",
-          mode: "transaction",
+          name: 'backend-pool',
+          mode: 'transaction',
           size: 10,
-          db: "defaultdb",
-          user: "doadmin",
+          db: 'defaultdb',
+          user: 'doadmin',
         )
 
         json_body = DropletKit::DatabaseConnectionPoolMapping.representation_for(:create, database_connection_pool)
@@ -513,7 +513,7 @@ RSpec.describe DropletKit::DatabaseResource do
   end
 
   describe '#find_connection_pool' do
-    let(:connection_pool_name) { "backend-pool" }
+    let(:connection_pool_name) { 'backend-pool' }
 
     it 'returns the database connection pool' do
       request = stub_do_api("/v2/databases/#{database_cluster_id}/pools/#{connection_pool_name}", :get).to_return(body: api_fixture('databases/get_connection_pool_response'), status: 200)
@@ -536,7 +536,7 @@ RSpec.describe DropletKit::DatabaseResource do
   end
 
   describe '#delete_connection_pool' do
-    let(:connection_pool_name) { "backend-pool" }
+    let(:connection_pool_name) { 'backend-pool' }
 
     it 'deletes the database connection' do
       request = stub_do_api("/v2/databases/#{database_cluster_id}/pools", :delete).to_return(status: 204)
@@ -550,7 +550,7 @@ RSpec.describe DropletKit::DatabaseResource do
     context 'for a successful eviction policy configuration' do
       it 'returns a no content response' do
         eviction_policy = DropletKit::DatabaseEvictionPolicy.new(
-          eviction_policy: "allkeys_lru",
+          eviction_policy: 'allkeys_lru',
         )
 
         json_body = DropletKit::DatabaseEvictionPolicyMapping.representation_for(:update, eviction_policy)
@@ -568,7 +568,7 @@ RSpec.describe DropletKit::DatabaseResource do
       eviction_policy = resource.get_eviction_policy(id: database_cluster_id)
 
       expect(eviction_policy).to be_kind_of(DropletKit::DatabaseEvictionPolicy)
-      expect(eviction_policy.eviction_policy).to eq("allkeys_lru")
+      expect(eviction_policy.eviction_policy).to eq('allkeys_lru')
       expect(request).to have_been_made
     end
   end
@@ -577,7 +577,7 @@ RSpec.describe DropletKit::DatabaseResource do
     context 'for a successful eviction policy configuration' do
       it 'returns a no content response' do
         sql_mode = DropletKit::DatabaseSQLMode.new(
-          sql_mode: "ANSI,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION,NO_ZERO_DATE,NO_ZERO_IN_DATE,STRICT_ALL_TABLES",
+          sql_mode: 'ANSI,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION,NO_ZERO_DATE,NO_ZERO_IN_DATE,STRICT_ALL_TABLES',
         )
 
         json_body = DropletKit::DatabaseSQLModeMapping.representation_for(:update, sql_mode)
@@ -595,7 +595,7 @@ RSpec.describe DropletKit::DatabaseResource do
       sql_mode = resource.get_sql_mode(id: database_cluster_id)
 
       expect(sql_mode).to be_kind_of(DropletKit::DatabaseSQLMode)
-      expect(sql_mode.sql_mode).to eq("ANSI,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION,NO_ZERO_DATE,NO_ZERO_IN_DATE,STRICT_ALL_TABLES")
+      expect(sql_mode.sql_mode).to eq('ANSI,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION,NO_ZERO_DATE,NO_ZERO_IN_DATE,STRICT_ALL_TABLES')
       expect(request).to have_been_made
     end
   end

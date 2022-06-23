@@ -26,7 +26,7 @@ RSpec.describe DropletKit::DropletResource do
     expect(droplet.created_at).to be_present
     expect(droplet.backup_ids).to include(449_676_382)
     expect(droplet.snapshot_ids).to include(449_676_383)
-    expect(droplet.volume_ids).to include("ffaa8716-59e1-11e8-92b6-0242ac110b0c")
+    expect(droplet.volume_ids).to include('ffaa8716-59e1-11e8-92b6-0242ac110b0c')
     expect(droplet.action_ids).to be_empty
     expect(droplet.features).to include('ipv6')
     tags.each do |tag|
@@ -38,41 +38,41 @@ RSpec.describe DropletKit::DropletResource do
     expect(droplet.region.name).to eq('New York')
     expect(droplet.region.sizes).to include('1024mb', '512mb')
     expect(droplet.region.available).to be(true)
-    expect(droplet.region.features).to include("virtio", "private_networking", "backups", "ipv6")
+    expect(droplet.region.features).to include('virtio', 'private_networking', 'backups', 'ipv6')
 
     expect(droplet.image).to be_kind_of(DropletKit::Image)
     expect(droplet.image.id).to eq(119_192_817)
-    expect(droplet.image.name).to eq("Ubuntu 13.04")
-    expect(droplet.image.distribution).to eq("ubuntu")
-    expect(droplet.image.slug).to eq("ubuntu1304")
+    expect(droplet.image.name).to eq('Ubuntu 13.04')
+    expect(droplet.image.distribution).to eq('ubuntu')
+    expect(droplet.image.slug).to eq('ubuntu1304')
     expect(droplet.image.public).to be(true)
     expect(droplet.image.regions).to include('nyc1')
 
-    expect(droplet.size_slug).to eq("1024mb")
+    expect(droplet.size_slug).to eq('1024mb')
 
     expect(droplet.networks).to be_kind_of(DropletKit::NetworkHash)
     private_v4_network = droplet.networks.v4.first
     expect(private_v4_network.ip_address).to eq('10.0.0.19')
-    expect(private_v4_network.netmask).to eq("255.255.0.0")
-    expect(private_v4_network.gateway).to eq("10.0.0.1")
-    expect(private_v4_network.type).to eq("private")
+    expect(private_v4_network.netmask).to eq('255.255.0.0')
+    expect(private_v4_network.gateway).to eq('10.0.0.1')
+    expect(private_v4_network.type).to eq('private')
 
     public_v4_network = droplet.networks.v4.last
     expect(public_v4_network.ip_address).to eq('127.0.0.19')
-    expect(public_v4_network.netmask).to eq("255.255.255.0")
-    expect(public_v4_network.gateway).to eq("127.0.0.20")
-    expect(public_v4_network.type).to eq("public")
+    expect(public_v4_network.netmask).to eq('255.255.255.0')
+    expect(public_v4_network.gateway).to eq('127.0.0.20')
+    expect(public_v4_network.type).to eq('public')
 
     v6_network = droplet.networks.v6.first
     expect(v6_network.ip_address).to eq('2001::13')
-    expect(v6_network.gateway).to eq("2400:6180:0000:00D0:0000:0000:0009:7000")
+    expect(v6_network.gateway).to eq('2400:6180:0000:00D0:0000:0000:0009:7000')
     expect(v6_network.cidr).to eq(124)
-    expect(v6_network.type).to eq("public")
+    expect(v6_network.type).to eq('public')
 
     expect(droplet.kernel).to be_kind_of(DropletKit::Kernel)
     expect(droplet.kernel.id).to eq(485_432_985)
-    expect(droplet.kernel.name).to eq("DO-recovery-static-fsck")
-    expect(droplet.kernel.version).to eq("3.8.0-25-generic")
+    expect(droplet.kernel.name).to eq('DO-recovery-static-fsck')
+    expect(droplet.kernel.version).to eq('3.8.0-25-generic')
   end
 
   describe '#all' do
@@ -166,7 +166,7 @@ RSpec.describe DropletKit::DropletResource do
     end
 
     context 'when creating with with_droplet_agent' do
-      context "not set" do
+      context 'not set' do
         droplet = DropletKit::Droplet.new(
           name: 'test.example.com',
           region: 'nyc1',
@@ -185,7 +185,7 @@ RSpec.describe DropletKit::DropletResource do
         end
       end
 
-      context "set to false" do
+      context 'set to false' do
         droplet = DropletKit::Droplet.new(
           name: 'test.example.com',
           region: 'nyc1',
@@ -205,7 +205,7 @@ RSpec.describe DropletKit::DropletResource do
         end
       end
 
-      context "set to true" do
+      context 'set to true' do
         droplet = DropletKit::Droplet.new(
           name: 'test.example.com',
           region: 'nyc1',
@@ -323,11 +323,11 @@ RSpec.describe DropletKit::DropletResource do
 
       expect(snapshots).to all(be_kind_of(DropletKit::Image))
       expect(snapshots[0].id).to eq(449_676_387)
-      expect(snapshots[0].name).to eq("Ubuntu 13.04")
-      expect(snapshots[0].distribution).to eq("ubuntu")
+      expect(snapshots[0].name).to eq('Ubuntu 13.04')
+      expect(snapshots[0].distribution).to eq('ubuntu')
       expect(snapshots[0].slug).to be_nil
       expect(snapshots[0].public).to be(false)
-      expect(snapshots[0].regions).to eq(["nyc1"])
+      expect(snapshots[0].regions).to eq(['nyc1'])
     end
 
     it 'returns a paginated resource' do
@@ -344,11 +344,11 @@ RSpec.describe DropletKit::DropletResource do
 
       expect(backups).to all(be_kind_of(DropletKit::Image))
       expect(backups[0].id).to eq(449_676_388)
-      expect(backups[0].name).to eq("Ubuntu 13.04")
-      expect(backups[0].distribution).to eq("ubuntu")
+      expect(backups[0].name).to eq('Ubuntu 13.04')
+      expect(backups[0].distribution).to eq('ubuntu')
       expect(backups[0].slug).to be_nil
       expect(backups[0].public).to be(false)
-      expect(backups[0].regions).to eq(["nyc1"])
+      expect(backups[0].regions).to eq(['nyc1'])
     end
 
     it 'returns a paginated resource' do
@@ -366,18 +366,18 @@ RSpec.describe DropletKit::DropletResource do
       expect(actions).to all(be_kind_of(DropletKit::Action))
 
       expect(actions[0].id).to eq(19)
-      expect(actions[0].status).to eq("in-progress")
-      expect(actions[0].type).to eq("create")
-      expect(actions[0].started_at).to eq("2014-07-29T14:35:39Z")
+      expect(actions[0].status).to eq('in-progress')
+      expect(actions[0].type).to eq('create')
+      expect(actions[0].started_at).to eq('2014-07-29T14:35:39Z')
       expect(actions[0].completed_at).to be_nil
       expect(actions[0].resource_id).to eq(24)
-      expect(actions[0].resource_type).to eq("droplet")
+      expect(actions[0].resource_type).to eq('droplet')
       expect(actions[0].region).to be_kind_of(DropletKit::Region)
       expect(actions[0].region.slug).to eq('nyc1')
       expect(actions[0].region.name).to eq('New York')
       expect(actions[0].region.sizes).to include('512mb')
       expect(actions[0].region.available).to be(true)
-      expect(actions[0].region.features).to include("virtio", "private_networking", "backups", "ipv6", "metadata")
+      expect(actions[0].region.features).to include('virtio', 'private_networking', 'backups', 'ipv6', 'metadata')
     end
 
     it 'returns a paginated resource' do
