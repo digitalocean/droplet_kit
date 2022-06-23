@@ -11,7 +11,7 @@ module DropletKit
             type: 'attach',
             droplet_id: hash[:droplet_id],
             volume_id: hash[:volume_id], # seems redundant to the id in the url?
-            region: hash[:region], # seems redundant - inferred from the droplet?
+            region: hash[:region] # seems redundant - inferred from the droplet?
           }.to_json
         end
         handler(201, 200) { |response| ActionMapping.extract_single(response.body, :read) }
@@ -23,7 +23,7 @@ module DropletKit
             type: 'detach',
             droplet_id: hash[:droplet_id],
             volume_id: hash[:volume_id], # seems redundant to the id in the url?
-            region: hash[:region], # seems redundant - inferred from the droplet?
+            region: hash[:region] # seems redundant - inferred from the droplet?
           }.to_json
         end
         handler(201, 200) { |response| ActionMapping.extract_single(response.body, :read) }
@@ -34,7 +34,7 @@ module DropletKit
           {
             type: 'resize',
             size_gigabytes: hash[:size_gigabytes],
-            region: hash[:region],
+            region: hash[:region]
           }.to_json
         end
         handler(201, 200) { |response| ActionMapping.extract_single(response.body, :read) }
