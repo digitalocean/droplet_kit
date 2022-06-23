@@ -32,7 +32,7 @@ module DropletKit
       end
 
       action :kubeconfig, 'GET /v2/kubernetes/clusters/:id/kubeconfig' do
-        handler(200, &:body)
+        handler(200) { |response| response.body }
       end
 
       action :update, 'PUT /v2/kubernetes/clusters/:id' do

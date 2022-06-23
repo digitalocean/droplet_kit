@@ -14,8 +14,8 @@ namespace :doc do
       class_name = DropletKit::Utils.underscore klass.name.split('::').last
       human_name = class_name.dup
       human_name.tr!('_', ' ')
-      human_name.gsub!(/([a-z\d]*)/i, &:downcase)
-      human_name.gsub!(/\A\w/, &:upcase)
+      human_name.gsub!(/([a-z\d]*)/i) { |match| match.downcase }
+      human_name.gsub!(/\A\w/) { |match| match.upcase }
 
       puts "## #{human_name}"
       puts
