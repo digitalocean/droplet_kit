@@ -20,7 +20,7 @@ module DropletKit
       end
 
       action :docker_credentials, 'GET /v2/registry/docker-credentials' do
-        handler(200) { |response| response.body }
+        handler(200, &:body)
       end
     end
   end

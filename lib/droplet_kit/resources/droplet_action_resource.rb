@@ -23,7 +23,7 @@ module DropletKit
 
       action :action_for_tag, 'POST /v2/droplets/actions' do
         query_keys :tag_name
-        body { |hash| hash.to_json }
+        body(&:to_json)
         handler(201, 200) { |response| ActionMapping.extract_single(response.body, :read) }
       end
 
