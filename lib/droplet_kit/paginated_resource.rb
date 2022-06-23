@@ -45,15 +45,15 @@ module DropletKit
     end
 
     def last?
-      return true if self.total.nil?
+      return true if total.nil?
 
-      @current_page == total_pages || self.total.zero?
+      @current_page == total_pages || total.zero?
     end
 
     def total_pages
-      return nil if self.total.nil?
+      return nil if total.nil?
 
-      (self.total.to_f / per_page).ceil
+      (total.to_f / per_page).ceil
     end
 
     def ==(other)
