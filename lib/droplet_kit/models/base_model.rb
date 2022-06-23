@@ -26,7 +26,7 @@ module DropletKit
 
     def identifier
       identifier = attributes[:id] || attributes[:uuid] || attributes[:slug]
-      raise DropletKit::Error.new("#{self.class.name} doesn't support URNs") if identifier.nil?
+      raise DropletKit::Error, "#{self.class.name} doesn't support URNs" if identifier.nil?
 
       identifier
     end

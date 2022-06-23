@@ -54,7 +54,7 @@ module DropletKit
             elsif resource.respond_to?(:urn) && resource.urn && DropletKit::BaseModel.valid_urn?(resource.urn)
               resource.urn
             else
-              raise DropletKit::Error.new("cannot assign resource without valid urn: #{resource}")
+              raise DropletKit::Error, "cannot assign resource without valid urn: #{resource}"
             end
           end
         end
