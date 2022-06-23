@@ -185,11 +185,11 @@ module DropletKit
     attr_writer :limit, :remaining
 
     def limit
-      @limit.to_i if @limit
+      @limit&.to_i
     end
 
     def remaining
-      @remaining.to_i if @remaining
+      @remaining&.to_i
     end
   end
 end

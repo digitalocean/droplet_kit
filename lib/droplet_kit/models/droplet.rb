@@ -24,12 +24,12 @@ module DropletKit
 
     def public_ip
       network = network_for(:v4, 'public')
-      network && network.ip_address
+      network&.ip_address
     end
 
     def private_ip
       network = network_for(:v4, 'private')
-      network && network.ip_address
+      network&.ip_address
     end
 
     private
