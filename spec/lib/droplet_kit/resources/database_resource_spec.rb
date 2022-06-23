@@ -361,7 +361,7 @@ RSpec.describe DropletKit::DatabaseResource do
           DropletKit::DatabaseFirewallRule.new(
             type: 'k8s',
             value: 'ff2a6c52-5a44-4b63-b99c-0e98e7a63d61'
-          ),
+          )
         ]
 
         json_body = DropletKit::DatabaseFirewallRuleMapping.represent_collection_for(:update, firewall_rules)
