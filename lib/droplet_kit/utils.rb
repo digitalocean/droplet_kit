@@ -5,7 +5,7 @@ module DropletKit
     def self.camelize(term)
       string = term.to_s
       string.sub!(/^[a-z\d]*/, &:capitalize)
-      string.gsub!(%r{(?:_|(/))([a-z\d]*)}i) { $2.capitalize }
+      string.gsub!(%r{(?:_|(/))([a-z\d]*)}i) { Regexp.last_match(2).capitalize }
       string.gsub!('/', '::')
       string
     end

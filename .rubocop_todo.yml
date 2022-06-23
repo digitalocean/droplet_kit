@@ -170,12 +170,6 @@ Style/MissingRespondToMissing:
   Exclude:
     - 'lib/droplet_kit/client.rb'
 
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-Style/PerlBackrefs:
-  Exclude:
-    - 'lib/droplet_kit/utils.rb'
-
 # Offense count: 3
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: EnforcedStyle, AllowedCompactTypes.
