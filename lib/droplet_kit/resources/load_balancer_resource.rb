@@ -21,7 +21,7 @@ module DropletKit
       end
 
       action :update, 'PUT /v2/load_balancers/:id' do
-        body {|load_balancer| LoadBalancerMapping.representation_for(:update, load_balancer) }
+        body { |load_balancer| LoadBalancerMapping.representation_for(:update, load_balancer) }
         handler(200) { |response| LoadBalancerMapping.extract_single(response.body, :read) }
         handler(422) { |response| ErrorMapping.fail_with(FailedUpdate, response.body) }
       end

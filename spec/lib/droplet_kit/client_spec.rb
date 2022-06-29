@@ -3,33 +3,33 @@
 require 'spec_helper'
 
 RSpec.describe DropletKit::Client do
-  subject(:client) { DropletKit::Client.new(access_token: 'bunk') }
+  subject(:client) { described_class.new(access_token: 'bunk') }
 
   describe '#initialize' do
     it 'initializes with an access token' do
-      client = DropletKit::Client.new(access_token: 'my-token')
+      client = described_class.new(access_token: 'my-token')
       expect(client.access_token).to eq('my-token')
     end
 
     it 'allows string option keys for the client' do
-      client = DropletKit::Client.new('access_token' => 'my-token')
+      client = described_class.new('access_token' => 'my-token')
       expect(client.access_token).to eq('my-token')
     end
 
     it 'allows string option for api url' do
       _my_url = 'https://api.example.com'
-      client = DropletKit::Client.new('api_url' => _my_url)
+      client = described_class.new('api_url' => _my_url)
       expect(client.api_url).to eq(_my_url)
     end
 
     it 'has default open_timeout for faraday' do
-      client = DropletKit::Client.new('access_token' => 'my-token')
+      client = described_class.new('access_token' => 'my-token')
       expect(client.open_timeout).to eq(DropletKit::Client::DEFAULT_OPEN_TIMEOUT)
     end
 
     it 'allows open_timeout to be set' do
       open_timeout = 10
-      client = DropletKit::Client.new(
+      client = described_class.new(
         'access_token' => 'my-token',
         'open_timeout' => open_timeout
       )
@@ -38,13 +38,13 @@ RSpec.describe DropletKit::Client do
     end
 
     it 'has default timeout' do
-      client = DropletKit::Client.new('access_token' => 'my-token')
+      client = described_class.new('access_token' => 'my-token')
       expect(client.timeout).to eq(DropletKit::Client::DEFAULT_TIMEOUT)
     end
 
     it 'allows timeout to be set' do
       timeout = 10
-      client = DropletKit::Client.new(
+      client = described_class.new(
         'access_token' => 'my-token',
         'timeout' => timeout
       )
@@ -53,13 +53,13 @@ RSpec.describe DropletKit::Client do
     end
   end
 
-  describe "#method_missing" do
-    context "called with an existing method" do
-      it { expect{ client.actions}.to_not raise_error }
+  describe '#method_missing' do
+    context 'called with an existing method' do
+      it { expect { client.actions }.not_to raise_error }
     end
 
-    context "called with a missing method" do
-      it { expect{client.this_is_wrong}.to raise_error(NoMethodError) }
+    context 'called with a missing method' do
+      it { expect { client.this_is_wrong }.to raise_error(NoMethodError) }
     end
   end
 
@@ -74,7 +74,7 @@ RSpec.describe DropletKit::Client do
     end
 
     it 'sets the content type' do
-      expect(client.connection.headers['Content-Type']).to eq("application/json")
+      expect(client.connection.headers['Content-Type']).to eq('application/json')
     end
 
     context 'with default user agent' do
@@ -87,7 +87,7 @@ RSpec.describe DropletKit::Client do
 
     context 'with user provided user agent' do
       it 'includes their agent string as well' do
-        client = DropletKit::Client.new(access_token: 'bunk', user_agent: 'tugboat')
+        client = described_class.new(access_token: 'bunk', user_agent: 'tugboat')
         expect(client.connection.headers['User-Agent']).to include('tugboat')
       end
     end
@@ -105,6 +105,4 @@ RSpec.describe DropletKit::Client do
       expect(client.connection.options.timeout).to eq(DropletKit::Client::DEFAULT_TIMEOUT)
     end
   end
-
 end
-

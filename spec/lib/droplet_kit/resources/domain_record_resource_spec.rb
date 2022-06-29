@@ -4,6 +4,7 @@ require 'spec_helper'
 
 RSpec.describe DropletKit::DomainRecordResource do
   subject(:resource) { described_class.new(connection: connection) }
+
   include_context 'resources'
 
   describe '#all' do
@@ -45,8 +46,8 @@ RSpec.describe DropletKit::DomainRecordResource do
     end
 
     it_behaves_like 'a paginated index' do
-      let(:fixture_path) {'domain_records/all'}
-      let(:api_path) {'/v2/domains/example.com/records'}
+      let(:fixture_path) { 'domain_records/all' }
+      let(:api_path) { '/v2/domains/example.com/records' }
     end
   end
 

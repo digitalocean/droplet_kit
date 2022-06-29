@@ -4,6 +4,7 @@ require 'spec_helper'
 
 RSpec.describe DropletKit::ContainerRegistryRepositoryResource do
   subject(:resource) { described_class.new(connection: connection) }
+
   include_context 'resources'
 
   describe '#all' do
@@ -19,8 +20,8 @@ RSpec.describe DropletKit::ContainerRegistryRepositoryResource do
     end
 
     it_behaves_like 'a paginated index' do
-      let(:fixture_path) {'container_registry/list-repos'}
-      let(:api_path) {'/v2/registry/my-registry/repositories'}
+      let(:fixture_path) { 'container_registry/list-repos' }
+      let(:api_path) { '/v2/registry/my-registry/repositories' }
     end
   end
 
@@ -37,8 +38,8 @@ RSpec.describe DropletKit::ContainerRegistryRepositoryResource do
     end
 
     it_behaves_like 'a paginated index' do
-      let(:fixture_path) {'container_registry/list-repo-tags'}
-      let(:api_path) {'/v2/registry/my-registry/repositories/my-repo/tags'}
+      let(:fixture_path) { 'container_registry/list-repo-tags' }
+      let(:api_path) { '/v2/registry/my-registry/repositories/my-repo/tags' }
     end
   end
 
@@ -48,7 +49,7 @@ RSpec.describe DropletKit::ContainerRegistryRepositoryResource do
       response = resource.delete_tag(registry_name: 'my-registry', repository: 'my-repo', tag: 'my-tag')
 
       expect(request).to have_been_made
-      expect(response).to eq(true)
+      expect(response).to be(true)
     end
   end
 
@@ -58,7 +59,7 @@ RSpec.describe DropletKit::ContainerRegistryRepositoryResource do
       response = resource.delete_manifest(registry_name: 'my-registry', repository: 'my-repo', manifest_digest: 'sha256:cb8a924afdf0229ef7515d9e5b3024e23b3eb03ddbba287f4a19c6ac90b8d221')
 
       expect(request).to have_been_made
-      expect(response).to eq(true)
+      expect(response).to be(true)
     end
   end
 end

@@ -4,12 +4,13 @@ require 'spec_helper'
 
 RSpec.describe DropletKit::AccountResource do
   subject(:resource) { described_class.new(connection: connection) }
+
   include_context 'resources'
 
   describe '#info' do
     it 'returns the information about the current user' do
       fixture = api_fixture('account/info')
-      parsed  = JSON.load(fixture)
+      parsed  = JSON.parse(fixture)
 
       stub_do_api('/v2/account').to_return(body: fixture)
       account_info = resource.info

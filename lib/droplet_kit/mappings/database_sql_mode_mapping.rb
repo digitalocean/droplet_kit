@@ -7,7 +7,7 @@ module DropletKit
     kartograph do
       mapping DatabaseSQLMode
 
-      property :sql_mode, scopes: [:read, :create]
+      property :sql_mode, scopes: %i[read create]
     end
   end
 end

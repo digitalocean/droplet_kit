@@ -3,13 +3,13 @@
 require 'spec_helper'
 
 RSpec.describe DropletKit::LoadBalancerResource do
+  subject(:resource) { described_class.new(connection: connection) }
+
   include_context 'resources'
 
   let(:load_balancer_fixture_path) { 'load_balancers/find' }
-  let(:base_path) { '/v2/load_balancers'}
+  let(:base_path) { '/v2/load_balancers' }
   let(:load_balancer_id) { '37e6be88-01ec-4ec7-9bc6-a514d4719057' }
-
-  subject(:resource) { described_class.new(connection: connection) }
 
   RSpec::Matchers.define :match_load_balancer_fixture do
     match do |load_balancer|
@@ -26,7 +26,7 @@ RSpec.describe DropletKit::LoadBalancerResource do
       expect(load_balancer.region.attributes)
         .to match(a_hash_including(slug: 'nyc3', name: 'New York 3',
                                    available: true, sizes: ['512mb'], features: ['private_networking']))
-      expect(load_balancer.droplet_ids).to match_array([3164445, 3164444])
+      expect(load_balancer.droplet_ids).to match_array([3_164_445, 3_164_444])
       expect(load_balancer.sticky_sessions).to be_kind_of(DropletKit::StickySession)
       expect(load_balancer.sticky_sessions.attributes)
         .to match(a_hash_including(cookie_ttl_seconds: 5, cookie_name: 'DO-LB', type: 'cookies'))
@@ -36,7 +36,7 @@ RSpec.describe DropletKit::LoadBalancerResource do
                                    check_interval_seconds: 10, response_timeout_seconds: 5,
                                    healthy_threshold: 5, unhealthy_threshold: 3))
       expect(load_balancer.forwarding_rules.count).to eq(2)
-      expect(load_balancer.disable_lets_encrypt_dns_records).to eq(true)
+      expect(load_balancer.disable_lets_encrypt_dns_records).to be(true)
       expect(load_balancer.forwarding_rules.first.attributes)
         .to match(a_hash_including(entry_protocol: 'http', entry_port: 80,
                                    target_protocol: 'http', target_port: 80,
@@ -79,7 +79,7 @@ RSpec.describe DropletKit::LoadBalancerResource do
       DropletKit::LoadBalancer.new(
         name: 'example-lb-01',
         algorithm: 'round_robin',
-        droplet_ids: [ 3164444, 3164445],
+        droplet_ids: [3_164_444, 3_164_445],
         redirect_http_to_https: true,
         enable_proxy_protocol: true,
         enable_backend_keepalive: true,
@@ -171,7 +171,7 @@ RSpec.describe DropletKit::LoadBalancerResource do
 
     describe '#remove_droplets' do
       it 'sends a delete request for the load balancer to remove droplet' do
-        request = stub_do_api(File.join(base_path, load_balancer_id, 'droplets'), :delete).with(body: { droplet_ids: [droplet_id_1]}.to_json)
+        request = stub_do_api(File.join(base_path, load_balancer_id, 'droplets'), :delete).with(body: { droplet_ids: [droplet_id_1] }.to_json)
         resource.remove_droplets([droplet_id_1], id: load_balancer_id)
 
         expect(request).to have_been_made

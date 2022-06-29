@@ -9,15 +9,15 @@ module DropletKit
       root_key plural: 'domain_records', singular: 'domain_record', scopes: [:read]
 
       property :id, scopes: [:read]
-      property :type, scopes: [:read, :create, :update]
-      property :name, scopes: [:read, :create, :update]
-      property :data, scopes: [:read, :create, :update]
-      property :priority, scopes: [:read, :create, :update]
-      property :port, scopes: [:read, :create, :update]
-      property :ttl, scopes: [:read, :create, :update]
-      property :weight, scopes: [:read, :create, :update]
-      property :flags, scopes: [:read, :create, :update]
-      property :tag, scopes: [:read, :create, :update]
+      property :type, scopes: %i[read create update]
+      property :name, scopes: %i[read create update]
+      property :data, scopes: %i[read create update]
+      property :priority, scopes: %i[read create update]
+      property :port, scopes: %i[read create update]
+      property :ttl, scopes: %i[read create update]
+      property :weight, scopes: %i[read create update]
+      property :flags, scopes: %i[read create update]
+      property :tag, scopes: %i[read create update]
     end
   end
 end

@@ -5,7 +5,7 @@ module DropletKit
     include Kartograph::DSL
 
     kartograph do
-      root_key plural: 'forwarding_rules', scopes: [:create, :update]
+      root_key plural: 'forwarding_rules', scopes: %i[create update]
       mapping ForwardingRule
 
       scoped :read, :create, :update do

@@ -4,6 +4,7 @@ require 'spec_helper'
 
 RSpec.describe DropletKit::ReservedIpActionResource do
   subject(:resource) { described_class.new(connection: connection) }
+
   include_context 'resources'
 
   describe '#assign' do
@@ -24,20 +25,20 @@ RSpec.describe DropletKit::ReservedIpActionResource do
 
       expect(action).to be_kind_of(DropletKit::Action)
       expect(action.id).to eq(2)
-      expect(action.status).to eq("in-progress")
-      expect(action.type).to eq("assign")
-      expect(action.started_at).to eq("2014-08-05T15:15:28Z")
-      expect(action.completed_at).to eq(nil)
+      expect(action.status).to eq('in-progress')
+      expect(action.type).to eq('assign')
+      expect(action.started_at).to eq('2014-08-05T15:15:28Z')
+      expect(action.completed_at).to be_nil
       expect(action.resource_id).to eq(12)
-      expect(action.resource_type).to eq("reserved_ip")
-      expect(action.region_slug).to eq("nyc1")
+      expect(action.resource_type).to eq('reserved_ip')
+      expect(action.region_slug).to eq('nyc1')
 
       expect(action.region).to be_kind_of(DropletKit::Region)
       expect(action.region.slug).to eq('nyc1')
       expect(action.region.name).to eq('New York')
       expect(action.region.sizes).to include('512mb')
       expect(action.region.available).to be(true)
-      expect(action.region.features).to include("virtio", "private_networking", "backups", "ipv6", "metadata")
+      expect(action.region.features).to include('virtio', 'private_networking', 'backups', 'ipv6', 'metadata')
     end
 
     it_behaves_like 'an action that handles invalid parameters' do
@@ -62,20 +63,20 @@ RSpec.describe DropletKit::ReservedIpActionResource do
 
       expect(action).to be_kind_of(DropletKit::Action)
       expect(action.id).to eq(2)
-      expect(action.status).to eq("in-progress")
-      expect(action.type).to eq("unassign")
-      expect(action.started_at).to eq("2014-08-05T15:15:28Z")
-      expect(action.completed_at).to eq(nil)
+      expect(action.status).to eq('in-progress')
+      expect(action.type).to eq('unassign')
+      expect(action.started_at).to eq('2014-08-05T15:15:28Z')
+      expect(action.completed_at).to be_nil
       expect(action.resource_id).to eq(12)
-      expect(action.resource_type).to eq("reserved_ip")
-      expect(action.region_slug).to eq("nyc1")
+      expect(action.resource_type).to eq('reserved_ip')
+      expect(action.region_slug).to eq('nyc1')
 
       expect(action.region).to be_kind_of(DropletKit::Region)
       expect(action.region.slug).to eq('nyc1')
       expect(action.region.name).to eq('New York')
       expect(action.region.sizes).to include('512mb')
       expect(action.region.available).to be(true)
-      expect(action.region.features).to include("virtio", "private_networking", "backups", "ipv6", "metadata")
+      expect(action.region.features).to include('virtio', 'private_networking', 'backups', 'ipv6', 'metadata')
     end
 
     it_behaves_like 'an action that handles invalid parameters' do
@@ -101,14 +102,14 @@ RSpec.describe DropletKit::ReservedIpActionResource do
       action = actions.first
 
       expect(action.id).to eq(19)
-      expect(action.status).to eq("completed")
-      expect(action.type).to eq("assign_ip")
-      expect(action.started_at).to eq("2014-10-28T17:11:05Z")
-      expect(action.completed_at).to eq("2014-10-28T17:11:06Z")
-      expect(action.resource_id).to eq(45646587)
-      expect(action.resource_type).to eq("reserved_ip")
+      expect(action.status).to eq('completed')
+      expect(action.type).to eq('assign_ip')
+      expect(action.started_at).to eq('2014-10-28T17:11:05Z')
+      expect(action.completed_at).to eq('2014-10-28T17:11:06Z')
+      expect(action.resource_id).to eq(45_646_587)
+      expect(action.resource_type).to eq('reserved_ip')
       expect(action.region).to be_kind_of(DropletKit::Region)
-      expect(action.region_slug).to eq("nyc1")
+      expect(action.region_slug).to eq('nyc1')
     end
 
     it_behaves_like 'a paginated index' do
@@ -126,14 +127,14 @@ RSpec.describe DropletKit::ReservedIpActionResource do
       action = resource.find(ip: ip, id: 23)
 
       expect(action.id).to eq(19)
-      expect(action.status).to eq("completed")
-      expect(action.type).to eq("assign_ip")
-      expect(action.started_at).to eq("2014-10-28T17:11:05Z")
-      expect(action.completed_at).to eq("2014-10-28T17:11:06Z")
-      expect(action.resource_id).to eq(45646587)
-      expect(action.resource_type).to eq("reserved_ip")
+      expect(action.status).to eq('completed')
+      expect(action.type).to eq('assign_ip')
+      expect(action.started_at).to eq('2014-10-28T17:11:05Z')
+      expect(action.completed_at).to eq('2014-10-28T17:11:06Z')
+      expect(action.resource_id).to eq(45_646_587)
+      expect(action.resource_type).to eq('reserved_ip')
       expect(action.region).to be_kind_of(DropletKit::Region)
-      expect(action.region_slug).to eq("nyc1")
+      expect(action.region_slug).to eq('nyc1')
     end
   end
 end

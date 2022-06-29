@@ -4,17 +4,16 @@ require 'droplet_kit'
 require 'droplet_kit/utils'
 
 namespace :doc do
+  desc 'Generate a resource documentation'
   task :resources do
     resources = DropletKit::Client.resources
 
     resources.each do |key, klass|
-      if (ENV['SKIP_CLASSES'] || '').split(',').include?(klass.name)
-        next
-      end
+      next if (ENV.fetch('SKIP_CLASSES', '')).split(',').include?(klass.name)
 
-      class_name = DropletKit::Utils.underscore klass.name.split('::'.freeze).last
+      class_name = DropletKit::Utils.underscore klass.name.split('::').last
       human_name = class_name.dup
-      human_name.tr!('_'.freeze, ' '.freeze)
+      human_name.tr!('_', ' ')
       human_name.gsub!(/([a-z\d]*)/i) { |match| match.downcase }
       human_name.gsub!(/\A\w/) { |match| match.upcase }
 
@@ -23,13 +22,13 @@ namespace :doc do
       puts "    client = DropletKit::Client.new(access_token: 'TOKEN')"
       puts "    client.#{key} #=> #{klass.name}"
       puts
-      puts "Actions supported: "
+      puts 'Actions supported: '
       puts
       klass._resources.each do |action|
-        action_options = action.path.scan(/\:[\w_\-]+/i)
+        action_options = action.path.scan(/:[\w_\-]+/i)
         params = []
 
-        if action.body && action.body.arity > 0
+        if action.body&.arity&.positive?
           resource = class_name.dup
           resource.gsub!('_resource', '')
           resource.downcase!
@@ -38,7 +37,7 @@ namespace :doc do
 
         if action_options.any?
           action_string = action_options.map do |option|
-            option.gsub!(/^\:/, '')
+            option.gsub!(/^:/, '')
             "#{option}: '#{option}'"
           end.join(', ')
 

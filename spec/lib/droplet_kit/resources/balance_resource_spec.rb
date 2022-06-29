@@ -4,12 +4,13 @@ require 'spec_helper'
 
 RSpec.describe DropletKit::BalanceResource do
   subject(:resource) { described_class.new(connection: connection) }
+
   include_context 'resources'
 
   describe '#info' do
     it 'returns the balance information about the current user' do
       fixture = api_fixture('balance/info')
-      parsed  = JSON.load(fixture)
+      parsed  = JSON.parse(fixture)
 
       stub_do_api('/v2/customers/my/balance').to_return(body: fixture)
       balance_info = resource.info

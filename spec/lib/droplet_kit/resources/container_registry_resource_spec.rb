@@ -4,6 +4,7 @@ require 'spec_helper'
 
 RSpec.describe DropletKit::ContainerRegistryResource do
   subject(:resource) { described_class.new(connection: connection) }
+
   include_context 'resources'
 
   describe '#get' do
@@ -12,7 +13,7 @@ RSpec.describe DropletKit::ContainerRegistryResource do
       registry = resource.get
       expect(registry).to be_kind_of(DropletKit::ContainerRegistry)
 
-      expect(registry.name).to eq("foobar")
+      expect(registry.name).to eq('foobar')
     end
 
     it_behaves_like 'resource that handles common errors' do
@@ -26,7 +27,7 @@ RSpec.describe DropletKit::ContainerRegistryResource do
     let(:path) { '/v2/registry' }
     let(:new_attrs) do
       {
-        "name" => "foobar"
+        'name' => 'foobar'
       }
     end
 
@@ -37,11 +38,10 @@ RSpec.describe DropletKit::ContainerRegistryResource do
         as_hash = DropletKit::ContainerRegistryMapping.hash_for(:create, registry)
         expect(as_hash['name']).to eq(registry.name)
 
-
         as_string = DropletKit::ContainerRegistryMapping.representation_for(:create, registry)
         stub_do_api(path, :post).with(body: as_string).to_return(body: api_fixture('container_registry/create'), status: 201)
-        created_registry = resource.create(registry)
-        expect(registry.name).to eq("foobar")
+        resource.create(registry)
+        expect(registry.name).to eq('foobar')
       end
 
       it 'reuses the same object' do
@@ -66,7 +66,7 @@ RSpec.describe DropletKit::ContainerRegistryResource do
       response = resource.delete
 
       expect(request).to have_been_made
-      expect(response).to eq(true)
+      expect(response).to be(true)
     end
   end
 
@@ -75,9 +75,9 @@ RSpec.describe DropletKit::ContainerRegistryResource do
       response = Pathname.new('./spec/fixtures/container_registry/docker-credentials.json').read
       stub_do_api('/v2/registry/docker-credentials', :get).to_return(body: response)
       creds = resource.docker_credentials
-  
+
       expect(creds).to be_kind_of(String)
-      parsed_creds = JSON.load(creds)
+      parsed_creds = JSON.parse(creds)
       expect(parsed_creds).to eq(
         'auths' => {
           'registry.digitalocean.com' => {

@@ -3,6 +3,8 @@
 require 'spec_helper'
 
 RSpec.describe DropletKit::FirewallResource do
+  subject(:resource) { described_class.new(connection: connection) }
+
   include_context 'resources'
 
   let(:firewall_fixture_path) { 'firewalls/find' }
@@ -46,10 +48,9 @@ RSpec.describe DropletKit::FirewallResource do
         )
       ],
       droplet_ids: [123],
-      tags: ['backend'])
+      tags: ['backend']
+    )
   end
-
-  subject(:resource) { described_class.new(connection: connection) }
 
   RSpec::Matchers.define :match_firewall_fixture do
     match do |firewall|
@@ -185,7 +186,7 @@ RSpec.describe DropletKit::FirewallResource do
 
     describe '#remove_droplets' do
       it 'sends request to remove droplets from a given firewall' do
-        request = stub_do_api(File.join(base_path, firewall_id, 'droplets'), :delete).with(body: { droplet_ids: [droplet_id_1, droplet_id_2]}.to_json)
+        request = stub_do_api(File.join(base_path, firewall_id, 'droplets'), :delete).with(body: { droplet_ids: [droplet_id_1, droplet_id_2] }.to_json)
         resource.remove_droplets([droplet_id_1, droplet_id_2], id: firewall_id)
 
         expect(request).to have_been_made
@@ -208,7 +209,7 @@ RSpec.describe DropletKit::FirewallResource do
 
     describe '#remove_tags' do
       it 'sends request to remove tags from a given firewall' do
-        request = stub_do_api(File.join(base_path, firewall_id, 'tags'), :delete).with(body: { tags: [frontend_tag, backend_tag]}.to_json)
+        request = stub_do_api(File.join(base_path, firewall_id, 'tags'), :delete).with(body: { tags: [frontend_tag, backend_tag] }.to_json)
         resource.remove_tags([frontend_tag, backend_tag], id: firewall_id)
 
         expect(request).to have_been_made
@@ -223,7 +224,7 @@ RSpec.describe DropletKit::FirewallResource do
         ports: '22',
         sources: {
           addresses: ['127.0.0.0'],
-          tags: ['frontend', 'backend']
+          tags: %w[frontend backend]
         }
       )
     end

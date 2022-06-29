@@ -12,11 +12,11 @@ module DropletKit
       property :owner_uuid, scopes: [:read]
       property :owner_id, scopes: [:read]
 
-      property :name, scopes: [:read, :create, :update]
-      property :description, scopes: [:read, :create, :update]
-      property :purpose, scopes: [:read, :create, :update]
-      property :environment, scopes: [:read, :create, :update]
-      property :is_default, scopes: [:read, :create, :update]
+      property :name, scopes: %i[read create update]
+      property :description, scopes: %i[read create update]
+      property :purpose, scopes: %i[read create update]
+      property :environment, scopes: %i[read create update]
+      property :is_default, scopes: %i[read create update]
 
       property :created_at, scopes: [:read]
       property :updated_at, scopes: [:read]

@@ -8,7 +8,7 @@ module DropletKit
       mapping ProjectAssignment
       root_key plural: 'resources', singular: 'resource', scopes: [:read]
 
-      property :urn, scopes: [:read, :create]
+      property :urn, scopes: %i[read create]
       property :assigned_at, scopes: [:read]
 
       property :links, scopes: [:read] do

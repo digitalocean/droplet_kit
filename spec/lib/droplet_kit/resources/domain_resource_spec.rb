@@ -4,6 +4,7 @@ require 'spec_helper'
 
 RSpec.describe DropletKit::DomainResource do
   subject(:resource) { described_class.new(connection: connection) }
+
   include_context 'resources'
 
   describe '#all' do
@@ -16,8 +17,8 @@ RSpec.describe DropletKit::DomainResource do
     end
 
     it_behaves_like 'a paginated index' do
-      let(:fixture_path) {'domains/all'}
-      let(:api_path) {'/v2/domains'}
+      let(:fixture_path) { 'domains/all' }
+      let(:api_path) { '/v2/domains' }
     end
   end
 
@@ -36,7 +37,7 @@ RSpec.describe DropletKit::DomainResource do
       created_domain = resource.create(domain)
       expect(created_domain.name).to eq('example.com')
       expect(created_domain.ttl).to eq(1800)
-      expect(created_domain.zone_file).to eq(nil)
+      expect(created_domain.zone_file).to be_nil
     end
   end
 

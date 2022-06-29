@@ -1,0 +1,22 @@
+require:
+  - rubocop-packaging
+  - rubocop-performance
+  - rubocop-rake
+  - rubocop-rspec
+
+inherit_from: .rubocop_todo.yml
+
+AllCops:
+  NewCops: enable
+  # Should be the same as gem's `required_ruby_version`
+  TargetRubyVersion: 2.5
+
+
+# Maintainers need to decide if they
+# want to use to enable MFA for gem releases
+Gemspec/RequireMFA:
+  Enabled: false
+
+# Possible need to drop ruby-2.5 support
+Gemspec/RubyVersionGlobalsUsage:
+  Enabled: false

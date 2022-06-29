@@ -8,7 +8,7 @@ module DropletKit
       mapping Domain
       root_key plural: 'domains', singular: 'domain', scopes: [:read]
 
-      property :name, scopes: [:read, :create]
+      property :name, scopes: %i[read create]
       property :ttl, scopes: [:read]
       property :zone_file, scopes: [:read]
       property :ip_address, scopes: [:create]

@@ -3,12 +3,13 @@
 require 'spec_helper'
 
 RSpec.describe DropletKit::CertificateResource do
+  subject(:resource) { described_class.new(connection: connection) }
+
   include_context 'resources'
 
   let(:certificate_fixture_path) { 'certificates/find' }
-  let(:base_path) { '/v2/certificates'}
+  let(:base_path) { '/v2/certificates' }
   let(:certificate_id) { '892071a0-bb95-49bc-8021-3afd67a210bf' }
-  subject(:resource) { described_class.new(connection: connection) }
 
   RSpec::Matchers.define :match_certificate_fixture do
     match do |certificate|
@@ -28,12 +29,12 @@ RSpec.describe DropletKit::CertificateResource do
       DropletKit::Certificate.new(
         id: '892071a0-bb95-49bc-8021-3afd67a210bf',
         name: 'web-cert-01',
-        dns_names: ["somedomain.com"],
+        dns_names: ['somedomain.com'],
         not_after: '2017-02-22T00:23:00Z',
         sha1_fingerprint: 'dfcc9f57d86bf58e321c2c6c31c7a971be244ac7',
         created_at: '2017-02-08T16:02:37Z',
-        status: "verified",
-        type: "custom",
+        status: 'verified',
+        type: 'custom'
       )
     end
 

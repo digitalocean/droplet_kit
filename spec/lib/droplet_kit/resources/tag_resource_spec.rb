@@ -4,6 +4,7 @@ require 'spec_helper'
 
 describe DropletKit::TagResource do
   subject(:resource) { described_class.new(connection: connection) }
+
   include_context 'resources'
 
   RSpec::Matchers.define :match_tag_fixture do |expected|
@@ -56,7 +57,7 @@ describe DropletKit::TagResource do
       expect(tag.resources.droplets.last_tagged_uri).to eq('https://api.digitalocean.com/v2/droplets/1')
 
       expect(tag.resources.images.count).to eq(1)
-      expect(tag.resources.images.attributes).to_not include(:last_tagged)
+      expect(tag.resources.images.attributes).not_to include(:last_tagged)
       expect(tag.resources.images.last_tagged_uri).to eq('https://api.digitalocean.com/v2/images/146')
     end
   end
@@ -68,7 +69,7 @@ describe DropletKit::TagResource do
       as_string = DropletKit::TagMapping.representation_for(:create, tag)
 
       stub_do_api('/v2/tags', :post).with(body: as_string)
-        .to_return(body: api_fixture('tags/create'), status: 201)
+                                    .to_return(body: api_fixture('tags/create'), status: 201)
       created_tag = resource.create(tag)
 
       expect(created_tag).to match_tag_fixture
@@ -78,7 +79,7 @@ describe DropletKit::TagResource do
   describe '#delete' do
     it 'deletes a tag' do
       request = stub_do_api('/v2/tags/testing-1', :delete)
-        .to_return(body: '', status: 204)
+                .to_return(body: '', status: 204)
 
       resource.delete(name: 'testing-1')
       expect(request).to have_been_made
@@ -91,18 +92,18 @@ describe DropletKit::TagResource do
         resources: [
           {
             resource_id: '1',
-            resource_type: "droplet"
+            resource_type: 'droplet'
           },
           {
             resource_id: '146',
-            resource_type: "images"
+            resource_type: 'images'
           }
         ]
       }
 
       request = stub_do_api('/v2/tags/testing-1/resources', :post)
-        .with(body: params.to_json)
-        .to_return(body: '', status: 204)
+                .with(body: params.to_json)
+                .to_return(body: '', status: 204)
 
       resource.tag_resources(params.merge(name: 'testing-1'))
 
@@ -116,18 +117,18 @@ describe DropletKit::TagResource do
         resources: [
           {
             resource_id: '1',
-            resource_type: "droplet"
+            resource_type: 'droplet'
           },
           {
             resource_id: '146',
-            resource_type: "images"
+            resource_type: 'images'
           }
         ]
       }
 
       request = stub_do_api('/v2/tags/testing-1/resources', :delete)
-        .with(body: params.to_json)
-        .to_return(body: '', status: 204)
+                .with(body: params.to_json)
+                .to_return(body: '', status: 204)
 
       resource.untag_resources(params.merge(name: 'testing-1'))
 

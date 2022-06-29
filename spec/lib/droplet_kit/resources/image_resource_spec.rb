@@ -4,6 +4,7 @@ require 'spec_helper'
 
 RSpec.describe DropletKit::ImageResource do
   subject(:resource) { described_class.new(connection: connection) }
+
   include_context 'resources'
 
   describe '#all' do
@@ -47,12 +48,12 @@ RSpec.describe DropletKit::ImageResource do
       image = resource.find(id: 146)
 
       expect(image.id).to eq(146)
-      expect(image.name).to eq("Ubuntu 13.04")
-      expect(image.distribution).to eq(nil)
-      expect(image.slug).to eq(nil)
-      expect(image.public).to eq(false)
-      expect(image.regions).to eq(["region--1"])
-      expect(image.type).to eq("snapshot")
+      expect(image.name).to eq('Ubuntu 13.04')
+      expect(image.distribution).to be_nil
+      expect(image.slug).to be_nil
+      expect(image.public).to be(false)
+      expect(image.regions).to eq(['region--1'])
+      expect(image.type).to eq('snapshot')
 
       expect(image.min_disk_size).to eq(20)
       expect(image.size_gigabytes).to eq(0.43)

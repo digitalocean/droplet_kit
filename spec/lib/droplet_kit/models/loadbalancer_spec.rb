@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 RSpec.describe DropletKit::LoadBalancer do
-  let(:lb) { DropletKit::LoadBalancer.new(:sticky_sessions => {:cookie_ttl_seconds => "500"}) }
+  let(:lb) { described_class.new(sticky_sessions: { cookie_ttl_seconds: '500' }) }
 
   describe 'redirect_http_to_https' do
     it 'defaults to false' do

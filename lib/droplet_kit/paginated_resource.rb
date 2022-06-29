@@ -16,7 +16,7 @@ module DropletKit
       @resource = resource
       @collection = []
       @args = args
-      @options = args.last.kind_of?(Hash) ? args.last : {}
+      @options = args.last.is_a?(Hash) ? args.last : {}
     end
 
     def per_page
@@ -31,10 +31,9 @@ module DropletKit
       # Start off with the first page if we have no idea of anything yet
       fetch_next_page if total.nil?
 
-      return to_enum(:each, start) unless block_given?
-      Array(@collection[start..-1]).each do |element|
-        yield(element)
-      end
+      return to_enum(:each, start) unless block
+
+      Array(@collection[start..-1]).each(&block)
 
       unless last?
         start = [@collection.size, start].max
@@ -46,18 +45,19 @@ module DropletKit
     end
 
     def last?
-      return true if self.total.nil?
-      @current_page == total_pages || self.total.zero?
+      return true if total.nil?
+
+      @current_page == total_pages || total.zero?
     end
 
     def total_pages
-      return nil if self.total.nil?
+      return nil if total.nil?
 
-      (self.total.to_f / per_page.to_f).ceil
+      (total.to_f / per_page).ceil
     end
 
     def ==(other)
-      each_with_index.each.all? {|object, index| object == other[index] }
+      each_with_index.each.all? { |object, index| object == other[index] }
     end
 
     private

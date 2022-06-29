@@ -33,7 +33,7 @@ module DropletKit
         property :disable_lets_encrypt_dns_records
       end
 
-      scoped  :update, :create do
+      scoped :update, :create do
         property :region
         property :size
         property :size_unit

@@ -5,7 +5,7 @@ module DropletKit
     include ErrorHandlingResourcable
 
     resources do
-      default_handler(:ok) {|r| AccountMapping.extract_single(r.body, :read) }
+      default_handler(:ok) { |r| AccountMapping.extract_single(r.body, :read) }
       get '/v2/account' => :info
     end
   end

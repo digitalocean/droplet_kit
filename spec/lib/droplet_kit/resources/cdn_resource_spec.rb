@@ -4,6 +4,7 @@ require 'spec_helper'
 
 RSpec.describe DropletKit::CDNResource do
   subject(:resource) { described_class.new(connection: connection) }
+
   include_context 'resources'
 
   let(:id) { '7724db7c-e098-11e5-b522-000f53304e51' }
@@ -91,7 +92,7 @@ RSpec.describe DropletKit::CDNResource do
       expect(updated_cdn.ttl).to eq(60)
     end
 
-    it "fails if ttl is invalid" do
+    it 'fails if ttl is invalid' do
       as_string = { ttl: 0 }.to_json
       response_body = { id: :unprocessable_entity, message: 'invalid ttl' }
       stub_do_api(path_with_id, :put).with(body: as_string).to_return(body: response_body.to_json, status: 422)
@@ -106,7 +107,7 @@ RSpec.describe DropletKit::CDNResource do
     it 'returns the updated cdn' do
       certificate_id = '8dd43ed4-fe62-4077-8dc7-5ac59f255213'
       custom_domain = 'www.myacme.xyz'
-      as_string = { custom_domain: custom_domain, certificate_id: certificate_id}.to_json
+      as_string = { custom_domain: custom_domain, certificate_id: certificate_id }.to_json
       stub_do_api(path_with_id, :put).with(body: as_string).to_return(body: api_fixture('cdns/update_custom_domain'))
       updated_cdn = resource.update_custom_domain(id: id, custom_domain: custom_domain, certificate_id: certificate_id)
 
@@ -118,17 +119,17 @@ RSpec.describe DropletKit::CDNResource do
     end
 
     it 'allows removing custom domain' do
-      as_string = { custom_domain: '', certificate_id: ''}.to_json
+      as_string = { custom_domain: '', certificate_id: '' }.to_json
       stub_do_api(path_with_id, :put).with(body: as_string).to_return(body: api_fixture('cdns/remove_custom_domain'))
       updated_cdn = resource.update_custom_domain(id: id, custom_domain: '')
 
       expect(updated_cdn).to be_kind_of(DropletKit::CDN)
 
       expect(updated_cdn.id).to eq(id)
-      expect(updated_cdn.custom_domain).to eq(nil)
+      expect(updated_cdn.custom_domain).to be_nil
     end
 
-    it "fails if custom domain is in use" do
+    it 'fails if custom domain is in use' do
       certificate_id = '8dd43ed4-fe62-4077-8dc7-5ac59f255213'
       custom_domain = 'www.myacme.xyz'
       as_string = { custom_domain: custom_domain, certificate_id: certificate_id }.to_json
@@ -144,14 +145,14 @@ RSpec.describe DropletKit::CDNResource do
     let(:exception) { DropletKit::FailedUpdate }
 
     it 'sends a delete request to cdn cache' do
-      as_string = { files: ["*"] }.to_json
+      as_string = { files: ['*'] }.to_json
       request = stub_do_api(cache_path, :delete).with(body: as_string)
-      resource.flush_cache(id: id, files: ["*"])
+      resource.flush_cache(id: id, files: ['*'])
 
       expect(request).to have_been_made
     end
 
-    it "fails if files are not passed in" do
+    it 'fails if files are not passed in' do
       as_string = { files: [] }.to_json
       response_body = { id: :unprocessable_entity, message: 'invalid request body' }
       stub_do_api(cache_path, :delete).with(body: as_string).to_return(body: response_body.to_json, status: 422)

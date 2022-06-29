@@ -6,13 +6,13 @@ require 'droplet_kit/utils'
 module DropletKit
   class BaseModel
     DO_NAMESPACE = 'do'
-    UNSUPPORTED_COLLECTIONS = ['space']
+    UNSUPPORTED_COLLECTIONS = ['space'].freeze
 
     include Virtus.model
     include Virtus::Equalizer.new(name || inspect)
 
     def inspect
-      values = Hash[instance_variables.map { |name| [name, instance_variable_get(name)] } ]
+      values = instance_variables.map { |name| [name, instance_variable_get(name)] }.to_h
       "<#{self.class.name} #{values}>"
     end
 
@@ -26,7 +26,7 @@ module DropletKit
 
     def identifier
       identifier = attributes[:id] || attributes[:uuid] || attributes[:slug]
-      raise DropletKit::Error.new("#{self.class.name} doesn't support URNs") if identifier.nil?
+      raise DropletKit::Error, "#{self.class.name} doesn't support URNs" if identifier.nil?
 
       identifier
     end

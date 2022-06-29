@@ -8,38 +8,40 @@ RSpec.describe DropletKit::PaginatedResource do
   let(:resource) { ResourceKit::Resource.new(connection: connection) }
   let(:request_count) { RequestCounter.new(0) }
 
-  let(:connection) { Faraday.new {|b| b.adapter :test, stubs } }
+  let(:connection) { Faraday.new { |b| b.adapter :test, stubs } }
   let(:response_size) { 40 }
   let(:stubs) { stub_pager_request(response_size) }
   let(:action) { ResourceKit::Action.new(:find, :get, '/droplets') }
 
   before do
     action.query_keys :per_page, :page
-    action.handler(200) { |r| JSON.load(r.body)['objects'] }
+    action.handler(200) { |r| JSON.parse(r.body)['objects'] }
   end
 
   describe '#initialize' do
     it 'initializes with a action and resource' do
-      instance = DropletKit::PaginatedResource.new(action, resource)
+      instance = described_class.new(action, resource)
       expect(instance.action).to be(action)
       expect(instance.resource).to be(resource)
     end
   end
 
-  describe "#total_pages" do
-    let(:instance) { DropletKit::PaginatedResource.new(action, resource) }
-    it "returns nil if no request made" do
+  describe '#total_pages' do
+    let(:instance) { described_class.new(action, resource) }
+
+    it 'returns nil if no request made' do
       expect(instance.total_pages).to be_nil
     end
 
-    it "returns correct page count after request made" do
+    it 'returns correct page count after request made' do
       instance.take(20)
       expect(instance.total_pages).to eq(2)
     end
 
-    context "when results are empty" do
+    context 'when results are empty' do
       let(:stubs) { stub_pager_request(0) }
-      it "returns 0" do
+
+      it 'returns 0' do
         instance.take(1)
         expect(instance.total_pages).to eq(0)
       end
@@ -47,7 +49,7 @@ RSpec.describe DropletKit::PaginatedResource do
   end
 
   describe '#[]' do
-    subject(:paginated) { DropletKit::PaginatedResource.new(action, resource) }
+    subject(:paginated) { described_class.new(action, resource) }
 
     it 'returns the nth element in the collection' do
       paginated.each_with_index do |elem, i|
@@ -57,7 +59,7 @@ RSpec.describe DropletKit::PaginatedResource do
   end
 
   describe '#each' do
-    subject(:paginated) { DropletKit::PaginatedResource.new(action, resource) }
+    subject(:paginated) { described_class.new(action, resource) }
 
     it 'iterates over every object returned from the API' do
       total = 0
@@ -69,37 +71,37 @@ RSpec.describe DropletKit::PaginatedResource do
     end
 
     it 'called the API twice' do
-      expect {|b| paginated.each {|c| c } }.to change { request_count.count }.to(2).from(0)
+      expect { |b| paginated.each { |c| c } }.to change(request_count, :count).to(2).from(0)
     end
 
     it 'returns the correct objects' do
-      expect(paginated.first(3)).to eq([0,1,2])
+      expect(paginated.first(3)).to eq([0, 1, 2])
     end
 
     context 'for changing size' do
-      subject(:paginated) { DropletKit::PaginatedResource.new(action, resource, per_page: 40) }
+      subject(:paginated) { described_class.new(action, resource, per_page: 40) }
 
       it 'only calls the API once' do
-        expect {|b| paginated.each {|c| c } }.to change { request_count.count }.to(1).from(0)
+        expect { |b| paginated.each { |c| c } }.to change(request_count, :count).to(1).from(0)
       end
     end
   end
 
   describe '#last?' do
-    let(:instance) { DropletKit::PaginatedResource.new(action, resource) }
+    let(:instance) { described_class.new(action, resource) }
 
     it 'returns true when no request is made' do
-      expect(instance.last?).to eq(true)
+      expect(instance.last?).to be(true)
     end
 
     it 'returns false on the first page of results' do
       instance.first
-      expect(instance.last?).to eq(false)
+      expect(instance.last?).to be(false)
     end
 
     it 'returns true on the last page of results' do
-      instance.each do end
-      expect(instance.last?).to eq(true)
+      instance.each {}
+      expect(instance.last?).to be(true)
     end
   end
 end

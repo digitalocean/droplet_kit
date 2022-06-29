@@ -4,6 +4,7 @@ require 'spec_helper'
 
 RSpec.describe DropletKit::FloatingIpResource do
   subject(:resource) { described_class.new(connection: connection) }
+
   include_context 'resources'
 
   RSpec::Matchers.define :match_floating_ip_fixture do |droplet|
@@ -11,7 +12,7 @@ RSpec.describe DropletKit::FloatingIpResource do
       expect(floating_ip.region).to be_kind_of(DropletKit::Region)
       expect(floating_ip.droplet).to be_kind_of(DropletKit::Droplet) if droplet
 
-      floating_ip.ip == "45.55.96.32"
+      floating_ip.ip == '45.55.96.32'
     end
   end
 
@@ -39,7 +40,7 @@ RSpec.describe DropletKit::FloatingIpResource do
   describe '#find' do
     it 'returns a singular floating_ip' do
       stub_do_api('/v2/floating_ips/45.55.96.32', :get).to_return(body: api_fixture('floating_ips/find'))
-      floating_ip = resource.find(ip: "45.55.96.32")
+      floating_ip = resource.find(ip: '45.55.96.32')
       expect(floating_ip).to be_kind_of(DropletKit::FloatingIp)
       expect(floating_ip).to match_floating_ip_fixture
     end
@@ -85,7 +86,7 @@ RSpec.describe DropletKit::FloatingIpResource do
   describe '#delete' do
     it 'sends a delete request for the floating_ip' do
       request = stub_do_api('/v2/floating_ips/45.55.96.32', :delete)
-      resource.delete(ip: "45.55.96.32")
+      resource.delete(ip: '45.55.96.32')
 
       expect(request).to have_been_made
     end

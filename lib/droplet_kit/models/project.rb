@@ -2,7 +2,7 @@
 
 module DropletKit
   class Project < BaseModel
-    DEFAULT = 'default'.freeze
+    DEFAULT = 'default'
 
     attribute :id
     attribute :owner_uuid
