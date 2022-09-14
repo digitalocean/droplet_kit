@@ -13,7 +13,8 @@
         "ams1",
         "sfo1"
       ],
-      "available": true
+      "available": true,
+      "description": "Basic"
     },
     {
       "slug": "1gb",
@@ -28,7 +29,8 @@
         "ams1",
         "sfo1"
       ],
-      "available": true
+      "available": true,
+      "description": "Basic"
     }
   ],
   "meta": {
