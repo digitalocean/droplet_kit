@@ -17,6 +17,7 @@ module DropletKit
       property :price_hourly, scopes: [:read]
       property :regions, scopes: [:read]
       property :available, scopes: [:read]
+      property :description, scopes: [:read]
     end
   end
 end

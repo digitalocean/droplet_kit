@@ -11,6 +11,7 @@ module DropletKit
     attribute :price_hourly
     attribute :regions
     attribute :available
+    attribute :description
   end
 
   def self.from_identifier(identifier)
