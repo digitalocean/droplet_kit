@@ -20,3 +20,8 @@ Gemspec/RequireMFA:
 # Possible need to drop ruby-2.5 support
 Gemspec/RubyVersionGlobalsUsage:
   Enabled: false
+
+RSpec:
+  Language:
+    Expectations:
+      - check_droplet
