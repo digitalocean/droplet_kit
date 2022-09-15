@@ -12,7 +12,7 @@ RSpec.describe DropletKit::SSHKeyResource do
       stub_do_api('/v2/account/keys').to_return(body: api_fixture('ssh_keys/all'))
       ssh_keys = resource.all
 
-      expect(ssh_keys).to all(be_kind_of(DropletKit::SSHKey))
+      expect(ssh_keys).to all(be_a(DropletKit::SSHKey))
 
       expect(ssh_keys.first.id).to eq(1)
       expect(ssh_keys.first.fingerprint).to eq('f5:d1:78:ed:28:72:5f:e1:ac:94:fd:1f:e0:a3:48:6d')
@@ -38,7 +38,7 @@ RSpec.describe DropletKit::SSHKeyResource do
 
       expect(request).to have_been_made
 
-      expect(created_key).to be_kind_of(DropletKit::SSHKey)
+      expect(created_key).to be_a(DropletKit::SSHKey)
 
       expect(created_key.id).to eq(2)
       expect(created_key.fingerprint).to eq('bf:3a:82:fc:4a:25:0b:a3:23:97:fb:4e:e4:88:e1:0e')

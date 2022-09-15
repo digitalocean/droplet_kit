@@ -13,6 +13,6 @@ shared_examples_for 'a paginated index' do
     stub_do_api(api_path, :get).to_return(body: fixture)
     response = resource.send(action, { page: 1, per_page: 1 }.merge(parameters))
 
-    expect(response).to be_kind_of(DropletKit::PaginatedResource)
+    expect(response).to be_a(DropletKit::PaginatedResource)
   end
 end

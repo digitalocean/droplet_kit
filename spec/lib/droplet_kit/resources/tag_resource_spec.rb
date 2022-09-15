@@ -9,7 +9,7 @@ describe DropletKit::TagResource do
 
   RSpec::Matchers.define :match_tag_fixture do |expected|
     match do |actual|
-      expect(actual).to be_kind_of(DropletKit::Tag)
+      expect(actual).to be_a(DropletKit::Tag)
       expect(actual.name).to eq('testing-1')
     end
   end
@@ -20,7 +20,7 @@ describe DropletKit::TagResource do
         .to_return(body: api_fixture('tags/all'))
       tags = resource.all
 
-      expect(tags).to all(be_kind_of(DropletKit::Tag))
+      expect(tags).to all(be_a(DropletKit::Tag))
       expect(tags[0].name).to eq('testing-1')
       expect(tags[1].name).to eq('testing-2')
     end
@@ -48,11 +48,11 @@ describe DropletKit::TagResource do
 
       tag = resource.find(name: 'testing-1')
 
-      expect(tag).to be_kind_of(DropletKit::Tag)
+      expect(tag).to be_a(DropletKit::Tag)
       expect(tag).to match_tag_fixture
       expect(tag.resources.count).to eq(2)
       expect(tag.resources.droplets.count).to eq(1)
-      expect(tag.resources.droplets.last_tagged).to be_kind_of(DropletKit::Droplet)
+      expect(tag.resources.droplets.last_tagged).to be_a(DropletKit::Droplet)
       expect(tag.resources.droplets.last_tagged.id).to eq(1)
       expect(tag.resources.droplets.last_tagged_uri).to eq('https://api.digitalocean.com/v2/droplets/1')
 

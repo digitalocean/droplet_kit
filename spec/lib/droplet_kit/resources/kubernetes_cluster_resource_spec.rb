@@ -15,7 +15,7 @@ RSpec.describe DropletKit::KubernetesClusterResource do
     it 'returns a singular cluster' do
       stub_do_api('/v2/kubernetes/clusters/20', :get).to_return(body: api_fixture('kubernetes/clusters/find'))
       cluster = resource.find(id: 20)
-      expect(cluster).to be_kind_of(DropletKit::KubernetesCluster)
+      expect(cluster).to be_a(DropletKit::KubernetesCluster)
 
       expect(cluster.id).to eq('cluster-1-id')
       expect(cluster.name).to eq('test-cluster')
@@ -86,7 +86,7 @@ RSpec.describe DropletKit::KubernetesClusterResource do
     it 'returns all of the clusters' do
       stub_do_api('/v2/kubernetes/clusters', :get).to_return(body: api_fixture('kubernetes/all'))
       clusters = resource.all
-      expect(clusters).to all(be_kind_of(DropletKit::KubernetesCluster))
+      expect(clusters).to all(be_a(DropletKit::KubernetesCluster))
 
       cluster = clusters.first
 
@@ -207,7 +207,7 @@ RSpec.describe DropletKit::KubernetesClusterResource do
 
       kubeconfig = resource.kubeconfig(id: '1')
 
-      expect(kubeconfig).to be_kind_of(String)
+      expect(kubeconfig).to be_a(String)
 
       parsed_config = YAML.safe_load(kubeconfig)
       expect(parsed_config.keys).to match_array(%w[apiVersion clusters contexts current-context kind preferences users])
@@ -219,7 +219,7 @@ RSpec.describe DropletKit::KubernetesClusterResource do
       stub_do_api("/v2/kubernetes/clusters/#{cluster_id}/node_pools", :get).to_return(body: api_fixture('kubernetes/cluster_node_pools'))
       node_pools = resource.node_pools(id: cluster_id)
       node_pools.each do |pool|
-        expect(pool).to be_kind_of(DropletKit::KubernetesNodePool)
+        expect(pool).to be_a(DropletKit::KubernetesNodePool)
         expect(pool.attributes.keys).to eq kubernetes_node_pool_attributes.keys
       end
       expect(node_pools.length).to eq 1
@@ -277,7 +277,7 @@ RSpec.describe DropletKit::KubernetesClusterResource do
       stub_do_api("/v2/kubernetes/clusters/#{cluster_id}/node_pools", :post).with(body: as_string).to_return(body: api_fixture('kubernetes/cluster_node_pool_create'), status: 201)
       new_node_pool = resource.create_node_pool(node_pool, id: cluster_id)
 
-      expect(new_node_pool).to be_kind_of(DropletKit::KubernetesNodePool)
+      expect(new_node_pool).to be_a(DropletKit::KubernetesNodePool)
       expect(new_node_pool.name).to eq 'frontend'
       expect(new_node_pool.size).to eq 's-1vcpu-1gb'
       expect(new_node_pool.count).to eq 3
@@ -299,7 +299,7 @@ RSpec.describe DropletKit::KubernetesClusterResource do
       stub_do_api("/v2/kubernetes/clusters/#{cluster_id}/node_pools", :get).to_return(body: api_fixture('kubernetes/cluster_node_pools'))
       node_pools = resource.node_pools(id: cluster_id)
       node_pools.each do |pool|
-        expect(pool).to be_kind_of(DropletKit::KubernetesNodePool)
+        expect(pool).to be_a(DropletKit::KubernetesNodePool)
       end
       node_pool_id = '0a209365-2fac-465e-a959-bb91f232923a'
       expect(node_pools.length).to eq 1
@@ -344,7 +344,7 @@ RSpec.describe DropletKit::KubernetesClusterResource do
       stub_do_api("/v2/kubernetes/clusters/#{cluster_id}/node_pools", :get).to_return(body: api_fixture('kubernetes/cluster_node_pools'))
       node_pools = resource.node_pools(id: cluster_id)
       node_pools.each do |pool|
-        expect(pool).to be_kind_of(DropletKit::KubernetesNodePool)
+        expect(pool).to be_a(DropletKit::KubernetesNodePool)
       end
       node_pool_id = '0a209365-2fac-465e-a959-bb91f232923a'
       expect(node_pools.length).to eq 1

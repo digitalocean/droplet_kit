@@ -15,7 +15,7 @@ RSpec.describe DropletKit::AccountResource do
       stub_do_api('/v2/account').to_return(body: fixture)
       account_info = resource.info
 
-      expect(account_info).to be_kind_of(DropletKit::Account)
+      expect(account_info).to be_a(DropletKit::Account)
 
       expect(account_info.droplet_limit).to eq(parsed['account']['droplet_limit'])
       expect(account_info.floating_ip_limit).to eq(parsed['account']['floating_ip_limit'])

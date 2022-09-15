@@ -208,7 +208,7 @@ RSpec.describe DropletKit::DropletActionResource do
       expect(returned_action.resource_type).to eq('backend')
       expect(returned_action.region_slug).to eq('nyc1')
 
-      expect(returned_action.region).to be_kind_of(DropletKit::Region)
+      expect(returned_action.region).to be_a(DropletKit::Region)
       expect(returned_action.region.slug).to eq('nyc1')
       expect(returned_action.region.name).to eq('New York')
       expect(returned_action.region.sizes).to include('512mb')

@@ -9,8 +9,8 @@ RSpec.describe DropletKit::ReservedIpResource do
 
   RSpec::Matchers.define :match_reserved_ip_fixture do |droplet|
     match do |reserved_ip|
-      expect(reserved_ip.region).to be_kind_of(DropletKit::Region)
-      expect(reserved_ip.droplet).to be_kind_of(DropletKit::Droplet) if droplet
+      expect(reserved_ip.region).to be_a(DropletKit::Region)
+      expect(reserved_ip.droplet).to be_a(DropletKit::Droplet) if droplet
 
       reserved_ip.ip == '45.55.96.32'
     end
@@ -20,7 +20,7 @@ RSpec.describe DropletKit::ReservedIpResource do
     it 'returns all of the reserved_ips' do
       stub_do_api('/v2/reserved_ips', :get).to_return(body: api_fixture('reserved_ips/all'))
       reserved_ips = resource.all
-      expect(reserved_ips).to all(be_kind_of(DropletKit::ReservedIp))
+      expect(reserved_ips).to all(be_a(DropletKit::ReservedIp))
 
       expect(reserved_ips.first).to match_reserved_ip_fixture
     end
@@ -41,7 +41,7 @@ RSpec.describe DropletKit::ReservedIpResource do
     it 'returns a singular reserved_ip' do
       stub_do_api('/v2/reserved_ips/45.55.96.32', :get).to_return(body: api_fixture('reserved_ips/find'))
       reserved_ip = resource.find(ip: '45.55.96.32')
-      expect(reserved_ip).to be_kind_of(DropletKit::ReservedIp)
+      expect(reserved_ip).to be_a(DropletKit::ReservedIp)
       expect(reserved_ip).to match_reserved_ip_fixture
     end
   end

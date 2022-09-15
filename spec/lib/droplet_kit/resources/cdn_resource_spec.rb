@@ -20,7 +20,7 @@ RSpec.describe DropletKit::CDNResource do
 
   RSpec::Matchers.define :match_cdn_fixture do
     match do |cdn|
-      expect(cdn).to be_kind_of(DropletKit::CDN)
+      expect(cdn).to be_a(DropletKit::CDN)
 
       expect(cdn.id).to eq(id)
       expect(cdn.origin).to eq(origin)
@@ -37,7 +37,7 @@ RSpec.describe DropletKit::CDNResource do
       stub_do_api(path, :get).to_return(body: api_fixture('cdns/all'))
       cdns = resource.all
 
-      expect(cdns).to all(be_kind_of(DropletKit::CDN))
+      expect(cdns).to all(be_a(DropletKit::CDN))
       expect(cdns.first).to match_cdn_fixture
     end
 
@@ -86,7 +86,7 @@ RSpec.describe DropletKit::CDNResource do
       stub_do_api(path_with_id, :put).with(body: as_string).to_return(body: api_fixture('cdns/update_ttl'))
       updated_cdn = resource.update_ttl(id: id, ttl: 60)
 
-      expect(updated_cdn).to be_kind_of(DropletKit::CDN)
+      expect(updated_cdn).to be_a(DropletKit::CDN)
 
       expect(updated_cdn.id).to eq(id)
       expect(updated_cdn.ttl).to eq(60)
@@ -111,7 +111,7 @@ RSpec.describe DropletKit::CDNResource do
       stub_do_api(path_with_id, :put).with(body: as_string).to_return(body: api_fixture('cdns/update_custom_domain'))
       updated_cdn = resource.update_custom_domain(id: id, custom_domain: custom_domain, certificate_id: certificate_id)
 
-      expect(updated_cdn).to be_kind_of(DropletKit::CDN)
+      expect(updated_cdn).to be_a(DropletKit::CDN)
 
       expect(updated_cdn.id).to eq(id)
       expect(updated_cdn.custom_domain).to eq(custom_domain)
@@ -123,7 +123,7 @@ RSpec.describe DropletKit::CDNResource do
       stub_do_api(path_with_id, :put).with(body: as_string).to_return(body: api_fixture('cdns/remove_custom_domain'))
       updated_cdn = resource.update_custom_domain(id: id, custom_domain: '')
 
-      expect(updated_cdn).to be_kind_of(DropletKit::CDN)
+      expect(updated_cdn).to be_a(DropletKit::CDN)
 
       expect(updated_cdn.id).to eq(id)
       expect(updated_cdn.custom_domain).to be_nil

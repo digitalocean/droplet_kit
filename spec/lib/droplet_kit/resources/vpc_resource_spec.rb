@@ -62,7 +62,7 @@ RSpec.describe DropletKit::VPCResource do
       stub_do_api(base_path, :get).to_return(body: api_fixture(vpcs_fixture_path))
       vpcs = resource.all
 
-      expect(vpcs).to all(be_kind_of(DropletKit::VPC))
+      expect(vpcs).to all(be_a(DropletKit::VPC))
       expect(vpcs.first).to match_vpc_fixture
     end
 
@@ -166,7 +166,7 @@ RSpec.describe DropletKit::VPCResource do
       stub_do_api(base_path, :get).to_return(body: api_fixture(vpc_members_fixture_path))
       vpc_members = resource.all_members
 
-      expect(vpc_members).to all(be_kind_of(DropletKit::VPCMember))
+      expect(vpc_members).to all(be_a(DropletKit::VPCMember))
       expect(vpc_members.first).to match_vpc_member_fixture
     end
 

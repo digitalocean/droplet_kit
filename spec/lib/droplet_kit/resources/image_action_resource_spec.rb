@@ -23,7 +23,7 @@ RSpec.describe DropletKit::ImageActionResource do
 
       expect(request).to have_been_made
 
-      expect(action).to be_kind_of(DropletKit::Action)
+      expect(action).to be_a(DropletKit::Action)
       expect(action.id).to eq(23)
       expect(action.status).to eq('in-progress')
       expect(action.type).to eq('transfer')
@@ -33,7 +33,7 @@ RSpec.describe DropletKit::ImageActionResource do
       expect(action.resource_type).to eq('image')
       expect(action.region_slug).to eq('nyc1')
 
-      expect(action.region).to be_kind_of(DropletKit::Region)
+      expect(action.region).to be_a(DropletKit::Region)
       expect(action.region.slug).to eq('nyc1')
       expect(action.region.name).to eq('New York')
       expect(action.region.sizes).to include('512mb')
@@ -63,7 +63,7 @@ RSpec.describe DropletKit::ImageActionResource do
 
       expect(request).to have_been_made
 
-      expect(action).to be_kind_of(DropletKit::Action)
+      expect(action).to be_a(DropletKit::Action)
       expect(action.id).to eq(23)
       expect(action.status).to eq('in-progress')
       expect(action.type).to eq('convert')
@@ -73,7 +73,7 @@ RSpec.describe DropletKit::ImageActionResource do
       expect(action.resource_type).to eq('image')
       expect(action.region_slug).to eq('nyc1')
 
-      expect(action.region).to be_kind_of(DropletKit::Region)
+      expect(action.region).to be_a(DropletKit::Region)
       expect(action.region.slug).to eq('nyc1')
       expect(action.region.name).to eq('New York')
       expect(action.region.sizes).to include('512mb')
@@ -124,7 +124,7 @@ RSpec.describe DropletKit::ImageActionResource do
       stub_do_api('/v2/images/449676391/actions/23').to_return(body: api_fixture('image_actions/find'))
       action = resource.find(image_id: 449_676_391, id: 23)
 
-      expect(action).to be_kind_of(DropletKit::Action)
+      expect(action).to be_a(DropletKit::Action)
       expect(action.id).to eq(23)
       expect(action.status).to eq('in-progress')
       expect(action.type).to eq('transfer')
@@ -134,7 +134,7 @@ RSpec.describe DropletKit::ImageActionResource do
       expect(action.resource_type).to eq('image')
       expect(action.region_slug).to eq('nyc1')
 
-      expect(action.region).to be_kind_of(DropletKit::Region)
+      expect(action.region).to be_a(DropletKit::Region)
       expect(action.region.slug).to eq('nyc1')
       expect(action.region.name).to eq('New York')
       expect(action.region.sizes).to include('512mb')

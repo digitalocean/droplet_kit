@@ -131,7 +131,7 @@ RSpec.describe DropletKit::FirewallResource do
       stub_do_api(base_path, :get).to_return(body: api_fixture(firewalls_fixture_path))
       firewalls = resource.all
 
-      expect(firewalls).to all(be_kind_of(DropletKit::Firewall))
+      expect(firewalls).to all(be_a(DropletKit::Firewall))
       expect(firewalls.first).to match_firewall_fixture
     end
 
@@ -150,7 +150,7 @@ RSpec.describe DropletKit::FirewallResource do
       stub_do_api(all_by_droplet_path, :get).to_return(body: api_fixture(firewalls_fixture_path))
       firewalls = resource.all_by_droplet(droplet_id: droplet_id)
 
-      expect(firewalls).to all(be_kind_of(DropletKit::Firewall))
+      expect(firewalls).to all(be_a(DropletKit::Firewall))
       expect(firewalls.first).to match_firewall_fixture
     end
 

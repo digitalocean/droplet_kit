@@ -11,7 +11,7 @@ RSpec.describe DropletKit::ContainerRegistryResource do
     it 'returns a registry' do
       stub_do_api('/v2/registry', :get).to_return(body: api_fixture('container_registry/get'))
       registry = resource.get
-      expect(registry).to be_kind_of(DropletKit::ContainerRegistry)
+      expect(registry).to be_a(DropletKit::ContainerRegistry)
 
       expect(registry.name).to eq('foobar')
     end
@@ -76,7 +76,7 @@ RSpec.describe DropletKit::ContainerRegistryResource do
       stub_do_api('/v2/registry/docker-credentials', :get).to_return(body: response)
       creds = resource.docker_credentials
 
-      expect(creds).to be_kind_of(String)
+      expect(creds).to be_a(String)
       parsed_creds = JSON.parse(creds)
       expect(parsed_creds).to eq(
         'auths' => {

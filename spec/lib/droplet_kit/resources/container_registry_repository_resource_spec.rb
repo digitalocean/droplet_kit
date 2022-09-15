@@ -15,7 +15,7 @@ RSpec.describe DropletKit::ContainerRegistryRepositoryResource do
       expected_repos = DropletKit::ContainerRegistryRepositoryMapping.extract_collection(response, :read)
       returned_repos = resource.all(registry_name: 'my-registry')
 
-      expect(returned_repos).to all(be_kind_of(DropletKit::ContainerRegistryRepository))
+      expect(returned_repos).to all(be_a(DropletKit::ContainerRegistryRepository))
       expect(returned_repos).to eq(expected_repos)
     end
 
@@ -33,7 +33,7 @@ RSpec.describe DropletKit::ContainerRegistryRepositoryResource do
       expected_tags = DropletKit::ContainerRegistryRepositoryTagMapping.extract_collection(response, :read)
       returned_tags = resource.tags(registry_name: 'my-registry', repository: 'my-repo')
 
-      expect(returned_tags).to all(be_kind_of(DropletKit::ContainerRegistryRepositoryTag))
+      expect(returned_tags).to all(be_a(DropletKit::ContainerRegistryRepositoryTag))
       expect(returned_tags).to eq(expected_tags)
     end
 
