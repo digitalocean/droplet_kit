@@ -1,6 +1,9 @@
-## main 
+## Version 3.18.0
 
-- #299 - @ShockwaveNN - Add `rubocop` support in CI and fix a lot of issues
+- #303 - @andrewsomething - rubocop: Fix RSpec/ClassCheck.
+- #302 - @excid3 - Add description attribute to Size
+- #299 - @ShockwaveNN - Add rubocop support
+- #300 - @ShockwaveNN - Fix running test on macos
 
 ## Version 3.17.0
 
