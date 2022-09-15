@@ -9,9 +9,9 @@ RSpec.describe DropletKit::VolumeResource do
 
   RSpec::Matchers.define :match_volume_fixture do
     match do |volume|
-      expect(volume).to be_kind_of(DropletKit::Volume)
+      expect(volume).to be_a(DropletKit::Volume)
 
-      expect(volume.region).to be_kind_of(DropletKit::Region)
+      expect(volume.region).to be_a(DropletKit::Region)
       expect(volume.id).to eq('7724db7c-e098-11e5-b522-000f53304e51')
       expect(volume.droplet_ids).to eq([])
       expect(volume.name).to eq('Example')
@@ -28,7 +28,7 @@ RSpec.describe DropletKit::VolumeResource do
       stub_do_api('/v2/volumes', :get).to_return(body: api_fixture('volumes/all'))
       volumes = resource.all
 
-      expect(volumes).to all(be_kind_of(DropletKit::Volume))
+      expect(volumes).to all(be_a(DropletKit::Volume))
       expect(volumes.first).to match_volume_fixture
     end
 
@@ -134,7 +134,7 @@ RSpec.describe DropletKit::VolumeResource do
         stub_do_api(path, :post).with(body: as_string).to_return(body: api_fixture('volumes/create_snapshot'), status: 201)
         created_snapshot = resource.create_snapshot(id: id, name: 'foo')
 
-        expect(created_snapshot).to be_kind_of(DropletKit::Snapshot)
+        expect(created_snapshot).to be_a(DropletKit::Snapshot)
 
         expect(created_snapshot.id).to eq('7724db7c-e098-11e5-b522-000f53304e51')
         expect(created_snapshot.name).to eq('Ubuntu Foo')

@@ -89,7 +89,7 @@ RSpec.describe DropletKit::ImageResource do
       image = resource.update(image, id: 146)
       expect(request).to have_been_made
 
-      expect(image).to be_kind_of(DropletKit::Image)
+      expect(image).to be_a(DropletKit::Image)
       expect(image.id).to eq(146)
     end
   end

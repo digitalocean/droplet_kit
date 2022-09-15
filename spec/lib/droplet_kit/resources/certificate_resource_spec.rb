@@ -53,7 +53,7 @@ RSpec.describe DropletKit::CertificateResource do
       stub_do_api(base_path, :get).to_return(body: api_fixture(certificates_fixture_path))
       certificates = resource.all
 
-      expect(certificates).to all(be_kind_of(DropletKit::Certificate))
+      expect(certificates).to all(be_a(DropletKit::Certificate))
       expect(certificates.first).to match_certificate_fixture
     end
 

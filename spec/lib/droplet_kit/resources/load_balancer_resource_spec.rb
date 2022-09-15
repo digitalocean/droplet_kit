@@ -22,15 +22,15 @@ RSpec.describe DropletKit::LoadBalancerResource do
       expect(load_balancer.tag).to be_blank
       expect(load_balancer.size).to eq('lb-small')
       expect(load_balancer.size_unit).to eq(1)
-      expect(load_balancer.region).to be_kind_of(DropletKit::Region)
+      expect(load_balancer.region).to be_a(DropletKit::Region)
       expect(load_balancer.region.attributes)
         .to match(a_hash_including(slug: 'nyc3', name: 'New York 3',
                                    available: true, sizes: ['512mb'], features: ['private_networking']))
       expect(load_balancer.droplet_ids).to match_array([3_164_445, 3_164_444])
-      expect(load_balancer.sticky_sessions).to be_kind_of(DropletKit::StickySession)
+      expect(load_balancer.sticky_sessions).to be_a(DropletKit::StickySession)
       expect(load_balancer.sticky_sessions.attributes)
         .to match(a_hash_including(cookie_ttl_seconds: 5, cookie_name: 'DO-LB', type: 'cookies'))
-      expect(load_balancer.health_check).to be_kind_of(DropletKit::HealthCheck)
+      expect(load_balancer.health_check).to be_a(DropletKit::HealthCheck)
       expect(load_balancer.health_check.attributes)
         .to match(a_hash_including(protocol: 'http', port: 80, path: '/',
                                    check_interval_seconds: 10, response_timeout_seconds: 5,
@@ -64,7 +64,7 @@ RSpec.describe DropletKit::LoadBalancerResource do
       stub_do_api(base_path, :get).to_return(body: api_fixture(load_balancers_fixture_path))
       load_balancers = resource.all
 
-      expect(load_balancers).to all(be_kind_of(DropletKit::LoadBalancer))
+      expect(load_balancers).to all(be_a(DropletKit::LoadBalancer))
       expect(load_balancers.first).to match_load_balancer_fixture
     end
 

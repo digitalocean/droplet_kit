@@ -21,7 +21,7 @@ RSpec.describe DropletKit::ActionResource do
       stub_do_api('/v2/actions', :get).to_return(body: response)
       actions = resource.all
 
-      expect(actions.first).to be_kind_of(DropletKit::Action)
+      expect(actions.first).to be_a(DropletKit::Action)
       expect(actions.first.id).to eq(1)
       expect(actions.first.status).to eq('in-progress')
       expect(actions.first.type).to eq('test')
@@ -30,7 +30,7 @@ RSpec.describe DropletKit::ActionResource do
       expect(actions.first.resource_id).to be_nil
       expect(actions.first.resource_type).to eq('backend')
 
-      expect(actions.first.region).to be_kind_of(DropletKit::Region)
+      expect(actions.first.region).to be_a(DropletKit::Region)
       expect(actions.first.region.slug).to eq('nyc1')
       expect(actions.first.region.name).to eq('New York')
       expect(actions.first.region.sizes).to include('512mb')
@@ -58,7 +58,7 @@ RSpec.describe DropletKit::ActionResource do
       stub_do_api('/v2/actions/123', :get).to_return(body: response)
       action = resource.find(id: 123)
 
-      expect(action).to be_kind_of(DropletKit::Action)
+      expect(action).to be_a(DropletKit::Action)
       expect(action.id).to eq(2)
       expect(action.status).to eq('in-progress')
       expect(action.type).to eq('test')
@@ -68,7 +68,7 @@ RSpec.describe DropletKit::ActionResource do
       expect(action.resource_type).to eq('backend')
       expect(action.region_slug).to eq('nyc1')
 
-      expect(action.region).to be_kind_of(DropletKit::Region)
+      expect(action.region).to be_a(DropletKit::Region)
       expect(action.region.slug).to eq('nyc1')
       expect(action.region.name).to eq('New York')
       expect(action.region.sizes).to include('512mb')

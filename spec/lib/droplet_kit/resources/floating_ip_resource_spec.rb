@@ -9,8 +9,8 @@ RSpec.describe DropletKit::FloatingIpResource do
 
   RSpec::Matchers.define :match_floating_ip_fixture do |droplet|
     match do |floating_ip|
-      expect(floating_ip.region).to be_kind_of(DropletKit::Region)
-      expect(floating_ip.droplet).to be_kind_of(DropletKit::Droplet) if droplet
+      expect(floating_ip.region).to be_a(DropletKit::Region)
+      expect(floating_ip.droplet).to be_a(DropletKit::Droplet) if droplet
 
       floating_ip.ip == '45.55.96.32'
     end
@@ -20,7 +20,7 @@ RSpec.describe DropletKit::FloatingIpResource do
     it 'returns all of the floating_ips' do
       stub_do_api('/v2/floating_ips', :get).to_return(body: api_fixture('floating_ips/all'))
       floating_ips = resource.all
-      expect(floating_ips).to all(be_kind_of(DropletKit::FloatingIp))
+      expect(floating_ips).to all(be_a(DropletKit::FloatingIp))
 
       expect(floating_ips.first).to match_floating_ip_fixture
     end
@@ -41,7 +41,7 @@ RSpec.describe DropletKit::FloatingIpResource do
     it 'returns a singular floating_ip' do
       stub_do_api('/v2/floating_ips/45.55.96.32', :get).to_return(body: api_fixture('floating_ips/find'))
       floating_ip = resource.find(ip: '45.55.96.32')
-      expect(floating_ip).to be_kind_of(DropletKit::FloatingIp)
+      expect(floating_ip).to be_a(DropletKit::FloatingIp)
       expect(floating_ip).to match_floating_ip_fixture
     end
   end

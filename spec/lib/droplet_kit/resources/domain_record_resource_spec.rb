@@ -15,7 +15,7 @@ RSpec.describe DropletKit::DomainRecordResource do
       expected_records = DropletKit::DomainRecordMapping.extract_collection(response, :read)
       returned_records = resource.all(for_domain: 'example.com')
 
-      expect(returned_records).to all(be_kind_of(DropletKit::DomainRecord))
+      expect(returned_records).to all(be_a(DropletKit::DomainRecord))
       expect(returned_records).to eq(expected_records)
     end
 
@@ -28,7 +28,7 @@ RSpec.describe DropletKit::DomainRecordResource do
       expected_records = DropletKit::DomainRecordMapping.extract_collection(response, :read)
       returned_records = resource.all(for_domain: 'example.com', type: 'CNAME')
 
-      expect(returned_records).to all(be_kind_of(DropletKit::DomainRecord))
+      expect(returned_records).to all(be_a(DropletKit::DomainRecord))
       expect(returned_records).to eq(expected_records)
     end
 
@@ -41,7 +41,7 @@ RSpec.describe DropletKit::DomainRecordResource do
       expected_records = DropletKit::DomainRecordMapping.extract_collection(response, :read)
       returned_records = resource.all(for_domain: 'example.com', name: 'example')
 
-      expect(returned_records).to all(be_kind_of(DropletKit::DomainRecord))
+      expect(returned_records).to all(be_a(DropletKit::DomainRecord))
       expect(returned_records).to eq(expected_records)
     end
 

@@ -9,7 +9,7 @@ describe DropletKit::ProjectResource do
 
   RSpec::Matchers.define :match_project_fixture do |expected|
     match do |actual|
-      expect(actual).to be_kind_of(DropletKit::Project)
+      expect(actual).to be_a(DropletKit::Project)
       expect(actual.name).to eq('cloud.digitalocean.com')
       expect(actual.id).to eq('c177dc8c-12c1-4483-af1c-877eed0f14cb')
       expect(actual.owner_uuid).to eq('34fc5c195b417b7157649f6b8ae273ae9b1b2970')
@@ -28,7 +28,7 @@ describe DropletKit::ProjectResource do
         .to_return(body: api_fixture('projects/all'))
       projects = resource.all
 
-      expect(projects).to all(be_kind_of(DropletKit::Project))
+      expect(projects).to all(be_a(DropletKit::Project))
       expect(projects.collection.size).to eq(2)
 
       default = projects[0]

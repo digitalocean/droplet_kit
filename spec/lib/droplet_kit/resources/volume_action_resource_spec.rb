@@ -9,7 +9,7 @@ RSpec.describe DropletKit::VolumeActionResource do
 
   RSpec::Matchers.define :match_volume_action_fixture do |type|
     match do |action|
-      expect(action).to be_kind_of(DropletKit::Action)
+      expect(action).to be_a(DropletKit::Action)
       expect(action.id).to eq(72_531_856)
       expect(action.status).to eq('in-progress')
       expect(action.type).to eq(type) if type
@@ -19,7 +19,7 @@ RSpec.describe DropletKit::VolumeActionResource do
       expect(action.resource_type).to eq('volume')
       expect(action.region_slug).to eq('nyc1')
 
-      expect(action.region).to be_kind_of(DropletKit::Region)
+      expect(action.region).to be_a(DropletKit::Region)
     end
   end
 

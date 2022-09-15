@@ -23,7 +23,7 @@ RSpec.describe DropletKit::ReservedIpActionResource do
 
       expect(request).to have_been_made
 
-      expect(action).to be_kind_of(DropletKit::Action)
+      expect(action).to be_a(DropletKit::Action)
       expect(action.id).to eq(2)
       expect(action.status).to eq('in-progress')
       expect(action.type).to eq('assign')
@@ -33,7 +33,7 @@ RSpec.describe DropletKit::ReservedIpActionResource do
       expect(action.resource_type).to eq('reserved_ip')
       expect(action.region_slug).to eq('nyc1')
 
-      expect(action.region).to be_kind_of(DropletKit::Region)
+      expect(action.region).to be_a(DropletKit::Region)
       expect(action.region.slug).to eq('nyc1')
       expect(action.region.name).to eq('New York')
       expect(action.region.sizes).to include('512mb')
@@ -61,7 +61,7 @@ RSpec.describe DropletKit::ReservedIpActionResource do
 
       expect(request).to have_been_made
 
-      expect(action).to be_kind_of(DropletKit::Action)
+      expect(action).to be_a(DropletKit::Action)
       expect(action.id).to eq(2)
       expect(action.status).to eq('in-progress')
       expect(action.type).to eq('unassign')
@@ -71,7 +71,7 @@ RSpec.describe DropletKit::ReservedIpActionResource do
       expect(action.resource_type).to eq('reserved_ip')
       expect(action.region_slug).to eq('nyc1')
 
-      expect(action.region).to be_kind_of(DropletKit::Region)
+      expect(action.region).to be_a(DropletKit::Region)
       expect(action.region.slug).to eq('nyc1')
       expect(action.region.name).to eq('New York')
       expect(action.region.sizes).to include('512mb')
@@ -108,7 +108,7 @@ RSpec.describe DropletKit::ReservedIpActionResource do
       expect(action.completed_at).to eq('2014-10-28T17:11:06Z')
       expect(action.resource_id).to eq(45_646_587)
       expect(action.resource_type).to eq('reserved_ip')
-      expect(action.region).to be_kind_of(DropletKit::Region)
+      expect(action.region).to be_a(DropletKit::Region)
       expect(action.region_slug).to eq('nyc1')
     end
 
@@ -133,7 +133,7 @@ RSpec.describe DropletKit::ReservedIpActionResource do
       expect(action.completed_at).to eq('2014-10-28T17:11:06Z')
       expect(action.resource_id).to eq(45_646_587)
       expect(action.resource_type).to eq('reserved_ip')
-      expect(action.region).to be_kind_of(DropletKit::Region)
+      expect(action.region).to be_a(DropletKit::Region)
       expect(action.region_slug).to eq('nyc1')
     end
   end

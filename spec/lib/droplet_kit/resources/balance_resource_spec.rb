@@ -15,7 +15,7 @@ RSpec.describe DropletKit::BalanceResource do
       stub_do_api('/v2/customers/my/balance').to_return(body: fixture)
       balance_info = resource.info
 
-      expect(balance_info).to be_kind_of(DropletKit::Balance)
+      expect(balance_info).to be_a(DropletKit::Balance)
 
       expect(balance_info.month_to_date_balance).to eq(parsed['month_to_date_balance'])
       expect(balance_info.account_balance).to eq(parsed['account_balance'])

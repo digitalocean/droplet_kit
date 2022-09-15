@@ -33,14 +33,14 @@ RSpec.describe DropletKit::DropletResource do
       expect(droplet.tags).to include(tag)
     end
 
-    expect(droplet.region).to be_kind_of(DropletKit::Region)
+    expect(droplet.region).to be_a(DropletKit::Region)
     expect(droplet.region.slug).to eq('nyc1')
     expect(droplet.region.name).to eq('New York')
     expect(droplet.region.sizes).to include('1024mb', '512mb')
     expect(droplet.region.available).to be(true)
     expect(droplet.region.features).to include('virtio', 'private_networking', 'backups', 'ipv6')
 
-    expect(droplet.image).to be_kind_of(DropletKit::Image)
+    expect(droplet.image).to be_a(DropletKit::Image)
     expect(droplet.image.id).to eq(119_192_817)
     expect(droplet.image.name).to eq('Ubuntu 13.04')
     expect(droplet.image.distribution).to eq('ubuntu')
@@ -50,7 +50,7 @@ RSpec.describe DropletKit::DropletResource do
 
     expect(droplet.size_slug).to eq('1024mb')
 
-    expect(droplet.networks).to be_kind_of(DropletKit::NetworkHash)
+    expect(droplet.networks).to be_a(DropletKit::NetworkHash)
     private_v4_network = droplet.networks.v4.first
     expect(private_v4_network.ip_address).to eq('10.0.0.19')
     expect(private_v4_network.netmask).to eq('255.255.0.0')
@@ -69,7 +69,7 @@ RSpec.describe DropletKit::DropletResource do
     expect(v6_network.cidr).to eq(124)
     expect(v6_network.type).to eq('public')
 
-    expect(droplet.kernel).to be_kind_of(DropletKit::Kernel)
+    expect(droplet.kernel).to be_a(DropletKit::Kernel)
     expect(droplet.kernel.id).to eq(485_432_985)
     expect(droplet.kernel.name).to eq('DO-recovery-static-fsck')
     expect(droplet.kernel.version).to eq('3.8.0-25-generic')
@@ -79,7 +79,7 @@ RSpec.describe DropletKit::DropletResource do
     it 'returns all of the droplets' do
       stub_do_api('/v2/droplets', :get).to_return(body: api_fixture('droplets/all'))
       droplets = resource.all
-      expect(droplets).to all(be_kind_of(DropletKit::Droplet))
+      expect(droplets).to all(be_a(DropletKit::Droplet))
 
       check_droplet(droplets.first, %w[tag-1 tag-2])
     end
@@ -100,7 +100,7 @@ RSpec.describe DropletKit::DropletResource do
     it 'returns a singular droplet' do
       stub_do_api('/v2/droplets/20', :get).to_return(body: api_fixture('droplets/find'))
       droplet = resource.find(id: 20)
-      expect(droplet).to be_kind_of(DropletKit::Droplet)
+      expect(droplet).to be_a(DropletKit::Droplet)
       check_droplet(droplet, %w[tag-1 tag-2])
     end
 
@@ -299,7 +299,7 @@ RSpec.describe DropletKit::DropletResource do
       stub_do_api('/v2/droplets/1066/kernels', :get).to_return(body: api_fixture('droplets/list_kernels'))
       kernels = resource.kernels(id: 1066).take(20)
 
-      expect(kernels).to all(be_kind_of(DropletKit::Kernel))
+      expect(kernels).to all(be_a(DropletKit::Kernel))
       expect(kernels[0].id).to eq(61_833_229)
       expect(kernels[0].name).to eq('Ubuntu 14.04 x32 vmlinuz-3.13.0-24-generic')
       expect(kernels[0].version).to eq('3.13.0-24-generic')
@@ -312,7 +312,7 @@ RSpec.describe DropletKit::DropletResource do
     it 'returns a paginated resource' do
       stub_do_api('/v2/droplets/1066/kernels', :get).to_return(body: api_fixture('droplets/list_kernels'))
       kernels = resource.kernels(id: 1066, page: 1, per_page: 1)
-      expect(kernels).to be_kind_of(DropletKit::PaginatedResource)
+      expect(kernels).to be_a(DropletKit::PaginatedResource)
     end
   end
 
@@ -321,7 +321,7 @@ RSpec.describe DropletKit::DropletResource do
       stub_do_api('/v2/droplets/1066/snapshots', :get).to_return(body: api_fixture('droplets/list_snapshots'))
       snapshots = resource.snapshots(id: 1066).take(20)
 
-      expect(snapshots).to all(be_kind_of(DropletKit::Image))
+      expect(snapshots).to all(be_a(DropletKit::Image))
       expect(snapshots[0].id).to eq(449_676_387)
       expect(snapshots[0].name).to eq('Ubuntu 13.04')
       expect(snapshots[0].distribution).to eq('ubuntu')
@@ -333,7 +333,7 @@ RSpec.describe DropletKit::DropletResource do
     it 'returns a paginated resource' do
       stub_do_api('/v2/droplets/1066/snapshots', :get).to_return(body: api_fixture('droplets/list_snapshots'))
       snapshots = resource.snapshots(id: 1066, page: 1, per_page: 1)
-      expect(snapshots).to be_kind_of(DropletKit::PaginatedResource)
+      expect(snapshots).to be_a(DropletKit::PaginatedResource)
     end
   end
 
@@ -342,7 +342,7 @@ RSpec.describe DropletKit::DropletResource do
       stub_do_api('/v2/droplets/1066/backups', :get).to_return(body: api_fixture('droplets/list_backups'))
       backups = resource.backups(id: 1066).take(20)
 
-      expect(backups).to all(be_kind_of(DropletKit::Image))
+      expect(backups).to all(be_a(DropletKit::Image))
       expect(backups[0].id).to eq(449_676_388)
       expect(backups[0].name).to eq('Ubuntu 13.04')
       expect(backups[0].distribution).to eq('ubuntu')
@@ -354,7 +354,7 @@ RSpec.describe DropletKit::DropletResource do
     it 'returns a paginated resource' do
       stub_do_api('/v2/droplets/1066/backups', :get).to_return(body: api_fixture('droplets/list_backups'))
       backups = resource.backups(id: 1066, page: 1, per_page: 1)
-      expect(backups).to be_kind_of(DropletKit::PaginatedResource)
+      expect(backups).to be_a(DropletKit::PaginatedResource)
     end
   end
 
@@ -363,7 +363,7 @@ RSpec.describe DropletKit::DropletResource do
       stub_do_api('/v2/droplets/1066/actions', :get).to_return(body: api_fixture('droplets/list_actions'))
       actions = resource.actions(id: 1066).take(20)
 
-      expect(actions).to all(be_kind_of(DropletKit::Action))
+      expect(actions).to all(be_a(DropletKit::Action))
 
       expect(actions[0].id).to eq(19)
       expect(actions[0].status).to eq('in-progress')
@@ -372,7 +372,7 @@ RSpec.describe DropletKit::DropletResource do
       expect(actions[0].completed_at).to be_nil
       expect(actions[0].resource_id).to eq(24)
       expect(actions[0].resource_type).to eq('droplet')
-      expect(actions[0].region).to be_kind_of(DropletKit::Region)
+      expect(actions[0].region).to be_a(DropletKit::Region)
       expect(actions[0].region.slug).to eq('nyc1')
       expect(actions[0].region.name).to eq('New York')
       expect(actions[0].region.sizes).to include('512mb')
@@ -383,7 +383,7 @@ RSpec.describe DropletKit::DropletResource do
     it 'returns a paginated resource' do
       stub_do_api('/v2/droplets/1066/actions', :get).to_return(body: api_fixture('droplets/list_actions'))
       actions = resource.actions(id: 1066, page: 1, per_page: 1)
-      expect(actions).to be_kind_of(DropletKit::PaginatedResource)
+      expect(actions).to be_a(DropletKit::PaginatedResource)
     end
   end
 

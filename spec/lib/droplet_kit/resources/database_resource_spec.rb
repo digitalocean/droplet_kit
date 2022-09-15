@@ -11,7 +11,7 @@ RSpec.describe DropletKit::DatabaseResource do
 
   RSpec::Matchers.define :match_database_cluster do
     match do |database_cluster|
-      expect(database_cluster).to be_kind_of(DropletKit::DatabaseCluster)
+      expect(database_cluster).to be_a(DropletKit::DatabaseCluster)
       expect(database_cluster.id).to eq(database_cluster_id)
       expect(database_cluster.name).to eq('backend')
       expect(database_cluster.engine).to eq('pg')
@@ -50,17 +50,17 @@ RSpec.describe DropletKit::DatabaseResource do
 
   RSpec::Matchers.define :match_read_only_database_cluster_replica do
     match do |cluster|
-      expect(cluster).to be_kind_of(DropletKit::DatabaseCluster)
+      expect(cluster).to be_a(DropletKit::DatabaseCluster)
       expect(cluster.name).to eq('read-nyc3-01')
       expect(cluster.region).to eq('nyc3')
-      expect(cluster.connection).to be_kind_of(DropletKit::DatabaseConnection)
-      expect(cluster.private_connection).to be_kind_of(DropletKit::DatabaseConnection)
+      expect(cluster.connection).to be_a(DropletKit::DatabaseConnection)
+      expect(cluster.private_connection).to be_a(DropletKit::DatabaseConnection)
     end
   end
 
   RSpec::Matchers.define :match_cluster_user do
     match do |cluster_user|
-      expect(cluster_user).to be_kind_of(DropletKit::DatabaseUser)
+      expect(cluster_user).to be_a(DropletKit::DatabaseUser)
       expect(cluster_user.name).to eq('app-01')
       expect(cluster_user.role).to eq('normal')
       expect(cluster_user.password).to eq('jge5lfxtzhx42iff')
@@ -69,13 +69,13 @@ RSpec.describe DropletKit::DatabaseResource do
 
   RSpec::Matchers.define :match_database_connection_pool do
     match do |pool|
-      expect(pool).to be_kind_of(DropletKit::DatabaseConnectionPool)
+      expect(pool).to be_a(DropletKit::DatabaseConnectionPool)
       expect(pool.user).to eq('doadmin')
       expect(pool.name).to eq('backend-pool')
       expect(pool.size).to eq(10)
       expect(pool.db).to eq('defaultdb')
       expect(pool.mode).to eq('transaction')
-      expect(pool.connection).to be_kind_of(DropletKit::DatabaseConnection)
+      expect(pool.connection).to be_a(DropletKit::DatabaseConnection)
     end
   end
 
@@ -92,7 +92,7 @@ RSpec.describe DropletKit::DatabaseResource do
     it 'returns all database clusters' do
       stub_do_api('/v2/databases', :get).to_return(body: api_fixture('databases/all_clusters'))
       database_clusters = resource.all_clusters
-      expect(database_clusters).to all(be_kind_of(DropletKit::DatabaseCluster))
+      expect(database_clusters).to all(be_a(DropletKit::DatabaseCluster))
 
       database_cluster = database_clusters.first
       expect(database_cluster).to match_database_cluster
@@ -130,7 +130,7 @@ RSpec.describe DropletKit::DatabaseResource do
       stub_do_api('/v2/databases', :post).with(body: json_body).to_return(body: api_fixture('databases/create_cluster'), status: 201)
 
       created_database_cluster = resource.create_cluster(database_cluster)
-      expect(created_database_cluster).to be_kind_of(DropletKit::DatabaseCluster)
+      expect(created_database_cluster).to be_a(DropletKit::DatabaseCluster)
 
       expect(created_database_cluster.id).to eq(database_cluster_id)
       expect(created_database_cluster.name).to eq('backend')
@@ -235,7 +235,7 @@ RSpec.describe DropletKit::DatabaseResource do
       database_cluster = resource.restore_from_backup(database_backup)
 
       expect(request).to have_been_made
-      expect(database_cluster).to be_kind_of(DropletKit::DatabaseCluster)
+      expect(database_cluster).to be_a(DropletKit::DatabaseCluster)
       expect(database_cluster.id).to eq(database_cluster_id)
       expect(database_cluster.name).to eq('backend')
       expect(database_cluster.engine).to eq('pg')
@@ -259,7 +259,7 @@ RSpec.describe DropletKit::DatabaseResource do
     it 'returns all database backups' do
       stub_do_api("/v2/databases/#{database_cluster_id}/backups", :get).to_return(body: api_fixture('databases/backups'), status: 200)
       database_backups = resource.list_backups(id: database_cluster_id)
-      expect(database_backups).to all(be_kind_of(DropletKit::DatabaseBackup))
+      expect(database_backups).to all(be_a(DropletKit::DatabaseBackup))
 
       database_backup = database_backups.first
       expect(database_backup.created_at).to eq('2019-01-11T18:42:27Z')
@@ -280,7 +280,7 @@ RSpec.describe DropletKit::DatabaseResource do
       created_db = resource.create_db(database, id: database_cluster_id)
 
       expect(request).to have_been_made
-      expect(created_db).to be_kind_of(DropletKit::Database)
+      expect(created_db).to be_a(DropletKit::Database)
       expect(created_db.name).to eq('alpha')
     end
   end
@@ -292,7 +292,7 @@ RSpec.describe DropletKit::DatabaseResource do
       stub_do_api("/v2/databases/#{database_cluster_id}/dbs/#{database_name}", :get).to_return(body: api_fixture('databases/database'))
       database = resource.find_db(id: database_cluster_id, name: database_name)
 
-      expect(database).to be_kind_of(DropletKit::Database)
+      expect(database).to be_a(DropletKit::Database)
       expect(database.name).to eq('alpha')
     end
   end
@@ -302,7 +302,7 @@ RSpec.describe DropletKit::DatabaseResource do
       stub_do_api("/v2/databases/#{database_cluster_id}/dbs", :get).to_return(body: api_fixture('databases/databases'))
       databases = resource.all_dbs(id: database_cluster_id)
 
-      expect(databases).to all(be_kind_of(DropletKit::Database))
+      expect(databases).to all(be_a(DropletKit::Database))
       database = databases.first
       expect(database.name).to eq('alpha')
     end
@@ -341,7 +341,7 @@ RSpec.describe DropletKit::DatabaseResource do
       request = stub_do_api("/v2/databases/#{database_cluster_id}/firewall", :get).to_return(body: api_fixture('databases/list_firewall_rules_response'), status: 200)
       database_firewall_rules = resource.list_firewall_rules(id: database_cluster_id)
 
-      expect(database_firewall_rules).to all(be_kind_of(DropletKit::DatabaseFirewallRule))
+      expect(database_firewall_rules).to all(be_a(DropletKit::DatabaseFirewallRule))
       expect(database_firewall_rules.first.uuid).to eq('79f26d28-ea8a-41f2-8ad8-8cfcdd020095')
       expect(database_firewall_rules.first.type).to eq('k8s')
       expect(database_firewall_rules.first.value).to eq('ff2a6c52-5a44-4b63-b99c-0e98e7a63d61')
@@ -398,7 +398,7 @@ RSpec.describe DropletKit::DatabaseResource do
       request = stub_do_api("/v2/databases/#{database_cluster_id}/replicas", :get).to_return(body: api_fixture('databases/list_read_only_replica_response'), status: 200)
       database_cluster_read_only_replicas = resource.list_read_only_replicas(id: database_cluster_id)
 
-      expect(database_cluster_read_only_replicas.replicas).to all(be_kind_of(DropletKit::DatabaseCluster))
+      expect(database_cluster_read_only_replicas.replicas).to all(be_a(DropletKit::DatabaseCluster))
       expect(database_cluster_read_only_replicas.replicas.first).to match_read_only_database_cluster_replica
       expect(request).to have_been_made
     end
@@ -451,7 +451,7 @@ RSpec.describe DropletKit::DatabaseResource do
       request = stub_do_api("/v2/databases/#{database_cluster_id}/users", :get).to_return(body: api_fixture('databases/list_database_user_response'), status: 200)
       database_user = resource.list_database_users(id: database_cluster_id)
 
-      expect(database_user).to all(be_kind_of(DropletKit::DatabaseUser))
+      expect(database_user).to all(be_a(DropletKit::DatabaseUser))
       expect(database_user.first).to match_cluster_user
       expect(request).to have_been_made
     end
@@ -529,7 +529,7 @@ RSpec.describe DropletKit::DatabaseResource do
       request = stub_do_api("/v2/databases/#{database_cluster_id}/pools", :get).to_return(body: api_fixture('databases/list_connection_pools_response'), status: 200)
       database_connection_pool = resource.list_connection_pools(id: database_cluster_id)
 
-      expect(database_connection_pool).to all(be_kind_of(DropletKit::DatabaseConnectionPool))
+      expect(database_connection_pool).to all(be_a(DropletKit::DatabaseConnectionPool))
       expect(database_connection_pool.first).to match_database_connection_pool
       expect(request).to have_been_made
     end
@@ -567,7 +567,7 @@ RSpec.describe DropletKit::DatabaseResource do
       request = stub_do_api("/v2/databases/#{database_cluster_id}/eviction_policy", :get).to_return(body: api_fixture('databases/get_eviction_policy_response'), status: 200)
       eviction_policy = resource.get_eviction_policy(id: database_cluster_id)
 
-      expect(eviction_policy).to be_kind_of(DropletKit::DatabaseEvictionPolicy)
+      expect(eviction_policy).to be_a(DropletKit::DatabaseEvictionPolicy)
       expect(eviction_policy.eviction_policy).to eq('allkeys_lru')
       expect(request).to have_been_made
     end
@@ -594,7 +594,7 @@ RSpec.describe DropletKit::DatabaseResource do
       request = stub_do_api("/v2/databases/#{database_cluster_id}/sql_mode", :get).to_return(body: api_fixture('databases/get_sql_modes_response'), status: 200)
       sql_mode = resource.get_sql_mode(id: database_cluster_id)
 
-      expect(sql_mode).to be_kind_of(DropletKit::DatabaseSQLMode)
+      expect(sql_mode).to be_a(DropletKit::DatabaseSQLMode)
       expect(sql_mode.sql_mode).to eq('ANSI,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION,NO_ZERO_DATE,NO_ZERO_IN_DATE,STRICT_ALL_TABLES')
       expect(request).to have_been_made
     end
