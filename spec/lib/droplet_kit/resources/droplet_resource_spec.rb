@@ -81,6 +81,17 @@ RSpec.describe DropletKit::DropletResource do
       droplets = resource.all
       expect(droplets).to all(be_a(DropletKit::Droplet))
 
+      expect(droplets.first.size).to be_a(DropletKit::Size)
+      expect(droplets.first.size.memory).to eq(1024)
+      expect(droplets.first.size.vcpus).to eq(1)
+      expect(droplets.first.size.disk).to eq(25)
+      expect(droplets.first.size.transfer).to eq(1)
+      expect(droplets.first.size.price_monthly).to eq(5)
+      expect(droplets.first.size.price_hourly).to eq(0.00743999984115362)
+      expect(droplets.first.size.regions).to include('nyc1', 'nyc2')
+      expect(droplets.first.size.available).to be(true)
+      expect(droplets.first.size.description).to eq('Basic')
+
       check_droplet(droplets.first, %w[tag-1 tag-2])
     end
 
@@ -101,6 +112,18 @@ RSpec.describe DropletKit::DropletResource do
       stub_do_api('/v2/droplets/20', :get).to_return(body: api_fixture('droplets/find'))
       droplet = resource.find(id: 20)
       expect(droplet).to be_a(DropletKit::Droplet)
+
+      expect(droplet.size).to be_a(DropletKit::Size)
+      expect(droplet.size.memory).to eq(1024)
+      expect(droplet.size.vcpus).to eq(1)
+      expect(droplet.size.disk).to eq(25)
+      expect(droplet.size.transfer).to eq(1)
+      expect(droplet.size.price_monthly).to eq(5)
+      expect(droplet.size.price_hourly).to eq(0.00743999984115362)
+      expect(droplet.size.regions).to include('nyc1', 'nyc2')
+      expect(droplet.size.available).to be(true)
+      expect(droplet.size.description).to eq('Basic')
+
       check_droplet(droplet, %w[tag-1 tag-2])
     end
 

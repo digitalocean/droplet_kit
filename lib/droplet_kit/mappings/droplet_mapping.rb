@@ -24,6 +24,7 @@ module DropletKit
       property :tags, scopes: [:read]
       property :vpc_uuid, scopes: [:read]
       property :volume_ids, scopes: [:read]
+      property :size, scopes: [:read], include: SizeMapping
 
       property :region, scopes: [:read], include: RegionMapping
       property :image, scopes: [:read], include: ImageMapping
