@@ -42,7 +42,7 @@ RSpec.describe DropletKit::DatabaseResource do
       expect(database_cluster.db_names).to eq(['defaultdb'])
       expect(database_cluster.maintenance_window.day).to eq('saturday')
       expect(database_cluster.maintenance_window.hour).to eq('08:45:12')
-      expect(database_cluster.maintenance_window.pending).to be(true)
+      expect(database_cluster.maintenance_window.pending).to be(true) # rubocop:disable RSpec/PendingWithoutReason https://github.com/rubocop/rubocop-rspec/pull/1516
       expect(database_cluster.maintenance_window.description.first).to eq('Update TimescaleDB to version 1.2.1')
       expect(database_cluster.maintenance_window.description.last).to eq('Upgrade to PostgreSQL 11.2 and 10.7 bugfix releases')
     end
