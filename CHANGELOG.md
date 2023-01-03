@@ -1,3 +1,8 @@
+## Version 3.19.0
+
+- #308 - @andrewsomething - Fix two new rubocop offenses.
+- #307 - @ndangles - Add read size mapping attribute to droplet resource
+
 ## Version 3.18.0
 
 - #303 - @andrewsomething - rubocop: Fix RSpec/ClassCheck.
