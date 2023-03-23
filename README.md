@@ -61,12 +61,22 @@ client = DropletKit::Client.new(access_token: 'YOUR_TOKEN')
 client.droplets #=> DropletsResource
 ```
 
-DropletKit will return Plain Old Ruby objects(tm) that contain the information provided by the API. For example:
+DropletKit will return Plain Old Ruby objects(tm) that contain the information provided by the API. For actions that return multiple objects, the request won't be executed until the result is accessed. For example:
 
 ```ruby
 client = DropletKit::Client.new(access_token: 'YOUR_TOKEN')
+
+# Returns an instance of a Paginated Resource.
 client.droplets.all
-# => [ DropletKit::Droplet(id: 123, name: 'something.com', ...), DropletKit::Droplet(id: 1066, name: 'bunk.com', ...) ]
+# => #<DropletKit::PaginatedResource:0x000000010d556c3a>
+
+# Returns the first Droplet.
+client.droplets.all.first
+# => <DropletKit::Droplet {:@id=>1, :@name=>"mydroplet", ...}>
+
+# Returns an array of Droplet IDs.
+client.droplets.all.map(&:id)
+# => [1]
 ```
 
 When you'd like to save objects, it's your responsibility to instantiate the objects and persist them using the resource objects. Let's use creating a Droplet as an example:
