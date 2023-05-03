@@ -163,7 +163,7 @@ Actions supported:
 * `client.databases.list_backups(id: 'id')`
 * `client.databases.restore_from_backup(database_backup)`
 * `client.databases.delete_cluster(id: 'id')`
-* `client.database.create_db(database, id: 'id')`
+* `client.databases.create_db(database, id: 'id')`
 * `client.databases.find_db(id: 'id', name: 'name')`
 * `client.databases.all_dbs(id: 'id')`
 * `client.databases.delete_db(id: 'id', name: 'name')`
