@@ -12,7 +12,7 @@ jobs:
       fail-fast: true
       matrix:
         os: [ ubuntu-latest, macos-latest ]
-        ruby: [ 2.5, 2.6, 2.7, "3.0", 3.1 ] # "x.0" to workaround: https://github.com/ruby/setup-ruby/issues/252
+        ruby: [ 2.5, 2.6, 2.7, "3.0", 3.1, 3.2 ] # "x.0" to workaround: https://github.com/ruby/setup-ruby/issues/252
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v3
