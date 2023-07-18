@@ -8,5 +8,11 @@ module DropletKit
     attribute :email
     attribute :uuid
     attribute :email_verified
+    attribute :team
+  end
+
+  class AccountTeam < BaseModel
+    attribute :uuid
+    attribute :name
   end
 end

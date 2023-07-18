@@ -15,6 +15,21 @@ module DropletKit
         property :email
         property :uuid
         property :email_verified
+        property :team
+      end
+    end
+  end
+
+  class AccountTeamMapping
+    include Kartograph::DSL
+
+    kartograph do
+      root_key singular: 'team', scopes: [:read]
+      mapping AccountTeam
+
+      scoped :read do
+        property :uuid
+        property :name
       end
     end
   end
