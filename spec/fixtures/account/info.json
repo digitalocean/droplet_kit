@@ -2,7 +2,12 @@
     "account": {
         "droplet_limit": 200,
         "email": "droplet_kit@digitalocean.com",
+        "name": "Sammy the Shark",
         "uuid": "alksdjfhlakjdsfh12983712",
-        "email_verified": true
+        "email_verified": true,
+        "team": {
+            "uuid": "00000000-0000-4000-00000000000000000",
+            "name": "My Team"
+        }
     }
 }

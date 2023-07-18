@@ -21,6 +21,15 @@ Gemspec/RequireMFA:
 Gemspec/RubyVersionGlobalsUsage:
   Enabled: false
 
+RSpec/IndexedLet:
+  Enabled: false
+
+RSpec/MatchArray:
+  Enabled: false
+
+Gemspec/DevelopmentDependencies:
+  Enabled: false
+
 RSpec:
   Language:
     Expectations:

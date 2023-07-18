@@ -20,8 +20,10 @@ RSpec.describe DropletKit::AccountResource do
       expect(account_info.droplet_limit).to eq(parsed['account']['droplet_limit'])
       expect(account_info.floating_ip_limit).to eq(parsed['account']['floating_ip_limit'])
       expect(account_info.email).to eq(parsed['account']['email'])
+      expect(account_info.name).to eq(parsed['account']['name'])
       expect(account_info.uuid).to eq(parsed['account']['uuid'])
       expect(account_info.email_verified).to eq(parsed['account']['email_verified'])
+      expect(account_info.team).to eq(parsed['account']['team'])
     end
 
     it_behaves_like 'resource that handles common errors' do
