@@ -1,23 +1,29 @@
 # frozen_string_literal: true
 
 require 'faraday'
+require 'faraday/retry'
 require 'droplet_kit/utils'
 
 module DropletKit
   class Client
     DEFAULT_OPEN_TIMEOUT = 60
     DEFAULT_TIMEOUT = 120
+    DEFAULT_RETRY_MAX = 3
+    DEFAULT_RETRY_WAIT_MIN = 0
+
     DIGITALOCEAN_API = 'https://api.digitalocean.com'
 
-    attr_reader :access_token, :api_url, :open_timeout, :timeout, :user_agent
+    attr_reader :access_token, :api_url, :open_timeout, :timeout, :user_agent, :retry_max, :retry_wait_min
 
     def initialize(options = {})
       options = DropletKit::Utils.transform_keys(options, &:to_sym)
-      @access_token = options[:access_token]
-      @api_url      = options[:api_url] || DIGITALOCEAN_API
-      @open_timeout = options[:open_timeout] || DEFAULT_OPEN_TIMEOUT
-      @timeout      = options[:timeout] || DEFAULT_TIMEOUT
-      @user_agent   = options[:user_agent]
+      @access_token   = options[:access_token]
+      @api_url        = options[:api_url] || DIGITALOCEAN_API
+      @open_timeout   = options[:open_timeout] || DEFAULT_OPEN_TIMEOUT
+      @timeout        = options[:timeout] || DEFAULT_TIMEOUT
+      @user_agent     = options[:user_agent]
+      @retry_max      = options[:retry_max] || DEFAULT_RETRY_MAX
+      @retry_wait_min = options[:retry_wait_min] || DEFAULT_RETRY_WAIT_MIN
     end
 
     def connection
@@ -25,6 +31,17 @@ module DropletKit
         req.adapter :net_http
         req.options.open_timeout = open_timeout
         req.options.timeout = timeout
+        req.request :retry, {
+          max: @retry_max,
+          interval: @retry_wait_min,
+          retry_statuses: [429],
+          # faraday-retry supports both the Retry-After and RateLimit-Reset
+          # headers, however, it favours the RateLimit-Reset one. To force it
+          # to use the Retry-After header, we override the header that it
+          # expects for the RateLimit-Reset header to something that we know
+          # we don't set.
+          rate_limit_reset_header: 'undefined'
+        }
       end
     end
 

@@ -51,6 +51,26 @@ RSpec.describe DropletKit::Client do
 
       expect(client.timeout).to eq(timeout)
     end
+
+    it 'allows retry max to be set' do
+      retry_max = 10
+      client = described_class.new(
+        'access_token' => 'my-token',
+        'retry_max' => retry_max
+      )
+
+      expect(client.retry_max).to eq(retry_max)
+    end
+
+    it 'allows retry wait min to be set' do
+      retry_wait_min = 3
+      client = described_class.new(
+        'access_token' => 'my-token',
+        'retry_wait_min' => retry_wait_min
+      )
+
+      expect(client.retry_wait_min).to eq(retry_wait_min)
+    end
   end
 
   describe '#method_missing' do

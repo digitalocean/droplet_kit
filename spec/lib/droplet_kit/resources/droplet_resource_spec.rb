@@ -133,6 +133,13 @@ RSpec.describe DropletKit::DropletResource do
       let(:action) { :find }
       let(:arguments) { { id: 123 } }
     end
+
+    it_behaves_like 'resource that handles rate limit retries' do
+      let(:path) { '/v2/droplets/123' }
+      let(:method) { :get }
+      let(:action) { :find }
+      let(:arguments) { { id: 123 } }
+    end
   end
 
   describe '#create' do
