@@ -31,5 +31,11 @@ RSpec.describe DropletKit::AccountResource do
       let(:method) { :get }
       let(:action) { :info }
     end
+
+    it_behaves_like 'resource that handles rate limit retries' do
+      let(:path) { '/v2/account' }
+      let(:method) { :get }
+      let(:action) { :info }
+    end
   end
 end

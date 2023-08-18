@@ -3,7 +3,7 @@
 shared_examples_for 'resource that handles common errors' do
   let(:arguments) { {} }
 
-  it 'handles rate limit' do
+  it 'handles rate limit when retry-after is not present' do
     response_body = { id: :rate_limit, message: 'Too much!!!' }
     stub_do_api(path, method).to_return(body: response_body.to_json, status: 429, headers: {
                                           'RateLimit-Limit' => 1200,
