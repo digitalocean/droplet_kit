@@ -71,6 +71,19 @@ RSpec.describe DropletKit::Client do
 
       expect(client.retry_wait_min).to eq(retry_wait_min)
     end
+
+    it 'does not handle rate limited requests when retry max is zero' do
+      client = described_class.new(retry_max: 0)
+
+      stub_do_api('/v2/account', :get).to_return(body: { id: :rate_limit, message: '429' }.to_json, status: 429, headers: {
+                                                   'RateLimit-Limit' => 1200,
+                                                   'RateLimit-Remaining' => 1193,
+                                                   'RateLimit-Reset' => 1_402_425_459,
+                                                   'Retry-After' => 0
+                                                 })
+
+      expect { client.account.send(:info).to_a }.to raise_exception(DropletKit::RateLimitReached)
+    end
   end
 
   describe '#method_missing' do

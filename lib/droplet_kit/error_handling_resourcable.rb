@@ -8,7 +8,7 @@ module ErrorHandlingResourcable
         when 200...299
           next
         when 429
-          unless response.headers.key?('Retry-After')
+          unless response.headers.key?('Retry-After') && !connection.options.context.key?(:retry_max)
             error = DropletKit::RateLimitReached.new("#{response.status}: #{response.body}")
             error.limit = response.headers['RateLimit-Limit']
             error.remaining = response.headers['RateLimit-Remaining']

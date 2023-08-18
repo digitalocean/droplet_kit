@@ -31,17 +31,19 @@ module DropletKit
         req.adapter :net_http
         req.options.open_timeout = open_timeout
         req.options.timeout = timeout
-        req.request :retry, {
-          max: @retry_max,
-          interval: @retry_wait_min,
-          retry_statuses: [429],
-          # faraday-retry supports both the Retry-After and RateLimit-Reset
-          # headers, however, it favours the RateLimit-Reset one. To force it
-          # to use the Retry-After header, we override the header that it
-          # expects for the RateLimit-Reset header to something that we know
-          # we don't set.
-          rate_limit_reset_header: 'undefined'
-        }
+        unless retry_max.zero?
+          req.request :retry, {
+            max: @retry_max,
+            interval: @retry_wait_min,
+            retry_statuses: [429],
+            # faraday-retry supports both the Retry-After and RateLimit-Reset
+            # headers, however, it favours the RateLimit-Reset one. To force it
+            # to use the Retry-After header, we override the header that it
+            # expects for the RateLimit-Reset header to something that we know
+            # we don't set.
+            rate_limit_reset_header: 'undefined'
+          }
+        end
       end
     end
 
@@ -108,6 +110,11 @@ module DropletKit
           content_type: 'application/json',
           authorization: "Bearer #{access_token}",
           user_agent: "#{user_agent} #{default_user_agent}".strip
+        },
+        request: {
+          context: {
+            retry_max: @retry_max
+          }
         }
       }
     end
