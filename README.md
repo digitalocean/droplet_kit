@@ -52,6 +52,19 @@ require 'droplet_kit'
 client = DropletKit::Client.new(access_token: 'YOUR_TOKEN', user_agent: 'custom')
 ```
 
+### Automatically Retry Rate Limited Requests
+
+By default, DropletKit will handle requests that are rate limited by the DigitalOcean API's [burst limit](https://docs.digitalocean.com/reference/api/api-reference/#section/Introduction/Rate-Limit). When the burst rate limit is reached, DropletKit will wait according to the value of the API response's `Retry-After` header. Typically the wait time is less than one minute. When the hourly rate limit is hit, an error is raised.
+
+By default, DropletKit will retry a rate limited request three times before returning an error. If you would like to disable the retry behavior altogether, and instead raise an error when any rate limit is reached, you can set the `retry_max` config value to zero.
+
+DropletKit will also wait zero seconds until retrying a request after the `Retry-After` time has elapsed by default. To change this, set the `retry_wait_min` to a different value.
+
+```ruby
+require 'droplet_kit'
+client = DropletKit::Client.new(access_token: 'YOUR_TOKEN', retry_max: 3, retry_wait_min: 1)
+```
+
 ## Design
 
 DropletKit follows a strict design of resources as methods on your client. For examples, for droplets, you will call your client like this:
