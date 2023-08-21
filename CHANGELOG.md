@@ -1,3 +1,11 @@
+## Version 3.20.0
+
+- #315 - @bentranter - retry requests when rate limit reached
+- #314 - @bentranter - account: add 'name' field in response
+- #313 - @bentranter - ci: add ruby 3.2 to test matrix
+- #312 - @andrewsomething - Update README.md to fix typo with create_db method docs
+- #310 - @bentranter - readme: updates docs for accessing paginated resources
+
 ## Version 3.19.0
 
 - #308 - @andrewsomething - Fix two new rubocop offenses.
