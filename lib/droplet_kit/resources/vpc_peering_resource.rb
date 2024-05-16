@@ -20,19 +20,13 @@ module DropletKit
       end
 
       action :create, 'POST /v2/vpc_peerings' do
-        body { |vpc| VPCPeeringMapping.representation_for(:create, vpc) }
+        body { |vpc_peering| VPCPeeringMapping.representation_for(:create, vpc_peering) }
         handler(202) { |response| VPCPeeringMapping.extract_single(response.body, :read) }
         handler(422) { |response| ErrorMapping.fail_with(FailedCreate, response.body) }
       end
 
-      action :update, 'PUT /v2/vpc_peerings/:id' do
-        body { |vpc| VPCPeeringMapping.representation_for(:update, vpc) }
-        handler(200) { |response| VPCPeeringMapping.extract_single(response.body, :read) }
-        handler(422) { |response| ErrorMapping.fail_with(FailedUpdate, response.body) }
-      end
-
       action :patch, 'PATCH /v2/vpc_peerings/:id' do
-        body { |vpc| VPCPeeringMapping.representation_for(:patch, vpc) }
+        body { |vpc_peering| VPCPeeringMapping.representation_for(:patch, vpc_peering) }
         handler(200) { |response| VPCPeeringMapping.extract_single(response.body, :read) }
         handler(422) { |response| ErrorMapping.fail_with(FailedUpdate, response.body) }
       end

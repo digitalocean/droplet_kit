@@ -631,9 +631,9 @@ Actions supported:
 
 * `client.vpc_peerings.find(id: 'id')`
 * `client.vpc_peerings.all()`
-* `client.vpc_peerings.create(vpc)`
-* `client.vpc_peerings.update(vpc, id: 'id')`
-* `client.vpc_peerings.patch(vpc, id: 'id')`
+* `client.vpc_peerings.create(vpc_peering)`
+* `client.vpc_peerings.update(vpc_peering, id: 'id')`
+* `client.vpc_peerings.patch(vpc_peering, id: 'id')`
 * `client.vpc_peerings.delete(id: 'id')`
 
 ## Container Registry resource

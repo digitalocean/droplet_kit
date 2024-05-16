@@ -80,7 +80,8 @@ module DropletKit
         projects: ProjectResource,
         volumes: VolumeResource,
         volume_actions: VolumeActionResource,
-        vpcs: VPCResource
+        vpcs: VPCResource,
+        vpc_peerings: VPCPeeringResource
       }
     end
 

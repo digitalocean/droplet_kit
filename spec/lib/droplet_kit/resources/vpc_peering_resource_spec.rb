@@ -47,7 +47,7 @@ RSpec.describe DropletKit::VPCPeeringResource do
     end
   end
 
-  context 'when creating, updating, patching, and deleting' do
+  context 'when creating, patching, and deleting' do
     let(:vpc_peering) do
       DropletKit::VPCPeering.new(
         name: 'example-vpc-peering'
@@ -66,24 +66,6 @@ RSpec.describe DropletKit::VPCPeeringResource do
 
       it_behaves_like 'an action that handles invalid parameters' do
         let(:action) { 'create' }
-        let(:arguments) { DropletKit::VPCPeering.new }
-      end
-    end
-
-    describe '#update' do
-      let(:path) { base_path }
-
-      it 'returns updated vpc peering' do
-        json_body = DropletKit::VPCPeeringMapping.representation_for(:update, vpc_peering)
-        stub_do_api(File.join(base_path, vpc_peering_uuid), :put).with(body: json_body).to_return(body: api_fixture(vpc_peering_fixture_path), status: 200)
-
-        expect(resource.update(vpc_peering, id: vpc_peering_uuid)).to match_vpc_peering_fixture
-      end
-
-      it_behaves_like 'an action that handles invalid parameters' do
-        let(:verb) { :put }
-        let(:exception) { DropletKit::FailedUpdate }
-        let(:action) { 'update' }
         let(:arguments) { DropletKit::VPCPeering.new }
       end
     end
