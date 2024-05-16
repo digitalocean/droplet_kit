@@ -38,7 +38,7 @@ module DropletKit
       end
 
       action :delete, 'DELETE /v2/vpc_peerings/:id' do
-        handler(202) { |_| true }
+        handler(202) { |response| VPCPeeringMapping.extract_single(response.body, :read) }
       end
     end
 

@@ -47,7 +47,7 @@ RSpec.describe DropletKit::VPCPeeringResource do
     end
   end
 
-  context 'when creating, updating and patching' do
+  context 'when creating, updating, patching, and deleting' do
     let(:vpc_peering) do
       DropletKit::VPCPeering.new(
         name: 'example-vpc-peering'
@@ -105,14 +105,15 @@ RSpec.describe DropletKit::VPCPeeringResource do
         let(:arguments) { DropletKit::VPCPeering.new }
       end
     end
-  end
 
-  describe '#delete' do
-    it 'sends a delete request for the vpc' do
-      request = stub_do_api(File.join(base_path, vpc_peering_uuid), :delete)
-      resource.delete(id: vpc_peering_uuid)
+    describe '#delete' do
+      let(:path) { base_path }
 
-      expect(request).to have_been_made
+      it 'returns vpc peering pending deletion' do
+        stub_do_api(File.join(base_path, vpc_peering_uuid), :delete).to_return(body: api_fixture(vpc_peering_fixture_path), status: 202)
+
+        expect(resource.delete(id: vpc_peering_uuid)).to match_vpc_peering_fixture
+      end
     end
   end
 end
