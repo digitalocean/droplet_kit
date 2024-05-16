@@ -15,7 +15,7 @@ RSpec.describe DropletKit::VPCPeeringResource do
     match do |vpc_peering|
       expect(vpc_peering.id).to eq('6e9bff8e-2d65-4301-9a48-f80a25ad89fa')
       expect(vpc_peering.name).to eq('my-new-vpc-peering-1')
-      expect(vpc_peering.vpc_ids).to eq(["880b7f98-f062-404d-b33c-458d545696f6","be76c5b4-c6c4-4fbb-a710-edbfe76c1982"])
+      expect(vpc_peering.vpc_ids).to eq(%w[880b7f98-f062-404d-b33c-458d545696f6 be76c5b4-c6c4-4fbb-a710-edbfe76c1982])
       expect(vpc_peering.created_at).to eq('2024-04-03T21:48:41.995304079Z')
       expect(vpc_peering.status).to eq('ACTIVE')
     end
@@ -47,7 +47,7 @@ RSpec.describe DropletKit::VPCPeeringResource do
     end
   end
 
-  context 'create, update and patch' do
+  context 'when creating, updating and patching' do
     let(:vpc_peering) do
       DropletKit::VPCPeering.new(
         name: 'example-vpc-peering'
