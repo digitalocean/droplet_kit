@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe DropletKit::KubernetesClusterResource do
+RSpec.describe DropletKit::KubernetesClusterResource do # rubocop:todo RSpec/SpecFilePathFormat
   subject(:resource) { described_class.new(connection: connection) }
 
   let(:kubernetes_node_pool_attributes) { DropletKit::KubernetesNodePool.new.attributes }

@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe DropletKit::DatabaseResource do
+RSpec.describe DropletKit::DatabaseResource do # rubocop:todo RSpec/SpecFilePathFormat
   subject(:resource) { described_class.new(connection: connection) }
 
   let(:database_cluster_id) { '9cc10173-e9ea-4176-9dbc-a4cee4c4ff30' }

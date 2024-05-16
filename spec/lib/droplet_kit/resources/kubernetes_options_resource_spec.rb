@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe DropletKit::KubernetesOptionsResource do
+RSpec.describe DropletKit::KubernetesOptionsResource do # rubocop:todo RSpec/SpecFilePathFormat
   subject(:resource) { described_class.new(connection: connection) }
 
   include_context 'resources'

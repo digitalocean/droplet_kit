@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe DropletKit::TagResource do
+describe DropletKit::TagResource do # rubocop:todo RSpec/SpecFilePathFormat
   subject(:resource) { described_class.new(connection: connection) }
 
   include_context 'resources'

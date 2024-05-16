@@ -35,7 +35,7 @@ module DropletKit
       end
 
       TAG_ACTIONS.each do |action_name|
-        action "#{action_name}_for_tag".to_sym, 'POST /v2/droplets/actions' do
+        action :"#{action_name}_for_tag", 'POST /v2/droplets/actions' do
           query_keys :tag_name
           body { |_| { type: action_name }.to_json }
           handler(201, 200) { |response| ActionMapping.extract_collection(response.body, :read) }

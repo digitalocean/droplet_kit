@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe DropletKit::Droplet do
+RSpec.describe DropletKit::Droplet do # rubocop:todo RSpec/SpecFilePathFormat
   let(:droplet_fixture) { api_fixture('droplets/find') }
   let(:droplet) { DropletKit::DropletMapping.extract_single(droplet_fixture, :read) }
 

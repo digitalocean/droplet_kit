@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe DropletKit::BaseModel do
+RSpec.describe DropletKit::BaseModel do # rubocop:todo RSpec/SpecFilePathFormat
   subject(:resource) do
     Class.new(DropletKit::BaseModel) do |base|
       attribute :droplet_limit

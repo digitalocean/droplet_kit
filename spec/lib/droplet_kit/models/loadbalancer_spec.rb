@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe DropletKit::LoadBalancer do
+RSpec.describe DropletKit::LoadBalancer do # rubocop:todo RSpec/SpecFilePathFormat
   let(:lb) { described_class.new(sticky_sessions: { cookie_ttl_seconds: '500' }) }
 
   describe 'redirect_http_to_https' do

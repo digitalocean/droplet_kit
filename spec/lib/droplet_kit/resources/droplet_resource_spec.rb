@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe DropletKit::DropletResource do
+RSpec.describe DropletKit::DropletResource do # rubocop:todo RSpec/SpecFilePathFormat
   subject(:resource) { described_class.new(connection: connection) }
 
   include_context 'resources'
@@ -19,7 +19,7 @@ RSpec.describe DropletKit::DropletResource do
       status: 'active'
     }.merge(overrides)
 
-    attrs.each do |attr, val|
+    attrs.each_key do |attr|
       expect(droplet.send(attr)).to eq attrs[attr]
     end
 
