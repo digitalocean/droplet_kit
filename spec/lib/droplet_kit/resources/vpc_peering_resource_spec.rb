@@ -59,7 +59,7 @@ RSpec.describe DropletKit::VPCPeeringResource do
 
       it 'returns created vpc peering' do
         json_body = DropletKit::VPCPeeringMapping.representation_for(:create, vpc_peering)
-        stub_do_api(path, :post).with(body: json_body).to_return(body: api_fixture(vpc_peering_fixture_path), status: 201)
+        stub_do_api(path, :post).with(body: json_body).to_return(body: api_fixture(vpc_peering_fixture_path), status: 202)
 
         expect(resource.create(vpc_peering)).to match_vpc_peering_fixture
       end

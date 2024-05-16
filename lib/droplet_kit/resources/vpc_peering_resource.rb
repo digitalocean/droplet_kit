@@ -21,7 +21,7 @@ module DropletKit
 
       action :create, 'POST /v2/vpc_peerings' do
         body { |vpc| VPCPeeringMapping.representation_for(:create, vpc) }
-        handler(201) { |response| VPCPeeringMapping.extract_single(response.body, :read) }
+        handler(202) { |response| VPCPeeringMapping.extract_single(response.body, :read) }
         handler(422) { |response| ErrorMapping.fail_with(FailedCreate, response.body) }
       end
 
@@ -38,7 +38,7 @@ module DropletKit
       end
 
       action :delete, 'DELETE /v2/vpc_peerings/:id' do
-        handler(204) { |_| true }
+        handler(202) { |_| true }
       end
     end
 
