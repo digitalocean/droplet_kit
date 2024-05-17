@@ -19,7 +19,7 @@ RSpec.describe DropletKit::DropletResource do
       status: 'active'
     }.merge(overrides)
 
-    attrs.each do |attr, val|
+    attrs.each_key do |attr|
       expect(droplet.send(attr)).to eq attrs[attr]
     end
 

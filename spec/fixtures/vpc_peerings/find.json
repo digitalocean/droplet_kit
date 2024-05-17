@@ -1,0 +1,10 @@
+{
+  "vpc_peering":
+    {
+      "id":"6e9bff8e-2d65-4301-9a48-f80a25ad89fa",
+      "name":"my-new-vpc-peering-1",
+      "vpc_ids":["880b7f98-f062-404d-b33c-458d545696f6","be76c5b4-c6c4-4fbb-a710-edbfe76c1982"],
+      "created_at":"2024-04-03T21:48:41.995304079Z",
+      "status":"ACTIVE"
+    }
+}
