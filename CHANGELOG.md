@@ -1,3 +1,8 @@
+## Version 3.21.0
+
+- #318 - @brunograsselli - Introduce VPC Peering resource
+- #317 - @VitaliySerov - Add `ruby-3.3` to ci
+
 ## Version 3.20.0
 
 - #315 - @bentranter - retry requests when rate limit reached
