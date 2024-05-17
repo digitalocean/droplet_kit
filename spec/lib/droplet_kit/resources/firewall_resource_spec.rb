@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe DropletKit::FirewallResource do # rubocop:todo RSpec/SpecFilePathFormat
+RSpec.describe DropletKit::FirewallResource do
   subject(:resource) { described_class.new(connection: connection) }
 
   include_context 'resources'

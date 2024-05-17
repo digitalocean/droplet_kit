@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe DropletKit::DropletActionResource do # rubocop:todo RSpec/SpecFilePathFormat
+RSpec.describe DropletKit::DropletActionResource do
   subject(:resource) { described_class.new(connection: connection) }
 
   let(:droplet_id) { 1066 }

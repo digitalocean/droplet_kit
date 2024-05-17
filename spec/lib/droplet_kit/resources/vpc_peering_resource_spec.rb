@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe DropletKit::VPCPeeringResource do # rubocop:todo RSpec/SpecFilePathFormat
+RSpec.describe DropletKit::VPCPeeringResource do
   subject(:resource) { described_class.new(connection: connection) }
 
   include_context 'resources'
