@@ -20,6 +20,16 @@
     "temp_file_limit": -1,
     "wal_sender_timeout": 60000,
     "backup_hour": 18,
-    "backup_minute": 26
+    "backup_minute": 26,
+    "pg_partman_bgw.role": "role",
+    "pg_partman_bgw.interval": 3600,
+    "pg_stat_statements.track": "all",
+    "timescaledb": {
+      "max_background_workers": 1
+    },
+    "pgbouncer": {
+      "server_reset_query_always": true,
+      "ignore_startup_parameters": ["param1", "param2"]
+    }
   }
 }

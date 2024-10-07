@@ -662,6 +662,14 @@ RSpec.describe DropletKit::DatabaseResource do
 
         expect(config).to be_a(DropletKit::DatabasePostgresConfig)
         expect(config.autovacuum_naptime).to eq(60)
+        expect(config.pg_partman_bgw_role).to eq('role')
+        expect(config.pg_partman_bgw_interval).to eq(3600)
+        expect(config.pg_stat_statements_track).to eq('all')
+        expect(config.timescaledb).to be_a(DropletKit::DatabasePostgresTimescaledbConfig)
+        expect(config.timescaledb.max_background_workers).to eq(1)
+        expect(config.pgbouncer).to be_a(DropletKit::DatabasePostgresPgbouncerConfig)
+        expect(config.pgbouncer.server_reset_query_always).to be_truthy
+        expect(config.pgbouncer.ignore_startup_parameters).to eq(%w[param1 param2])
         expect(request).to have_been_made
       end
     end
@@ -740,7 +748,17 @@ RSpec.describe DropletKit::DatabaseResource do
     context 'for a postgres database' do
       it 'updates the config' do
         postgres_config = DropletKit::DatabasePostgresConfig.new(
-          autovacuum_naptime: 60
+          autovacuum_naptime: 60,
+          pg_partman_bgw_role: 'role',
+          pg_partman_bgw_interval: 3600,
+          pg_stat_statements_track: 'all',
+          timescaledb: DropletKit::DatabasePostgresTimescaledbConfig.new(
+            max_background_workers: 1
+          ),
+          pgbouncer: DropletKit::DatabasePostgresPgbouncerConfig.new(
+            server_reset_query_always: true,
+            ignore_startup_parameters: %w[param1 param2]
+          )
         )
 
         json_body = DropletKit::DatabasePostgresConfigMapping.representation_for(:update, postgres_config)

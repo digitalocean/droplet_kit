@@ -1,6 +1,33 @@
 # frozen_string_literal: true
 
 module DropletKit
+  class DatabasePostgresPgbouncerConfigMapping
+    include Kartograph::DSL
+    kartograph do
+      mapping DatabasePostgresPgbouncerConfig
+
+      scoped :read, :update do
+        property :server_reset_query_always
+        property :ignore_startup_parameters
+        property :min_pool_size
+        property :server_lifetime
+        property :server_idle_timeout
+        property :autodb_pool_size
+        property :autodb_pool_mode
+        property :autodb_max_db_connections
+        property :autodb_idle_timeout
+      end
+    end
+  end
+
+  class DatabasePostgresTimescaledbConfigMapping
+    include Kartograph::DSL
+    kartograph do
+      mapping DatabasePostgresTimescaledbConfig
+      property :max_background_workers, scopes: %i[read update]
+    end
+  end
+
   class DatabasePostgresConfigMapping
     include Kartograph::DSL
 
@@ -42,9 +69,6 @@ module DropletKit
            max_parallel_workers
            max_parallel_workers_per_gather
            max_worker_processes
-           pg_partman_bgw
-           pg_partman_bgw
-           pg_stat_statements
            temp_file_limit
            timezone
            track_activity_query_size
@@ -55,14 +79,18 @@ module DropletKit
            wal_sender_timeout
            wal_writer_delay
            shared_buffers_percentage
-           pgbouncer
            backup_hour
            backup_minute
-           work_mem
-           timescaledb].each do |key|
+           work_mem].each do |key|
           property(key)
-          # TODO: pgbouncer and timescaledb are objects
         end
+
+        property :pg_partman_bgw_role, key: 'pg_partman_bgw.role'
+        property :pg_partman_bgw_interval, key: 'pg_partman_bgw.interval'
+        property :pg_stat_statements_track, key: 'pg_stat_statements.track'
+
+        property :pgbouncer, include: DatabasePostgresPgbouncerConfigMapping
+        property :timescaledb, include: DatabasePostgresTimescaledbConfigMapping
       end
     end
   end

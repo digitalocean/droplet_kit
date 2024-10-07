@@ -1,6 +1,22 @@
 # frozen_string_literal: true
 
 module DropletKit
+  class DatabasePostgresTimescaledbConfig < BaseModel
+    attribute :max_background_workers
+  end
+
+  class DatabasePostgresPgbouncerConfig < BaseModel
+    attribute :server_reset_query_always
+    attribute :ignore_startup_parameters
+    attribute :min_pool_size
+    attribute :server_lifetime
+    attribute :server_idle_timeout
+    attribute :autodb_pool_size
+    attribute :autodb_pool_mode
+    attribute :autodb_max_db_connections
+    attribute :autodb_idle_timeout
+  end
+
   class DatabasePostgresConfig < BaseModel
     %i[autovacuum_freeze_max_age
        autovacuum_max_workers
@@ -35,9 +51,9 @@ module DropletKit
        max_parallel_workers
        max_parallel_workers_per_gather
        max_worker_processes
-       pg_partman_bgw
-       pg_partman_bgw
-       pg_stat_statements
+       pg_partman_bgw_role
+       pg_partman_bgw_interval
+       pg_stat_statements_track
        temp_file_limit
        timezone
        track_activity_query_size
@@ -48,13 +64,13 @@ module DropletKit
        wal_sender_timeout
        wal_writer_delay
        shared_buffers_percentage
-       pgbouncer
        backup_hour
        backup_minute
-       work_mem
-       timescaledb].each do |key|
+       work_mem].each do |key|
       attribute(key)
-      # TODO: pgbouncer and timescaledb are objects
     end
+
+    attribute :timescaledb, DatabasePostgresTimescaledbConfig
+    attribute :pgbouncer, DatabasePostgresPgbouncerConfig
   end
 end
