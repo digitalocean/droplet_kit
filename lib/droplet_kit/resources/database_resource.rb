@@ -165,6 +165,28 @@ module DropletKit
       action :get_sql_mode, 'GET /v2/databases/:id/sql_mode' do
         handler(200) { |response| DatabaseSQLModeMapping.extract_single(response.body, :read) }
       end
+
+      %w[
+        kafka
+        postgres
+        redis
+        opensearch
+        mysql
+        mongo
+      ].each do |database|
+        action :"get_#{database}_config", 'GET /v2/databases/:id/config' do
+          handler(200) do |response|
+            DropletKit.const_get("Database#{database.capitalize}ConfigMapping").extract_single(response.body, :read)
+          end
+        end
+
+        action :"update_#{database}_config", 'PATCH /v2/databases/:id/config' do
+          body do |object|
+            DropletKit.const_get("Database#{database.capitalize}ConfigMapping").representation_for(:update, object)
+          end
+          handler(200) { |response| true }
+        end
+      end
     end
 
     def all(*args)

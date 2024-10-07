@@ -599,4 +599,163 @@ RSpec.describe DropletKit::DatabaseResource do
       expect(request).to have_been_made
     end
   end
+
+  describe '#get_<database>_config' do
+    context 'for a mongo database' do
+      it 'returns the config' do
+        request = stub_do_api("/v2/databases/#{database_cluster_id}/config", :get).to_return(body: api_fixture('databases/get_config_mongo_response'), status: 200)
+        config = resource.get_mongo_config(id: database_cluster_id)
+
+        expect(config).to be_a(DropletKit::DatabaseMongoConfig)
+        expect(config.default_write_concern).to eq('majority')
+        expect(request).to have_been_made
+      end
+    end
+
+    context 'for a kafka database' do
+      it 'returns the config' do
+        request = stub_do_api("/v2/databases/#{database_cluster_id}/config", :get).to_return(body: api_fixture('databases/get_config_kafka_response'), status: 200)
+        config = resource.get_kafka_config(id: database_cluster_id)
+
+        expect(config).to be_a(DropletKit::DatabaseKafkaConfig)
+        expect(config.log_retention_bytes).to eq(-1)
+        expect(request).to have_been_made
+      end
+    end
+
+    context 'for a mysql database' do
+      it 'returns the config' do
+        request = stub_do_api("/v2/databases/#{database_cluster_id}/config", :get).to_return(body: api_fixture('databases/get_config_mysql_response'), status: 200)
+        config = resource.get_mysql_config(id: database_cluster_id)
+
+        expect(config).to be_a(DropletKit::DatabaseMysqlConfig)
+        expect(config.sql_mode).to eq('ANSI,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION,NO_ZERO_DATE,NO_ZERO_IN_DATE,STRICT_ALL_TABLES')
+        expect(request).to have_been_made
+      end
+    end
+
+    context 'for a postgres database' do
+      it 'returns the config' do
+        request = stub_do_api("/v2/databases/#{database_cluster_id}/config", :get).to_return(body: api_fixture('databases/get_config_postgres_response'), status: 200)
+        config = resource.get_postgres_config(id: database_cluster_id)
+
+        expect(config).to be_a(DropletKit::DatabasePostgresConfig)
+        expect(config.autovacuum_naptime).to eq(60)
+        expect(request).to have_been_made
+      end
+    end
+
+    context 'for a redis database' do
+      it 'returns the config' do
+        request = stub_do_api("/v2/databases/#{database_cluster_id}/config", :get).to_return(body: api_fixture('databases/get_config_redis_response'), status: 200)
+        config = resource.get_redis_config(id: database_cluster_id)
+
+        expect(config).to be_a(DropletKit::DatabaseRedisConfig)
+        expect(config.redis_maxmemory_policy).to eq('allkeys-lru')
+        expect(request).to have_been_made
+      end
+    end
+
+    context 'for a opensearch database' do
+      it 'returns the config' do
+        request = stub_do_api("/v2/databases/#{database_cluster_id}/config", :get).to_return(body: api_fixture('databases/get_config_opensearch_response'), status: 200)
+        config = resource.get_opensearch_config(id: database_cluster_id)
+
+        expect(config).to be_a(DropletKit::DatabaseOpensearchConfig)
+        expect(config.ism_enabled).to be_truthy
+        expect(request).to have_been_made
+      end
+    end
+  end
+
+  describe '#update_<database>_config' do
+    context 'for a mongo database' do
+      it 'updates the config' do
+        mongo_config = DropletKit::DatabaseMongoConfig.new(
+          default_read_concern: 'majority',
+          default_write_concern: 'majority',
+          transaction_lifetime_limit_seconds: 60,
+          slow_op_threshold_ms: 250,
+          verbosity: '1'
+        )
+
+        json_body = DropletKit::DatabaseMongoConfigMapping.representation_for(:update, mongo_config)
+        request = stub_do_api("/v2/databases/#{database_cluster_id}/config", :patch).with(body: json_body).to_return(status: 200)
+        resource.update_mongo_config(mongo_config, id: database_cluster_id)
+
+        expect(request).to have_been_made
+      end
+    end
+
+    context 'for a kafka database' do
+      it 'updates the config' do
+        kafka_config = DropletKit::DatabaseKafkaConfig.new(
+          log_retention_bytes: -1,
+          log_retention_hours: 168
+        )
+
+        json_body = DropletKit::DatabaseKafkaConfigMapping.representation_for(:update, kafka_config)
+        request = stub_do_api("/v2/databases/#{database_cluster_id}/config", :patch).with(body: json_body).to_return(status: 200)
+        resource.update_kafka_config(kafka_config, id: database_cluster_id)
+
+        expect(request).to have_been_made
+      end
+    end
+
+    context 'for a mysql database' do
+      it 'updates the config' do
+        mysql_config = DropletKit::DatabaseMysqlConfig.new(
+          sql_mode: 'ANSI,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION,NO_ZERO_DATE,NO_ZERO_IN_DATE,STRICT_ALL_TABLES'
+        )
+
+        json_body = DropletKit::DatabaseMysqlConfigMapping.representation_for(:update, mysql_config)
+        request = stub_do_api("/v2/databases/#{database_cluster_id}/config", :patch).with(body: json_body).to_return(status: 200)
+        resource.update_mysql_config(mysql_config, id: database_cluster_id)
+
+        expect(request).to have_been_made
+      end
+    end
+
+    context 'for a postgres database' do
+      it 'updates the config' do
+        postgres_config = DropletKit::DatabasePostgresConfig.new(
+          autovacuum_naptime: 60
+        )
+
+        json_body = DropletKit::DatabasePostgresConfigMapping.representation_for(:update, postgres_config)
+        request = stub_do_api("/v2/databases/#{database_cluster_id}/config", :patch).with(body: json_body).to_return(status: 200)
+        resource.update_postgres_config(postgres_config, id: database_cluster_id)
+
+        expect(request).to have_been_made
+      end
+    end
+
+    context 'for a redis database' do
+      it 'updates the config' do
+        redis_config = DropletKit::DatabaseRedisConfig.new(
+          redis_maxmemory_policy: 'allkeys-lru'
+        )
+
+        json_body = DropletKit::DatabaseRedisConfigMapping.representation_for(:update, redis_config)
+        request = stub_do_api("/v2/databases/#{database_cluster_id}/config", :patch).with(body: json_body).to_return(status: 200)
+        resource.update_redis_config(redis_config, id: database_cluster_id)
+
+        expect(request).to have_been_made
+      end
+    end
+
+    context 'for a opensearch database' do
+      it 'updates the config' do
+        opensearch_config = DropletKit::DatabaseOpensearchConfig.new(
+          ism_enabled: true
+        )
+
+        json_body = DropletKit::DatabaseOpensearchConfigMapping.representation_for(:update, opensearch_config)
+        request = stub_do_api("/v2/databases/#{database_cluster_id}/config", :patch).with(body: json_body).to_return(status: 200)
+        resource.update_opensearch_config(opensearch_config, id: database_cluster_id)
+
+        expect(request).to have_been_made
+      end
+    end
+  end
 end

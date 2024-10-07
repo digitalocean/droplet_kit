@@ -1,0 +1,9 @@
+{
+  "config": {
+    "default_read_concern": "LOCAL",
+    "default_write_concern": "majority",
+    "transaction_lifetime_limit_seconds": 60,
+    "slow_op_threshold_ms": 100,
+    "verbosity": 0
+  }
+}

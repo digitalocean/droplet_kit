@@ -199,6 +199,18 @@ Actions supported:
 * `client.databases.get_eviction_policy(id: 'id')`
 * `client.databases.set_sql_mode(database_sql_mode, id: 'id')`
 * `client.databases.get_sql_mode(id: 'id')`
+* `client.databases.get_mongo_config(id: 'id')`
+* `client.databases.get_postgres_config(id: 'id')`
+* `client.databases.get_mysql_config(id: 'id')`
+* `client.databases.get_redis_config(id: 'id')`
+* `client.databases.get_kafka_config(id: 'id')`
+* `client.databases.get_opensearch_config(id: 'id')`
+* `client.databases.update_mongo_config(mongo_config, id: 'id')`
+* `client.databases.update_postgres_config(postgres_config, id: 'id')`
+* `client.databases.update_mysql_config(mysql_config, id: 'id')`
+* `client.databases.update_redis_config(redis_config, id: 'id')`
+* `client.databases.update_kafka_config(kafka_config, id: 'id')`
+* `client.databases.update_opensearch_config(opensearch_config, id: 'id')`
 
 ## Droplet resource
 
