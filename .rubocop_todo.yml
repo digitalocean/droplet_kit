@@ -90,7 +90,7 @@ Naming/VariableNumber:
     - 'spec/lib/droplet_kit/resources/firewall_resource_spec.rb'
     - 'spec/lib/droplet_kit/resources/load_balancer_resource_spec.rb'
 
-# Offense count: 33
+# Offense count: 34
 # Configuration parameters: Prefixes, AllowedPatterns.
 # Prefixes: when, with, without
 RSpec/ContextWording:

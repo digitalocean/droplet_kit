@@ -142,6 +142,11 @@ module DropletKit
         handler(200) { |response| DatabaseConnectionPoolMapping.extract_collection(response.body, :read) }
       end
 
+      action :update_connection_pool, 'PUT /v2/databases/:id/pools/:name' do
+        body { |object| DatabaseConnectionPoolMapping.representation_for(:update, object) }
+        handler(204) { |response| true }
+      end
+
       action :delete_connection_pool, 'DELETE /v2/databases/:id/pools/:name' do
         handler(204) { |response| true }
       end
