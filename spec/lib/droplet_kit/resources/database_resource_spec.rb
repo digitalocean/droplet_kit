@@ -620,4 +620,31 @@ RSpec.describe DropletKit::DatabaseResource do
       expect(request).to have_been_made
     end
   end
+
+  describe '#get_metrics_credentials' do
+    it 'returns the metrics credentials' do
+      request = stub_do_api('/v2/databases/metrics/credentials', :get).to_return(body: api_fixture('databases/get_metrics_credentials_response'), status: 200)
+      metrics_credentials = resource.get_metrics_credentials
+
+      expect(metrics_credentials).to be_a(DropletKit::DatabaseMetricsCredentials)
+      expect(metrics_credentials.basic_auth_username).to eq('username')
+      expect(metrics_credentials.basic_auth_password).to eq('password')
+      expect(request).to have_been_made
+    end
+  end
+
+  describe '#update_metrics_credentials' do
+    it 'updates the metrics credentials' do
+      metrics_credentials = DropletKit::DatabaseMetricsCredentials.new(
+        basic_auth_username: 'username',
+        basic_auth_password: 'password'
+      )
+
+      json_body = DropletKit::DatabaseMetricsCredentialsMapping.representation_for(:update, metrics_credentials)
+      request = stub_do_api('/v2/databases/metrics/credentials', :put).with(body: json_body).to_return(status: 204)
+      resource.update_metrics_credentials(metrics_credentials)
+
+      expect(request).to have_been_made
+    end
+  end
 end
