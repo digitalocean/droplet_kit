@@ -194,6 +194,7 @@ Actions supported:
 * `client.databases.create_connection_pool(database_connection_pool, id: 'id')`
 * `client.databases.find_connection_pool(id: 'id', name: 'name')`
 * `client.databases.list_connection_pools(id: 'id')`
+* `client.databases.update_connection_pool(database_connection_pool, id: 'id', name: 'name')`
 * `client.databases.delete_connection_pool(id: 'id', name: 'name')`
 * `client.databases.set_eviction_policy(database_eviction_policy, id: 'id')`
 * `client.databases.get_eviction_policy(id: 'id')`
