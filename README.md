@@ -666,7 +666,7 @@ Actions supported:
 ## 1-Click Applications resource
 
     client = DropletKit::Client.new(access_token: 'TOKEN')
-    client.one_clicks_repository #=> DropletKit::OneClickResource
+    client.one_clicks #=> DropletKit::OneClickResource
 
 Actions supported:
 
