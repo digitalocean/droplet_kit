@@ -535,6 +535,27 @@ RSpec.describe DropletKit::DatabaseResource do
     end
   end
 
+  describe '#update_connection_pool' do
+    context 'for a successful update of a database connection pool' do
+      let(:connection_pool_name) { 'backend-pool' }
+
+      it 'updates the database connection pool' do
+        database_connection_pool = DropletKit::DatabaseConnectionPool.new(
+          mode: 'transaction',
+          size: 10,
+          db: 'defaultdb',
+          user: 'doadmin'
+        )
+
+        json_body = DropletKit::DatabaseConnectionPoolMapping.representation_for(:update, database_connection_pool)
+        request = stub_do_api("/v2/databases/#{database_cluster_id}/pools/#{connection_pool_name}", :put).with(body: json_body).to_return(status: 204)
+        resource.update_connection_pool(database_connection_pool, id: database_cluster_id, name: connection_pool_name)
+
+        expect(request).to have_been_made
+      end
+    end
+  end
+
   describe '#delete_connection_pool' do
     let(:connection_pool_name) { 'backend-pool' }
 
