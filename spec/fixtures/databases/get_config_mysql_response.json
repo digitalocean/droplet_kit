@@ -1,0 +1,14 @@
+{
+  "config": {
+    "sql_mode": "ANSI,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION,NO_ZERO_DATE,NO_ZERO_IN_DATE,STRICT_ALL_TABLES",
+    "sql_require_primary_key": true,
+    "innodb_ft_min_token_size": 3,
+    "innodb_ft_server_stopword_table": "",
+    "innodb_print_all_deadlocks": false,
+    "innodb_rollback_on_timeout": false,
+    "slow_query_log": false,
+    "long_query_time": 10,
+    "backup_hour": 21,
+    "backup_minute": 59
+  }
+}
