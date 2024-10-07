@@ -52,6 +52,8 @@ module DropletKit
   autoload :DatabaseMongoConfig, 'droplet_kit/models/database_mongo_config'
   autoload :DatabaseKafkaConfig, 'droplet_kit/models/database_kafka_config'
   autoload :DatabaseMysqlConfig, 'droplet_kit/models/database_mysql_config'
+  autoload :DatabasePostgresTimescaledbConfig, 'droplet_kit/models/database_postgres_config'
+  autoload :DatabasePostgresPgbouncerConfig, 'droplet_kit/models/database_postgres_config'
   autoload :DatabasePostgresConfig, 'droplet_kit/models/database_postgres_config'
   autoload :DatabaseRedisConfig, 'droplet_kit/models/database_redis_config'
   autoload :DatabaseOpensearchConfig, 'droplet_kit/models/database_opensearch_config'
