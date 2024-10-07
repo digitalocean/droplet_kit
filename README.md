@@ -200,6 +200,8 @@ Actions supported:
 * `client.databases.get_eviction_policy(id: 'id')`
 * `client.databases.set_sql_mode(database_sql_mode, id: 'id')`
 * `client.databases.get_sql_mode(id: 'id')`
+* `client.databases.get_metrics_credentials`
+* `client.databases.update_metrics_credentials(database_metrics_credentials)`
 * `client.databases.get_mongo_config(id: 'id')`
 * `client.databases.get_postgres_config(id: 'id')`
 * `client.databases.get_mysql_config(id: 'id')`

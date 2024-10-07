@@ -171,6 +171,15 @@ module DropletKit
         handler(200) { |response| DatabaseSQLModeMapping.extract_single(response.body, :read) }
       end
 
+      action :get_metrics_credentials, 'GET /v2/databases/metrics/credentials' do
+        handler(200) { |response| DatabaseMetricsCredentialsMapping.extract_single(response.body, :read) }
+      end
+
+      action :update_metrics_credentials, 'PUT /v2/databases/metrics/credentials' do
+        body { |object| DatabaseMetricsCredentialsMapping.representation_for(:update, object) }
+        handler(204) { |response| true }
+      end
+
       %w[
         kafka
         postgres
