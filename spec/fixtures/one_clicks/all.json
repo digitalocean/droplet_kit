@@ -1,0 +1,12 @@
+{
+  "1_clicks": [
+    {
+      "slug": "monitoring",
+      "type": "kubernetes"
+    },
+    {
+      "slug": "wordpress-18-04",
+      "type": "droplet"
+    }
+  ]
+}
