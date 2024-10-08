@@ -1,0 +1,35 @@
+{
+  "config": {
+    "autovacuum_naptime": 60,
+    "autovacuum_vacuum_threshold": 50,
+    "autovacuum_analyze_threshold": 50,
+    "autovacuum_vacuum_scale_factor": 0.2,
+    "autovacuum_analyze_scale_factor": 0.2,
+    "autovacuum_vacuum_cost_delay": 20,
+    "autovacuum_vacuum_cost_limit": -1,
+    "bgwriter_flush_after": 512,
+    "bgwriter_lru_maxpages": 100,
+    "bgwriter_lru_multiplier": 2,
+    "idle_in_transaction_session_timeout": 0,
+    "jit": true,
+    "log_autovacuum_min_duration": -1,
+    "log_min_duration_statement": -1,
+    "max_prepared_transactions": 0,
+    "max_parallel_workers": 8,
+    "max_parallel_workers_per_gather": 2,
+    "temp_file_limit": -1,
+    "wal_sender_timeout": 60000,
+    "backup_hour": 18,
+    "backup_minute": 26,
+    "pg_partman_bgw.role": "role",
+    "pg_partman_bgw.interval": 3600,
+    "pg_stat_statements.track": "all",
+    "timescaledb": {
+      "max_background_workers": 1
+    },
+    "pgbouncer": {
+      "server_reset_query_always": true,
+      "ignore_startup_parameters": ["param1", "param2"]
+    }
+  }
+}
