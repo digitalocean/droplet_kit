@@ -70,7 +70,7 @@ Metrics/MethodLength:
 # Offense count: 1
 # Configuration parameters: CountComments, CountAsOne.
 Metrics/ModuleLength:
-  Max: 290
+  Max: 295
 
 # Offense count: 1
 # This cop supports unsafe autocorrection (--autocorrect-all).
