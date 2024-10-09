@@ -172,6 +172,7 @@ Style/SymbolProc:
     - 'lib/droplet_kit/resources/container_registry_resource.rb'
     - 'lib/droplet_kit/resources/droplet_action_resource.rb'
     - 'lib/droplet_kit/resources/kubernetes_cluster_resource.rb'
+    - 'lib/droplet_kit/resources/one_click_resource.rb'
     - 'lib/tasks/resource_doc.rake'
 
 # Offense count: 106

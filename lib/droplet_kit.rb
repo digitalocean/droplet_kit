@@ -79,6 +79,8 @@ module DropletKit
   autoload :VPC, 'droplet_kit/models/vpc'
   autoload :VPCMember, 'droplet_kit/models/vpc_member'
   autoload :VPCPeering, 'droplet_kit/models/vpc_peering'
+  autoload :OneClick, 'droplet_kit/models/one_click'
+  autoload :OneClickKubernetes, 'droplet_kit/models/one_click_kubernetes'
   autoload :AppDomainSpec, 'droplet_kit/models/app_spec'
   autoload :AppGitSourceSpec, 'droplet_kit/models/app_spec'
   autoload :AppGitHubSourceSpec, 'droplet_kit/models/app_spec'
@@ -168,6 +170,7 @@ module DropletKit
   autoload :KubernetesOptionsResource, 'droplet_kit/resources/kubernetes_options_resource'
   autoload :VPCResource, 'droplet_kit/resources/vpc_resource'
   autoload :VPCPeeringResource, 'droplet_kit/resources/vpc_peering_resource'
+  autoload :OneClickResource, 'droplet_kit/resources/one_click_resource'
   autoload :AppResource, 'droplet_kit/resources/app_resource'
 
   # JSON Maps
@@ -241,6 +244,8 @@ module DropletKit
   autoload :VPCMapping, 'droplet_kit/mappings/vpc_mapping'
   autoload :VPCMemberMapping, 'droplet_kit/mappings/vpc_member_mapping'
   autoload :VPCPeeringMapping, 'droplet_kit/mappings/vpc_peering_mapping'
+  autoload :OneClickMapping, 'droplet_kit/mappings/one_click_mapping'
+  autoload :OneClickKubernetesMapping, 'droplet_kit/mappings/one_click_kubernetes_mapping'
   autoload :AppDomainSpecMapping, 'droplet_kit/mappings/app_spec_mapping'
   autoload :AppGitSourceSpecMapping, 'droplet_kit/mappings/app_spec_mapping'
   autoload :AppGitHubSourceSpecMapping, 'droplet_kit/mappings/app_spec_mapping'

@@ -675,6 +675,16 @@ Actions supported:
 * `client.container_registry_repository.delete_tag(registry_name: 'registry', repository: 'repo', tag: 'tag')`
 * `client.container_registry_repository.delete_manifest(registry_name: 'registry', repository: 'repo', manifest_digest: 'sha256:cb8a924afdf0229ef7515d9e5b3024e23b3eb03ddbba287f4a19c6ac90b8d221')`
 
+## 1-Click Applications resource
+
+    client = DropletKit::Client.new(access_token: 'TOKEN')
+    client.one_clicks #=> DropletKit::OneClickResource
+
+Actions supported:
+
+* `client.one_clicks.all(type: 'kubernetes|droplet')`
+* `client.one_clicks.create_kubernetes(one_click_kubernetes)`
+
 ## App resource
 
     client = DropletKit::Client.new(access_token: 'TOKEN')
