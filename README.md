@@ -675,6 +675,19 @@ Actions supported:
 * `client.container_registry_repository.delete_tag(registry_name: 'registry', repository: 'repo', tag: 'tag')`
 * `client.container_registry_repository.delete_manifest(registry_name: 'registry', repository: 'repo', manifest_digest: 'sha256:cb8a924afdf0229ef7515d9e5b3024e23b3eb03ddbba287f4a19c6ac90b8d221')`
 
+## App resource
+
+    client = DropletKit::Client.new(access_token: 'TOKEN')
+    client.apps #=> DropletKit::AppResource
+
+Actions supported:
+
+* `client.apps.all(with_projects: bool)`
+* `client.apps.find(id: 'id')`
+* `client.apps.create(app_spec)`
+* `client.apps.update(app_spec, id: 'id')`
+* `client.apps.delete(id: 'id')`
+
 ## Contributing
 
 1. Fork it ( https://github.com/digitalocean/droplet_kit/fork )
