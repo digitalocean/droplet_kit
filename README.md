@@ -694,8 +694,8 @@ Actions supported:
 
 * `client.apps.all(with_projects: bool)`
 * `client.apps.find(id: 'id')`
-* `client.apps.create(app_spec)`
-* `client.apps.update(app_spec, id: 'id')`
+* `client.apps.create(app)`
+* `client.apps.update(app, id: 'id')`
 * `client.apps.delete(id: 'id')`
 
 ## Contributing
