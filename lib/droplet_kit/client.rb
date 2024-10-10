@@ -82,7 +82,8 @@ module DropletKit
         volume_actions: VolumeActionResource,
         vpcs: VPCResource,
         vpc_peerings: VPCPeeringResource,
-        one_clicks: OneClickResource
+        one_clicks: OneClickResource,
+        apps: AppResource
       }
     end
 
