@@ -685,6 +685,19 @@ Actions supported:
 * `client.one_clicks.all(type: 'kubernetes|droplet')`
 * `client.one_clicks.create_kubernetes(one_click_kubernetes)`
 
+## App resource
+
+    client = DropletKit::Client.new(access_token: 'TOKEN')
+    client.apps #=> DropletKit::AppResource
+
+Actions supported:
+
+* `client.apps.all(with_projects: bool)`
+* `client.apps.find(id: 'id')`
+* `client.apps.create(app)`
+* `client.apps.update(app, id: 'id')`
+* `client.apps.delete(id: 'id')`
+
 ## Contributing
 
 1. Fork it ( https://github.com/digitalocean/droplet_kit/fork )
