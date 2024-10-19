@@ -62,4 +62,14 @@ RSpec.describe DropletKit::ContainerRegistryRepositoryResource do
       expect(response).to be(true)
     end
   end
+
+  describe '#delete' do
+    it 'sends a delete request a repository' do
+      request = stub_do_api('/v2/registry/my-registry/repositories/my-repo', :delete).to_return(status: 204)
+      response = resource.delete(registry_name: 'my-registry', repository: 'my-repo')
+
+      expect(request).to have_been_made
+      expect(response).to be(true)
+    end
+  end
 end
