@@ -4,6 +4,7 @@ require 'droplet_kit/version'
 require 'resource_kit'
 require 'kartograph'
 
+# rubocop:disable Metrics/ModuleLength
 module DropletKit
   autoload :Client, 'droplet_kit/client'
 
@@ -328,3 +329,4 @@ module DropletKit
     end
   end
 end
+# rubocop:enable Metrics/ModuleLength
