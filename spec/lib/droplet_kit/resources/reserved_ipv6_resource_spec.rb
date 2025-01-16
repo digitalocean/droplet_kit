@@ -6,7 +6,7 @@ RSpec.describe DropletKit::ReservedIpv6Resource do
 
   include_context 'resources'
 
-  RSpec::Matchers.define :match_reserved_ip_fixture do |droplet|
+  RSpec::Matchers.define :match_reserved_ipv6_fixture do |droplet|
     match do |reserved_ip|
       expect(reserved_ip.droplet).to be_a(DropletKit::Droplet) if droplet
 
@@ -20,7 +20,7 @@ RSpec.describe DropletKit::ReservedIpv6Resource do
       reserved_ips = resource.all
       expect(reserved_ips).to all(be_a(DropletKit::ReservedIpv6))
 
-      expect(reserved_ips.first).to match_reserved_ip_fixture
+      expect(reserved_ips.first).to match_reserved_ipv6_fixture
     end
 
     it 'returns an empty array of reserved_ipv6s' do
@@ -40,19 +40,19 @@ RSpec.describe DropletKit::ReservedIpv6Resource do
       stub_do_api('/v2/reserved_ipv6/2a03:b0c0:3:f0::5dcf:9000', :get).to_return(body: api_fixture('reserved_ipv6/find'))
       reserved_ip = resource.find(ip: '2a03:b0c0:3:f0::5dcf:9000')
       expect(reserved_ip).to be_a(DropletKit::ReservedIpv6)
-      expect(reserved_ip).to match_reserved_ip_fixture
+      expect(reserved_ip).to match_reserved_ipv6_fixture
     end
 
     it 'return a not_found response' do
       stub_do_api('/v2/reserved_ipv6/2a03:b0c0:3:f0::5dcf:9000', :get).to_return(body: '{"id": "not_found", "message": "not found"}', status: 404)
-      expect { resource.find(ip: '2a03:b0c0:3:f0::5dcf:9000') }.to raise_exception(DropletKit::Error).with_message("not found")
+      expect { resource.find(ip: '2a03:b0c0:3:f0::5dcf:9000') }.to raise_exception(DropletKit::Error).with_message('not found')
     end
   end
 
   describe '#create' do
     let(:path) { '/v2/reserved_ipv6' }
 
-    context 'for a successful create' do
+    context 'with a successful create' do
       it 'returns the created reserved_ipv6' do
         reserved_ip = DropletKit::ReservedIpv6.new(
           region: 'nyc1'
@@ -80,10 +80,9 @@ RSpec.describe DropletKit::ReservedIpv6Resource do
       expect(request).to have_been_made
     end
 
-
     it 'return a not_found response' do
       stub_do_api('/v2/reserved_ipv6/2a03:b0c0:3:f0::5dcf:9000', :delete).to_return(body: '{"id": "not_found", "message": "not found"}', status: 404)
-      expect { resource.delete(ip: '2a03:b0c0:3:f0::5dcf:9000') }.to raise_exception(DropletKit::FailedDelete).with_message("not found")
+      expect { resource.delete(ip: '2a03:b0c0:3:f0::5dcf:9000') }.to raise_exception(DropletKit::FailedDelete).with_message('not found')
     end
   end
 end

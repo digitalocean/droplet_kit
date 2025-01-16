@@ -74,7 +74,7 @@ RSpec.describe DropletKit::ReservedIpv6ActionResource do
     end
 
     it_behaves_like 'an action that handles invalid parameters' do
-      let(:arguments) { { ip: ip} }
+      let(:arguments) { { ip: ip } }
     end
 
     it_behaves_like 'an action that handles bad request' do

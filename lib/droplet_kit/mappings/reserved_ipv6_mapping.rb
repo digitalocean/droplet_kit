@@ -9,7 +9,7 @@ module DropletKit
       root_key plural: 'reserved_ipv6s', singular: 'reserved_ipv6', scopes: [:read]
 
       property :ip, scopes: [:read]
-      property :region_slug, scopes: [:read, :create]
+      property :region_slug, scopes: %i[read create]
       property :droplet, scopes: [:read], include: DropletMapping
       property :reserved_at, scopes: [:read]
     end

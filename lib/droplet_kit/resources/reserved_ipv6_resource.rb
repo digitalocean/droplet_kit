@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module DropletKit
   class ReservedIpv6Resource < ResourceKit::Resource
     resources do
@@ -9,7 +10,7 @@ module DropletKit
 
       action :find, 'GET /v2/reserved_ipv6/:ip' do
         handler(200) { |response| ReservedIpv6Mapping.extract_single(response.body, :read) }
-        handler(404)  { |response| ErrorMapping.fail_with(Error, response.body) }
+        handler(404) { |response| ErrorMapping.fail_with(Error, response.body) }
       end
 
       action :create, 'POST /v2/reserved_ipv6' do
