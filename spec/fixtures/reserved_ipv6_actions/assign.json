@@ -1,0 +1,13 @@
+{
+  "action": {
+    "id": 2,
+    "status": "in-progress",
+    "type": "assign_ip",
+    "started_at": "2014-08-05T15:15:28Z",
+    "completed_at": null,
+    "resource_id": 0,
+    "resource_type": "reserved_ipv6",
+    "region_slug": "nyc1",
+    "region": null
+  }
+}

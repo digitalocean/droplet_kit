@@ -585,6 +585,28 @@ Actions supported:
 * `client.reserved_ip_actions.assign(ip: reserved_ip.ip, droplet_id: droplet.id)`
 * `client.reserved_ip_actions.unassign(ip: reserved_ip.ip)`
 
+## Reserved IPv6 resource
+
+    client = DropletKit::Client.new(access_token: 'TOKEN')
+    client.reserved_ipv6s #=> DropletKit::ReservedIpv6Resource
+
+Actions supported:
+
+* `client.reserved_ipv6s.all()`
+* `client.reserved_ipv6s.find(ip: 'ip address')`
+* `client.reserved_ipv6s.create(reserved_ipv6)`
+* `client.reserved_ipv6s.delete(ip: 'ip address')`
+
+## Reserved IPv6 Action resource
+
+    client = DropletKit::Client.new(access_token: 'TOKEN')
+    client.reserved_ipv6_actions #=> DropletKit::ReservedIpv6ActionResource
+
+Actions supported:
+
+* `client.reserved_ipv6_actions.assign(ip: reserved_ipv6.ip, droplet_id: droplet.id)`
+* `client.reserved_ipv6_actions.unassign(ip: reserved_ipv6.ip)`
+
 ## Volume resource
 
     client = DropletKit::Client.new(access_token: 'TOKEN')
