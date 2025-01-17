@@ -19,10 +19,12 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = '>= 2.5.0'
 
+  spec.add_dependency 'base64', '~> 0'
   spec.add_dependency 'bigdecimal'
   spec.add_dependency 'faraday', '>= 0.15'
   spec.add_dependency 'faraday-retry', '~> 2.2.0'
   spec.add_dependency 'kartograph', '~> 0.2.8'
+  spec.add_dependency 'ostruct', '~> 0'
   spec.add_dependency 'resource_kit', '~> 0.1.5'
   spec.add_dependency 'virtus', '>= 1.0.3', '<= 3'
 
