@@ -589,6 +589,9 @@ Actions supported:
 
     client = DropletKit::Client.new(access_token: 'TOKEN')
     client.reserved_ipv6s #=> DropletKit::ReservedIpv6Resource
+    reserved_ipv6 = DropletKit::ReservedIpv6.new(
+      region_slug: 'nyc1'
+    )
 
 Actions supported:
 
