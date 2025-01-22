@@ -55,7 +55,7 @@ RSpec.describe DropletKit::ReservedIpv6Resource do
     context 'with a successful create' do
       it 'returns the created reserved_ipv6' do
         reserved_ip = DropletKit::ReservedIpv6.new(
-          region: 'nyc1'
+          region_slug: 'nyc1'
         )
 
         as_string = DropletKit::ReservedIpv6Mapping.representation_for(:create, reserved_ip)
