@@ -1,3 +1,12 @@
+## Version 3.22.0
+
+- #332 - @vnegi-digitalocean - add reserved ipv6 support
+- #330 - @caiohsramos - Add apps resource
+- #329 - @caiohsramos - Add one click resource
+- #328 - @caiohsramos - Add database config actions
+- #327 - @caiohsramos - Add database metrics credentials actions
+- #326 - @caiohsramos - Add update_connection_pool action
+
 ## Version 3.21.0
 
 - #318 - @brunograsselli - Introduce VPC Peering resource
