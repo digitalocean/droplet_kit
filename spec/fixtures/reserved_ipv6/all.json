@@ -1,0 +1,283 @@
+{
+  "reserved_ipv6s": [
+    {
+      "ip": "2a03:b0c0:3:f0::5dcf:9000",
+      "region_slug": "fra1",
+      "droplet": {
+        "id": 469950602,
+        "name": "werain-fra-1",
+        "memory": 512,
+        "vcpus": 1,
+        "disk": 10,
+        "disk_info": [
+          {
+            "type": "local",
+            "size": {
+              "amount": 10,
+              "unit": "gib"
+            }
+          }
+        ],
+        "locked": false,
+        "status": "off",
+        "kernel": null,
+        "created_at": "2025-01-15T11:03:58Z",
+        "features": [
+          "droplet_agent",
+          "ipv6",
+          "private_networking"
+        ],
+        "backup_ids": [],
+        "next_backup_window": null,
+        "snapshot_ids": [],
+        "image": {
+          "id": 168977420,
+          "name": "24.10 x64",
+          "distribution": "Ubuntu",
+          "slug": "ubuntu-24-10-x64",
+          "public": true,
+          "regions": [
+            "nyc3",
+            "nyc1",
+            "sfo1",
+            "nyc2",
+            "ams2",
+            "sgp1",
+            "lon1",
+            "ams3",
+            "fra1",
+            "tor1",
+            "sfo2",
+            "blr1",
+            "sfo3",
+            "syd1"
+          ],
+          "created_at": "2024-10-28T21:26:20Z",
+          "min_disk_size": 7,
+          "type": "base",
+          "size_gigabytes": 3.76,
+          "description": "Ubuntu 24.10 x64",
+          "tags": [],
+          "status": "available"
+        },
+        "volume_ids": [],
+        "size": {
+          "slug": "s-1vcpu-512mb-10gb",
+          "memory": 512,
+          "vcpus": 1,
+          "disk": 10,
+          "transfer": 0.5,
+          "price_monthly": 4.0,
+          "price_hourly": 0.00595,
+          "regions": [
+            "ams3",
+            "fra1",
+            "nyc1",
+            "sfo3",
+            "sgp1",
+            "syd1"
+          ],
+          "available": true,
+          "description": "Basic",
+          "networking_throughput": 2000,
+          "disk_info": [
+            {
+              "type": "local",
+              "size": {
+                "amount": 10,
+                "unit": "gib"
+              }
+            }
+          ]
+        },
+        "size_slug": "s-1vcpu-512mb-10gb",
+        "networks": {
+          "v4": [
+            {
+              "ip_address": "165.227.163.159",
+              "netmask": "255.255.240.0",
+              "gateway": "165.227.160.1",
+              "type": "public"
+            },
+            {
+              "ip_address": "10.114.0.3",
+              "netmask": "255.255.240.0",
+              "gateway": "10.114.0.1",
+              "type": "private"
+            }
+          ],
+          "v6": [
+            {
+              "ip_address": "2a03:b0c0:3:f0::5dcf:9000",
+              "netmask": 0,
+              "gateway": "2a03:b0c0:3:f0::1",
+              "type": "public"
+            }
+          ]
+        },
+        "region": {
+          "name": "Frankfurt 1",
+          "slug": "fra1",
+          "features": [
+            "backups",
+            "ipv6",
+            "metadata",
+            "install_agent",
+            "storage",
+            "image_transfer"
+          ],
+          "available": true,
+          "sizes": [
+            "s-1vcpu-512mb-10gb",
+            "s-1vcpu-1gb",
+            "s-1vcpu-1gb-amd",
+            "s-1vcpu-1gb-intel",
+            "s-1vcpu-1gb-35gb-intel",
+            "s-1vcpu-2gb",
+            "s-1vcpu-2gb-amd",
+            "s-1vcpu-2gb-intel",
+            "s-1vcpu-2gb-70gb-intel",
+            "s-2vcpu-2gb",
+            "s-2vcpu-2gb-amd",
+            "s-2vcpu-2gb-intel",
+            "s-2vcpu-2gb-90gb-intel",
+            "s-2vcpu-4gb",
+            "s-2vcpu-4gb-amd",
+            "s-2vcpu-4gb-intel",
+            "s-2vcpu-4gb-120gb-intel",
+            "s-2vcpu-8gb-amd",
+            "c-2",
+            "c2-2vcpu-4gb",
+            "s-2vcpu-8gb-160gb-intel",
+            "s-4vcpu-8gb",
+            "s-4vcpu-8gb-amd",
+            "s-4vcpu-8gb-intel",
+            "g-2vcpu-8gb",
+            "s-4vcpu-8gb-240gb-intel",
+            "gd-2vcpu-8gb",
+            "g-2vcpu-8gb-intel",
+            "gd-2vcpu-8gb-intel",
+            "s-4vcpu-16gb-amd",
+            "m-2vcpu-16gb",
+            "c-4",
+            "c2-4vcpu-8gb",
+            "s-4vcpu-16gb-320gb-intel",
+            "s-8vcpu-16gb",
+            "m-2vcpu-16gb-intel",
+            "m3-2vcpu-16gb",
+            "c-4-intel",
+            "m3-2vcpu-16gb-intel",
+            "s-8vcpu-16gb-amd",
+            "s-8vcpu-16gb-intel",
+            "c2-4vcpu-8gb-intel",
+            "g-4vcpu-16gb",
+            "s-8vcpu-16gb-480gb-intel",
+            "so-2vcpu-16gb-intel",
+            "so-2vcpu-16gb",
+            "m6-2vcpu-16gb",
+            "gd-4vcpu-16gb",
+            "so1_5-2vcpu-16gb-intel",
+            "g-4vcpu-16gb-intel",
+            "gd-4vcpu-16gb-intel",
+            "so1_5-2vcpu-16gb",
+            "s-8vcpu-32gb-amd",
+            "m-4vcpu-32gb",
+            "c-8",
+            "c2-8vcpu-16gb",
+            "s-8vcpu-32gb-640gb-intel",
+            "m-4vcpu-32gb-intel",
+            "m3-4vcpu-32gb",
+            "c-8-intel",
+            "m3-4vcpu-32gb-intel",
+            "c2-8vcpu-16gb-intel",
+            "g-8vcpu-32gb",
+            "so-4vcpu-32gb-intel",
+            "so-4vcpu-32gb",
+            "m6-4vcpu-32gb",
+            "gd-8vcpu-32gb",
+            "so1_5-4vcpu-32gb-intel",
+            "g-8vcpu-32gb-intel",
+            "gd-8vcpu-32gb-intel",
+            "so1_5-4vcpu-32gb",
+            "m-8vcpu-64gb",
+            "c-16",
+            "c2-16vcpu-32gb",
+            "m-8vcpu-64gb-intel",
+            "m3-8vcpu-64gb",
+            "c-16-intel",
+            "m3-8vcpu-64gb-intel",
+            "c2-16vcpu-32gb-intel",
+            "g-16vcpu-64gb",
+            "so-8vcpu-64gb-intel",
+            "so-8vcpu-64gb",
+            "m6-8vcpu-64gb",
+            "gd-16vcpu-64gb",
+            "so1_5-8vcpu-64gb-intel",
+            "g-16vcpu-64gb-intel",
+            "gd-16vcpu-64gb-intel",
+            "so1_5-8vcpu-64gb",
+            "m-16vcpu-128gb",
+            "c-32",
+            "c2-32vcpu-64gb",
+            "m-16vcpu-128gb-intel",
+            "m3-16vcpu-128gb",
+            "c-32-intel",
+            "m3-16vcpu-128gb-intel",
+            "c2-32vcpu-64gb-intel",
+            "c-48",
+            "m-24vcpu-192gb",
+            "g-32vcpu-128gb",
+            "so-16vcpu-128gb-intel",
+            "so-16vcpu-128gb",
+            "m6-16vcpu-128gb",
+            "gd-32vcpu-128gb",
+            "so1_5-16vcpu-128gb-intel",
+            "c2-48vcpu-96gb",
+            "m-24vcpu-192gb-intel",
+            "g-32vcpu-128gb-intel",
+            "m3-24vcpu-192gb",
+            "g-40vcpu-160gb",
+            "gd-32vcpu-128gb-intel",
+            "so1_5-16vcpu-128gb",
+            "c-48-intel",
+            "m3-24vcpu-192gb-intel",
+            "gd-40vcpu-160gb",
+            "c2-48vcpu-96gb-intel",
+            "so-24vcpu-192gb-intel",
+            "so-24vcpu-192gb",
+            "m6-24vcpu-192gb",
+            "m-32vcpu-256gb-intel",
+            "c-60-intel",
+            "so1_5-24vcpu-192gb-intel",
+            "m3-32vcpu-256gb-intel",
+            "g-48vcpu-192gb-intel",
+            "c2-60vcpu-120gb-intel",
+            "gd-48vcpu-192gb-intel",
+            "so1_5-24vcpu-192gb",
+            "so-32vcpu-256gb-intel",
+            "so1_5-32vcpu-256gb-intel",
+            "g-60vcpu-240gb-intel",
+            "m-48vcpu-384gb-intel",
+            "gd-60vcpu-240gb-intel",
+            "m3-48vcpu-384gb-intel",
+            "so-48vcpu-384gb-intel"
+          ]
+        },
+        "tags": [
+          "fra-1"
+        ],
+        "vpc_uuid": "3c41cfc8-3732-4fe0-9010-53600c432634"
+      },
+      "reserved_at": "2025-01-15T12:38:02Z"
+    },
+    {
+      "ip": "2604:a880:800:14::79d4:4000",
+      "region_slug": "nyc3",
+      "reserved_at": "2025-01-15T12:31:00Z"
+    }
+  ],
+  "meta": {
+    "total": 2
+  },
+  "links": {}
+}
