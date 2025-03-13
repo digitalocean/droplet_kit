@@ -23,6 +23,11 @@ module DropletKit
         handler(204) { |response| true }
         handler(400) { |response| ErrorMapping.fail_with(FailedDelete, response.body) }
       end
+
+      action :delete, 'DELETE /v2/registry/:registry_name/repositories/:repository' do
+        handler(204) { |response| true }
+        handler(400) { |response| ErrorMapping.fail_with(FailedDelete, response.body) }
+      end
     end
 
     def all(*args)

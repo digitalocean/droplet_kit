@@ -22,6 +22,10 @@ module DropletKit
       action :docker_credentials, 'GET /v2/registry/docker-credentials' do
         handler(200) { |response| response.body }
       end
+
+      action :start_garbage_collection, 'POST /v2/registry/garbage-collection' do
+        handler(201) { |response| response.body }
+      end
     end
   end
 end

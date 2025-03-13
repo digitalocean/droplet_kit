@@ -87,4 +87,14 @@ RSpec.describe DropletKit::ContainerRegistryResource do
       )
     end
   end
+
+  describe '#start_garbage_collection' do
+    it 'sends a start garbage collection request for a registry' do
+      request = stub_do_api('/v2/registry/garbage-collection', :post).to_return(status: 201)
+      response = resource.start_garbage_collection
+
+      expect(request).to have_been_made
+      expect(response).to be_a(String)
+    end
+  end
 end
