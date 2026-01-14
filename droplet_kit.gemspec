@@ -21,7 +21,8 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'bigdecimal'
   spec.add_dependency 'faraday', '>= 0.15'
-  spec.add_dependency 'faraday-retry', '~> 2.2.0'
+  spec.add_dependency 'ostruct'
+  spec.add_dependency 'faraday-retry', '~> 2.2'
   spec.add_dependency 'kartograph', '~> 0.2.8'
   spec.add_dependency 'resource_kit', '~> 0.1.5'
   spec.add_dependency 'virtus', '>= 1.0.3', '<= 3'
@@ -43,5 +44,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rubocop-packaging', '>= 0.5.1'
   spec.add_development_dependency 'rubocop-rake', '>= 0.6.0'
 
-  spec.add_development_dependency 'webmock', '~> 3.8.0'
+  spec.add_development_dependency 'webmock', '~> 3.8'
 end
