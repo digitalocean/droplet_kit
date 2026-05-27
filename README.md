@@ -1,8 +1,18 @@
 # DropletKit
+
+> **Deprecated:** DropletKit is no longer actively maintained. New applications should use the [DigitalOcean API](https://docs.digitalocean.com/reference/api/) directly or a [supported SDK](https://docs.digitalocean.com/reference/libraries/) (TypeScript, Go, or Python). There is no official Ruby SDK.
+
 [![Build Status](https://github.com/digitalocean/droplet_kit/workflows/CI/badge.svg?branch=main)](https://github.com/digitalocean/droplet_kit/actions)
 [![Gem Version](https://badge.fury.io/rb/droplet_kit.svg)](https://badge.fury.io/rb/droplet_kit)
 
-DropletKit is the official [DigitalOcean V2 API](https://developers.digitalocean.com/v2/) client. It supports everything the API can do with a simple interface written in Ruby.
+DropletKit is a Ruby client for the [DigitalOcean V2 API](https://developers.digitalocean.com/v2/). It provides resource-oriented access to API endpoints. Existing apps may continue to use published gem versions; new API features will not be added here.
+
+## Deprecation
+
+- **Status:** Deprecated; no new features or API coverage. Critical security fixes only.
+- **RubyGems:** Published versions remain available; no new releases are planned.
+- **Migration:** Call the [API reference](https://docs.digitalocean.com/reference/api/) directly, or use [Godo](https://github.com/digitalocean/godo), [PyDo](https://github.com/digitalocean/pydo), or [DoTs](https://github.com/digitalocean/dots) from another language or service.
+- **Forks:** Permitted under the [MIT license](LICENSE.txt).
 
 ## Installation
 
@@ -725,11 +735,8 @@ Actions supported:
 
 ## Contributing
 
-1. Fork it ( https://github.com/digitalocean/droplet_kit/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+This repository is deprecated and not accepting new features or API endpoint coverage. Critical security fixes may be considered on a case-by-case basis; open an issue before submitting a pull request.
 
 ## Releasing
-See [RELEASE](RELEASE.md) for details
+
+New gem releases are not planned. See [RELEASE](RELEASE.md) for the historical release process.
