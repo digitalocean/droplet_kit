@@ -3,6 +3,7 @@
 module DropletKit
   class ContainerRegistryRepositoryMapping
     include Kartograph::DSL
+
     kartograph do
       mapping ContainerRegistryRepository
       root_key singular: 'repository', plural: 'repositories', scopes: [:read]

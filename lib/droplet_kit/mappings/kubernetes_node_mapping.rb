@@ -3,6 +3,7 @@
 module DropletKit
   class KubernetesNodeMapping
     include Kartograph::DSL
+
     kartograph do
       mapping KubernetesNode
 

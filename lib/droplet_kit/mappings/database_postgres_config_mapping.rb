@@ -3,6 +3,7 @@
 module DropletKit
   class DatabasePostgresPgbouncerConfigMapping
     include Kartograph::DSL
+
     kartograph do
       mapping DatabasePostgresPgbouncerConfig
 
@@ -22,6 +23,7 @@ module DropletKit
 
   class DatabasePostgresTimescaledbConfigMapping
     include Kartograph::DSL
+
     kartograph do
       mapping DatabasePostgresTimescaledbConfig
       property :max_background_workers, scopes: %i[read update]

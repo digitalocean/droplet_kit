@@ -3,6 +3,7 @@
 module DropletKit
   class KubernetesMaintenancePolicyMapping
     include Kartograph::DSL
+
     kartograph do
       mapping KubernetesMaintenancePolicyMapping
 
