@@ -1,3 +1,7 @@
+## Unreleased
+
+- Document repository deprecation in README, gemspec metadata, and [RELEASE.md](RELEASE.md).
+
 ## Version 3.22.0
 
 - #332 - @vnegi-digitalocean - add reserved ipv6 support

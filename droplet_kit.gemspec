@@ -9,8 +9,14 @@ Gem::Specification.new do |spec|
   spec.version       = DropletKit::VERSION
   spec.authors       = ['DigitalOcean API Engineering team']
   spec.email         = ['api-engineering@digitalocean.com']
-  spec.summary       = "Droplet Kit is the official Ruby library for DigitalOcean's API"
-  spec.description   = "Droplet Kit is the official Ruby library for DigitalOcean's API"
+  spec.summary       = '[DEPRECATED] Ruby client for the DigitalOcean API v2'
+  spec.description   = 'DropletKit is deprecated and no longer actively maintained. See https://github.com/digitalocean/droplet_kit and https://docs.digitalocean.com/reference/libraries/'
+  spec.post_install_message = <<~MSG
+
+    DropletKit is deprecated and no longer actively maintained by DigitalOcean.
+    See https://docs.digitalocean.com/reference/libraries/ for supported SDKs.
+
+  MSG
   spec.homepage      = 'https://github.com/digitalocean/droplet_kit'
   spec.license       = 'MIT'
 
