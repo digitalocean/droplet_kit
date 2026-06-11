@@ -311,17 +311,10 @@ module DropletKit
 
   # Errors
   autoload :ErrorMapping, 'droplet_kit/mappings/error_mapping'
-  class Error < StandardError
-  end
-
-  class FailedCreate < Error
-  end
-
-  class FailedUpdate < Error
-  end
-
-  class FailedDelete < Error
-  end
+  Error = Class.new(StandardError)
+  FailedCreate = Class.new(DropletKit::Error)
+  FailedUpdate = Class.new(DropletKit::Error)
+  FailedDelete = Class.new(DropletKit::Error)
 
   class RateLimitReached < DropletKit::Error
     attr_accessor :reset_at

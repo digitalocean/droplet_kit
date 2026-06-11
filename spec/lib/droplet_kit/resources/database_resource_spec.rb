@@ -458,15 +458,16 @@ RSpec.describe DropletKit::DatabaseResource do
   end
 
   describe '#reset_database_user_auth' do
+    database_user = DropletKit::DatabaseUser.new(
+      name: 'app-01',
+      role: 'normal',
+      password: 'jge5lfxtzhx42iff',
+      mysql_settings: {
+        auth_plugin: 'mysql_native_password'
+      }
+    )
+
     it 'resets the db user auth' do
-      database_user = DropletKit::DatabaseUser.new(
-        name: 'app-01',
-        role: 'normal',
-        password: 'jge5lfxtzhx42iff',
-        mysql_settings: {
-          auth_plugin: 'mysql_native_password'
-        }
-      )
       request = stub_do_api("/v2/databases/#{database_cluster_id}/users/#{database_user.name}/reset_auth", :post).to_return(body: api_fixture('databases/reset_user_auth_response'), status: 200)
       reset_auth = DropletKit::DatabaseUserResetAuth.new(
         mysql_settings: DropletKit::DatabaseUserMySQLSettings.new(

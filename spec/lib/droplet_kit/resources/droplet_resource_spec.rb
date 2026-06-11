@@ -197,13 +197,13 @@ RSpec.describe DropletKit::DropletResource do
 
     context 'when creating with with_droplet_agent' do
       context 'not set' do
+        droplet = DropletKit::Droplet.new(
+          name: 'test.example.com',
+          region: 'nyc1',
+          size: '512mb',
+          image: 'ubuntu-14-04-x86'
+        )
         it 'does not include it in the request' do
-          droplet = DropletKit::Droplet.new(
-            name: 'test.example.com',
-            region: 'nyc1',
-            size: '512mb',
-            image: 'ubuntu-14-04-x86'
-          )
           as_hash = DropletKit::DropletMapping.hash_for(:create, droplet)
           expect(as_hash['with_droplet_agent']).to be_nil
 
@@ -216,14 +216,14 @@ RSpec.describe DropletKit::DropletResource do
       end
 
       context 'set to false' do
+        droplet = DropletKit::Droplet.new(
+          name: 'test.example.com',
+          region: 'nyc1',
+          size: '512mb',
+          image: 'ubuntu-14-04-x86',
+          with_droplet_agent: false
+        )
         it 'includes it in the request' do
-          droplet = DropletKit::Droplet.new(
-            name: 'test.example.com',
-            region: 'nyc1',
-            size: '512mb',
-            image: 'ubuntu-14-04-x86',
-            with_droplet_agent: false
-          )
           as_hash = DropletKit::DropletMapping.hash_for(:create, droplet)
           expect(as_hash['with_droplet_agent']).to eq(droplet.with_droplet_agent)
 
@@ -236,14 +236,14 @@ RSpec.describe DropletKit::DropletResource do
       end
 
       context 'set to true' do
+        droplet = DropletKit::Droplet.new(
+          name: 'test.example.com',
+          region: 'nyc1',
+          size: '512mb',
+          image: 'ubuntu-14-04-x86',
+          with_droplet_agent: true
+        )
         it 'includes it in the request' do
-          droplet = DropletKit::Droplet.new(
-            name: 'test.example.com',
-            region: 'nyc1',
-            size: '512mb',
-            image: 'ubuntu-14-04-x86',
-            with_droplet_agent: true
-          )
           droplet.with_droplet_agent = true
 
           as_hash = DropletKit::DropletMapping.hash_for(:create, droplet)
