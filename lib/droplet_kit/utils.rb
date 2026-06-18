@@ -4,6 +4,8 @@ module DropletKit
   module Utils
     def self.camelize(term)
       string = term.to_s
+      return 'VPC' if string == 'vpc'
+
       string.sub!(/^[a-z\d]*/, &:capitalize)
       string.gsub!(%r{(?:_|(/))([a-z\d]*)}i) { Regexp.last_match(2).capitalize }
       string.gsub!('/', '::')

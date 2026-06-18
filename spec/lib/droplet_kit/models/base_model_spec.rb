@@ -19,6 +19,12 @@ RSpec.describe DropletKit::BaseModel do
       expect(described_class.valid_urn?(urn)).to be true
     end
 
+    it 'is true when there is a constant matching the collection with acronym' do
+      urn = 'do:vpc:123456'
+
+      expect(described_class.valid_urn?(urn)).to be true
+    end
+
     it 'is true when it is an unsupported collection' do
       urn = 'do:space:234567'
 
